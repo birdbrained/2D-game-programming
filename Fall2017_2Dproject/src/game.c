@@ -16,21 +16,25 @@ int main(int argc, char * argv[])
     float mf = 0;
     Sprite *mouse;
 	Sprite *thing;
+	Sprite *thing2;
     Vector4D mouseColor = {255,100,255,200};
 	Vector2D flipVert = { 0, 1 };
+	Vector2D scaleDown = { 0.5, 0.5 };
+	Vector2D scaleUp = { 2, 2 };
 	IntNode *myLL = IntNode_init(5);
     
     /*program initializtion*/
     init_logger("gf2d.log");
     slog("---==== BEGIN ====---");
     gf2d_graphics_initialize(
-        "gf2d",
+        "Drum Majors Don't Wear Aussies",
         1200,
         720,
         1200,
         720,
         vector4d(0,0,0,255),
         0);
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
     gf2d_graphics_set_frame_delay(16);
     gf2d_sprite_init(1024);
     SDL_ShowCursor(SDL_DISABLE);
@@ -41,7 +45,9 @@ int main(int argc, char * argv[])
     /*demo setup*/
     sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
-	thing = gf2d_sprite_load_all("images/ed210.png", 128, 128, 16);
+	thing = gf2d_sprite_load_all("images/sprites/test_dude.png", 32, 32, 1);
+	thing2 = gf2d_sprite_load_all("images/sprites/test_dude3.png", 64, 64, 1);
+
     /*main game loop*/
     while(!done)
     {
@@ -58,7 +64,9 @@ int main(int argc, char * argv[])
 		gf2d_sprite_draw_image(sprite,vector2d(0,0));
 
 		//Me! trying to add a sprite
-		gf2d_sprite_draw(thing, vector2d(10, 10), NULL, NULL, NULL, &flipVert, NULL, (int)mf);
+		gf2d_sprite_draw(thing, vector2d(100, 10), &scaleUp, NULL, NULL, NULL, NULL, 0);
+		gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
+		gf2d_sprite_draw(thing2, vector2d(100, 100), NULL, NULL, NULL, NULL, NULL, 0);
 
 		//UI elements last
 		gf2d_sprite_draw(

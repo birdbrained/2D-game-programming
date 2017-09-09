@@ -23,4 +23,10 @@ struct floatnode{
 };
 typedef struct floatnode FloatNode;
 
+/**
+ * @brief Initializes an IntNode with a given int
+ * @param i The int required it construct an IntNode
+ */
+IntNode * IntNode_init(int i);
+
 #endif // !__DS_LINKED_LIST__
