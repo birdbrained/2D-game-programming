@@ -36,6 +36,9 @@
     <ClCompile Include="ds_linked_list.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tilemap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Makefile" />
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ds_linked_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tilemap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

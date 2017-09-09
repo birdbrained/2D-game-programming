@@ -3,6 +3,7 @@
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
 #include "ds_linked_list.h"
+#include "tilemap.h"
 
 int main(int argc, char * argv[])
 {
@@ -17,10 +18,15 @@ int main(int argc, char * argv[])
     Sprite *mouse;
 	Sprite *thing;
 	Sprite *thing2;
+	Sprite *myTileMap;
+	const int level[] = 
+	{ 0, 2, 1, 3, 0, 1,
+	  1, 3, 1, 1, 2, 2,
+	  0, 0, 1, 2, 3, 1 };
     Vector4D mouseColor = {255,100,255,200};
 	Vector2D flipVert = { 0, 1 };
 	Vector2D scaleDown = { 0.5, 0.5 };
-	Vector2D scaleUp = { 2, 2 };
+	Vector2D scaleUp = { 4, 4 };
 	IntNode *myLL = IntNode_init(5);
     
     /*program initializtion*/
@@ -34,19 +40,20 @@ int main(int argc, char * argv[])
         720,
         vector4d(0,0,0,255),
         0);
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0"); //This line makes images render crisp instead of blurry
     gf2d_graphics_set_frame_delay(16);
     gf2d_sprite_init(1024);
     SDL_ShowCursor(SDL_DISABLE);
 
 	//derp
-	slog("%i", myLL->data);
+	//slog("%i", myLL->data);
     
     /*demo setup*/
     sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
 	thing = gf2d_sprite_load_all("images/sprites/test_dude.png", 32, 32, 1);
 	thing2 = gf2d_sprite_load_all("images/sprites/test_dude3.png", 64, 64, 1);
+	myTileMap = gf2d_sprite_load_all("images/test_tiles.png", 32, 32, 4);
 
     /*main game loop*/
     while(!done)
@@ -64,6 +71,13 @@ int main(int argc, char * argv[])
 		gf2d_sprite_draw_image(sprite,vector2d(0,0));
 
 		//Me! trying to add a sprite
+		DrawTileMap(
+			myTileMap,
+			level,
+			6,
+			3,
+			10,
+			10);
 		gf2d_sprite_draw(thing, vector2d(100, 10), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
 		gf2d_sprite_draw(thing2, vector2d(100, 100), NULL, NULL, NULL, NULL, NULL, 0);
