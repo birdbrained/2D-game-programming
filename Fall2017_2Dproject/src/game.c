@@ -77,7 +77,7 @@ int main(int argc, char * argv[])
 			6,
 			3,
 			10,
-			10);
+			400);
 		gf2d_sprite_draw(thing, vector2d(100, 10), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
 		gf2d_sprite_draw(thing2, vector2d(100, 100), NULL, NULL, NULL, NULL, NULL, 0);
