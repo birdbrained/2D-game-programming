@@ -15,6 +15,7 @@
  * @param height The number of lines of tiles to draw
  * @param xPos Where to starting drawing the tilemap
  * @param yPos Where to starting drawing the tilemap
+ * @return 0 if successful
  */
 int DrawTileMap(Sprite *tilemap, const int *tiles, unsigned int width, unsigned int height, int xPos, int yPos);
 

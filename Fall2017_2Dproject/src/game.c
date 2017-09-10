@@ -4,6 +4,7 @@
 #include "simple_logger.h"
 #include "ds_linked_list.h"
 #include "tilemap.h"
+#include "student.h"
 
 int main(int argc, char * argv[])
 {
@@ -22,12 +23,13 @@ int main(int argc, char * argv[])
 	const int level[] = 
 	{ 0, 2, 1, 3, 0, 1,
 	  1, 3, 1, 1, 2, 2,
-	  0, 0, 1, 2, 3, 1 };
+	  0, 0, 1, 2, 3, 3 };
     Vector4D mouseColor = {255,100,255,200};
 	Vector2D flipVert = { 0, 1 };
 	Vector2D scaleDown = { 0.5, 0.5 };
 	Vector2D scaleUp = { 4, 4 };
 	IntNode *myLL = IntNode_init(5);
+	Student *person;
     
     /*program initializtion*/
     init_logger("gf2d.log");
@@ -54,6 +56,11 @@ int main(int argc, char * argv[])
 	thing = gf2d_sprite_load_all("images/sprites/test_dude.png", 32, 32, 1);
 	thing2 = gf2d_sprite_load_all("images/sprites/test_dude3.png", 64, 64, 1);
 	myTileMap = gf2d_sprite_load_all("images/test_tiles.png", 32, 32, 4);
+	person = student("Test", "Sex", thing2);
+	slog("fav thing: %s", person->favoriteThing);
+	//person->name = "Tester";
+	//person->favoriteThing = "Sexels";
+	//person->sprite = thing2;
 
     /*main game loop*/
     while(!done)
