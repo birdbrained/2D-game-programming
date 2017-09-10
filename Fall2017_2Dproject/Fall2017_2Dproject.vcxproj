@@ -130,7 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ds_linked_list.c" />
+    <ClCompile Include="src\ds_linked_list.c" />
     <ClCompile Include="src\game.c" />
     <ClCompile Include="src\gf2d_draw.c" />
     <ClCompile Include="src\gf2d_graphics.c" />
@@ -151,8 +151,8 @@
     <ClInclude Include="include\gf2d_types.h" />
     <ClInclude Include="include\gf2d_vector.h" />
     <ClInclude Include="include\simple_logger.h" />
+    <ClInclude Include="include\student.h" />
     <ClInclude Include="include\tilemap.h" />
-    <ClInclude Include="student.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

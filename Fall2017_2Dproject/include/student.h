@@ -5,10 +5,11 @@
 #include "gf2d_sprite.h"
 
 /**
- * @brief This is the struct that will represent all attributes of the student
- */
+* @brief This is the struct that will represent all attributes of the student
+*/
 typedef struct {
 	char *name;
+	char *favoriteThing;
 	Sprite *sprite;
 	Vector4D spriteColor;
 }Student;
