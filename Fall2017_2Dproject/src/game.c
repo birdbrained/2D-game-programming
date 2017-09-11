@@ -57,7 +57,8 @@ int main(int argc, char * argv[])
 	thing2 = gf2d_sprite_load_all("images/sprites/test_dude3.png", 64, 64, 1);
 	myTileMap = gf2d_sprite_load_all("images/test_tiles.png", 32, 32, 4);
 	person = student("Test", "Sex", thing2);
-	slog("fav thing: %s", person->favoriteThing);
+	slog("Initializing student %s", person->name);
+	SDL_SetTextureColorMod(person->sprite->texture, 200, 60, 0);
 	//person->name = "Tester";
 	//person->favoriteThing = "Sexels";
 	//person->sprite = thing2;
@@ -87,7 +88,7 @@ int main(int argc, char * argv[])
 			400);
 		gf2d_sprite_draw(thing, vector2d(100, 10), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
-		gf2d_sprite_draw(thing2, vector2d(100, 100), NULL, NULL, NULL, NULL, NULL, 0);
+		gf2d_sprite_draw(person->sprite, vector2d(100, 100), NULL, NULL, NULL, NULL, NULL, 0);
 
 		//UI elements last
 		gf2d_sprite_draw(

@@ -9,3 +9,15 @@ Student * student(char * name, char * favoriteThing, Sprite * sprite)
 	person->sprite = sprite;
 	return person;
 }
+
+void swapSectionLeader(Student * target)
+{
+	if (target->isSectionLeader)
+	{
+		target->isSectionLeader = 0;
+	}
+	else
+	{
+		target->isSectionLeader = 1;
+	}
+}

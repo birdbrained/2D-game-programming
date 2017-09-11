@@ -10,6 +10,17 @@
 typedef struct {
 	char *name;
 	char *favoriteThing;
+	//need to add instrument
+
+	int baseMusicStat;
+	int musicStat;
+	int baseMarchingStat;
+	int marchingStat;
+	int morale;
+
+	int isSectionLeader;
+	int status;
+
 	Sprite *sprite;
 	Vector4D spriteColor;
 }Student;
@@ -22,5 +33,7 @@ typedef struct {
  * @return A pointer to the student
  */
 Student * student(char *name, char *favoriteThing, Sprite *sprite);
+
+void swapSectionLeader(Student *target);
 
 #endif // !__STUDENT__
