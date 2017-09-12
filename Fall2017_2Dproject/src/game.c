@@ -59,9 +59,6 @@ int main(int argc, char * argv[])
 	person = student("Test", "Sex", thing2);
 	slog("Initializing student %s", person->name);
 	SDL_SetTextureColorMod(person->sprite->texture, 200, 60, 0);
-	//person->name = "Tester";
-	//person->favoriteThing = "Sexels";
-	//person->sprite = thing2;
 
     /*main game loop*/
     while(!done)
