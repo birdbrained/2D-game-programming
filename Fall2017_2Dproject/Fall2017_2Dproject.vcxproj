@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="ds_linked_list.c" />
     <ClCompile Include="ds_priority_queue.c" />
+    <ClCompile Include="entity_s.c" />
     <ClCompile Include="src\game.c" />
     <ClCompile Include="src\gf2d_draw.c" />
     <ClCompile Include="src\gf2d_graphics.c" />

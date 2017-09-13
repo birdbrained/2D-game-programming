@@ -45,6 +45,9 @@
     <ClCompile Include="ds_priority_queue.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="entity_s.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Makefile" />

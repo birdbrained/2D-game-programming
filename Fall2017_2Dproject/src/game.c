@@ -6,6 +6,7 @@
 #include "ds_priority_queue.h"
 #include "tilemap.h"
 #include "student.h"
+#include "entity_s.h"
 
 int main(int argc, char * argv[])
 {
@@ -46,6 +47,7 @@ int main(int argc, char * argv[])
 	//SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0"); //This line makes images render crisp instead of blurry
     gf2d_graphics_set_frame_delay(16);
     gf2d_sprite_init(1024);
+	entitySystemInit(1024);
     SDL_ShowCursor(SDL_DISABLE);
 
 	//derp

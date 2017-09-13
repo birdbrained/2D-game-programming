@@ -64,9 +64,12 @@ void entityDelete(Entity * thingThatDies)
 		slog("Cannot delete an entity that does not exist!");
 		return;
 	}
-	if (thingThatDies->mySprite->texture != NULL)
+	if (thingThatDies->mySprite != NULL)
 	{
-		SDL_DestroyTexture(thingThatDies->mySprite->texture);
+		if (thingThatDies->mySprite->texture != NULL)
+		{
+			SDL_DestroyTexture(thingThatDies->mySprite->texture);
+		}
 	}
 	if (thingThatDies->inUse)
 	{
@@ -92,4 +95,14 @@ void entityDeleteAll()
 	{
 		entityDelete(&entityManager.entityList[i]);
 	}
+}
+
+void entityUpdate()
+{
+
+}
+
+void entityDraw()
+{
+
 }
