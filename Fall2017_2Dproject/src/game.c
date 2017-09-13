@@ -3,6 +3,7 @@
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
 #include "ds_linked_list.h"
+#include "ds_priority_queue.h"
 #include "tilemap.h"
 #include "student.h"
 
@@ -24,7 +25,7 @@ int main(int argc, char * argv[])
 	{ 0, 2, 1, 3, 0, 1,
 	  1, 3, 1, 1, 2, 2,
 	  0, 0, 1, 2, 3, 3 };
-    Vector4D mouseColor = {255,100,255,200};
+    Vector4D mouseColor = {100,255,255,200};
 	Vector2D flipVert = { 0, 1 };
 	Vector2D scaleDown = { 0.5, 0.5 };
 	Vector2D scaleUp = { 4, 4 };
@@ -42,7 +43,7 @@ int main(int argc, char * argv[])
         720,
         vector4d(0,0,0,255),
         0);
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0"); //This line makes images render crisp instead of blurry
+	//SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0"); //This line makes images render crisp instead of blurry
     gf2d_graphics_set_frame_delay(16);
     gf2d_sprite_init(1024);
     SDL_ShowCursor(SDL_DISABLE);
@@ -59,9 +60,6 @@ int main(int argc, char * argv[])
 	person = student("Test", "Sex", thing2);
 	slog("Initializing student %s", person->name);
 	SDL_SetTextureColorMod(person->sprite->texture, 200, 60, 0);
-	//person->name = "Tester";
-	//person->favoriteThing = "Sexels";
-	//person->sprite = thing2;
 
     /*main game loop*/
     while(!done)

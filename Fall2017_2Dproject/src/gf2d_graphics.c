@@ -87,7 +87,8 @@ void gf2d_graphics_initialize(
     SDL_SetRenderDrawColor(gf2d_graphics.renderer, 0, 0, 0, 255);
     SDL_RenderClear(gf2d_graphics.renderer);
     SDL_RenderPresent(gf2d_graphics.renderer);
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+    //SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
     SDL_RenderSetLogicalSize(gf2d_graphics.renderer, renderWidth, renderHeight);
 
     gf2d_graphics.texture = SDL_CreateTexture(
@@ -111,7 +112,7 @@ void gf2d_graphics_initialize(
 
     
     gf2d_graphics.surface = SDL_CreateRGBSurface(0, renderWidth, renderHeight, gf2d_graphics.bitdepth,
-                                        gf2d_graphics.rmask,
+                                    gf2d_graphics.rmask,
                                     gf2d_graphics.gmask,
                                     gf2d_graphics.bmask,
                                     gf2d_graphics.amask);
@@ -198,6 +199,7 @@ void gf2d_graphics_frame_delay()
     if (diff < gf2d_graphics.frame_delay)
     {
         SDL_Delay(gf2d_graphics.frame_delay - diff);
+		gf2d_graphics.now = SDL_GetTicks();
     }
     gf2d_graphics.fps = 1000.0/MAX(SDL_GetTicks() - gf2d_graphics.then,0.001);
 }

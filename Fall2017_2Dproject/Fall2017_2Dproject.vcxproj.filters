@@ -80,7 +80,10 @@
     <ClInclude Include="include\ds_linked_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ds_priority_queue.h">
+    <ClInclude Include="include\ds_priority_queue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entity_s.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
