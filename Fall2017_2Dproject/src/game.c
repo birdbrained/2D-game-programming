@@ -27,11 +27,19 @@ int main(int argc, char * argv[])
 	Sprite *thing;
 	Sprite *thing2;
 	Sprite *guyx;
+	Sprite *galSprite;
 	Sprite *myTileMap;
 	const int level[] = 
-	{ 0, 2, 1, 3, 0, 1,
-	  1, 3, 1, 1, 2, 2,
-	  0, 0, 1, 2, 3, 3 };
+	{ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 
+	  1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 
+	  0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+	  1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
+	  0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 
+	  1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
+	  0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 
+	  1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
+	  0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+	  1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0};
     Vector4D mouseColor = {100,255,255,200};
 	Vector2D flipVert = { 0, 1 };
 	Vector2D scaleDown = { 0.5, 0.5 };
@@ -66,7 +74,8 @@ int main(int argc, char * argv[])
 	thing = gf2d_sprite_load_all("images/sprites/test_dude.png", 32, 32, 1);
 	thing2 = gf2d_sprite_load_all("images/sprites/test_dude3.png", 64, 64, 1);
 	guyx = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 1);
-	myTileMap = gf2d_sprite_load_all("images/test_tiles.png", 32, 32, 4);
+	galSprite = gf2d_sprite_load_all("images/sprites/gal32x.png", 32, 32, 1);
+	myTileMap = gf2d_sprite_load_all("images/field_tiles.png", 64, 64, 2);
 	//person = student("Test", "Sex", thing2);
 	//slog("Initializing student %s", person->name);
 	guy = entityNew();
@@ -97,10 +106,10 @@ int main(int argc, char * argv[])
 		DrawTileMap(
 			myTileMap,
 			level,
-			6,
-			3,
+			18,
 			10,
-			400);
+			20,
+			20);
 		//gf2d_sprite_draw(thing, vector2d(100, 10), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		//gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
 		gf2d_sprite_draw(guy->mySprite, guy->position, &(guy->scale), NULL, NULL, NULL, NULL, 0);
@@ -147,7 +156,7 @@ int main(int argc, char * argv[])
 		{
 			slog("Let's make a new thing!");
 			testDude = entityNew();
-			testDude->mySprite = guyx;
+			testDude->mySprite = galSprite;
 			testDude->position = vector2d(200, 200);
 			testDude->scale = scaleUp;
 			testDude->inUse = 1;
@@ -156,10 +165,11 @@ int main(int argc, char * argv[])
 		}
 		if (testDude != NULL)
 		{
-			gf2d_sprite_draw(testDude->mySprite, testDude->position, &(testDude->scale), NULL, NULL, NULL, NULL, 0);
+			//gf2d_sprite_draw(testDude->mySprite, testDude->position, &(testDude->scale), NULL, NULL, NULL, NULL, 0);
+			entityDraw(testDude);
 			(*testDude->update)(testDude, vector2d(1, 1));
 		}
-		if (testDude != NULL && testDude->inUse == 1 && keys[SDL_SCANCODE_L])
+		if (testDude != NULL && testDude->inUse == 1 && keys[SDL_SCANCODE_P])
 		{
 			testDude->inUse = 0;
 			entityDelete(testDude);

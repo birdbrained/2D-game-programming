@@ -1,5 +1,6 @@
 #include "entity_s.h"
 #include "simple_logger.h"
+#include "gf2d_sprite.h"
 
 typedef struct
 {
@@ -79,7 +80,7 @@ void entityDelete(Entity * thingThatDies)
 	}
 	//slog("Deleting a thing...");
 	memset(thingThatDies, 0, sizeof(Entity));
-	//entityFree(thingThatDies);
+	entityFree(thingThatDies);
 	//slog("Deleted!");
 }
 
@@ -90,7 +91,7 @@ void entityFree(Entity * e)
 		slog("Error: Cannot free something that doesn't exist!");
 		return;
 	}
-	slog("Freeing something from memory.");
+	//slog("Freeing something from memory.");
 	e->inUse = 0;
 }
 
@@ -109,7 +110,8 @@ void entityUpdate()
 	return;
 }
 
-void entityDraw()
+void entityDraw(Entity * e)
 {
+	gf2d_sprite_draw(e->mySprite, e->position, &(e->scale), NULL, NULL, NULL, NULL, e->currentFrame);
 	return;
 }

@@ -57,9 +57,14 @@ void entityFree(Entity * e);
 void entityDeleteAll();
 
 /**
- * TODO: These two functions
+ * TODO: Update currently handled in game.c, alter it?
  */
 void entityUpdate();
-void entityDraw();
+
+/**
+ * @brief Draws the specified entity with it's parameters
+ * @param e The entity to draw
+ */
+void entityDraw(Entity * e);
 
 #endif // ! __ENTITY_S__
