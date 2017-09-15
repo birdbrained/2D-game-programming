@@ -14,6 +14,7 @@
  * @param mySprite The sprite the entity will use
  * @param scale Vector of sprite's scale
  * @param currentFrame The index of the current frame to load
+ * @param update Function pointer to an update function that should run every frame
  */
 typedef struct entity_s {
 	short unsigned int inUse;
@@ -42,13 +43,13 @@ Entity *entityNew();
  * @brief Deletes a specified Entity from memory
  * @param thingThatDies Pointer to entity that will be deleted
  */
-void entityDelete(Entity *thingThatDies);
+void entityDelete(Entity * thingThatDies);
 
 /**
  * @brief Clears an entity from the entity manager, opening the spot back up
  * @param e The entity to free
  */
-void entityFree(Entity *e);
+void entityFree(Entity * e);
 
 /**
  * @brief Deletes all loaded enities from memory, but does not close the entity system

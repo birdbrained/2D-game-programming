@@ -48,6 +48,7 @@ Entity * entityNew()
 	{
 		if (entityManager.entityList[i].inUse == 0)
 		{
+			slog("Found a suitible spot at (%i)", i);
 			entityManager.entityList[i].inUse = 1;
 			return &entityManager.entityList[i];
 		}
@@ -64,26 +65,32 @@ void entityDelete(Entity * thingThatDies)
 		slog("Cannot delete an entity that does not exist!");
 		return;
 	}
-	if (thingThatDies->mySprite != NULL)
+	/*if (thingThatDies->mySprite != NULL)
 	{
 		if (thingThatDies->mySprite->texture != NULL)
 		{
+			slog("destroying texture");
 			SDL_DestroyTexture(thingThatDies->mySprite->texture);
 		}
-	}
+	}*/
 	if (thingThatDies->inUse)
 	{
 		thingThatDies->inUse = 0;
 	}
+	//slog("Deleting a thing...");
 	memset(thingThatDies, 0, sizeof(Entity));
+	//entityFree(thingThatDies);
+	//slog("Deleted!");
 }
 
 void entityFree(Entity * e)
 {
 	if (!e)
 	{
+		slog("Error: Cannot free something that doesn't exist!");
 		return;
 	}
+	slog("Freeing something from memory.");
 	e->inUse = 0;
 }
 
@@ -99,10 +106,10 @@ void entityDeleteAll()
 
 void entityUpdate()
 {
-
+	return;
 }
 
 void entityDraw()
 {
-
+	return;
 }

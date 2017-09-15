@@ -8,6 +8,11 @@
 #include "student.h"
 #include "entity_s.h"
 
+void move(Entity *e, Vector2D vec)
+{
+	e->position = vector2d(e->position.x + vec.x, e->position.y + vec.y);
+}
+
 int main(int argc, char * argv[])
 {
     /*variable declarations,
@@ -21,6 +26,7 @@ int main(int argc, char * argv[])
     Sprite *mouse;
 	Sprite *thing;
 	Sprite *thing2;
+	Sprite *guyx;
 	Sprite *myTileMap;
 	const int level[] = 
 	{ 0, 2, 1, 3, 0, 1,
@@ -29,9 +35,10 @@ int main(int argc, char * argv[])
     Vector4D mouseColor = {100,255,255,200};
 	Vector2D flipVert = { 0, 1 };
 	Vector2D scaleDown = { 0.5, 0.5 };
-	Vector2D scaleUp = { 4, 4 };
+	Vector2D scaleUp = { 2, 2 };
 	IntNode *myLL = IntNode_init(5);
-	Student *person;
+	/*Student *person;*/
+	Entity *guy, *testDude;
     
     /*program initializtion*/
     init_logger("gf2d.log");
@@ -58,10 +65,18 @@ int main(int argc, char * argv[])
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
 	thing = gf2d_sprite_load_all("images/sprites/test_dude.png", 32, 32, 1);
 	thing2 = gf2d_sprite_load_all("images/sprites/test_dude3.png", 64, 64, 1);
+	guyx = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 1);
 	myTileMap = gf2d_sprite_load_all("images/test_tiles.png", 32, 32, 4);
-	person = student("Test", "Sex", thing2);
-	slog("Initializing student %s", person->name);
-	SDL_SetTextureColorMod(person->sprite->texture, 200, 60, 0);
+	//person = student("Test", "Sex", thing2);
+	//slog("Initializing student %s", person->name);
+	guy = entityNew();
+	guy->mySprite = guyx;
+	guy->scale = scaleUp;
+	guy->currentFrame = 0;
+	guy->position = vector2d(100, 100);
+	guy->update = move;
+	testDude = NULL;
+	//SDL_SetTextureColorMod(thing2->texture, 100, 60, 0);
 
     /*main game loop*/
     while(!done)
@@ -86,9 +101,70 @@ int main(int argc, char * argv[])
 			3,
 			10,
 			400);
-		gf2d_sprite_draw(thing, vector2d(100, 10), &scaleUp, NULL, NULL, NULL, NULL, 0);
-		gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
-		gf2d_sprite_draw(person->sprite, vector2d(100, 100), NULL, NULL, NULL, NULL, NULL, 0);
+		//gf2d_sprite_draw(thing, vector2d(100, 10), &scaleUp, NULL, NULL, NULL, NULL, 0);
+		//gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
+		gf2d_sprite_draw(guy->mySprite, guy->position, &(guy->scale), NULL, NULL, NULL, NULL, 0);
+
+		if (keys[SDL_SCANCODE_W])
+		{
+			(*guy->update)(guy, vector2d(0, -2));
+		}
+		if (keys[SDL_SCANCODE_A])
+		{
+			(*guy->update)(guy, vector2d(-2, 0));
+		}
+		if (keys[SDL_SCANCODE_S])
+		{
+			(*guy->update)(guy, vector2d(0, 2));
+		}
+		if (keys[SDL_SCANCODE_D])
+		{
+			(*guy->update)(guy, vector2d(2, 0));
+		}
+
+		/*
+		//create an entity if it doesn't exist
+		if (keys[SDL_SCANCODE_O] && testDude == NULL)
+		{
+			testDude = entityNew();
+			testDude->mySprite = thing;
+			testDude->position = vector2d(500, 500);
+			testDude->update = move;
+		}
+		//if it exists, call its update function
+		//slog("%i", testDude != NULL);
+		if (testDude != NULL)
+		{
+			//(*testDude->update)(testDude, vector2d(1, 1));
+			gf2d_sprite_draw(testDude->mySprite, testDude->position, NULL, NULL, NULL, NULL, NULL, 0);
+		}
+		//delete it from memory
+		if (keys[SDL_SCANCODE_P] && testDude != NULL)
+		{
+			entityDelete(testDude);
+		}*/
+		if (keys[SDL_SCANCODE_O] && testDude == NULL)
+		{
+			slog("Let's make a new thing!");
+			testDude = entityNew();
+			testDude->mySprite = guyx;
+			testDude->position = vector2d(200, 200);
+			testDude->scale = scaleUp;
+			testDude->inUse = 1;
+			testDude->currentFrame = 0;
+			testDude->update = move;
+		}
+		if (testDude != NULL)
+		{
+			gf2d_sprite_draw(testDude->mySprite, testDude->position, &(testDude->scale), NULL, NULL, NULL, NULL, 0);
+			(*testDude->update)(testDude, vector2d(1, 1));
+		}
+		if (testDude != NULL && testDude->inUse == 1 && keys[SDL_SCANCODE_L])
+		{
+			testDude->inUse = 0;
+			entityDelete(testDude);
+			testDude = NULL;
+		}
 
 		//UI elements last
 		gf2d_sprite_draw(
