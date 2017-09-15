@@ -23,7 +23,8 @@ void gf2d_graphics_initialize(
     int renderWidth,
     int renderHeight,
     Vector4D bgcolor,
-    Bool fullscreen
+    Bool fullscreen,
+	SDL_Surface *icon
 );
 
 /**

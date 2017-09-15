@@ -42,7 +42,8 @@ void gf2d_graphics_initialize(
     int renderWidth,
     int renderHeight,
     Vector4D bgcolor,
-    Bool fullscreen
+    Bool fullscreen,
+	SDL_Surface *icon
 )
 {
     Uint32 flags = 0;
@@ -90,6 +91,7 @@ void gf2d_graphics_initialize(
     //SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
     SDL_RenderSetLogicalSize(gf2d_graphics.renderer, renderWidth, renderHeight);
+	SDL_SetWindowIcon(gf2d_graphics.main_window, icon);
 
     gf2d_graphics.texture = SDL_CreateTexture(
         gf2d_graphics.renderer,
