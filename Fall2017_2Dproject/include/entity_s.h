@@ -17,14 +17,27 @@
  * @param update Function pointer to an update function that should run every frame
  */
 typedef struct entity_s {
-	short unsigned int inUse;
-	Vector2D position;
-	Vector2D velocity;
+	short unsigned int inUse;		/**<Don't ever touch this. 1 if in use, 0 if not*/
+	Uint64 id;						/**<Auto increment id for this entity*/
+	TextLine name;					/**<name of the object*/
+
+	//physics
+	Vector2D position;				/**<Draw position*/
+	Vector2D velocity;				/**<Desired movement direction*/
+	Vector2D acceleration;			/**<Acceleration*/
+
+	//grahpics
 	Sprite *mySprite;
-	Vector2D scale;
-	unsigned int currentFrame;
+	Vector2D scale;					/**<Scale to draw the sprite at, will default to 1,1*/
+	Vector2D scaleCenter;			/**<Center of sprite to scale at*/
+	Vector2D rotation;				/**<Rotation*/
+	Vector2D flip;					/**<Flip horizontal or vertical*/
+	unsigned int currentFrame;		/**<Current frame of animation*/
 	
+	//draw, think, update, touch, damage, die, free
 	void(*update)(struct entity_s *self);
+
+	//game specific data
 }Entity;
 
 /**

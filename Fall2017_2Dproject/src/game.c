@@ -39,7 +39,7 @@ int main(int argc, char * argv[])
 	  2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 
 	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2,
 	  2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3,
-	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2};
+	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2 };
     Vector4D mouseColor = {100,255,255,200};
 	Vector2D flipVert = { 0, 1 };
 	Vector2D scaleDown = { 0.5, 0.5 };
@@ -47,6 +47,8 @@ int main(int argc, char * argv[])
 	IntNode *myLL = IntNode_init(5);
 	/*Student *person;*/
 	Entity *guy, *testDude;
+	Entity *en = NULL;
+	Entity *biggo = NULL;
 	SDL_Surface *icon = SDL_LoadBMP("images/sprites/guy16x.bmp");
     
     /*program initializtion*/
@@ -154,9 +156,30 @@ int main(int argc, char * argv[])
 		{
 			entityDelete(testDude);
 		}*/
+		if (keys[SDL_SCANCODE_L] && biggo == NULL)
+		{
+			biggo = entityNew();
+			biggo->mySprite = guyx;
+			biggo->position = vector2d(10, 10);
+			biggo->scale = vector2d(25, 25);
+			biggo->inUse = 1;
+			biggo->currentFrame = 0;
+			biggo->update = move;
+		}
+		if (biggo != NULL)
+		{
+			entityDraw(biggo);
+			(*biggo->update)(biggo, vector2d(0.5f, 0.5f));
+		}
+		if (biggo != NULL && biggo->inUse == 1 && keys[SDL_SCANCODE_P])
+		{
+			biggo->inUse = 0;
+			entityDelete(biggo);
+			biggo = NULL;
+		}
 		if (keys[SDL_SCANCODE_O] && testDude == NULL)
 		{
-			slog("Let's make a new thing!");
+			//slog("Let's make a new thing!");
 			testDude = entityNew();
 			testDude->mySprite = galSprite;
 			testDude->position = vector2d(200, 200);
@@ -176,6 +199,27 @@ int main(int argc, char * argv[])
 			testDude->inUse = 0;
 			entityDelete(testDude);
 			testDude = NULL;
+		}
+		if (keys[SDL_SCANCODE_M] && en == NULL)
+		{
+			en = entityNew();
+			en->mySprite = galSprite;
+			en->position = vector2d(300, 500);
+			en->scale = vector2d(1,1);
+			en->inUse = 1;
+			en->currentFrame = 0;
+			en->update = move;
+		}
+		if (en != NULL)
+		{
+			entityDraw(en);
+			(*en->update)(en, vector2d(1, -1));
+		}
+		if (en != NULL && en->inUse == 1 && keys[SDL_SCANCODE_P])
+		{
+			en->inUse = 0;
+			entityDelete(en);
+			en = NULL;
 		}
 
 		//UI elements last
