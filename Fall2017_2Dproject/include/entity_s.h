@@ -5,16 +5,46 @@
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
 
+typedef enum statusAliment
+{
+	Status_None,
+	Status_Offstep,
+	Status_Flat,
+	Status_Sharp,
+	Status_Exhausted,
+	Status_Adrenaline_Rush
+}StatusAliment;
+
+typedef enum entityStates
+{
+	ES_Idle,
+	ES_Moving,
+	ES_Music_Time
+}EntityState;
+
+typedef enum instrument
+{
+	Instrument_Unassigned,
+	Instrument_Flute,
+	Instrument_Clarinet,
+	Instrument_Alto_Saxophone,
+	Instrument_Tenor_Saxophone,
+	Instrument_Trumpet,
+	Instrument_Baritone,
+	Instrument_Tuba,
+	Instrument_Snare_Drum,
+	Instrument_Bass_Drum,
+	Instrument_Colorguard_Flag,
+	Instrument_Colorguard_Rifle,
+	Instrument_Pit_Marimba,
+	Instrument_Pit_Xylophone,
+	Instrument_Pit_Guitar,
+	Instrument_Pit_Synthesizer,
+	Instrument_Pit_Gong
+}Instrument;
 
 /**
  * @brief entity_s Struct that represents a generic entity 
- * @param inUse If 0, memory not in use; if non-zero (1), memory is in use
- * @param position Vector of position
- * @param velocity Vector of velocity
- * @param mySprite The sprite the entity will use
- * @param scale Vector of sprite's scale
- * @param currentFrame The index of the current frame to load
- * @param update Function pointer to an update function that should run every frame
  */
 typedef struct entity_s {
 	short unsigned int inUse;		/**<Don't ever touch this. 1 if in use, 0 if not*/
@@ -27,7 +57,7 @@ typedef struct entity_s {
 	Vector2D acceleration;			/**<Acceleration*/
 
 	//grahpics
-	Sprite *mySprite;
+	Sprite *mySprite;				/**<The entity's sprite, might get changed later*/
 	Vector2D scale;					/**<Scale to draw the sprite at, will default to 1,1*/
 	Vector2D scaleCenter;			/**<Center of sprite to scale at*/
 	Vector2D rotation;				/**<Rotation*/
@@ -35,9 +65,19 @@ typedef struct entity_s {
 	unsigned int currentFrame;		/**<Current frame of animation*/
 	
 	//draw, think, update, touch, damage, die, free
-	void(*update)(struct entity_s *self);
+	void(*update)(struct entity_s *self);	/**<Pointer to an update function that will get called every frame*/
 
 	//game specific data
+	StatusAliment currentStatus;
+	EntityState currentState;
+	Instrument myInstrument;
+	Sprite *instrumentSprite;
+	int statMarching;
+	int statMusic;
+	int statMorale;
+	int statMotivation;
+	short unsigned int isSectionLeader;
+	TextLine favoriteThing;
 }Entity;
 
 /**
@@ -79,5 +119,7 @@ void entityUpdate();
  * @param e The entity to draw
  */
 void entityDraw(Entity * e);
+
+void entityDrawAll();
 
 #endif // ! __ENTITY_S__

@@ -11,7 +11,7 @@ typedef struct
 
 //static variables prevents any other file from accessing the variable
 //similar to private in this case
-static EntityManager entityManager = (0);
+static EntityManager entityManager;
 
 /**
  * @brief Entity system clean-up function
@@ -24,7 +24,7 @@ void entitySystemClose()
 	{
 		for (i = 0; i < entityManager.maxEntities; i++)
 		{
-			free(&entityManager.entityList[i]);
+			entityFree(&entityManager.entityList[i]);
 		}
 		free(entityManager.entityList);
 	}
@@ -46,10 +46,12 @@ void entitySystemInit(Uint32 max)
 	entityManager.entityList = (Entity *)malloc(sizeof(Entity) * max);
 	if (!entityManager.entityList)
 	{
+		slog("Could not allocate memory for the entity list");
+		entitySystemClose();
 		return;
 	}
-	entityManager.maxEntities = max;
 	memset(entityManager.entityList, 0, sizeof(Entity) * max);
+	entityManager.maxEntities = max;
 
 	slog("Entity system initialized");
 	//on exit clean-up stuff goes here
@@ -145,7 +147,12 @@ void entityUpdate(Entity * self)
 		return;
 	}
 	
-	//vector2d_add(self->velocity, self->position, self->acceleration);
+	vector2d_add(self->velocity, self->position, self->acceleration);
+
+	if (self->update != NULL)
+	{
+		self->update(self);
+	}
 }
 
 void entityUpdateAll()
@@ -153,7 +160,10 @@ void entityUpdateAll()
 	int i;
 	for (i = 0; i < entityManager.maxEntities; i++)
 	{
+		if (entityManager.entityList[i].inUse == 1)
+		{
 
+		}
 	}
 }
 
@@ -172,13 +182,27 @@ void entityDraw(Entity * self)
 	gf2d_sprite_draw(
 		self->mySprite, 
 		self->position, 
-		&(self->scale), 
-		&(self->scaleCenter), 
-		NULL, 
-		NULL, 
+		&self->scale, 
+		&self->scaleCenter, 
+		&self->rotation, 
+		&self->flip, 
 		NULL, 
 		self->currentFrame
 	);
+
+	if (self->instrumentSprite)
+	{
+		gf2d_sprite_draw(
+			self->instrumentSprite,
+			self->position,
+			&self->scale,
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			0
+		);
+	}
 }
 
 void entityDrawAll()

@@ -23,11 +23,13 @@ int main(int argc, char * argv[])
     
     int mx,my;
     float mf = 0;
+	float guyFrame = 0;
     Sprite *mouse;
 	Sprite *thing;
 	Sprite *thing2;
 	Sprite *guyx;
 	Sprite *galSprite;
+	Sprite *mehSprite;
 	Sprite *myTileMap;
 	const int level[] = 
 	{ 2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 
@@ -77,8 +79,9 @@ int main(int argc, char * argv[])
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
 	thing = gf2d_sprite_load_all("images/sprites/test_dude.png", 32, 32, 1);
 	thing2 = gf2d_sprite_load_all("images/sprites/test_dude3.png", 64, 64, 1);
-	guyx = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 1);
-	galSprite = gf2d_sprite_load_all("images/sprites/gal32x.png", 32, 32, 1);
+	guyx = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 2);
+	galSprite = gf2d_sprite_load_all("images/sprites/gal32x.png", 32, 32, 2);
+	mehSprite = gf2d_sprite_load_all("images/sprites/meh32x.png", 32, 32, 2);
 	myTileMap = gf2d_sprite_load_all("images/field_tiles.png", 64, 64, 2);
 	//person = student("Test", "Sex", thing2);
 	//slog("Initializing student %s", person->name);
@@ -88,6 +91,8 @@ int main(int argc, char * argv[])
 	guy->currentFrame = 0;
 	guy->position = vector2d(100, 100);
 	guy->update = move;
+	guy->myInstrument = Instrument_Flute;
+	guy->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_flute.png", 32, 32, 1);
 	testDude = NULL;
 	//SDL_SetTextureColorMod(thing2->texture, 100, 60, 0);
 
@@ -100,6 +105,8 @@ int main(int argc, char * argv[])
         SDL_GetMouseState(&mx,&my);
         mf+=0.1;
         if (mf >= 16.0)mf = 0;        
+		guyFrame += 0.05;
+		if (guyFrame >= 2.0)guyFrame = 0;
         
         gf2d_graphics_clear_screen();// clears drawing buffers
         // all drawing should happen betweem clear_screen and next_frame
@@ -116,7 +123,7 @@ int main(int argc, char * argv[])
 			0);
 		//gf2d_sprite_draw(thing, vector2d(100, 10), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		//gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
-		gf2d_sprite_draw(guy->mySprite, guy->position, &(guy->scale), NULL, NULL, NULL, NULL, 0);
+		//gf2d_sprite_draw(guy->mySprite, guy->position, &(guy->scale), NULL, NULL, NULL, NULL, 0);
 
 		if (keys[SDL_SCANCODE_W])
 		{
@@ -134,6 +141,7 @@ int main(int argc, char * argv[])
 		{
 			(*guy->update)(guy, vector2d(2, 0));
 		}
+		guy->currentFrame = guyFrame;
 
 		/*
 		//create an entity if it doesn't exist
@@ -165,11 +173,16 @@ int main(int argc, char * argv[])
 			biggo->inUse = 1;
 			biggo->currentFrame = 0;
 			biggo->update = move;
+			biggo->velocity = vector2d(0.5f, 0.5f);
+			biggo->acceleration = vector2d(0.5f, 0.5f);
+			biggo->myInstrument = Instrument_Flute;
+			biggo->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_flute.png", 32, 32, 1);
 		}
 		if (biggo != NULL)
 		{
-			entityDraw(biggo);
+			//entityDraw(biggo);
 			(*biggo->update)(biggo, vector2d(0.5f, 0.5f));
+			biggo->currentFrame = guyFrame;
 		}
 		if (biggo != NULL && biggo->inUse == 1 && keys[SDL_SCANCODE_P])
 		{
@@ -181,18 +194,20 @@ int main(int argc, char * argv[])
 		{
 			//slog("Let's make a new thing!");
 			testDude = entityNew();
-			testDude->mySprite = galSprite;
+			testDude->mySprite = mehSprite;
 			testDude->position = vector2d(200, 200);
 			testDude->scale = scaleUp;
 			testDude->inUse = 1;
 			testDude->currentFrame = 0;
 			testDude->update = move;
+			testDude->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_clarinet.png", 32, 32, 1);
 		}
 		if (testDude != NULL)
 		{
 			//gf2d_sprite_draw(testDude->mySprite, testDude->position, &(testDude->scale), NULL, NULL, NULL, NULL, 0);
-			entityDraw(testDude);
+			//entityDraw(testDude);
 			(*testDude->update)(testDude, vector2d(1, 1));
+			testDude->currentFrame = guyFrame;
 		}
 		if (testDude != NULL && testDude->inUse == 1 && keys[SDL_SCANCODE_P])
 		{
@@ -209,11 +224,13 @@ int main(int argc, char * argv[])
 			en->inUse = 1;
 			en->currentFrame = 0;
 			en->update = move;
+			en->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_clarinet.png", 32, 32, 1);
 		}
 		if (en != NULL)
 		{
-			entityDraw(en);
+			//entityDraw(en);
 			(*en->update)(en, vector2d(1, -1));
+			en->currentFrame = guyFrame;
 		}
 		if (en != NULL && en->inUse == 1 && keys[SDL_SCANCODE_P])
 		{
@@ -221,6 +238,39 @@ int main(int argc, char * argv[])
 			entityDelete(en);
 			en = NULL;
 		}
+
+		gf2d_sprite_draw(
+			guyx,
+			vector2d(64, 64),
+			&scaleUp,
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			0
+		);
+		gf2d_sprite_draw(
+			galSprite,
+			vector2d(128, 64),
+			&scaleUp,
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			0
+		);
+		gf2d_sprite_draw(
+			mehSprite,
+			vector2d(192, 64),
+			&scaleUp,
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			0
+		);
+
+		entityDrawAll();
 
 		//UI elements last
 		gf2d_sprite_draw(
