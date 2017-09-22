@@ -4,6 +4,7 @@
 #include "gf2d_vector.h"
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
+#include "shape.h"
 
 typedef enum statusAliment
 {
@@ -43,6 +44,14 @@ typedef enum instrument
 	Instrument_Pit_Gong
 }Instrument;
 
+typedef enum section
+{
+	Section_Band,
+	Section_Drumline,
+	Section_Colorguard,
+	Section_Pit
+}Section;
+
 /**
  * @brief entity_s Struct that represents a generic entity 
  */
@@ -56,6 +65,9 @@ typedef struct entity_s {
 	Vector2D velocity;				/**<Desired movement direction*/
 	Vector2D acceleration;			/**<Acceleration*/
 
+	//collision
+	Rect *boundingBox;
+
 	//grahpics
 	Sprite *mySprite;				/**<The entity's sprite, might get changed later*/
 	Vector2D scale;					/**<Scale to draw the sprite at, will default to 1,1*/
@@ -66,6 +78,7 @@ typedef struct entity_s {
 	
 	//draw, think, update, touch, damage, die, free
 	void(*update)(struct entity_s *self);	/**<Pointer to an update function that will get called every frame*/
+	void(*on_click)(struct entity_s *self);
 
 	//game specific data
 	StatusAliment currentStatus;
@@ -112,7 +125,7 @@ void entityDeleteAll();
 /**
  * TODO: Update currently handled in game.c, alter it?
  */
-void entityUpdate();
+void entityUpdate(Entity ** self);
 
 /**
  * @brief Draws the specified entity with it's parameters
@@ -120,6 +133,9 @@ void entityUpdate();
  */
 void entityDraw(Entity * e);
 
+/**
+ * @brief Draws every valid entity in the entity manager
+ */
 void entityDrawAll();
 
 #endif // ! __ENTITY_S__

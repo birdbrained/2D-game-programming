@@ -134,24 +134,24 @@ void entityDeleteAll()
 	}
 }
 
-void entityUpdate(Entity * self)
+void entityUpdate(Entity ** self)
 {
-	if (!self)
+	if (!(*self))
 	{
 		slog("Cannot update an entity that does not exist");
 		return;
 	}
-	if (!self->inUse)
+	if (!(*self)->inUse)
 	{
 		slog("Cannot update an entity that is not in use");
 		return;
 	}
 	
-	vector2d_add(self->velocity, self->position, self->acceleration);
+	vector2d_add((*self)->position, (*self)->velocity, (*self)->acceleration);
 
-	if (self->update != NULL)
+	if ((*self)->update != NULL)
 	{
-		self->update(self);
+		(*self)->update((*self));
 	}
 }
 
@@ -162,7 +162,7 @@ void entityUpdateAll()
 	{
 		if (entityManager.entityList[i].inUse == 1)
 		{
-
+			entityUpdate(&entityManager.entityList[i]);
 		}
 	}
 }
@@ -177,6 +177,11 @@ void entityDraw(Entity * self)
 	if (!self->inUse)
 	{
 		slog("Cannot draw an entity that is not in use");
+		return;
+	}
+	if (!self->mySprite)
+	{
+		slog("Cannot draw an entity with no sprite");
 		return;
 	}
 	gf2d_sprite_draw(

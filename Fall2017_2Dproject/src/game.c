@@ -13,6 +13,15 @@ void move(Entity *e, Vector2D vec)
 	e->position = vector2d(e->position.x + vec.x, e->position.y + vec.y);
 }
 
+int mousePress(SDL_MouseButtonEvent *b)
+{
+	if (b->button == SDL_BUTTON_LEFT)
+	{
+		return 1;
+	}
+	return 0;
+}
+
 int main(int argc, char * argv[])
 {
     /*variable declarations,
@@ -52,6 +61,7 @@ int main(int argc, char * argv[])
 	Entity *en = NULL;
 	Entity *biggo = NULL;
 	SDL_Surface *icon = SDL_LoadBMP("images/sprites/guy16x.bmp");
+	SDL_Event e;
     
     /*program initializtion*/
     init_logger("gf2d.log");
@@ -93,6 +103,7 @@ int main(int argc, char * argv[])
 	guy->update = move;
 	guy->myInstrument = Instrument_Flute;
 	guy->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_flute.png", 32, 32, 1);
+	guy->boundingBox = rect_new(guy->position.x, guy->position.y, 64, 64);
 	testDude = NULL;
 	//SDL_SetTextureColorMod(thing2->texture, 100, 60, 0);
 
@@ -103,6 +114,7 @@ int main(int argc, char * argv[])
         keys = SDL_GetKeyboardState(NULL); // get the keyboard state for this frame
         /*update things here*/
         SDL_GetMouseState(&mx,&my);
+		SDL_PollEvent(&e);
         mf+=0.1;
         if (mf >= 16.0)mf = 0;        
 		guyFrame += 0.05;
@@ -172,7 +184,7 @@ int main(int argc, char * argv[])
 			biggo->scale = vector2d(25, 25);
 			biggo->inUse = 1;
 			biggo->currentFrame = 0;
-			biggo->update = move;
+			//biggo->update = move;
 			biggo->velocity = vector2d(0.5f, 0.5f);
 			biggo->acceleration = vector2d(0.5f, 0.5f);
 			biggo->myInstrument = Instrument_Flute;
@@ -181,7 +193,7 @@ int main(int argc, char * argv[])
 		if (biggo != NULL)
 		{
 			//entityDraw(biggo);
-			(*biggo->update)(biggo, vector2d(0.5f, 0.5f));
+			//(*biggo->update)(biggo, vector2d(0.5f, 0.5f));
 			biggo->currentFrame = guyFrame;
 		}
 		if (biggo != NULL && biggo->inUse == 1 && keys[SDL_SCANCODE_P])
@@ -271,6 +283,20 @@ int main(int argc, char * argv[])
 		);
 
 		entityDrawAll();
+
+		switch (e.type)
+		{
+		case SDL_QUIT:
+			done = 1;
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			if (mousePress(&e.button))
+			if (point_in_rect(mx, my, guy->boundingBox))
+			{
+				slog("collision!");
+			}
+			break;
+		}
 
 		//UI elements last
 		gf2d_sprite_draw(
