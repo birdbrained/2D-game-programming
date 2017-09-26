@@ -134,24 +134,30 @@ void entityDeleteAll()
 	}
 }
 
-void entityUpdate(Entity ** self)
+void entityUpdate(Entity * self)
 {
-	if (!(*self))
+	if (!(self))
 	{
 		slog("Cannot update an entity that does not exist");
 		return;
 	}
-	if (!(*self)->inUse)
+	if (!(self)->inUse)
 	{
 		slog("Cannot update an entity that is not in use");
 		return;
 	}
 	
-	vector2d_add((*self)->position, (*self)->velocity, (*self)->acceleration);
+	vector2d_add((self)->velocity, (self)->velocity, (self)->acceleration);
 
-	if ((*self)->update != NULL)
+	if ((self)->boundingBox != NULL)
 	{
-		(*self)->update((*self));
+		(self)->boundingBox->x = (self)->position.x;
+		(self)->boundingBox->y = (self)->position.y;
+	}
+
+	if ((self)->update != NULL)
+	{
+		(self)->update((self));
 	}
 }
 

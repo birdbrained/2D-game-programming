@@ -10,7 +10,16 @@
 
 void move(Entity *e, Vector2D vec)
 {
+	if (!e)
+	{
+		return;
+	}
 	e->position = vector2d(e->position.x + vec.x, e->position.y + vec.y);
+	/*if (e->boundingBox != NULL)
+	{
+		e->boundingBox->x = e->position.x;
+		e->boundingBox->y = e->position.y;
+	}*/
 }
 
 int mousePress(SDL_MouseButtonEvent *b)
@@ -283,6 +292,7 @@ int main(int argc, char * argv[])
 		);
 
 		entityDrawAll();
+		entityUpdateAll();
 
 		switch (e.type)
 		{
@@ -291,9 +301,11 @@ int main(int argc, char * argv[])
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 			if (mousePress(&e.button))
-			if (point_in_rect(mx, my, guy->boundingBox))
 			{
-				slog("collision!");
+				if (point_in_rect(mx, my, guy->boundingBox))
+				{
+					slog("collision!");
+				}
 			}
 			break;
 		}

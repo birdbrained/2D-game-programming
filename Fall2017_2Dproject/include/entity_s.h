@@ -125,7 +125,9 @@ void entityDeleteAll();
 /**
  * TODO: Update currently handled in game.c, alter it?
  */
-void entityUpdate(Entity ** self);
+void entityUpdate(Entity * self);
+
+void entityUpdateAll();
 
 /**
  * @brief Draws the specified entity with it's parameters
