@@ -7,29 +7,8 @@
 #include "tilemap.h"
 #include "student.h"
 #include "entity_s.h"
+#include "think_functions.h"
 
-void move(Entity *e, Vector2D vec)
-{
-	if (!e)
-	{
-		return;
-	}
-	e->position = vector2d(e->position.x + vec.x, e->position.y + vec.y);
-	/*if (e->boundingBox != NULL)
-	{
-		e->boundingBox->x = e->position.x;
-		e->boundingBox->y = e->position.y;
-	}*/
-}
-
-int mousePress(SDL_MouseButtonEvent *b)
-{
-	if (b->button == SDL_BUTTON_LEFT)
-	{
-		return 1;
-	}
-	return 0;
-}
 
 int main(int argc, char * argv[])
 {
@@ -105,13 +84,14 @@ int main(int argc, char * argv[])
 	//person = student("Test", "Sex", thing2);
 	//slog("Initializing student %s", person->name);
 	guy = entityNew();
+	guy->name = "Poophead McBandgeek";
 	guy->mySprite = guyx;
 	guy->scale = scaleUp;
 	guy->currentFrame = 0;
 	guy->position = vector2d(100, 100);
 	guy->update = move;
 	guy->myInstrument = Instrument_Flute;
-	guy->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_flute.png", 32, 32, 1);
+	guy->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_tenor_sax.png", 32, 32, 1);
 	guy->boundingBox = rect_new(guy->position.x, guy->position.y, 64, 64);
 	testDude = NULL;
 	//SDL_SetTextureColorMod(thing2->texture, 100, 60, 0);
@@ -221,7 +201,7 @@ int main(int argc, char * argv[])
 			testDude->inUse = 1;
 			testDude->currentFrame = 0;
 			testDude->update = move;
-			testDude->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_clarinet.png", 32, 32, 1);
+			testDude->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_tuba.png", 32, 32, 1);
 		}
 		if (testDude != NULL)
 		{
@@ -304,9 +284,12 @@ int main(int argc, char * argv[])
 			{
 				if (point_in_rect(mx, my, guy->boundingBox))
 				{
-					slog("collision!");
+					slog("collision with guy (%s)", guy->name);
 				}
 			}
+			break;
+		case SDL_CONTROLLERDEVICEADDED:
+			slog("Connected a controller");
 			break;
 		}
 

@@ -58,7 +58,7 @@ typedef enum section
 typedef struct entity_s {
 	short unsigned int inUse;		/**<Don't ever touch this. 1 if in use, 0 if not*/
 	Uint64 id;						/**<Auto increment id for this entity*/
-	TextLine name;					/**<name of the object*/
+	char *name;					/**<name of the object*/
 
 	//physics
 	Vector2D position;				/**<Draw position*/
@@ -79,6 +79,7 @@ typedef struct entity_s {
 	//draw, think, update, touch, damage, die, free
 	void(*update)(struct entity_s *self);	/**<Pointer to an update function that will get called every frame*/
 	void(*on_click)(struct entity_s *self);
+	void(*die)(struct entity_s *self);
 
 	//game specific data
 	StatusAliment currentStatus;
