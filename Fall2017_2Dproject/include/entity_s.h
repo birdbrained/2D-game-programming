@@ -1,6 +1,7 @@
 #ifndef __ENTITY_S__
 #define __ENTITY_S__
 
+#include <stdio.h>
 #include "gf2d_vector.h"
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
@@ -91,7 +92,7 @@ typedef struct entity_s {
 	int statMorale;
 	int statMotivation;
 	short unsigned int isSectionLeader;
-	TextLine favoriteThing;
+	char *favoriteThing;
 }Entity;
 
 /**
@@ -140,5 +141,7 @@ void entityDraw(Entity * e);
  * @brief Draws every valid entity in the entity manager
  */
 void entityDrawAll();
+
+void entityLoadFromFile(FILE * file, Entity ** new_entity);
 
 #endif // ! __ENTITY_S__

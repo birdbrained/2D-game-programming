@@ -187,7 +187,7 @@ void entityDraw(Entity * self)
 	}
 	if (!self->mySprite)
 	{
-		slog("Cannot draw an entity with no sprite");
+		slog("Cannot draw an entity with no sprite...%d", self->id);
 		return;
 	}
 	gf2d_sprite_draw(
@@ -226,4 +226,49 @@ void entityDrawAll()
 			entityDraw(&entityManager.entityList[i]);
 		}
 	}
+}
+
+void entityLoadFromFile(FILE * file, Entity * new_entity)
+{
+	char buffer[512];
+	char holder[512];
+	if (!file)
+	{
+		slog("Cannot open file");
+		return;
+	}
+	rewind(file);
+	
+	while (fscanf(file, "%s", buffer) != EOF)
+	{
+		if (strcmp(buffer, "name:") == 0)
+		{
+			fscanf(file, "%s", (char *)&new_entity->name);
+			slog("1 name is (%s)", &new_entity->name);
+			//slog("2 name is (%s)", buffer);
+			continue;
+		}
+		if (strcmp(buffer, "fav_thing:") == 0)
+		{
+			fscanf(file, "%s", (char *)&new_entity->favoriteThing);
+			slog("favThing is (%s)", &new_entity->favoriteThing);
+			continue;
+		}
+		if (strcmp(buffer, "statMarching:") == 0)
+		{
+			fscanf(file, "%i", &new_entity->statMarching);
+			slog("stat marching (%i)", new_entity->statMarching);
+			continue;
+		}
+
+		//fscanf(file, "%s", buffer);
+		fgets(buffer, sizeof(buffer), file);
+		//fscanf(file, "%s", holder);
+		//slog("%s, %s", buffer, holder);
+	}
+
+	//fscanf(file, "name: %s", buffer);
+	//slog("%s", buffer);
+	//fscanf(file, "favThing: %s", buffer);
+	//slog("%s", buffer);
 }

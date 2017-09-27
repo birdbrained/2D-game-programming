@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include <stdio.h>
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
@@ -50,6 +51,8 @@ int main(int argc, char * argv[])
 	Entity *biggo = NULL;
 	SDL_Surface *icon = SDL_LoadBMP("images/sprites/guy16x.bmp");
 	SDL_Event e;
+	//FILE *infile;
+	//Entity *fileLoadedDude = NULL;
     
     /*program initializtion*/
     init_logger("gf2d.log");
@@ -68,6 +71,10 @@ int main(int argc, char * argv[])
     gf2d_sprite_init(1024);
 	entitySystemInit(1024);
     SDL_ShowCursor(SDL_DISABLE);
+	//fileLoadedDude = entityNew();
+	//infile = fopen("def/dude.txt", "r");
+	//entityLoadFromFile(infile, fileLoadedDude);
+	//fclose(infile);
 
 	//derp
 	//slog("%i", myLL->data);
@@ -95,6 +102,8 @@ int main(int argc, char * argv[])
 	guy->boundingBox = rect_new(guy->position.x, guy->position.y, 64, 64);
 	testDude = NULL;
 	//SDL_SetTextureColorMod(thing2->texture, 100, 60, 0);
+	//fileLoadedDude->mySprite = mehSprite;
+	//slog("the thing made has: %s", &fileLoadedDude->name);
 
     /*main game loop*/
     while(!done)

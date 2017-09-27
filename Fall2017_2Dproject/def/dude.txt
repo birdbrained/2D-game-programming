@@ -1,10 +1,10 @@
-name:Nicolai
-fav_thing:Sex?
-sprite:guyx
-update:move
-Instrument:Instrument_Tenor_Saxophone
-instrumentSprite:images/sprites/instrument_tenor_sax.png
-statMarching:40
-statMusic:40
-statMorale:70
-statMotivation:60
+name:				Nicolai
+fav_thing:			Farting
+sprite:				guyx
+update:				move
+Instrument:			Instrument_Tenor_Saxophone
+instrumentSprite:	images/sprites/instrument_tenor_sax.png
+statMarching:		40
+statMusic:			40
+statMorale:			70
+statMotivation:		60
