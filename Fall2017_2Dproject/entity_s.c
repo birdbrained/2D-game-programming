@@ -239,25 +239,51 @@ void entityLoadFromFile(FILE * file, Entity * new_entity)
 	}
 	rewind(file);
 	
+	/* Note to self!
+	   Order matters here. Please strcmp variables
+	   in the order they appear in the entity_s
+	   struct. Thanks Future Matt ~<3 Why don't
+	   you text me back anymore */
 	while (fscanf(file, "%s", buffer) != EOF)
 	{
 		if (strcmp(buffer, "name:") == 0)
 		{
-			fscanf(file, "%s", (char *)&new_entity->name);
-			slog("1 name is (%s)", &new_entity->name);
+			fscanf(file, "%s", &new_entity->name);
+			//fscanf(file, "%s", buffer);
+			slog("name is (%s)", &new_entity->name);
 			//slog("2 name is (%s)", buffer);
 			continue;
 		}
 		if (strcmp(buffer, "fav_thing:") == 0)
 		{
-			fscanf(file, "%s", (char *)&new_entity->favoriteThing);
+			fscanf(file, "%s", &new_entity->favoriteThing);
+			//fscanf(file, "%s", buffer);
 			slog("favThing is (%s)", &new_entity->favoriteThing);
 			continue;
 		}
 		if (strcmp(buffer, "statMarching:") == 0)
 		{
 			fscanf(file, "%i", &new_entity->statMarching);
+			//fscanf(file, "%s", buffer);
 			slog("stat marching (%i)", new_entity->statMarching);
+			continue;
+		}
+		if (strcmp(buffer, "statMusic:") == 0)
+		{
+			fscanf(file, "%i", &new_entity->statMusic);
+			slog("stat music (%i)", new_entity->statMusic);
+			continue;
+		}
+		if (strcmp(buffer, "statMorale:") == 0)
+		{
+			fscanf(file, "%i", &new_entity->statMorale);
+			slog("stat morale (%i)", new_entity->statMorale);
+			continue;
+		}
+		if (strcmp(buffer, "statMotivation:") == 0)
+		{
+			fscanf(file, "%i", &new_entity->statMotivation);
+			slog("stat motivation (%i)", new_entity->statMotivation);
 			continue;
 		}
 
@@ -271,4 +297,5 @@ void entityLoadFromFile(FILE * file, Entity * new_entity)
 	//slog("%s", buffer);
 	//fscanf(file, "favThing: %s", buffer);
 	//slog("%s", buffer);
+	return new_entity;
 }

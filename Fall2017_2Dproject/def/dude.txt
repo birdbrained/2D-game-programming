@@ -5,6 +5,6 @@ update:				move
 Instrument:			Instrument_Tenor_Saxophone
 instrumentSprite:	images/sprites/instrument_tenor_sax.png
 statMarching:		40
-statMusic:			40
+statMusic:			47
 statMorale:			70
 statMotivation:		60

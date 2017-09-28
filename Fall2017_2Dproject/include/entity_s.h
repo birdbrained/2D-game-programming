@@ -59,7 +59,8 @@ typedef enum section
 typedef struct entity_s {
 	short unsigned int inUse;		/**<Don't ever touch this. 1 if in use, 0 if not*/
 	Uint64 id;						/**<Auto increment id for this entity*/
-	char *name;					/**<name of the object*/
+	char *name;						/**<name of the object*/
+	char *favoriteThing;			/**<guy's favorite thing, just for funsies*/
 
 	//physics
 	Vector2D position;				/**<Draw position*/
@@ -92,7 +93,6 @@ typedef struct entity_s {
 	int statMorale;
 	int statMotivation;
 	short unsigned int isSectionLeader;
-	char *favoriteThing;
 }Entity;
 
 /**
@@ -142,6 +142,6 @@ void entityDraw(Entity * e);
  */
 void entityDrawAll();
 
-void entityLoadFromFile(FILE * file, Entity ** new_entity);
+void entityLoadFromFile(FILE * file, Entity * new_entity);
 
 #endif // ! __ENTITY_S__
