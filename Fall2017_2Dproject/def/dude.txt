@@ -2,8 +2,8 @@ name:				Nicolai
 fav_thing:			Farting
 sprite:				guyx
 update:				move
-Instrument:			Instrument_Tenor_Saxophone
-instrumentSprite:	images/sprites/instrument_tenor_sax.png
+Instrument:			cgflag
+instrumentSprite:	images/sprites/instrument_colorguard_flag.png
 statMarching:		40
 statMusic:			47
 statMorale:			70

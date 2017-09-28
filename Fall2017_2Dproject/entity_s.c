@@ -261,6 +261,51 @@ void entityLoadFromFile(FILE * file, Entity * new_entity)
 			slog("favThing is (%s)", &new_entity->favoriteThing);
 			continue;
 		}
+		if (strcmp(buffer, "Instrument:") == 0)
+		{
+			fscanf(file, "%s", holder);
+			if (strcmp(holder, "flute") == 0)
+				new_entity->myInstrument = Instrument_Flute;
+			else if (strcmp(holder, "clarinet") == 0)
+				new_entity->myInstrument = Instrument_Clarinet;
+			else if (strcmp(holder, "altosax") == 0)
+				new_entity->myInstrument = Instrument_Alto_Saxophone;
+			else if (strcmp(holder, "tenorsax") == 0)
+				new_entity->myInstrument = Instrument_Tenor_Saxophone;
+			else if (strcmp(holder, "trumpet") == 0)
+				new_entity->myInstrument = Instrument_Trumpet;
+			else if (strcmp(holder, "baritone") == 0)
+				new_entity->myInstrument = Instrument_Baritone;
+			else if (strcmp(holder, "tuba") == 0)
+				new_entity->myInstrument = Instrument_Tuba;
+			else if (strcmp(holder, "snaredrum") == 0)
+				new_entity->myInstrument = Instrument_Snare_Drum;
+			else if (strcmp(holder, "bassdrum") == 0)
+				new_entity->myInstrument = Instrument_Bass_Drum;
+			else if (strcmp(holder, "cgflag") == 0)
+				new_entity->myInstrument = Instrument_Colorguard_Flag;
+			else if (strcmp(holder, "cgrifle") == 0)
+				new_entity->myInstrument = Instrument_Colorguard_Rifle;
+			else if (strcmp(holder, "pmarimba") == 0)
+				new_entity->myInstrument = Instrument_Pit_Marimba;
+			else if (strcmp(holder, "pxylophone") == 0)
+				new_entity->myInstrument = Instrument_Pit_Xylophone;
+			else if (strcmp(holder, "pguitar") == 0)
+				new_entity->myInstrument = Instrument_Pit_Guitar;
+			else if (strcmp(holder, "psynth") == 0)
+				new_entity->myInstrument = Instrument_Pit_Synthesizer;
+			else if (strcmp(holder, "pgong") == 0)
+				new_entity->myInstrument = Instrument_Pit_Gong;
+			else
+				new_entity->myInstrument = Instrument_Unassigned;
+			slog("instrument (%d)", new_entity->myInstrument);
+			continue;
+		}
+		if (strcmp(buffer, "instrumentSprite:") == 0)
+		{
+			fscanf(file, "%s", &new_entity->instrumentSpriteFilePath);
+			slog("instrument sprite file (%s)", &new_entity->instrumentSpriteFilePath);
+		}
 		if (strcmp(buffer, "statMarching:") == 0)
 		{
 			fscanf(file, "%i", &new_entity->statMarching);

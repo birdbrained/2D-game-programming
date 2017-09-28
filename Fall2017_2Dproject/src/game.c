@@ -72,7 +72,6 @@ int main(int argc, char * argv[])
 	entitySystemInit(1024);
     SDL_ShowCursor(SDL_DISABLE);
 	//fileLoadedDude = entityNew();
-	
 
 	//derp
 	//slog("%i", myLL->data);
@@ -105,8 +104,9 @@ int main(int argc, char * argv[])
 	entityLoadFromFile(infile, fileLoadedDude);
 	fclose(infile);
 	fileLoadedDude->mySprite = mehSprite;
-	//fileLoadedDude->position = vector2d(20, 20);
-	//fileLoadedDude->scale = vector2d(1, 1);
+	fileLoadedDude->instrumentSprite = gf2d_sprite_load_all(&fileLoadedDude->instrumentSpriteFilePath, 32, 32, 1);
+	fileLoadedDude->position = vector2d(20, 20);
+	fileLoadedDude->scale = vector2d(1, 1);
 	//slog("the thing made has: %s", &fileLoadedDude->name);
 
     /*main game loop*/
@@ -283,6 +283,8 @@ int main(int argc, char * argv[])
 			NULL,
 			0
 		);
+
+		//entityDraw(fileLoadedDude);
 
 		entityDrawAll();
 		entityUpdateAll();

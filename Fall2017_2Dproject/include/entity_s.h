@@ -61,6 +61,7 @@ typedef struct entity_s {
 	Uint64 id;						/**<Auto increment id for this entity*/
 	char *name;						/**<name of the object*/
 	char *favoriteThing;			/**<guy's favorite thing, just for funsies*/
+	char *instrumentSpriteFilePath;
 
 	//physics
 	Vector2D position;				/**<Draw position*/
@@ -87,6 +88,7 @@ typedef struct entity_s {
 	StatusAliment currentStatus;
 	EntityState currentState;
 	Instrument myInstrument;
+	Section mySection;
 	Sprite *instrumentSprite;
 	int statMarching;
 	int statMusic;
