@@ -297,5 +297,5 @@ void entityLoadFromFile(FILE * file, Entity * new_entity)
 	//slog("%s", buffer);
 	//fscanf(file, "favThing: %s", buffer);
 	//slog("%s", buffer);
-	return new_entity;
+	//return new_entity;
 }
