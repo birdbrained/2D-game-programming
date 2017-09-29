@@ -40,6 +40,10 @@ int main(int argc, char * argv[])
 	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2,
 	  2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3,
 	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2 };*/
+	TileMap *tile_map;
+	FILE *tilemapFile;
+	int p = 0;
+
     Vector4D mouseColor = {100,255,255,200};
 	Vector2D flipVert = { 0, 1 };
 	Vector2D scaleDown = { 0.5, 0.5 };
@@ -109,6 +113,42 @@ int main(int argc, char * argv[])
 	fileLoadedDude->scale = vector2d(2, 2);
 	//slog("the thing made has: %s", &fileLoadedDude->name);
 
+	//Trying to load a tilemap from file
+	tilemapFile = fopen("def/level/field_0.lvl", "r");
+	tile_map = tilemap_init();
+	tilemap_load_from_file(tilemapFile, tile_map);
+	fclose(tilemapFile);
+	slog("tilewidth: (%i) tileheight: (%i) tperline: (%i) filepath: (...) width: (%i) height: (%i) xPos: (%i) yPos: (%i)", tile_map->tileWidth,	tile_map->tileHeight, tile_map->tilesPerLine, tile_map->width, tile_map->height, tile_map->xPos, tile_map->yPos);
+	slog("do i have a sprite? %i", tile_map->tilemapSprite != NULL);
+	/*slog("tile pq start");
+	while (tile_map->tiles_head != NULL)
+	{
+		p = pq_delete(tile_map->tiles_head, tile_map->tiles_tail);
+		if (p == NULL)
+		{
+			break;
+		}
+		slog("Removing (%d) from pq", p);
+	}
+	slog("tile pq end");*/
+	/*slog("start array");
+	for (p = 0; p < tile_map->width * tile_map->height; p++)
+	{
+		if (p == 512)
+		{
+			slog("end of array");
+		}
+		else if (tile_map->tiles[p] == -1)
+		{
+			slog("found a -1");
+		}
+		else
+		{
+			slog("tiles at index (%i) is (%i)", p, tile_map->tiles[p]);
+		}
+	}
+	slog("end array");*/
+
     /*main game loop*/
     while(!done)
     {
@@ -135,6 +175,8 @@ int main(int argc, char * argv[])
 			10,
 			0,
 			0);*/
+		tilemap_draw_from_data(tile_map);
+
 		//gf2d_sprite_draw(thing, vector2d(100, 10), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		//gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
 		//gf2d_sprite_draw(guy->mySprite, guy->position, &(guy->scale), NULL, NULL, NULL, NULL, 0);

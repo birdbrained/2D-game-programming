@@ -13,10 +13,11 @@ typedef struct tilemap_s {
 	int tileWidth;
 	int tileHeight;
 	int tilesPerLine;
-	Sprite *tilemap;
+	Sprite *tilemapSprite;
 	//const LL_Node *tiles;
-	PriorityQueue *tiles_head;
-	PriorityQueue *tiles_tail;
+	//PriorityQueue *tiles_head;
+	//PriorityQueue *tiles_tail;
+	int tiles[512];
 	unsigned int width;
 	unsigned int height;
 	int xPos;
