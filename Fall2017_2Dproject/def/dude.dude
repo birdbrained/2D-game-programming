@@ -2,8 +2,8 @@ name:				Nicolai
 fav_thing:			Farting
 sprite:				guyx
 update:				move
-Instrument:			cgflag
-instrumentSprite:	images/sprites/instrument_colorguard_flag.png
+Instrument:			trumpet
+instrumentSprite:	images/sprites/instrument_trumpet.png
 statMarching:		40
 statMusic:			47
 statMorale:			70

@@ -5,7 +5,98 @@
 #include "simple_logger.h"
 #include "tilemap.h"
 
-int DrawTileMap(Sprite * tilemap, const int * tiles, unsigned int width, unsigned int height, int xPos, int yPos)
+TileMap * tilemap_init()
+{
+	TileMap *new_tilemap = NULL;
+	new_tilemap = malloc(sizeof(TileMap));
+	if (!new_tilemap)
+	{
+		slog("Error: could not allocate memory for a TileMap");
+		return NULL;
+	}
+	memset(new_tilemap, 0, sizeof(TileMap));
+	return new_tilemap;
+}
+
+void tilemap_load_from_file(FILE * file, TileMap * new_tilemap)
+{
+	char buffer[512];
+	PriorityQueue * tiles_head = pq_new(sizeof(int));
+	PriorityQueue * tiles_tail = pq_new(sizeof(int));
+	int tile_i = -1;
+	if (!file)
+	{
+		slog("Error: could not open tilemap file");
+		return;
+	}
+	rewind(file);
+
+	while (fscanf(file, "%s", buffer) != EOF)
+	{
+		if (strcmp(buffer, "tilewidth:") == 0)
+		{
+			fscanf(file, "%i", &new_tilemap->tileWidth);
+			continue;
+		}
+		if (strcmp(buffer, "tileheight:") == 0)
+		{
+			fscanf(file, "%i", &new_tilemap->tileHeight);
+			continue;
+		}
+		if (strcmp(buffer, "tperline:") == 0)
+		{
+			fscanf(file, "%i", &new_tilemap->tilesPerLine);
+			continue;
+		}
+		if (strcmp(buffer, "filepath:") == 0)
+		{
+			fscanf(file, "%s", buffer);
+			//myTileMap = gf2d_sprite_load_all("images/field_tiles.png", 64, 64, 2);
+			new_tilemap->tilemap = gf2d_sprite_load_all(buffer, new_tilemap->tileWidth, new_tilemap->tileHeight, new_tilemap->tilesPerLine);
+			continue;
+		}
+		if (strcmp(buffer, "width:") == 0)
+		{
+			fscanf(file, "%i", &new_tilemap->width);
+			continue;
+		}
+		if (strcmp(buffer, "height:") == 0)
+		{
+			fscanf(file, "%i", &new_tilemap->height);
+			continue;
+		}
+		if (strcmp(buffer, "xPos:") == 0)
+		{
+			fscanf(file, "%i", &new_tilemap->xPos);
+			continue;
+		}
+		if (strcmp(buffer, "yPos:") == 0)
+		{
+			fscanf(file, "%i", &new_tilemap->yPos);
+			continue;
+		}
+		if (strcmp(buffer, "tiles:") == 0)
+		{
+			while (1)
+			{
+				fscanf(file, "%i", tile_i);
+				if (tile_i == -1)
+				{
+					break;
+				}
+				else
+				{
+					pq_insert(tiles_head, tiles_tail, tile_i, sizeof(tile_i), tile_i);
+				}
+			}
+			new_tilemap->tiles_head = tiles_head;
+			new_tilemap->tiles_tail = tiles_tail;
+			continue;
+		}
+	}
+}
+
+int tilemap_draw(Sprite * tilemap, const int * tiles, unsigned int width, unsigned int height, int xPos, int yPos)
 {
 	int tileNum = 0;
 	for (unsigned int i = 0; i < height; i++)
@@ -18,4 +109,17 @@ int DrawTileMap(Sprite * tilemap, const int * tiles, unsigned int width, unsigne
 		}
 	}
 	return 0;
+}
+
+int tilemap_draw_from_data(TileMap * tilemap)
+{
+	unsigned int i = 0;
+	unsigned int j = 0;
+	for (i = 0; i < tilemap->tileHeight; i++)
+	{
+		for (j = 0; tilemap->tileWidth; j++)
+		{
+			gf2d_sprite_draw(tilemap->tilemap, vector2d(tilemap->xPos + (j * tilemap->tilemap->frame_w), tilemap->yPos + (i * tilemap->tilemap->frame_h)), NULL, NULL, NULL, NULL, NULL, pq_delete(tilemap->tiles_head, tilemap->tiles_tail));
+		}
+	}
 }

@@ -28,7 +28,7 @@ int main(int argc, char * argv[])
 	Sprite *guyx;
 	Sprite *galSprite;
 	Sprite *mehSprite;
-	Sprite *myTileMap;
+	/*Sprite *myTileMap;
 	const int level[] = 
 	{ 2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 
 	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2, 
@@ -39,12 +39,12 @@ int main(int argc, char * argv[])
 	  2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 
 	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2,
 	  2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3,
-	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2 };
+	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2 };*/
     Vector4D mouseColor = {100,255,255,200};
 	Vector2D flipVert = { 0, 1 };
 	Vector2D scaleDown = { 0.5, 0.5 };
 	Vector2D scaleUp = { 2, 2 };
-	IntNode *myLL = IntNode_init(5);
+	//IntNode *myLL = IntNode_init(5);
 	/*Student *person;*/
 	Entity *guy, *testDude;
 	Entity *en = NULL;
@@ -84,7 +84,7 @@ int main(int argc, char * argv[])
 	guyx = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 2);
 	galSprite = gf2d_sprite_load_all("images/sprites/gal32x.png", 32, 32, 2);
 	mehSprite = gf2d_sprite_load_all("images/sprites/meh32x.png", 32, 32, 2);
-	myTileMap = gf2d_sprite_load_all("images/field_tiles.png", 64, 64, 2);
+	//myTileMap = gf2d_sprite_load_all("images/field_tiles.png", 64, 64, 2);
 	//person = student("Test", "Sex", thing2);
 	//slog("Initializing student %s", person->name);
 	guy = entityNew();
@@ -99,14 +99,14 @@ int main(int argc, char * argv[])
 	guy->boundingBox = rect_new(guy->position.x, guy->position.y, 64, 64);
 	testDude = NULL;
 	//SDL_SetTextureColorMod(thing2->texture, 100, 60, 0);
-	infile = fopen("def/dude.txt", "r");
+	infile = fopen("def/dude.dude", "r");
 	fileLoadedDude = entityNew();
 	entityLoadFromFile(infile, fileLoadedDude);
 	fclose(infile);
 	fileLoadedDude->mySprite = mehSprite;
 	fileLoadedDude->instrumentSprite = gf2d_sprite_load_all(&fileLoadedDude->instrumentSpriteFilePath, 32, 32, 1);
 	fileLoadedDude->position = vector2d(20, 20);
-	fileLoadedDude->scale = vector2d(1, 1);
+	fileLoadedDude->scale = vector2d(2, 2);
 	//slog("the thing made has: %s", &fileLoadedDude->name);
 
     /*main game loop*/
@@ -128,13 +128,13 @@ int main(int argc, char * argv[])
 		gf2d_sprite_draw_image(sprite,vector2d(0,0));
 
 		//Me! trying to add a sprite
-		DrawTileMap(
+		/*tilemap_draw(
 			myTileMap,
 			level,
 			18,
 			10,
 			0,
-			0);
+			0);*/
 		//gf2d_sprite_draw(thing, vector2d(100, 10), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		//gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
 		//gf2d_sprite_draw(guy->mySprite, guy->position, &(guy->scale), NULL, NULL, NULL, NULL, 0);
@@ -156,6 +156,7 @@ int main(int argc, char * argv[])
 			(*guy->update)(guy, vector2d(2, 0));
 		}
 		guy->currentFrame = guyFrame;
+		fileLoadedDude->currentFrame = guyFrame;
 
 		/*
 		//create an entity if it doesn't exist

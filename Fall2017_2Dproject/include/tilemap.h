@@ -3,9 +3,38 @@
 
 #include <SDL.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
+#include "ds_priority_queue.h"
+
+typedef struct tilemap_s {
+	int tileWidth;
+	int tileHeight;
+	int tilesPerLine;
+	Sprite *tilemap;
+	//const LL_Node *tiles;
+	PriorityQueue *tiles_head;
+	PriorityQueue *tiles_tail;
+	unsigned int width;
+	unsigned int height;
+	int xPos;
+	int yPos;
+}TileMap;
+
+/**
+ * @brief Creates a tilemap struct
+ * @returns Pointer to a new tilemap
+ */
+TileMap * tilemap_init();
+
+/**
+ * @brief Inits a tilemap from a file
+ * @param file The file to read from
+ * @param neW_tilemap The TileMap that will be inited
+ */
+void tilemap_load_from_file(FILE * file, TileMap * new_tilemap);
 
 /**
  * @brief Draws a tile map to the screen
@@ -17,6 +46,8 @@
  * @param yPos Where to starting drawing the tilemap
  * @return 0 if successful
  */
-int DrawTileMap(Sprite *tilemap, const int *tiles, unsigned int width, unsigned int height, int xPos, int yPos);
+int tilemap_draw(Sprite *tilemap, const int *tiles, unsigned int width, unsigned int height, int xPos, int yPos);
+
+int tilemap_draw_from_data(TileMap * tilemap);
 
 #endif // !__TILEMAP__

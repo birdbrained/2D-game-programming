@@ -127,10 +127,15 @@ void entityFree(Entity * e);
 void entityDeleteAll();
 
 /**
- * TODO: Update currently handled in game.c, alter it?
+ * @brief Performs generic entity updates (velocity/position updating, collision box movement, etc.)
+ * @param self Entity to update
+ * @returns Early return if error
  */
 void entityUpdate(Entity * self);
 
+/**
+ * @brief Updates every entity currently existing
+ */
 void entityUpdateAll();
 
 /**
@@ -144,6 +149,11 @@ void entityDraw(Entity * e);
  */
 void entityDrawAll();
 
+/**
+ * @brief Inits an entity's parameters from a specified file
+ * @param file File to read through
+ * @param new_entity Entity that will be inited
+ */
 void entityLoadFromFile(FILE * file, Entity * new_entity);
 
 #endif // ! __ENTITY_S__
