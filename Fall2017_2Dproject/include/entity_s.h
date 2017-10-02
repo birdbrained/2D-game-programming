@@ -1,6 +1,9 @@
 #ifndef __ENTITY_S__
 #define __ENTITY_S__
 
+#define MAX_CHARS 32
+#define MAX_FILEPATH_CHARS 256
+
 #include <stdio.h>
 #include "gf2d_vector.h"
 #include "gf2d_graphics.h"
@@ -59,9 +62,9 @@ typedef enum section
 typedef struct entity_s {
 	short unsigned int inUse;		/**<Don't ever touch this. 1 if in use, 0 if not*/
 	Uint64 id;						/**<Auto increment id for this entity*/
-	char *name;						/**<name of the object*/
-	char *favoriteThing;			/**<guy's favorite thing, just for funsies*/
-	char *instrumentSpriteFilePath;
+	char name[MAX_CHARS];			/**<name of the object*/
+	char *favoriteThing[MAX_CHARS];	/**<guy's favorite thing, just for funsies*/
+	char instrumentSpriteFilePath[MAX_FILEPATH_CHARS];
 
 	//physics
 	Vector2D position;				/**<Draw position*/
@@ -154,6 +157,6 @@ void entityDrawAll();
  * @param file File to read through
  * @param new_entity Entity that will be inited
  */
-void entityLoadFromFile(FILE * file, Entity * new_entity);
+Entity * entityLoadFromFile(FILE * file, Entity * new_entity);
 
 #endif // ! __ENTITY_S__

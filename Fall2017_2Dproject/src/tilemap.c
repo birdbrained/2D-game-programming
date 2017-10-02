@@ -22,8 +22,8 @@ TileMap * tilemap_init()
 void tilemap_load_from_file(FILE * file, TileMap * new_tilemap)
 {
 	char buffer[512];
-	PriorityQueue * tiles_head;
-	PriorityQueue * tiles_tail;
+	//PriorityQueue * tiles_head;
+	//PriorityQueue * tiles_tail;
 	int tile_i = -1;
 	int i = 0;
 	if (!file)
@@ -32,8 +32,8 @@ void tilemap_load_from_file(FILE * file, TileMap * new_tilemap)
 		return;
 	}
 	rewind(file);
-	tiles_head = pq_new(sizeof(int));
-	tiles_tail = pq_new(sizeof(int));
+	//tiles_head = pq_new(sizeof(int));
+	//tiles_tail = pq_new(sizeof(int));
 
 	while (fscanf(file, "%s", buffer) != EOF)
 	{

@@ -228,7 +228,7 @@ void entityDrawAll()
 	}
 }
 
-void entityLoadFromFile(FILE * file, Entity * new_entity)
+Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 {
 	char buffer[512];
 	char holder[512];
@@ -248,17 +248,19 @@ void entityLoadFromFile(FILE * file, Entity * new_entity)
 	{
 		if (strcmp(buffer, "name:") == 0)
 		{
-			fscanf(file, "%s", &new_entity->name);
+			fscanf(file, "%s", buffer);
+			strncpy(new_entity->name, buffer, MAX_CHARS);
 			//fscanf(file, "%s", buffer);
-			slog("name is (%s)", &new_entity->name);
+			slog("name is (%s)", new_entity->name);
 			//slog("2 name is (%s)", buffer);
 			continue;
 		}
 		if (strcmp(buffer, "fav_thing:") == 0)
 		{
-			fscanf(file, "%s", &new_entity->favoriteThing);
+			fscanf(file, "%s", buffer);
+			strncpy(new_entity->favoriteThing, buffer, MAX_CHARS);
 			//fscanf(file, "%s", buffer);
-			slog("favThing is (%s)", &new_entity->favoriteThing);
+			slog("favThing is (%s)", new_entity->favoriteThing);
 			continue;
 		}
 		if (strcmp(buffer, "Instrument:") == 0)
@@ -303,8 +305,9 @@ void entityLoadFromFile(FILE * file, Entity * new_entity)
 		}
 		if (strcmp(buffer, "instrumentSprite:") == 0)
 		{
-			fscanf(file, "%s", &new_entity->instrumentSpriteFilePath);
-			slog("instrument sprite file (%s)", &new_entity->instrumentSpriteFilePath);
+			fscanf(file, "%s", buffer);
+			strncpy(new_entity->instrumentSpriteFilePath, buffer, MAX_FILEPATH_CHARS);
+			slog("instrument sprite file (%s)", new_entity->instrumentSpriteFilePath);
 		}
 		if (strcmp(buffer, "statMarching:") == 0)
 		{
@@ -342,5 +345,5 @@ void entityLoadFromFile(FILE * file, Entity * new_entity)
 	//slog("%s", buffer);
 	//fscanf(file, "favThing: %s", buffer);
 	//slog("%s", buffer);
-	//return new_entity;
+	return new_entity;
 }

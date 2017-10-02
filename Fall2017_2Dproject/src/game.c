@@ -92,7 +92,7 @@ int main(int argc, char * argv[])
 	//person = student("Test", "Sex", thing2);
 	//slog("Initializing student %s", person->name);
 	guy = entityNew();
-	guy->name = "Poophead McBandgeek";
+	strncpy(guy->name, "Poophead McBandgeek", 32);
 	guy->mySprite = guyx;
 	guy->scale = scaleUp;
 	guy->currentFrame = 0;
@@ -105,13 +105,14 @@ int main(int argc, char * argv[])
 	//SDL_SetTextureColorMod(thing2->texture, 100, 60, 0);
 	infile = fopen("def/dude.dude", "r");
 	fileLoadedDude = entityNew();
-	entityLoadFromFile(infile, fileLoadedDude);
+	fileLoadedDude = entityLoadFromFile(infile, fileLoadedDude);
 	fclose(infile);
 	fileLoadedDude->mySprite = mehSprite;
 	fileLoadedDude->instrumentSprite = gf2d_sprite_load_all(&fileLoadedDude->instrumentSpriteFilePath, 32, 32, 1);
 	fileLoadedDude->position = vector2d(20, 20);
+	fileLoadedDude->boundingBox = rect_new(fileLoadedDude->position.x, fileLoadedDude->position.y, 64, 64);
 	fileLoadedDude->scale = vector2d(2, 2);
-	//slog("the thing made has: %s", &fileLoadedDude->name);
+	slog("the thing made has: %s", &fileLoadedDude->name);
 
 	//Trying to load a tilemap from file
 	tilemapFile = fopen("def/level/field_0.lvl", "r");
@@ -343,6 +344,10 @@ int main(int argc, char * argv[])
 				if (point_in_rect(mx, my, guy->boundingBox))
 				{
 					slog("collision with guy (%s)", guy->name);
+				}
+				if (point_in_rect(mx, my, fileLoadedDude->boundingBox))
+				{
+					slog("collision with guy (%s)", &fileLoadedDude->name);
 				}
 			}
 			break;
