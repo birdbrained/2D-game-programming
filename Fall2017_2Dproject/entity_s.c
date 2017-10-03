@@ -255,6 +255,10 @@ void entityIncrementCurrentFrame(Entity * self)
 
 	self->currentFrame = self->currentFrame + 0.05f;
 	//slog("%f", self->currentFrame);
+	if (self->currentFrame < self->minFrame)
+	{
+		self->currentFrame = self->minFrame;
+	}
 	if (self->currentFrame > self->maxFrame)
 	{
 		self->currentFrame = self->minFrame;

@@ -116,7 +116,7 @@ int main(int argc, char * argv[])
 	fileLoadedDude->scale = vector2d(2, 2);
 	fileLoadedDude->currentFrame = 0;
 	fileLoadedDude->minFrame = 0;
-	fileLoadedDude->maxFrame = 1;
+	fileLoadedDude->maxFrame = 2;
 	slog("the thing made has: %s", &fileLoadedDude->name);
 
 	//Trying to load a tilemap from file
@@ -235,7 +235,9 @@ int main(int argc, char * argv[])
 			biggo->scale = vector2d(25, 25);
 			biggo->inUse = 1;
 			biggo->currentFrame = 0;
-			//biggo->update = move;
+			biggo->minFrame = 0;
+			biggo->maxFrame = 2;
+			biggo->update = move;
 			biggo->velocity = vector2d(0.5f, 0.5f);
 			biggo->acceleration = vector2d(0.5f, 0.5f);
 			biggo->myInstrument = Instrument_Flute;
@@ -244,8 +246,8 @@ int main(int argc, char * argv[])
 		if (biggo != NULL)
 		{
 			//entityDraw(biggo);
-			//(*biggo->update)(biggo, vector2d(0.5f, 0.5f));
-			biggo->currentFrame = guyFrame;
+			(*biggo->update)(biggo, vector2d(0.5f, 0.5f));
+			//biggo->currentFrame = guyFrame;
 		}
 		if (biggo != NULL && biggo->inUse == 1 && keys[SDL_SCANCODE_P])
 		{
@@ -262,6 +264,8 @@ int main(int argc, char * argv[])
 			testDude->scale = scaleUp;
 			testDude->inUse = 1;
 			testDude->currentFrame = 0;
+			testDude->minFrame = 1;
+			testDude->maxFrame = 3;
 			testDude->update = move;
 			testDude->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_tuba.png", 32, 32, 1);
 		}
@@ -270,7 +274,7 @@ int main(int argc, char * argv[])
 			//gf2d_sprite_draw(testDude->mySprite, testDude->position, &(testDude->scale), NULL, NULL, NULL, NULL, 0);
 			//entityDraw(testDude);
 			(*testDude->update)(testDude, vector2d(1, 1));
-			testDude->currentFrame = guyFrame;
+			//testDude->currentFrame = guyFrame;
 		}
 		if (testDude != NULL && testDude->inUse == 1 && keys[SDL_SCANCODE_P])
 		{
@@ -286,6 +290,8 @@ int main(int argc, char * argv[])
 			en->scale = vector2d(1,1);
 			en->inUse = 1;
 			en->currentFrame = 0;
+			en->minFrame = 0;
+			en->maxFrame = 4;
 			en->update = move;
 			en->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_clarinet.png", 32, 32, 1);
 		}
@@ -293,7 +299,7 @@ int main(int argc, char * argv[])
 		{
 			//entityDraw(en);
 			(*en->update)(en, vector2d(1, -1));
-			en->currentFrame = guyFrame;
+			//en->currentFrame = guyFrame;
 		}
 		if (en != NULL && en->inUse == 1 && keys[SDL_SCANCODE_P])
 		{
