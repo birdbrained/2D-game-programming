@@ -14,6 +14,26 @@ void move(Entity *e, Vector2D vec)
 	}*/
 }
 
+void die_after_time(Entity * e)
+{
+	if (!e)
+	{
+		slog("Cannot run die_after_time function for an entity that does not exist");
+		return;
+	}
+	if (e->inUse == 0)
+	{
+		slog("Cannot run die_after_time function for an entity that is not in use");
+		return;
+	}
+	if (SDL_GetTicks() % 50 == 0)
+	{
+		e->inUse = 0;
+		entityDelete(e);
+		e = NULL;
+	}
+}
+
 int mousePress(SDL_MouseButtonEvent *b)
 {
 	if (b->button == SDL_BUTTON_LEFT)

@@ -1,4 +1,5 @@
 #include "entity_s.h"
+#include "simple_logger.h"
 
 /**
  * @brief Crappy little function that just moves an entity
@@ -6,6 +7,8 @@
  * @param vec Vector to move entity by
  */
 void move(Entity *e, Vector2D vec);
+
+void die_after_time(Entity * e);
 
 /**
  * @brief Checks to see if any mouse button was pressed

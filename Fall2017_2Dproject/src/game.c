@@ -96,6 +96,8 @@ int main(int argc, char * argv[])
 	guy->mySprite = guyx;
 	guy->scale = scaleUp;
 	guy->currentFrame = 0;
+	guy->minFrame = 0;
+	guy->maxFrame = 2;
 	guy->position = vector2d(100, 100);
 	guy->update = move;
 	guy->myInstrument = Instrument_Flute;
@@ -112,6 +114,9 @@ int main(int argc, char * argv[])
 	fileLoadedDude->position = vector2d(20, 20);
 	fileLoadedDude->boundingBox = rect_new(fileLoadedDude->position.x, fileLoadedDude->position.y, 64, 64);
 	fileLoadedDude->scale = vector2d(2, 2);
+	fileLoadedDude->currentFrame = 0;
+	fileLoadedDude->minFrame = 0;
+	fileLoadedDude->maxFrame = 1;
 	slog("the thing made has: %s", &fileLoadedDude->name);
 
 	//Trying to load a tilemap from file
@@ -198,8 +203,8 @@ int main(int argc, char * argv[])
 		{
 			(*guy->update)(guy, vector2d(2, 0));
 		}
-		guy->currentFrame = guyFrame;
-		fileLoadedDude->currentFrame = guyFrame;
+		//guy->currentFrame = guyFrame;
+		//fileLoadedDude->currentFrame = guyFrame;
 
 		/*
 		//create an entity if it doesn't exist
@@ -284,7 +289,7 @@ int main(int argc, char * argv[])
 			en->update = move;
 			en->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_clarinet.png", 32, 32, 1);
 		}
-		if (en != NULL)
+		if (en != NULL && en->inUse == 1)
 		{
 			//entityDraw(en);
 			(*en->update)(en, vector2d(1, -1));
@@ -296,8 +301,14 @@ int main(int argc, char * argv[])
 			entityDelete(en);
 			en = NULL;
 		}
+		if (en != NULL && en->inUse == 1 && en->position.x >= 400)
+		{
+			en->inUse = 0;
+			entityDelete(en);
+			en = NULL;
+		}
 
-		gf2d_sprite_draw(
+		/*gf2d_sprite_draw(
 			guyx,
 			vector2d(64, 64),
 			&scaleUp,
@@ -326,12 +337,13 @@ int main(int argc, char * argv[])
 			NULL,
 			NULL,
 			0
-		);
+		);*/
 
 		//entityDraw(fileLoadedDude);
 
 		entityDrawAll();
 		entityUpdateAll();
+		entityIncrementCurrentFrameAll();
 
 		switch (e.type)
 		{

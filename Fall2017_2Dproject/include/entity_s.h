@@ -63,7 +63,7 @@ typedef struct entity_s {
 	short unsigned int inUse;		/**<Don't ever touch this. 1 if in use, 0 if not*/
 	Uint64 id;						/**<Auto increment id for this entity*/
 	char name[MAX_CHARS];			/**<name of the object*/
-	char *favoriteThing[MAX_CHARS];	/**<guy's favorite thing, just for funsies*/
+	char favoriteThing[MAX_CHARS];	/**<guy's favorite thing, just for funsies*/
 	char instrumentSpriteFilePath[MAX_FILEPATH_CHARS];
 
 	//physics
@@ -80,7 +80,9 @@ typedef struct entity_s {
 	Vector2D scaleCenter;			/**<Center of sprite to scale at*/
 	Vector2D rotation;				/**<Rotation*/
 	Vector2D flip;					/**<Flip horizontal or vertical*/
-	unsigned int currentFrame;		/**<Current frame of animation*/
+	float currentFrame;				/**<Current frame of animation*/
+	float minFrame;
+	float maxFrame;
 	
 	//draw, think, update, touch, damage, die, free
 	void(*update)(struct entity_s *self);	/**<Pointer to an update function that will get called every frame*/
@@ -99,6 +101,15 @@ typedef struct entity_s {
 	int statMotivation;
 	short unsigned int isSectionLeader;
 }Entity;
+
+/**
+ * @brief Start of think function look-up table
+ */
+struct think_function
+{
+	void(*my_think_function)(Entity * self);
+	char *name;
+};
 
 /**
  * @brief Initializes the Entity Manager
@@ -152,10 +163,14 @@ void entityDraw(Entity * e);
  */
 void entityDrawAll();
 
+void entityIncrementCurrentFrame(Entity * self);
+void entityIncrementCurrentFrameAll();
+
 /**
  * @brief Inits an entity's parameters from a specified file
  * @param file File to read through
  * @param new_entity Entity that will be inited
+ * @returns Populates new_entity parameter and returns it
  */
 Entity * entityLoadFromFile(FILE * file, Entity * new_entity);
 

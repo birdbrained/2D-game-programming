@@ -1,6 +1,7 @@
 #include "entity_s.h"
 #include "simple_logger.h"
 #include "gf2d_sprite.h"
+#include "think_functions.h"
 
 typedef struct
 {
@@ -12,6 +13,12 @@ typedef struct
 //static variables prevents any other file from accessing the variable
 //similar to private in this case
 static EntityManager entityManager;
+
+struct think_function think_table[] =
+{
+	{move, "move"},
+	{ NULL, NULL }
+};
 
 /**
  * @brief Entity system clean-up function
@@ -84,7 +91,7 @@ void entityDelete(Entity * thingThatDies)
 {
 	if (!thingThatDies)
 	{
-		slog("Cannot delete an entity that does not exist!");
+		slog("Error: Cannot delete an entity that does not exist!");
 		return;
 	}
 	/*if (thingThatDies->mySprite != NULL)
@@ -224,6 +231,44 @@ void entityDrawAll()
 		if (entityManager.entityList[i].inUse)
 		{
 			entityDraw(&entityManager.entityList[i]);
+		}
+	}
+}
+
+void entityIncrementCurrentFrame(Entity * self)
+{
+	if (!self)
+	{
+		slog("Error: Cannot increment frame on a non-exisiting entity");
+		return;
+	}
+	if (!self->inUse)
+	{
+		slog("Error: Cannot increment frame on an entity not in use");
+		return;
+	}
+	if (!self->mySprite)
+	{
+		slog("Error: Cannot increment frame on an entity with no sprite");
+		return;
+	}
+
+	self->currentFrame = self->currentFrame + 0.05f;
+	//slog("%f", self->currentFrame);
+	if (self->currentFrame > self->maxFrame)
+	{
+		self->currentFrame = self->minFrame;
+	}
+}
+
+void entityIncrementCurrentFrameAll()
+{
+	int i;
+	for (i = 0; i < entityManager.maxEntities; i++)
+	{
+		if (entityManager.entityList[i].inUse)
+		{
+			entityIncrementCurrentFrame(&entityManager.entityList[i]);
 		}
 	}
 }
