@@ -168,7 +168,7 @@ int main(int argc, char * argv[])
 	fileLoadedDude->currentFrame = 0;
 	fileLoadedDude->minFrame = 0;
 	fileLoadedDude->maxFrame = 2;
-	slog("the thing made has: %s", &fileLoadedDude->name);
+	slog("the thing made has name: %s", &fileLoadedDude->name);
 
 	//Trying to load a tilemap from file
 	tilemapFile = fopen("def/level/field_0.lvl", "r");

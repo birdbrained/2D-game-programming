@@ -59,7 +59,8 @@ typedef enum section
 /**
  * @brief entity_s Struct that represents a generic entity 
  */
-typedef struct entity_s {
+typedef struct entity_s 
+{
 	short unsigned int inUse;		/**<Don't ever touch this. 1 if in use, 0 if not*/
 	Uint64 id;						/**<Auto increment id for this entity*/
 	char name[MAX_CHARS];			/**<name of the object*/

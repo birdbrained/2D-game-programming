@@ -11,7 +11,8 @@
 #include "shape.h"
 
 //one tile...trying something. currently not in use
-typedef struct tile_s {
+typedef struct tile_s 
+{
 	unsigned int id;
 	unsigned int x;
 	unsigned int y;
@@ -19,7 +20,8 @@ typedef struct tile_s {
 	Rect *boundingBox;
 }Tile;
 
-typedef struct tilemap_s {
+typedef struct tilemap_s 
+{
 	int tileWidth;
 	int tileHeight;
 	int tilesPerLine;

@@ -1,6 +1,6 @@
 name:				Nicolai
 fav_thing:			Farting
-sprite:				images/sprites/gal32x.png
+sprite:				images/sprites/meh32x.png
 update:				move
 Instrument:			flute
 instrumentSprite:	images/sprites/instrument_flute.png

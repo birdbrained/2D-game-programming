@@ -54,6 +54,9 @@
     <ClCompile Include="src\think_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\audio.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Makefile" />
@@ -99,6 +102,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\think_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\audio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

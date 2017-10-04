@@ -389,6 +389,12 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 			slog("stat motivation (%i)", new_entity->statMotivation);
 			continue;
 		}
+		if (strcmp(buffer, "sectionLeader:") == 0)
+		{
+			fscanf(file, "%i", &new_entity->isSectionLeader);
+			slog("is section leader (%i)", new_entity->isSectionLeader);
+			continue;
+		}
 
 		//fscanf(file, "%s", buffer);
 		fgets(buffer, sizeof(buffer), file);
