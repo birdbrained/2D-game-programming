@@ -8,6 +8,16 @@
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
 #include "ds_priority_queue.h"
+#include "shape.h"
+
+//one tile...trying something. currently not in use
+typedef struct tile_s {
+	unsigned int id;
+	unsigned int x;
+	unsigned int y;
+	unsigned int frame;
+	Rect *boundingBox;
+}Tile;
 
 typedef struct tilemap_s {
 	int tileWidth;
@@ -49,6 +59,11 @@ void tilemap_load_from_file(FILE * file, TileMap * new_tilemap);
  */
 int tilemap_draw(Sprite *tilemap, const int *tiles, unsigned int width, unsigned int height, int xPos, int yPos);
 
+/**
+ * @brief Draws a tile map from the data in a tilemap struct
+ * @param tilemap Struct to draw from
+ * @returns 0 if successful, -1 if tilemap is NULL
+ */
 int tilemap_draw_from_data(TileMap * tilemap);
 
 #endif // !__TILEMAP__

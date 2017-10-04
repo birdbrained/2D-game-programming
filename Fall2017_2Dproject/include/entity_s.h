@@ -170,7 +170,7 @@ void entityIncrementCurrentFrameAll();
  * @brief Inits an entity's parameters from a specified file
  * @param file File to read through
  * @param new_entity Entity that will be inited
- * @returns Populates new_entity parameter and returns it
+ * @returns Populates new_entity parameter and returns it, NULL if invalid file pointer
  */
 Entity * entityLoadFromFile(FILE * file, Entity * new_entity);
 

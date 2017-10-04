@@ -127,7 +127,7 @@ int tilemap_draw(Sprite * tilemap, const int * tiles, unsigned int width, unsign
 		{
 			//slog("%i", tileNum < sizeof(tiles) / sizeof(const int) ? tiles[tileNum] : 0);
 			gf2d_sprite_draw(tilemap, vector2d(xPos + (j * tilemap->frame_w), yPos + (i * tilemap->frame_h)), NULL, NULL, NULL, NULL, NULL, tiles[tileNum]/*tileNum < sizeof(tiles) / sizeof(int) ? tiles[tileNum] : 0*/);
-			tileNum += 1;
+			tileNum++;
 		}
 	}
 	return 0;
@@ -141,7 +141,7 @@ int tilemap_draw_from_data(TileMap * tilemap)
 	if (!tilemap)
 	{
 		slog("Error: no tilemap");
-		return;
+		return -1;
 	}
 	/*if (!tilemap->tiles_head || !tilemap->tiles_tail)
 	{
@@ -154,7 +154,7 @@ int tilemap_draw_from_data(TileMap * tilemap)
 		for (j = 0; j < tilemap->width; j++)
 		{
 			gf2d_sprite_draw(tilemap->tilemapSprite, vector2d(tilemap->xPos + (j * tilemap->tilemapSprite->frame_w), tilemap->yPos + (i * tilemap->tilemapSprite->frame_h)), NULL, NULL, NULL, NULL, NULL, tilemap->tiles[tileNum]);
-			tileNum += 1;
+			tileNum++;
 		}
 	}
 	return 0;

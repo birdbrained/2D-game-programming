@@ -284,7 +284,7 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 	if (!file)
 	{
 		slog("Cannot open file");
-		return;
+		return NULL;
 	}
 	rewind(file);
 	
@@ -310,6 +310,12 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 			strncpy(new_entity->favoriteThing, buffer, MAX_CHARS);
 			//fscanf(file, "%s", buffer);
 			slog("favThing is (%s)", new_entity->favoriteThing);
+			continue;
+		}
+		if (strcmp(buffer, "sprite:") == 0)
+		{
+			fscanf(file, "%s", buffer);
+			new_entity->mySprite = gf2d_sprite_load_all(buffer, 32, 32, 2);
 			continue;
 		}
 		if (strcmp(buffer, "Instrument:") == 0)

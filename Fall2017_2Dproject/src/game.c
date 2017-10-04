@@ -11,6 +11,57 @@
 #include "think_functions.h"
 
 
+/*typedef struct playersave
+{
+	char name[32];
+	int health;
+	int ammo;
+	int shields;
+	int level;
+}playerSave;
+
+void save_player_data(playerSave *ps, char *filename)
+{
+	FILE *file;
+	if (!ps)
+	{
+		return;
+	}
+	if (!filename)
+	{
+		return;
+	}
+	file = fopen(filename, "wb");
+	if (!file)
+	{
+		slog("Failed to open file (%s) for saving", filename);
+		return;
+	}
+	fwrite(ps, sizeof(playerSave), 1, file); //what to write, how big, how many, where to save
+	fclose(file);
+}
+
+void load_player_data(playerSave *ps, char *filename)
+{
+	FILE *file;
+	if (!ps)
+	{
+		return;
+	}
+	if (!filename)
+	{
+		return;
+	}
+	file = fopen(filename, "rb");
+	if (!file)
+	{
+		slog("Failed to open file (%s) for reading", filename);
+		return;
+	}
+	fread(ps, sizeof(playerSave), 1, file);
+	fclose(file);
+}*/
+
 int main(int argc, char * argv[])
 {
     /*variable declarations,
@@ -92,7 +143,7 @@ int main(int argc, char * argv[])
 	//person = student("Test", "Sex", thing2);
 	//slog("Initializing student %s", person->name);
 	guy = entityNew();
-	strncpy(guy->name, "Poophead McBandgeek", 32);
+	strncpy(guy->name, "McBandgeek", 32);
 	guy->mySprite = guyx;
 	guy->scale = scaleUp;
 	guy->currentFrame = 0;
@@ -109,9 +160,9 @@ int main(int argc, char * argv[])
 	fileLoadedDude = entityNew();
 	fileLoadedDude = entityLoadFromFile(infile, fileLoadedDude);
 	fclose(infile);
-	fileLoadedDude->mySprite = mehSprite;
+	//fileLoadedDude->mySprite = mehSprite;
 	fileLoadedDude->instrumentSprite = gf2d_sprite_load_all(&fileLoadedDude->instrumentSpriteFilePath, 32, 32, 1);
-	fileLoadedDude->position = vector2d(20, 20);
+	fileLoadedDude->position = vector2d(64, 64);
 	fileLoadedDude->boundingBox = rect_new(fileLoadedDude->position.x, fileLoadedDude->position.y, 64, 64);
 	fileLoadedDude->scale = vector2d(2, 2);
 	fileLoadedDude->currentFrame = 0;
