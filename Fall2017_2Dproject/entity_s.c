@@ -114,7 +114,7 @@ void entityDelete(Entity * thingThatDies)
 
 void entityFree(Entity * e)
 {
-	int i;
+	//int i;
 	if (!e)
 	{
 		slog("Error: Cannot free something that doesn't exist!");
