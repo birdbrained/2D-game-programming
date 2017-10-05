@@ -54,7 +54,7 @@ Sound * soundGetByFilename(char * filename);
 /**
  * @brief Will load the actual sound
  * @param filename File location
- * @param volume Earrape adjustor
+ * @param volume Earrape adjuster
  * @param defaultChannel Default channel to play on
  * @returns The sound that has been loaded; NULL if error
  */
@@ -64,7 +64,7 @@ Sound * soundLoad(char * filename, float volume, int defaultChannel);
  * @brief Plays a loaded sound
  * @param sound The sound to play
  * @param numLoops Number of times to loop, -1 to loop infinitely
- * @param volume Earrape adjustor
+ * @param volume Earrape adjuster
  * @param channel The channel to play on
  * @param group Currently unimplemented
  */
