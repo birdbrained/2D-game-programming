@@ -111,6 +111,7 @@ int main(int argc, char * argv[])
 	FILE *infile;
 	Entity *fileLoadedDude = NULL;
 	Sound *NJITtheme = NULL;
+	Sound *clap = NULL;
     
     /*program initializtion*/
     init_logger("gf2d.log");
@@ -214,9 +215,10 @@ int main(int argc, char * argv[])
 
 	//Load sounds
 	//NJITtheme = soundNew("music/bg/NJIT.ogg");
-	NJITtheme = soundLoad("music/bg/NJIT.ogg", 5.0f, 0);
+	NJITtheme = soundLoad("music/bg/NJIT.ogg", 1.0f, 0);
 	//slog("do i have a sound? %i", NJITtheme->sound != NULL);
 	soundPlay(NJITtheme, 1, 1.0f, 0, 0);
+	clap = soundLoad("music/sfx/clap.ogg", 5.0f, 1);
 
     /*main game loop*/
     while(!done)
@@ -357,6 +359,7 @@ int main(int argc, char * argv[])
 			en->maxFrame = 4;
 			en->update = move;
 			en->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_clarinet.png", 32, 32, 1);
+			soundPlay(clap, 0, clap->volume, clap->defaultChannel, 0);
 		}
 		if (en != NULL && en->inUse == 1)
 		{
@@ -434,6 +437,9 @@ int main(int argc, char * argv[])
 			break;
 		case SDL_CONTROLLERDEVICEADDED:
 			slog("Connected a controller");
+			break;
+		case SDL_CONTROLLERDEVICEREMOVED:
+			slog("Removed a controller");
 			break;
 		}
 
