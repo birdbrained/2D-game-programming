@@ -8,6 +8,7 @@
 #include "tilemap.h"
 #include "student.h"
 #include "entity_s.h"
+#include "audio.h"
 #include "think_functions.h"
 
 
@@ -79,6 +80,7 @@ int main(int argc, char * argv[])
 	Sprite *guyx;
 	Sprite *galSprite;
 	Sprite *mehSprite;
+	Sprite *musicSheet;
 	/*Sprite *myTileMap;
 	const int level[] = 
 	{ 2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 
@@ -108,6 +110,7 @@ int main(int argc, char * argv[])
 	SDL_Event e;
 	FILE *infile;
 	Entity *fileLoadedDude = NULL;
+	Sound *NJITtheme = NULL;
     
     /*program initializtion*/
     init_logger("gf2d.log");
@@ -125,6 +128,8 @@ int main(int argc, char * argv[])
     gf2d_graphics_set_frame_delay(16);
     gf2d_sprite_init(1024);
 	entitySystemInit(1024);
+	audioSystemInit(50, 5, 2, 0, 0, 0);
+	soundSystemInit(50);
     SDL_ShowCursor(SDL_DISABLE);
 	//fileLoadedDude = entityNew();
 
@@ -139,6 +144,7 @@ int main(int argc, char * argv[])
 	guyx = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 2);
 	galSprite = gf2d_sprite_load_all("images/sprites/gal32x.png", 32, 32, 2);
 	mehSprite = gf2d_sprite_load_all("images/sprites/meh32x.png", 32, 32, 2);
+	musicSheet = gf2d_sprite_load_image("images/music_sheet.png");
 	//myTileMap = gf2d_sprite_load_all("images/field_tiles.png", 64, 64, 2);
 	//person = student("Test", "Sex", thing2);
 	//slog("Initializing student %s", person->name);
@@ -205,6 +211,12 @@ int main(int argc, char * argv[])
 		}
 	}
 	slog("end array");*/
+
+	//Load sounds
+	//NJITtheme = soundNew("music/bg/NJIT.ogg");
+	NJITtheme = soundLoad("music/bg/NJIT.ogg", 5.0f, 0);
+	//slog("do i have a sound? %i", NJITtheme->sound != NULL);
+	soundPlay(NJITtheme, 1, 1.0f, 0, 0);
 
     /*main game loop*/
     while(!done)
@@ -426,6 +438,7 @@ int main(int argc, char * argv[])
 		}
 
 		//UI elements last
+		gf2d_sprite_draw(musicSheet, vector2d(0, 592), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		gf2d_sprite_draw(
 			mouse,				//Sprite to load
 			vector2d(mx,my),	//Position to draw it at

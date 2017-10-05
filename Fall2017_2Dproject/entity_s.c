@@ -12,7 +12,7 @@ typedef struct
 
 //static variables prevents any other file from accessing the variable
 //similar to private in this case
-static EntityManager entityManager;
+static EntityManager entityManager = { 0, NULL, 0 };
 
 struct think_function think_table[] =
 {
@@ -128,7 +128,7 @@ void entityFree(Entity * e)
 
 	//slog("Freeing something from memory.");
 	e->inUse = 0;
-	memset(e, 0, sizeof(Entity));
+	//memset(e, 0, sizeof(Entity));
 }
 
 void entityDeleteAll()
