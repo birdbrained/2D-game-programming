@@ -75,7 +75,7 @@ void soundSystemInit(Uint32 maxSounds)
 	atexit(audioSystemClose);
 }
 
-Sound * soundNew(char * filepath)
+Sound * soundNew(/*char * filepath*/)
 {
 	int i;
 
@@ -87,7 +87,7 @@ Sound * soundNew(char * filepath)
 			memset(&soundManager.soundList[i], 0, sizeof(Sound));
 			soundManager.soundList[i].id = soundManager.increment++;
 			soundManager.soundList[i].inUse = 1;
-			strncpy(soundManager.soundList[i].filepath, filepath, FILEPATH_CHAR_LEN);
+			//strncpy(soundManager.soundList[i].filepath, filepath, FILEPATH_CHAR_LEN);
 			return &soundManager.soundList[i];
 		}
 	}
@@ -125,7 +125,7 @@ Sound * soundLoad(char * filename, float volume, int defaultChannel)
 	sound = soundNew(filename);
 	if (!sound)
 	{
-		return;
+		return NULL;
 	}
 	//slog("My song filepath (%s)", sound->filepath);
 	sound->sound = Mix_LoadWAV(filename);
@@ -138,6 +138,7 @@ Sound * soundLoad(char * filename, float volume, int defaultChannel)
 
 	sound->volume = volume;
 	sound->defaultChannel = defaultChannel;
+	strncpy(sound->filepath, filename, FILEPATH_CHAR_LEN);
 	return sound;
 }
 
