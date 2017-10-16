@@ -81,6 +81,8 @@ int main(int argc, char * argv[])
 	Sprite *galSprite;
 	Sprite *mehSprite;
 	Sprite *musicSheet;
+	Sprite *controllerIcon;
+	int controllerConnected = 0;
 	/*Sprite *myTileMap;
 	const int level[] = 
 	{ 2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 
@@ -110,8 +112,8 @@ int main(int argc, char * argv[])
 	SDL_Event e;
 	FILE *infile;
 	Entity *fileLoadedDude = NULL;
-	Sound *NJITtheme = NULL;
-	Sound *clap = NULL;
+	//Sound *NJITtheme = NULL;
+	//Sound *clap = NULL;
     
     /*program initializtion*/
     init_logger("gf2d.log");
@@ -146,6 +148,7 @@ int main(int argc, char * argv[])
 	galSprite = gf2d_sprite_load_all("images/sprites/gal32x.png", 32, 32, 2);
 	mehSprite = gf2d_sprite_load_all("images/sprites/meh32x.png", 32, 32, 2);
 	musicSheet = gf2d_sprite_load_image("images/music_sheet.png");
+	controllerIcon = gf2d_sprite_load_all("images/controller64x.png", 64, 64, 1);
 	//myTileMap = gf2d_sprite_load_all("images/field_tiles.png", 64, 64, 2);
 	//person = student("Test", "Sex", thing2);
 	//slog("Initializing student %s", person->name);
@@ -156,7 +159,7 @@ int main(int argc, char * argv[])
 	guy->currentFrame = 0;
 	guy->minFrame = 0;
 	guy->maxFrame = 2;
-	guy->position = vector2d(100, 100);
+	guy->position = vector2d(300, 100);
 	guy->update = move;
 	guy->myInstrument = Instrument_Flute;
 	guy->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_tenor_sax.png", 32, 32, 1);
@@ -215,10 +218,10 @@ int main(int argc, char * argv[])
 
 	//Load sounds
 	//NJITtheme = soundNew("music/bg/NJIT.ogg");
-	NJITtheme = soundLoad("music/bg/NJIT.ogg", 1.0f, 0);
+	//NJITtheme = soundLoad("music/bg/NJIT.ogg", 1.0f, 0);
 	//slog("do i have a sound? %i", NJITtheme->sound != NULL);
-	soundPlay(NJITtheme, 1, 1.0f, 0, 0);
-	clap = soundLoad("music/sfx/clap.ogg", 5.0f, 1);
+	//soundPlay(NJITtheme, 1, 1.0f, 0, 0);
+	//clap = soundLoad("music/sfx/clap.ogg", 5.0f, 1);
 
     /*main game loop*/
     while(!done)
@@ -359,7 +362,7 @@ int main(int argc, char * argv[])
 			en->maxFrame = 4;
 			en->update = move;
 			en->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_clarinet.png", 32, 32, 1);
-			soundPlay(clap, 0, clap->volume, clap->defaultChannel, 0);
+			//soundPlay(clap, 0, clap->volume, clap->defaultChannel, 0);
 		}
 		if (en != NULL && en->inUse == 1)
 		{
@@ -433,18 +436,26 @@ int main(int argc, char * argv[])
 				{
 					slog("collision with guy (%s)", &fileLoadedDude->name);
 				}
+				if (point_in_rect(mx, my, tile_map->boundingBox))
+				{
+					slog("collided with tilemap");
+				}
 			}
 			break;
 		case SDL_CONTROLLERDEVICEADDED:
 			slog("Connected a controller");
+			controllerConnected = 1;
 			break;
 		case SDL_CONTROLLERDEVICEREMOVED:
 			slog("Removed a controller");
+			controllerConnected = 0;
 			break;
 		}
 
 		//UI elements last
 		gf2d_sprite_draw(musicSheet, vector2d(0, 592), &scaleUp, NULL, NULL, NULL, NULL, 0);
+		if (controllerConnected)
+			gf2d_sprite_draw(controllerIcon, vector2d(700, 600), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		gf2d_sprite_draw(
 			mouse,				//Sprite to load
 			vector2d(mx,my),	//Position to draw it at

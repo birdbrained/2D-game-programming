@@ -16,7 +16,7 @@ typedef struct tile_s
 	unsigned int id;
 	unsigned int x;
 	unsigned int y;
-	unsigned int frame;
+	int frame;
 	Rect *boundingBox;
 }Tile;
 
@@ -34,6 +34,7 @@ typedef struct tilemap_s
 	unsigned int height;
 	int xPos;
 	int yPos;
+	Rect *boundingBox;
 }TileMap;
 
 /**

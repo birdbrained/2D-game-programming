@@ -28,3 +28,37 @@ int point_in_rect(float x, float y, Rect * rect)
 					return 1;
 	return 0;
 }
+
+int rect_in_rect(Rect * a, Rect * b)
+{
+	if ((a->x + a->w) < b->x) return 0;
+	if ((b->x + b->w) < a->x) return 0;
+	if ((a->y + a->h) < b->y) return 0;
+	if ((b->y + b->h) < a->y) return 0;
+	return 1;
+}
+
+Circle * circle_new(float x, float y, float radius)
+{
+	Circle * c;
+	c = (Circle *)malloc(sizeof(Circle));
+	if (!c)
+	{
+		slog("Error: could not allocate memory for a new circle");
+		return NULL;
+	}
+	memset(c, 0, sizeof(Circle));
+	c->x = x;
+	c->y = y;
+	c->r = radius;
+	return c;
+}
+
+int point_in_circle(float x, float y, Circle * c)
+{
+	float delta_x = x - c->x;
+	float delta_y = y - c->y;
+	
+	if ((delta_x * delta_x) + (delta_y * delta_y) <= (c->r * c->r)) return 1;
+	return 0;
+}

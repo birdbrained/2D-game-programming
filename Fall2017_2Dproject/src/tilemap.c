@@ -16,6 +16,15 @@ TileMap * tilemap_init()
 	}
 	memset(new_tilemap, 0, sizeof(TileMap));
 	memset(new_tilemap->tiles, -1, sizeof(new_tilemap->tiles));
+	
+	new_tilemap->boundingBox = malloc(sizeof(Rect));
+	if (!new_tilemap->boundingBox)
+	{
+		slog("Error: could not allocate memory for TileMap's boundingBox");
+		return NULL;
+	}
+	memset(new_tilemap->boundingBox, 0, sizeof(Rect));
+
 	return new_tilemap;
 }
 
@@ -116,6 +125,11 @@ void tilemap_load_from_file(FILE * file, TileMap * new_tilemap)
 			continue;
 		}
 	}
+
+	new_tilemap->boundingBox->x = new_tilemap->xPos;
+	new_tilemap->boundingBox->y = new_tilemap->yPos;
+	new_tilemap->boundingBox->w = new_tilemap->tileWidth * new_tilemap->width;
+	new_tilemap->boundingBox->h = new_tilemap->tileHeight * new_tilemap->height;
 }
 
 int tilemap_draw(Sprite * tilemap, const int * tiles, unsigned int width, unsigned int height, int xPos, int yPos)
