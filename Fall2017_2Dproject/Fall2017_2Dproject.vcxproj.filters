@@ -57,6 +57,9 @@
     <ClCompile Include="src\audio.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ds_graph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Makefile" />

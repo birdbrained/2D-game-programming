@@ -116,7 +116,7 @@ int main(int argc, char * argv[])
 	//Sound *clap = NULL;
     
     /*program initializtion*/
-    init_logger("gf2d.log");
+    init_logger("dmdwa.log");
     slog("---==== BEGIN ====---");
     gf2d_graphics_initialize(
         "Drum Majors Don't Wear Aussies",
