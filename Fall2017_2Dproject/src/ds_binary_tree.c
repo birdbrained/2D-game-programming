@@ -77,3 +77,13 @@ BinaryTreeNode * bt_find_max(BinaryTreeNode * bt)
 
 	return iter;
 }
+
+void bt_inorder_traversal(BinaryTreeNode * bt)
+{
+	if (bt != NULL)
+	{
+		bt_inorder_traversal(bt->left_child);
+		slog("%i", bt->data);
+		bt_inorder_traversal(bt->right_child);
+	}
+}

@@ -134,6 +134,7 @@
     <ClCompile Include="ds_priority_queue.c" />
     <ClCompile Include="entity_s.c" />
     <ClCompile Include="src\audio.c" />
+    <ClCompile Include="src\ds_binary_tree.c" />
     <ClCompile Include="src\ds_graph.c" />
     <ClCompile Include="src\game.c" />
     <ClCompile Include="src\gf2d_draw.c" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\audio.h" />
+    <ClInclude Include="include\ds_binary_tree.h" />
     <ClInclude Include="include\ds_graph.h" />
     <ClInclude Include="include\ds_linked_list.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>

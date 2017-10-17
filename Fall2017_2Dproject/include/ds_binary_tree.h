@@ -2,6 +2,8 @@
 #define __DS_BINARY_TREE__
 
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "simple_logger.h"
 
 typedef struct bitreenode_s
@@ -17,5 +19,6 @@ int bt_insert(BinaryTreeNode ** bt, void * data, size_t elementSize);
 BinaryTreeNode * bt_find(BinaryTreeNode * bt, void * data);
 BinaryTreeNode * bt_find_min(BinaryTreeNode * bt);
 BinaryTreeNode * bt_find_max(BinaryTreeNode * bt);
+void bt_inorder_traversal(BinaryTreeNode * bt);
 
 #endif // !__DS_BINARY_TREE__

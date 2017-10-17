@@ -39,13 +39,13 @@ typedef enum instrument
 	Instrument_Tuba,
 	Instrument_Snare_Drum,
 	Instrument_Bass_Drum,
-	Instrument_Colorguard_Flag,
-	Instrument_Colorguard_Rifle,
 	Instrument_Pit_Marimba,
 	Instrument_Pit_Xylophone,
 	Instrument_Pit_Guitar,
 	Instrument_Pit_Synthesizer,
-	Instrument_Pit_Gong
+	Instrument_Pit_Gong,
+	Instrument_Colorguard_Flag,
+	Instrument_Colorguard_Rifle
 }Instrument;
 
 typedef enum section

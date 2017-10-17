@@ -3,6 +3,7 @@
 
 #define FILEPATH_CHAR_LEN 512
 
+
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include <stdio.h>

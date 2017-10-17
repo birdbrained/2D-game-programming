@@ -165,7 +165,7 @@ void soundPlay(Sound * sound, int numLoops, float volume, int channel, int group
 		actualChannel = sound->defaultChannel;
 	}
 
-	Mix_VolumeChunk(sound->sound, (int)(actualVolume * MIX_MAX_VOLUME));
+	Mix_VolumeChunk(sound->sound, (int)(actualVolume));
 	Mix_PlayChannel(actualChannel, sound->sound, numLoops);
 }
 

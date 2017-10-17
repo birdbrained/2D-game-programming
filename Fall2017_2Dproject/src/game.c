@@ -112,7 +112,12 @@ int main(int argc, char * argv[])
 	SDL_Event e;
 	FILE *infile;
 	Entity *fileLoadedDude = NULL;
-	//Sound *NJITtheme = NULL;
+	Sound *NJITtheme = NULL;
+	Sound *snareDrum = NULL;
+	Sound *flute = NULL;
+	Sound *trumpet = NULL;
+	Sound *altoSax = NULL;
+	Sound *tenorSax = NULL;
 	//Sound *clap = NULL;
     
     /*program initializtion*/
@@ -218,10 +223,28 @@ int main(int argc, char * argv[])
 
 	//Load sounds
 	//NJITtheme = soundNew("music/bg/NJIT.ogg");
-	//NJITtheme = soundLoad("music/bg/NJIT.ogg", 1.0f, 0);
+	//NJITtheme = soundLoad("music/bg/NJIT.ogg", 12.0f, 3);
 	//slog("do i have a sound? %i", NJITtheme->sound != NULL);
-	//soundPlay(NJITtheme, 1, 1.0f, 0, 0);
+	//soundPlay(NJITtheme, 1, 0, 0, 0);
+	//Mix_VolumeChunk(NJITtheme->sound, MIX_MAX_VOLUME); //Use this to change volume on the fly!
 	//clap = soundLoad("music/sfx/clap.ogg", 5.0f, 1);
+
+	snareDrum = soundNew("music/bg/meeeeh-Snare_Drum.ogg");
+	snareDrum = soundLoad("music/bg/meeeeh-Snare_Drum.ogg", 12.0f, Instrument_Snare_Drum);
+	flute = soundNew("music/bg/meeeeh-Flute.ogg");
+	flute = soundLoad("music/bg/meeeeh-Flute.ogg", 12.0f, Instrument_Flute);
+	trumpet = soundNew("music/bg/meeeeh-Bb_Trumpet.ogg");
+	trumpet = soundLoad("music/bg/meeeeh-Bb_Trumpet.ogg", 12.0f, Instrument_Trumpet);
+	altoSax = soundNew("music/bg/meeeeh-Alto_Saxophone.ogg");
+	altoSax = soundLoad("music/bg/meeeeh-Alto_Saxophone.ogg", 12.0f, Instrument_Alto_Saxophone);
+	tenorSax = soundNew("music/bg/meeeeh-Tenor_Saxophone.ogg");
+	tenorSax = soundLoad("music/bg/meeeeh-Tenor_Saxophone.ogg", 12.0f, Instrument_Tenor_Saxophone);
+
+	soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
+	soundPlay(flute, -1, 1, flute->defaultChannel, 0);
+	soundPlay(trumpet, -1, 1, trumpet->defaultChannel, 0);
+	soundPlay(altoSax, -1, 1, altoSax->defaultChannel, 0);
+	soundPlay(tenorSax, -1, 1, tenorSax->defaultChannel, 0);
 
     /*main game loop*/
     while(!done)
