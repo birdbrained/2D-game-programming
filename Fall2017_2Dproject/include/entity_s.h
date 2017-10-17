@@ -101,6 +101,7 @@ typedef struct entity_s
 	int statMorale;
 	int statMotivation;
 	short unsigned int isSectionLeader;
+	int currentPosition;
 }Entity;
 
 /**

@@ -173,3 +173,24 @@ int tilemap_draw_from_data(TileMap * tilemap)
 	}
 	return 0;
 }
+
+int tilemap_find_tile(int mx, int my, TileMap * map)
+{
+	int x = 0;
+	int y = 0;
+	int index = 0;
+
+	if (point_in_rect(mx, my, map->boundingBox))
+	{
+		//slog("xPos (%i) yPos (%i) tileWidth (%i) tileHeight (%i) \nmx (%d) my (%d)", map->xPos, map->yPos, map->tileWidth, map->tileHeight, mx, my);
+		mx = mx - map->xPos;
+		my = my - map->yPos;
+		x = mx / map->tileWidth;
+		y = my / map->tileHeight;
+		index = x + (y * map->width);
+		//slog("in tile x (%i) y (%i) index (%i)", x, y, index);
+		return index;
+	}
+
+	return -1;
+}

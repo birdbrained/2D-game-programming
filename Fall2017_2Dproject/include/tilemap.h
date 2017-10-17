@@ -30,10 +30,11 @@ typedef struct tilemap_s
 	//PriorityQueue *tiles_head;
 	//PriorityQueue *tiles_tail;
 	int tiles[512];
+	int space[512];
 	unsigned int width;
 	unsigned int height;
-	int xPos;
-	int yPos;
+	int xPos;						/**<Starting x position of tilemap*/
+	int yPos;						/**<Starting y position of tilemap*/
 	Rect *boundingBox;
 }TileMap;
 
@@ -68,5 +69,7 @@ int tilemap_draw(Sprite *tilemap, const int *tiles, unsigned int width, unsigned
  * @returns 0 if successful, -1 if tilemap is NULL
  */
 int tilemap_draw_from_data(TileMap * tilemap);
+
+int tilemap_find_tile(int mx, int my, TileMap * map);
 
 #endif // !__TILEMAP__

@@ -75,6 +75,7 @@ int main(int argc, char * argv[])
     float mf = 0;
 	float guyFrame = 0;
     Sprite *mouse;
+	Sprite *mouseSprite;
 	Sprite *thing;
 	Sprite *thing2;
 	Sprite *guyx;
@@ -97,12 +98,14 @@ int main(int argc, char * argv[])
 	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2 };*/
 	TileMap *tile_map;
 	FILE *tilemapFile;
+	int tileClicked = 0;
 	int p = 0;
 
     Vector4D mouseColor = {100,255,255,200};
 	Vector2D flipVert = { 0, 1 };
 	Vector2D scaleDown = { 0.5, 0.5 };
 	Vector2D scaleUp = { 2, 2 };
+	Vector2D scaleHalfUp = { 1.5, 1.5 };
 	//IntNode *myLL = IntNode_init(5);
 	/*Student *person;*/
 	Entity *guy, *testDude;
@@ -119,6 +122,8 @@ int main(int argc, char * argv[])
 	Sound *altoSax = NULL;
 	Sound *tenorSax = NULL;
 	//Sound *clap = NULL;
+
+	Entity * pickedUp = NULL;
     
     /*program initializtion*/
     init_logger("dmdwa.log");
@@ -146,7 +151,8 @@ int main(int argc, char * argv[])
     
     /*demo setup*/
     sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
-    mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
+    mouseSprite = gf2d_sprite_load_all("images/pointer.png",32,32,16);
+	mouse = mouseSprite;
 	thing = gf2d_sprite_load_all("images/sprites/test_dude.png", 32, 32, 1);
 	thing2 = gf2d_sprite_load_all("images/sprites/test_dude3.png", 64, 64, 1);
 	guyx = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 2);
@@ -183,6 +189,7 @@ int main(int argc, char * argv[])
 	fileLoadedDude->currentFrame = 0;
 	fileLoadedDude->minFrame = 0;
 	fileLoadedDude->maxFrame = 2;
+	fileLoadedDude->currentPosition = 19;
 	slog("the thing made has name: %s", &fileLoadedDude->name);
 
 	//Trying to load a tilemap from file
@@ -192,6 +199,7 @@ int main(int argc, char * argv[])
 	fclose(tilemapFile);
 	slog("tilewidth: (%i) tileheight: (%i) tperline: (%i) filepath: (...) width: (%i) height: (%i) xPos: (%i) yPos: (%i)", tile_map->tileWidth,	tile_map->tileHeight, tile_map->tilesPerLine, tile_map->width, tile_map->height, tile_map->xPos, tile_map->yPos);
 	slog("do i have a sprite? %i", tile_map->tilemapSprite != NULL);
+	tile_map->space[19] = 1;
 	/*slog("tile pq start");
 	while (tile_map->tiles_head != NULL)
 	{
@@ -449,7 +457,28 @@ int main(int argc, char * argv[])
 			done = 1;
 			break;
 		case SDL_MOUSEBUTTONDOWN:
-			if (mousePress(&e.button))
+			if (e.button.button == SDL_BUTTON_RIGHT)
+			{
+				tileClicked = tilemap_find_tile(mx, my, tile_map);
+				if (tileClicked >= 0 && pickedUp != NULL)
+				{
+					if (tile_map->space[tileClicked] == 0)
+					{
+						slog("poop");
+						tile_map->space[pickedUp->currentPosition] = 0;
+						tile_map->space[tileClicked] = 1;
+						pickedUp->currentPosition = tileClicked;
+						mouse = mouseSprite;
+						pickedUp->position.x = (mx - tile_map->xPos) / tile_map->tileWidth * (tile_map->tileWidth);
+						pickedUp->position.y = (my - tile_map->yPos) / tile_map->tileHeight * (tile_map->tileHeight);
+						pickedUp = NULL;
+					}
+				}
+			}
+			break;
+		case SDL_MOUSEBUTTONUP:
+			if (e.button.button == SDL_BUTTON_LEFT)
+			//if (mousePress(&e.button))
 			{
 				if (point_in_rect(mx, my, guy->boundingBox))
 				{
@@ -458,10 +487,17 @@ int main(int argc, char * argv[])
 				if (point_in_rect(mx, my, fileLoadedDude->boundingBox))
 				{
 					slog("collision with guy (%s)", &fileLoadedDude->name);
+					if (pickedUp == NULL)
+					{
+						pickedUp = fileLoadedDude;
+						mouse = fileLoadedDude->mySprite;
+					}
 				}
-				if (point_in_rect(mx, my, tile_map->boundingBox))
+				//if (point_in_rect(mx, my, tile_map->boundingBox))
+				tileClicked = tilemap_find_tile(mx, my, tile_map);
+				if (tileClicked >= 0)
 				{
-					slog("collided with tilemap");
+					slog("collided with tilemap on tile (%i), occupied (%i)", tileClicked, tile_map->space[tileClicked]);
 				}
 			}
 			break;
@@ -479,16 +515,31 @@ int main(int argc, char * argv[])
 		gf2d_sprite_draw(musicSheet, vector2d(0, 592), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		if (controllerConnected)
 			gf2d_sprite_draw(controllerIcon, vector2d(700, 600), &scaleUp, NULL, NULL, NULL, NULL, 0);
-		gf2d_sprite_draw(
-			mouse,				//Sprite to load
-			vector2d(mx,my),	//Position to draw it at
-			NULL,				//If you want to scale the sprite
-			NULL,				//Scale the sprite from a certain position
-			NULL,				//Rotation
-			NULL,				//Flip
-			&mouseColor,		//Color shift
-			(int)mf);			//Which frame to draw at
-        gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
+		if (pickedUp == NULL)
+		{
+			gf2d_sprite_draw(
+				mouse,				//Sprite to load
+				vector2d(mx, my),	//Position to draw it at
+				NULL,				//If you want to scale the sprite
+				NULL,				//Scale the sprite from a certain position
+				NULL,				//Rotation
+				NULL,				//Flip
+				&mouseColor,		//Color shift
+				(int)mf);			//Which frame to draw at
+		}
+		else
+		{
+			gf2d_sprite_draw(
+				mouse,				//Sprite to load
+				vector2d(mx, my),	//Position to draw it at
+				&scaleHalfUp,		//If you want to scale the sprite
+				NULL,				//Scale the sprite from a certain position
+				NULL,				//Rotation
+				NULL,				//Flip
+				&mouseColor,		//Color shift
+				0);			//Which frame to draw at
+		}
+		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
         
         if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
         //slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());
