@@ -176,4 +176,7 @@ void entityIncrementCurrentFrameAll();
  */
 Entity * entityLoadFromFile(FILE * file, Entity * new_entity);
 
+void entityLoadAllFromFile(FILE * file);
+Entity * entityCheckCollisionInAll(int mx, int my);
+
 #endif // ! __ENTITY_S__

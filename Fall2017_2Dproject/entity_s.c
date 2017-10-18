@@ -286,6 +286,11 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 		slog("Cannot open file");
 		return NULL;
 	}
+	if (!new_entity)
+	{
+		slog("Error: new_entity was null");
+		return NULL;
+	}
 	rewind(file);
 	
 	/* Note to self!
@@ -407,4 +412,60 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 	//fscanf(file, "favThing: %s", buffer);
 	//slog("%s", buffer);
 	return new_entity;
+}
+
+void entityLoadAllFromFile(FILE * file)
+{
+	Entity * currNew = NULL;
+	char buffer[512];
+	FILE * entityFile = NULL;
+	int i = 0;
+	if (!file)
+	{
+		slog("could not open file");
+		return;
+	}
+
+	while (fscanf(file, "%s", buffer) != EOF)
+	{
+		entityFile = fopen(buffer, "r");
+		if (!entityFile)
+		{
+			slog("bad filename (%s)", buffer);
+			fclose(entityFile);
+		}
+		else
+		{
+			currNew = entityNew();
+			entityLoadFromFile(entityFile, currNew);
+			fclose(entityFile);
+			currNew->instrumentSprite = gf2d_sprite_load_all(&currNew->instrumentSpriteFilePath, 32, 32, 1);
+			currNew->position = vector2d((i * 64), 0);
+			currNew->boundingBox = rect_new(currNew->position.x, currNew->position.y, 64, 64);
+			currNew->scale = vector2d(2, 2);
+			currNew->currentFrame = 0;
+			currNew->minFrame = 0;
+			currNew->maxFrame = 2;
+			currNew->currentPosition = i;
+		}
+		i++;
+	}
+}
+
+Entity * entityCheckCollisionInAll(int mx, int my)
+{
+	int i = 0;
+
+	for (i = 0; i < entityManager.maxEntities; i++)
+	{
+		if (entityManager.entityList[i].inUse > 0)
+		{
+			if (point_in_rect(mx, my, entityManager.entityList[i].boundingBox))
+			{
+				return &entityManager.entityList[i];
+			}
+		}
+	}
+
+	return NULL;
 }

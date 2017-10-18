@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include <SDL_ttf.h>
 #include <stdio.h>
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
@@ -115,6 +116,10 @@ int main(int argc, char * argv[])
 	SDL_Event e;
 	FILE *infile;
 	Entity *fileLoadedDude = NULL;
+	Entity *fileLoadedDude2 = NULL;
+
+	FILE *bandFile;
+
 	Sound *NJITtheme = NULL;
 	Sound *snareDrum = NULL;
 	Sound *flute = NULL;
@@ -124,7 +129,17 @@ int main(int argc, char * argv[])
 	//Sound *clap = NULL;
 
 	Entity * pickedUp = NULL;
-    
+	Entity * collision = NULL;
+	TTF_Font *PencilFont = TTF_OpenFont("fonts/Pencil.TTF", 24);
+	if (!PencilFont)
+	{
+		slog("Error loading font");
+	}
+	SDL_Color colorBlack = { 255, 255, 255, 255 };
+	SDL_Surface *surfaceMessage = TTF_RenderText_Solid(PencilFont, "placeholdha", colorBlack);
+	SDL_Texture *message = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer, surfaceMessage);
+	Sprite *textBox;
+
     /*program initializtion*/
     init_logger("dmdwa.log");
     slog("---==== BEGIN ====---");
@@ -151,6 +166,7 @@ int main(int argc, char * argv[])
     
     /*demo setup*/
     sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
+	//textBox = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
     mouseSprite = gf2d_sprite_load_all("images/pointer.png",32,32,16);
 	mouse = mouseSprite;
 	thing = gf2d_sprite_load_all("images/sprites/test_dude.png", 32, 32, 1);
@@ -192,6 +208,21 @@ int main(int argc, char * argv[])
 	fileLoadedDude->currentPosition = 19;
 	slog("the thing made has name: %s", &fileLoadedDude->name);
 
+	infile = fopen("def/dude2.dude", "r");
+	fileLoadedDude2 = entityNew();
+	fileLoadedDude2 = entityLoadFromFile(infile, fileLoadedDude2);
+	fclose(infile);
+	fileLoadedDude2->instrumentSprite = gf2d_sprite_load_all(&fileLoadedDude2->instrumentSpriteFilePath, 32, 32, 1);
+	fileLoadedDude2->position = vector2d(128, 64);
+	fileLoadedDude2->boundingBox = rect_new(fileLoadedDude2->position.x, fileLoadedDude2->position.y, 64, 64);
+	fileLoadedDude2->scale = vector2d(2, 2);
+	fileLoadedDude2->currentFrame = 0;
+	fileLoadedDude2->minFrame = 0;
+	fileLoadedDude2->maxFrame = 2;
+	fileLoadedDude2->currentPosition = 20;
+
+	//textBox->texture = message;
+
 	//Trying to load a tilemap from file
 	tilemapFile = fopen("def/level/field_0.lvl", "r");
 	tile_map = tilemap_init();
@@ -200,6 +231,7 @@ int main(int argc, char * argv[])
 	slog("tilewidth: (%i) tileheight: (%i) tperline: (%i) filepath: (...) width: (%i) height: (%i) xPos: (%i) yPos: (%i)", tile_map->tileWidth,	tile_map->tileHeight, tile_map->tilesPerLine, tile_map->width, tile_map->height, tile_map->xPos, tile_map->yPos);
 	slog("do i have a sprite? %i", tile_map->tilemapSprite != NULL);
 	tile_map->space[19] = 1;
+	tile_map->space[20] = 1;
 	/*slog("tile pq start");
 	while (tile_map->tiles_head != NULL)
 	{
@@ -228,6 +260,11 @@ int main(int argc, char * argv[])
 		}
 	}
 	slog("end array");*/
+
+	//Trying to load all entities from a file
+	bandFile = fopen("def/_myBand.band", "r");
+	entityLoadAllFromFile(bandFile);
+	fclose(bandFile);
 
 	//Load sounds
 	//NJITtheme = soundNew("music/bg/NJIT.ogg");
@@ -480,7 +517,7 @@ int main(int argc, char * argv[])
 			if (e.button.button == SDL_BUTTON_LEFT)
 			//if (mousePress(&e.button))
 			{
-				if (point_in_rect(mx, my, guy->boundingBox))
+				/*if (point_in_rect(mx, my, guy->boundingBox))
 				{
 					slog("collision with guy (%s)", guy->name);
 				}
@@ -493,11 +530,32 @@ int main(int argc, char * argv[])
 						mouse = fileLoadedDude->mySprite;
 					}
 				}
+				if (point_in_rect(mx, my, fileLoadedDude2->boundingBox))
+				{
+					slog("collision with guy (%s)", &fileLoadedDude2->name);
+					if (pickedUp == NULL)
+					{
+						pickedUp = fileLoadedDude2;
+						mouse = fileLoadedDude2->mySprite;
+					}
+				}*/
+
+				collision = entityCheckCollisionInAll(mx, my);
+				if (collision != NULL)
+				{
+					slog("collision with guy (%s)", &collision->name);
+					if (pickedUp == NULL)
+					{
+						pickedUp = collision;
+						mouse = collision->mySprite;
+					}
+				}
+
 				//if (point_in_rect(mx, my, tile_map->boundingBox))
 				tileClicked = tilemap_find_tile(mx, my, tile_map);
 				if (tileClicked >= 0)
 				{
-					slog("collided with tilemap on tile (%i), occupied (%i)", tileClicked, tile_map->space[tileClicked]);
+					//slog("collided with tilemap on tile (%i), occupied (%i)", tileClicked, tile_map->space[tileClicked]);
 				}
 			}
 			break;
@@ -513,6 +571,7 @@ int main(int argc, char * argv[])
 
 		//UI elements last
 		gf2d_sprite_draw(musicSheet, vector2d(0, 592), &scaleUp, NULL, NULL, NULL, NULL, 0);
+		//gf2d_sprite_draw_image(textBox, vector2d(50, 50));
 		if (controllerConnected)
 			gf2d_sprite_draw(controllerIcon, vector2d(700, 600), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		if (pickedUp == NULL)
