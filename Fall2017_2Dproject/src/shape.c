@@ -56,9 +56,22 @@ Circle * circle_new(float x, float y, float radius)
 
 int point_in_circle(float x, float y, Circle * c)
 {
+	if (!c)
+	{
+		slog("Error: circle was null");
+		return 0;
+	}
+
 	float delta_x = x - c->x;
 	float delta_y = y - c->y;
 	
 	if ((delta_x * delta_x) + (delta_y * delta_y) <= (c->r * c->r)) return 1;
 	return 0;
+}
+
+void draw_line(Vector2D pointA, Vector2D pointB, Vector4D color)
+{
+	SDL_SetRenderDrawColor(gf2d_graphics_get_renderer(), color.x, color.y, color.z, color.w);
+	SDL_RenderDrawLine(gf2d_graphics_get_renderer(), pointA.x, pointA.y, pointB.x, pointB.y);
+	SDL_SetRenderDrawColor(gf2d_graphics_get_renderer(), 255, 255, 255, 255);
 }

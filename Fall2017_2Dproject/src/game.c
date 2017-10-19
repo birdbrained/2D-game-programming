@@ -10,6 +10,7 @@
 #include "student.h"
 #include "entity_s.h"
 #include "audio.h"
+#include "text_s.h"
 #include "think_functions.h"
 
 
@@ -130,7 +131,7 @@ int main(int argc, char * argv[])
 
 	Entity * pickedUp = NULL;
 	Entity * collision = NULL;
-	TTF_Font *PencilFont = TTF_OpenFont("fonts/Pencil.TTF", 24);
+	/*TTF_Font *PencilFont = TTF_OpenFont("fonts/Pencil.ttf", 24);
 	if (!PencilFont)
 	{
 		slog("Error loading font");
@@ -138,7 +139,20 @@ int main(int argc, char * argv[])
 	SDL_Color colorBlack = { 255, 255, 255, 255 };
 	SDL_Surface *surfaceMessage = TTF_RenderText_Solid(PencilFont, "placeholdha", colorBlack);
 	SDL_Texture *message = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer, surfaceMessage);
+	Sprite *textBox;*/
+	TTF_Font *PencilFont;
+	SDL_Color colorBlack = { 0, 0, 0, 255 };
+	SDL_Surface *surfaceMessage;
+	SDL_Texture *message;
 	Sprite *textBox;
+	TextDisplay *nameText;
+	int texW = 0, texH = 0;
+	SDL_Rect rect = { 65, 630, 0, 0 };
+
+	SDL_Surface *instrumentSurface;
+	SDL_Texture *instrumentTexture;
+	int instX = 0, instY = 0;
+	SDL_Rect instrumentRect = { 65, 660, 0, 0 };
 
     /*program initializtion*/
     init_logger("dmdwa.log");
@@ -156,9 +170,11 @@ int main(int argc, char * argv[])
     gf2d_graphics_set_frame_delay(16);
     gf2d_sprite_init(1024);
 	entitySystemInit(1024);
-	audioSystemInit(50, 5, 2, 0, 0, 0);
-	soundSystemInit(50);
+	audioSystemInit(50, 10, 2, 0, 0, 0);
+	soundSystemInit(25);
+	text_system_init(50);
     SDL_ShowCursor(SDL_DISABLE);
+	TTF_Init();
 	//fileLoadedDude = entityNew();
 
 	//derp
@@ -188,7 +204,7 @@ int main(int argc, char * argv[])
 	guy->maxFrame = 2;
 	guy->position = vector2d(300, 100);
 	guy->update = move;
-	guy->myInstrument = Instrument_Flute;
+	guy->myInstrument = Instrument_Tenor_Saxophone;
 	guy->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_tenor_sax.png", 32, 32, 1);
 	guy->boundingBox = rect_new(guy->position.x, guy->position.y, 64, 64);
 	testDude = NULL;
@@ -290,6 +306,26 @@ int main(int argc, char * argv[])
 	soundPlay(trumpet, -1, 1, trumpet->defaultChannel, 0);
 	soundPlay(altoSax, -1, 1, altoSax->defaultChannel, 0);
 	soundPlay(tenorSax, -1, 1, tenorSax->defaultChannel, 0);
+
+	//text testing stuff
+	PencilFont = TTF_OpenFont("fonts/Pencil.ttf", 36);
+	if (!PencilFont)
+	{
+		slog("Error loading font");
+	}
+	surfaceMessage = TTF_RenderText_Solid(PencilFont, "None selected", colorBlack);
+	message = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), surfaceMessage);
+	SDL_QueryTexture(message, NULL, NULL, &texW, &texH);
+	rect.w = texW;
+	rect.h = texH;
+	nameText = text_new(PencilFont, "placeholda", colorBlack);
+	//slog("nameText inuse (%i)", nameText->inUse);
+
+	instrumentSurface = TTF_RenderText_Solid(PencilFont, "", colorBlack);
+	instrumentTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), instrumentSurface);
+	SDL_QueryTexture(instrumentTexture, NULL, NULL, &instX, &instY);
+	instrumentRect.w = instX;
+	instrumentRect.h = instY;
 
     /*main game loop*/
     while(!done)
@@ -488,6 +524,12 @@ int main(int argc, char * argv[])
 		entityUpdateAll();
 		entityIncrementCurrentFrameAll();
 
+		if (pickedUp != NULL)
+		{
+			draw_line(vector2d(pickedUp->position.x + pickedUp->mySprite->frame_w, pickedUp->position.y + pickedUp->mySprite->frame_h),
+						vector2d(mx, my), COLOR_RED);
+		}
+
 		switch (e.type)
 		{
 		case SDL_QUIT:
@@ -509,6 +551,17 @@ int main(int argc, char * argv[])
 						pickedUp->position.x = (mx - tile_map->xPos) / tile_map->tileWidth * (tile_map->tileWidth);
 						pickedUp->position.y = (my - tile_map->yPos) / tile_map->tileHeight * (tile_map->tileHeight);
 						pickedUp = NULL;
+						surfaceMessage = TTF_RenderText_Solid(PencilFont, "None selected", colorBlack);
+						message = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), surfaceMessage);
+						SDL_QueryTexture(message, NULL, NULL, &texW, &texH);
+						rect.w = texW;
+						rect.h = texH;
+
+						instrumentSurface = TTF_RenderText_Solid(PencilFont, "", colorBlack);
+						instrumentTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), instrumentSurface);
+						SDL_QueryTexture(instrumentTexture, NULL, NULL, &instX, &instY);
+						instrumentRect.w = instX;
+						instrumentRect.h = instY;
 					}
 				}
 			}
@@ -548,6 +601,17 @@ int main(int argc, char * argv[])
 					{
 						pickedUp = collision;
 						mouse = collision->mySprite;
+						surfaceMessage = TTF_RenderText_Solid(PencilFont, &pickedUp->name, colorBlack);
+						message = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), surfaceMessage);
+						SDL_QueryTexture(message, NULL, NULL, &texW, &texH);
+						rect.w = texW;
+						rect.h = texH;
+
+						instrumentSurface = TTF_RenderText_Solid(PencilFont, entityGetInstrumentName(pickedUp), colorBlack);
+						instrumentTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), instrumentSurface);
+						SDL_QueryTexture(instrumentTexture, NULL, NULL, &instX, &instY);
+						instrumentRect.w = instX;
+						instrumentRect.h = instY;
 					}
 				}
 
@@ -571,6 +635,11 @@ int main(int argc, char * argv[])
 
 		//UI elements last
 		gf2d_sprite_draw(musicSheet, vector2d(0, 592), &scaleUp, NULL, NULL, NULL, NULL, 0);
+		//text_draw_all();
+		//text_draw(nameText);
+		SDL_RenderCopy(gf2d_graphics_get_renderer(), message, NULL, &rect);
+		SDL_RenderCopy(gf2d_graphics_get_renderer(), instrumentTexture, NULL, &instrumentRect);
+		//SDL_RenderPresent(renderer);
 		//gf2d_sprite_draw_image(textBox, vector2d(50, 50));
 		if (controllerConnected)
 			gf2d_sprite_draw(controllerIcon, vector2d(700, 600), &scaleUp, NULL, NULL, NULL, NULL, 0);
@@ -604,6 +673,9 @@ int main(int argc, char * argv[])
         //slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());
     }
     slog("---==== END ====---");
+	TTF_Quit();
+	SDL_DestroyTexture(message);
+	SDL_FreeSurface(surfaceMessage);
     return 0;
 }
 /*eol@eof*/

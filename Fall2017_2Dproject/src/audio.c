@@ -156,17 +156,17 @@ void soundPlay(Sound * sound, int numLoops, float volume, int channel, int group
 	{
 		actualVolume *= volume;
 	}
-	if (channel >= 0)
-	{
-		actualChannel = channel;
-	}
-	else
-	{
+	//if (channel >= 0)
+	//{
+	//	actualChannel = channel;
+	//}
+	//else
+	//{
 		actualChannel = sound->defaultChannel;
-	}
+	//}
 
 	Mix_VolumeChunk(sound->sound, (int)(actualVolume));
-	Mix_PlayChannel(actualChannel, sound->sound, numLoops);
+	Mix_PlayChannel(-1, sound->sound, numLoops);
 }
 
 void soundFree(Sound * sound)

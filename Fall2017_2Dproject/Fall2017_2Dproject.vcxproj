@@ -144,6 +144,7 @@
     <ClCompile Include="src\gf2d_vector.c" />
     <ClCompile Include="src\shape.c" />
     <ClCompile Include="src\simple_logger.c" />
+    <ClCompile Include="src\text_s.c" />
     <ClCompile Include="src\think_functions.c" />
     <ClCompile Include="src\tilemap.c" />
     <ClCompile Include="student.c" />
@@ -171,6 +172,7 @@
     <ClInclude Include="include\shape.h" />
     <ClInclude Include="include\simple_logger.h" />
     <ClInclude Include="include\student.h" />
+    <ClInclude Include="include\text_s.h" />
     <ClInclude Include="include\think_functions.h" />
     <ClInclude Include="include\tilemap.h" />
   </ItemGroup>

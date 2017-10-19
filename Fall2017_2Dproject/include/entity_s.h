@@ -178,5 +178,6 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity);
 
 void entityLoadAllFromFile(FILE * file);
 Entity * entityCheckCollisionInAll(int mx, int my);
+char * entityGetInstrumentName(Entity * e);
 
 #endif // ! __ENTITY_S__

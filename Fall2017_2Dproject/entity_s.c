@@ -73,7 +73,7 @@ Entity * entityNew()
 	{
 		if (entityManager.entityList[i].inUse == 0)
 		{
-			slog("Found a suitible spot at (%i)", i);
+			slog("Found a suitible spot for an entity at (%i)", i);
 			memset(&entityManager.entityList[i], 0, sizeof(Entity));
 			entityManager.entityList[i].id = entityManager.increment++;
 			entityManager.entityList[i].inUse = 1;
@@ -133,7 +133,7 @@ void entityFree(Entity * e)
 
 void entityDeleteAll()
 {
-	int i;
+	int i = 0;
 
 	for (i = 0; i < entityManager.maxEntities; i++)
 	{
@@ -468,4 +468,71 @@ Entity * entityCheckCollisionInAll(int mx, int my)
 	}
 
 	return NULL;
+}
+
+char * entityGetInstrumentName(Entity * e)
+{
+	char buffer[512];
+	if (!e)
+	{
+		slog("Error: could not get instrument from entity because entity was null");
+		return NULL;
+	}
+
+	switch (e->myInstrument)
+	{
+	case Instrument_Flute:
+		strncpy(buffer, "Flute", 512);
+		break;
+	case Instrument_Clarinet:
+		strncpy(buffer, "Clarinet", 512);
+		break;
+	case Instrument_Alto_Saxophone:
+		strncpy(buffer, "Alto Saxophone", 512);
+		break;
+	case Instrument_Tenor_Saxophone:
+		strncpy(buffer, "Tenor Saxophone", 512);
+		break;
+	case Instrument_Trumpet:
+		strncpy(buffer, "Trumpet", 512);
+		break;
+	case Instrument_Baritone:
+		strncpy(buffer, "Baritone", 512);
+		break;
+	case Instrument_Tuba:
+		strncpy(buffer, "Tuba", 512);
+		break;
+	case Instrument_Snare_Drum:
+		strncpy(buffer, "Snare Drum", 512);
+		break;
+	case Instrument_Bass_Drum:
+		strncpy(buffer, "Bass Drum", 512);
+		break;
+	case Instrument_Pit_Marimba:
+		strncpy(buffer, "Marimba", 512);
+		break;
+	case Instrument_Pit_Xylophone:
+		strncpy(buffer, "Xylophone", 512);
+		break;
+	case Instrument_Pit_Guitar:
+		strncpy(buffer, "Guitar", 512);
+		break;
+	case Instrument_Pit_Synthesizer:
+		strncpy(buffer, "Synthesizer", 512);
+		break;
+	case Instrument_Pit_Gong:
+		strncpy(buffer, "Gong", 512);
+		break;
+	case Instrument_Colorguard_Flag:
+		strncpy(buffer, "Flag Twirler", 512);
+		break;
+	case Instrument_Colorguard_Rifle:
+		strncpy(buffer, "Rifle Tosser", 512);
+		break;
+	default:
+		strncpy(buffer, "I have no idea, man...", 512);
+		break;
+	}
+
+	return buffer;
 }

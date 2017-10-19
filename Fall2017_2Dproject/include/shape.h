@@ -1,6 +1,18 @@
 #ifndef __SHAPE__
 #define __SHAPE__
 
+#include "gf2d_vector.h"
+#include "gf2d_graphics.h"
+
+#define COLOR_WHITE vector4d(255, 255, 255, 255)
+#define COLOR_BLACK vector4d(0, 0, 0, 255)
+#define COLOR_RED vector4d(255, 0, 0, 255)
+#define COLOR_GREEN vector4d(0, 255, 0, 255)
+#define COLOR_BLUE vector4d(0, 0, 255, 255)
+#define COLOR_YELLOW vector4d(255, 255, 0, 255)
+#define COLOR_ORANGE vector4d(255, 155, 0, 255)
+#define COLOR_PINK vector4d(255, 155, 255, 255)
+
 typedef struct rect_s
 {
 	float x, y, w, h;
@@ -39,6 +51,16 @@ int point_in_rect(float x, float y, Rect * rect);
 int rect_in_rect(Rect * a, Rect * b);
 
 Circle * circle_new(float x, float y, float radius);
+
+/**
+ * @brief Checks to see if a point is in a circle
+ * @param x The x pos of the point
+ * @param y The y pos of the point
+ * @param c The circle to check
+ * @returns 1 if point in circle; 0 if it is not or if c was null
+ */
 int point_in_circle(float x, float y, Circle * c);
+
+void draw_line(Vector2D pointA, Vector2D pointB, Vector4D color);
 
 #endif // !__SHAPE__
