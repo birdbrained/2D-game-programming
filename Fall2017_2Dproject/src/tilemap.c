@@ -179,6 +179,14 @@ int tilemap_find_tile(int mx, int my, TileMap * map)
 	int x = 0;
 	int y = 0;
 	int index = 0;
+	if (!map)
+	{
+		return -2;
+	}
+	if (map->tileWidth == 0 || map->tileHeight == 0)
+	{
+		return -3;
+	}
 
 	if (point_in_rect(mx, my, map->boundingBox))
 	{
@@ -193,4 +201,22 @@ int tilemap_find_tile(int mx, int my, TileMap * map)
 	}
 
 	return -1;
+}
+
+void tilemap_clear(TileMap * map)
+{
+	if (!map)
+	{
+		slog("Error: cannot clear a tile map that is null");
+		return;
+	}
+	/*if (!(*map))
+	{
+		slog("Error: cannnot clear a tile map that is null");
+		return;
+	}*/
+
+	memset(map, 0, sizeof(TileMap));
+	memset(map->tiles, -1, sizeof(map->tiles));
+	//memset(map->boundingBox, 0, sizeof(Rect));
 }

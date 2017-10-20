@@ -65,19 +65,103 @@ void load_player_data(playerSave *ps, char *filename)
 	fclose(file);
 }*/
 
+static Sprite *backgroundSprite;
+static Sprite *mouse;
+static Sprite *mouseSprite;
+static TileMap *tile_map;
+static Entity *pickedUp = NULL;
+static Entity *collision = NULL;
+
+void close_level()
+{
+	if (pickedUp)
+	{
+		pickedUp = NULL;
+	}
+	entityDeleteAll();
+	tilemap_clear(tile_map);
+	//gf2d_sprite_clear_all();
+}
+
+void load_level(char * levelFilename, Uint8 closePrevLevel)
+{
+	char buffer[512];
+	FILE * file = NULL;
+	FILE * file_temp = NULL;
+	if (!levelFilename)
+	{
+		slog("Error: level file name was null");
+		return;
+	}
+
+	file = fopen(levelFilename, "r");
+	if (!file)
+	{
+		slog("Error: cannot load the level with filename (%s)", levelFilename);
+		fclose(file);
+		return;
+	}
+	rewind(file);
+
+	if (closePrevLevel > 0)
+	{
+		close_level();
+	}
+
+	while (fscanf(file, "%s", buffer) != EOF)
+	{
+		if (strcmp(buffer, "background:") == 0)
+		{
+			fscanf(file, "%s", buffer);
+			backgroundSprite = gf2d_sprite_load_image(buffer);
+		}
+		if (strcmp(buffer, "tilemap:") == 0)
+		{
+			fscanf(file, "%s", buffer);
+			file_temp = fopen(buffer, "r");
+			if (!file_temp)
+			{
+				slog("Error: could not open level file");
+				fclose(file_temp);
+				continue;
+			}
+			tilemap_load_from_file(file_temp, tile_map);
+			fclose(file_temp);
+		}
+		if (strcmp(buffer, "band:") == 0)
+		{
+			fscanf(file, "%s", buffer);
+			file_temp = fopen(buffer, "r");
+			if (!file_temp)
+			{
+				slog("Error: could not open band file");
+				fclose(file_temp);
+				continue;
+			}
+			entityLoadAllFromFile(file_temp);
+			fclose(file_temp);
+		}
+		if (strcmp(buffer, "mouse:") == 0)
+		{
+			fscanf(file, "%s", buffer);
+			mouseSprite = gf2d_sprite_load_all(buffer, 32, 32, 16);
+			mouse = mouseSprite;
+		}
+	}
+
+	fclose(file);
+}
+
 int main(int argc, char * argv[])
 {
     /*variable declarations,
 	remember, all v. decls. are at the beginning of each function in C*/
     int done = 0;
     const Uint8 * keys;
-    Sprite *sprite;
     
     int mx,my;
     float mf = 0;
 	float guyFrame = 0;
-    Sprite *mouse;
-	Sprite *mouseSprite;
 	Sprite *thing;
 	Sprite *thing2;
 	Sprite *guyx;
@@ -98,7 +182,6 @@ int main(int argc, char * argv[])
 	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2,
 	  2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3,
 	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2 };*/
-	TileMap *tile_map;
 	FILE *tilemapFile;
 	int tileClicked = 0;
 	int p = 0;
@@ -120,6 +203,7 @@ int main(int argc, char * argv[])
 	SDL_Surface *icon = SDL_LoadBMP("images/sprites/guy16x.bmp");
 
 	FILE *bandFile;
+	FILE *levelFile;
 
 	Sound *NJITtheme = NULL;
 	Sound *snareDrum = NULL;
@@ -129,8 +213,6 @@ int main(int argc, char * argv[])
 	Sound *tenorSax = NULL;
 	//Sound *clap = NULL;
 
-	Entity * pickedUp = NULL;
-	Entity * collision = NULL;
 	/*TTF_Font *PencilFont = TTF_OpenFont("fonts/Pencil.ttf", 24);
 	if (!PencilFont)
 	{
@@ -181,10 +263,10 @@ int main(int argc, char * argv[])
 	//slog("%i", myLL->data);
     
     /*demo setup*/
-    sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
+    //backgroundSprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
 	//textBox = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
-    mouseSprite = gf2d_sprite_load_all("images/pointer.png",32,32,16);
-	mouse = mouseSprite;
+    //mouseSprite = gf2d_sprite_load_all("images/pointer.png",32,32,16);
+	//mouse = mouseSprite;
 	//thing = gf2d_sprite_load_all("images/sprites/test_dude.png", 32, 32, 1);
 	//thing2 = gf2d_sprite_load_all("images/sprites/test_dude3.png", 64, 64, 1);
 	//guyx = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 2);
@@ -237,17 +319,19 @@ int main(int argc, char * argv[])
 	fileLoadedDude2->maxFrame = 2;
 	fileLoadedDude2->currentPosition = 20;*/
 
+	tile_map = tilemap_init();
+	load_level("def/level/myLevel.txt", 0);
+
 	//textBox->texture = message;
 
 	//Trying to load a tilemap from file
-	tilemapFile = fopen("def/level/field_0.lvl", "r");
-	tile_map = tilemap_init();
-	tilemap_load_from_file(tilemapFile, tile_map);
-	fclose(tilemapFile);
-	slog("tilewidth: (%i) tileheight: (%i) tperline: (%i) filepath: (...) width: (%i) height: (%i) xPos: (%i) yPos: (%i)", tile_map->tileWidth,	tile_map->tileHeight, tile_map->tilesPerLine, tile_map->width, tile_map->height, tile_map->xPos, tile_map->yPos);
-	slog("do i have a sprite? %i", tile_map->tilemapSprite != NULL);
-	tile_map->space[19] = 1;
-	tile_map->space[20] = 1;
+	//tilemapFile = fopen("def/level/field_0.tilemap", "r");
+	//tilemap_load_from_file(tilemapFile, tile_map);
+	//fclose(tilemapFile);
+	//slog("tilewidth: (%i) tileheight: (%i) tperline: (%i) filepath: (...) width: (%i) height: (%i) xPos: (%i) yPos: (%i)", tile_map->tileWidth,	tile_map->tileHeight, tile_map->tilesPerLine, tile_map->width, tile_map->height, tile_map->xPos, tile_map->yPos);
+	//slog("do i have a sprite? %i", tile_map->tilemapSprite != NULL);
+	//tile_map->space[19] = 1;
+	//tile_map->space[20] = 1;
 	/*slog("tile pq start");
 	while (tile_map->tiles_head != NULL)
 	{
@@ -278,9 +362,9 @@ int main(int argc, char * argv[])
 	slog("end array");*/
 
 	//Trying to load all entities from a file
-	bandFile = fopen("def/_myBand.band", "r");
-	entityLoadAllFromFile(bandFile);
-	fclose(bandFile);
+	//bandFile = fopen("def/_myBand.band", "r");
+	//entityLoadAllFromFile(bandFile);
+	//fclose(bandFile);
 
 	//Load sounds
 	//NJITtheme = soundNew("music/bg/NJIT.ogg");
@@ -343,7 +427,10 @@ int main(int argc, char * argv[])
         gf2d_graphics_clear_screen();// clears drawing buffers
         // all drawing should happen betweem clear_screen and next_frame
 		//backgrounds drawn first
-		gf2d_sprite_draw_image(sprite,vector2d(0,0));
+		if (backgroundSprite)
+		{
+			gf2d_sprite_draw_image(backgroundSprite, vector2d(0, 0));
+		}
 
 		//Me! trying to add a sprite
 		/*tilemap_draw(
@@ -353,7 +440,10 @@ int main(int argc, char * argv[])
 			10,
 			0,
 			0);*/
-		tilemap_draw_from_data(tile_map);
+		if (tile_map)
+		{
+			tilemap_draw_from_data(tile_map);
+		}
 
 		//gf2d_sprite_draw(thing, vector2d(100, 10), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		//gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
@@ -634,14 +724,18 @@ int main(int argc, char * argv[])
 		}
 
 		//UI elements last
-		gf2d_sprite_draw(musicSheet, vector2d(0, 592), &scaleUp, NULL, NULL, NULL, NULL, 0);
+		if (musicSheet)
+			gf2d_sprite_draw(musicSheet, vector2d(0, 592), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		//text_draw_all();
 		//text_draw(nameText);
-		SDL_RenderCopy(gf2d_graphics_get_renderer(), message, NULL, &rect);
-		SDL_RenderCopy(gf2d_graphics_get_renderer(), instrumentTexture, NULL, &instrumentRect);
+		if (message)
+		{
+			SDL_RenderCopy(gf2d_graphics_get_renderer(), message, NULL, &rect);
+			SDL_RenderCopy(gf2d_graphics_get_renderer(), instrumentTexture, NULL, &instrumentRect);
+		}
 		//SDL_RenderPresent(renderer);
 		//gf2d_sprite_draw_image(textBox, vector2d(50, 50));
-		if (controllerConnected)
+		if (controllerConnected && controllerIcon)
 			gf2d_sprite_draw(controllerIcon, vector2d(700, 600), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		if (pickedUp == NULL)
 		{
@@ -669,6 +763,8 @@ int main(int argc, char * argv[])
 		}
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
         
+		if (keys[SDL_SCANCODE_Q]) close_level(tile_map);
+
         if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
         //slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());
     }

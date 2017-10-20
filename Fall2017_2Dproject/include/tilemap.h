@@ -71,5 +71,6 @@ int tilemap_draw(Sprite *tilemap, const int *tiles, unsigned int width, unsigned
 int tilemap_draw_from_data(TileMap * tilemap);
 
 int tilemap_find_tile(int mx, int my, TileMap * map);
+void tilemap_clear(TileMap * map);
 
 #endif // !__TILEMAP__

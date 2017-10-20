@@ -21,6 +21,10 @@ Rect * rect_new(float x, float y, float width, float height)
 
 int point_in_rect(float x, float y, Rect * rect)
 {
+	if (!rect)
+	{
+		return -1;
+	}
 	if (x >= rect->x)
 		if (x <= rect->x + rect->w)
 			if (y >= rect->y)
