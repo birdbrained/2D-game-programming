@@ -110,14 +110,14 @@ int main(int argc, char * argv[])
 	Vector2D scaleHalfUp = { 1.5, 1.5 };
 	//IntNode *myLL = IntNode_init(5);
 	/*Student *person;*/
-	Entity *guy, *testDude;
+	/*Entity *guy, *testDude;
 	Entity *en = NULL;
 	Entity *biggo = NULL;
-	SDL_Surface *icon = SDL_LoadBMP("images/sprites/guy16x.bmp");
-	SDL_Event e;
 	FILE *infile;
 	Entity *fileLoadedDude = NULL;
-	Entity *fileLoadedDude2 = NULL;
+	Entity *fileLoadedDude2 = NULL;*/
+	SDL_Event e;
+	SDL_Surface *icon = SDL_LoadBMP("images/sprites/guy16x.bmp");
 
 	FILE *bandFile;
 
@@ -185,17 +185,17 @@ int main(int argc, char * argv[])
 	//textBox = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
     mouseSprite = gf2d_sprite_load_all("images/pointer.png",32,32,16);
 	mouse = mouseSprite;
-	thing = gf2d_sprite_load_all("images/sprites/test_dude.png", 32, 32, 1);
-	thing2 = gf2d_sprite_load_all("images/sprites/test_dude3.png", 64, 64, 1);
-	guyx = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 2);
-	galSprite = gf2d_sprite_load_all("images/sprites/gal32x.png", 32, 32, 2);
-	mehSprite = gf2d_sprite_load_all("images/sprites/meh32x.png", 32, 32, 2);
-	musicSheet = gf2d_sprite_load_image("images/music_sheet.png");
-	controllerIcon = gf2d_sprite_load_all("images/controller64x.png", 64, 64, 1);
+	//thing = gf2d_sprite_load_all("images/sprites/test_dude.png", 32, 32, 1);
+	//thing2 = gf2d_sprite_load_all("images/sprites/test_dude3.png", 64, 64, 1);
+	//guyx = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 2);
+	//galSprite = gf2d_sprite_load_all("images/sprites/gal32x.png", 32, 32, 2);
+	//mehSprite = gf2d_sprite_load_all("images/sprites/meh32x.png", 32, 32, 2);
+	musicSheet = gf2d_sprite_load_image("images/gui/music_sheet.png");
+	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
 	//myTileMap = gf2d_sprite_load_all("images/field_tiles.png", 64, 64, 2);
 	//person = student("Test", "Sex", thing2);
 	//slog("Initializing student %s", person->name);
-	guy = entityNew();
+	/*guy = entityNew();
 	strncpy(guy->name, "McBandgeek", 32);
 	guy->mySprite = guyx;
 	guy->scale = scaleUp;
@@ -235,7 +235,7 @@ int main(int argc, char * argv[])
 	fileLoadedDude2->currentFrame = 0;
 	fileLoadedDude2->minFrame = 0;
 	fileLoadedDude2->maxFrame = 2;
-	fileLoadedDude2->currentPosition = 20;
+	fileLoadedDude2->currentPosition = 20;*/
 
 	//textBox->texture = message;
 
@@ -359,7 +359,7 @@ int main(int argc, char * argv[])
 		//gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
 		//gf2d_sprite_draw(guy->mySprite, guy->position, &(guy->scale), NULL, NULL, NULL, NULL, 0);
 
-		if (keys[SDL_SCANCODE_W])
+		/*if (keys[SDL_SCANCODE_W])
 		{
 			(*guy->update)(guy, vector2d(0, -2));
 		}
@@ -374,7 +374,7 @@ int main(int argc, char * argv[])
 		if (keys[SDL_SCANCODE_D])
 		{
 			(*guy->update)(guy, vector2d(2, 0));
-		}
+		}*/
 		//guy->currentFrame = guyFrame;
 		//fileLoadedDude->currentFrame = guyFrame;
 
@@ -399,7 +399,7 @@ int main(int argc, char * argv[])
 		{
 			entityDelete(testDude);
 		}*/
-		if (keys[SDL_SCANCODE_L] && biggo == NULL)
+		/*if (keys[SDL_SCANCODE_L] && biggo == NULL)
 		{
 			biggo = entityNew();
 			biggo->mySprite = guyx;
@@ -485,7 +485,7 @@ int main(int argc, char * argv[])
 			en->inUse = 0;
 			entityDelete(en);
 			en = NULL;
-		}
+		}*/
 
 		/*gf2d_sprite_draw(
 			guyx,
