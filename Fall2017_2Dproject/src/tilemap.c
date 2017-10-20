@@ -218,5 +218,6 @@ void tilemap_clear(TileMap * map)
 
 	memset(map, 0, sizeof(TileMap));
 	memset(map->tiles, -1, sizeof(map->tiles));
-	//memset(map->boundingBox, 0, sizeof(Rect));
+	map->boundingBox = malloc(sizeof(Rect));
+	memset(map->boundingBox, 0, sizeof(Rect));
 }

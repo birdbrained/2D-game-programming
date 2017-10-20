@@ -122,7 +122,7 @@ void load_level(char * levelFilename, Uint8 closePrevLevel)
 			if (!file_temp)
 			{
 				slog("Error: could not open level file");
-				fclose(file_temp);
+				//fclose(file_temp);
 				continue;
 			}
 			tilemap_load_from_file(file_temp, tile_map);
@@ -135,7 +135,7 @@ void load_level(char * levelFilename, Uint8 closePrevLevel)
 			if (!file_temp)
 			{
 				slog("Error: could not open band file");
-				fclose(file_temp);
+				//fclose(file_temp);
 				continue;
 			}
 			entityLoadAllFromFile(file_temp);
@@ -320,7 +320,7 @@ int main(int argc, char * argv[])
 	fileLoadedDude2->currentPosition = 20;*/
 
 	tile_map = tilemap_init();
-	load_level("def/level/myLevel.txt", 0);
+	load_level("def/level/mainMenu.txt", 0);
 
 	//textBox->texture = message;
 
@@ -763,7 +763,11 @@ int main(int argc, char * argv[])
 		}
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
         
-		if (keys[SDL_SCANCODE_Q]) close_level(tile_map);
+		if (keys[SDL_SCANCODE_Q])
+		{
+			//close_level(tile_map);
+			load_level("def/level/myLevel.txt", 1);
+		}
 
         if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
         //slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());

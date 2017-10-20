@@ -1,0 +1,5 @@
+background:	images/background/field.png
+tilemap:	def/level/mm.tilemap
+band:		
+mouse:		images/pointer.png
+extraSprites:

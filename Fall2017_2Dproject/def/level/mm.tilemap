@@ -1,0 +1,11 @@
+tilewidth:	64
+tileheight:	64
+tperline:	2
+filepath:	images/field_tiles.png
+width:		4
+height:		1
+xPos:		0
+yPos:		0
+tiles:
+0 0 0 0
+-1
