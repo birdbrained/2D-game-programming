@@ -3,3 +3,4 @@ tilemap:	def/level/field_0.tilemap
 band:		def/_myBand.band
 mouse:		images/pointer.png
 extraSprites:
+END

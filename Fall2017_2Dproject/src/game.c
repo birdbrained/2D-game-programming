@@ -68,6 +68,9 @@ void load_player_data(playerSave *ps, char *filename)
 static Sprite *backgroundSprite;
 static Sprite *mouse;
 static Sprite *mouseSprite;
+static Sprite *musicSheet;
+static Sprite *controllerIcon;
+static Sprite *gui;
 static TileMap *tile_map;
 static Entity *pickedUp = NULL;
 static Entity *collision = NULL;
@@ -80,7 +83,7 @@ void close_level()
 	}
 	entityDeleteAll();
 	tilemap_clear(tile_map);
-	//gf2d_sprite_clear_all();
+	gf2d_sprite_clear_all();
 }
 
 void load_level(char * levelFilename, Uint8 closePrevLevel)
@@ -121,7 +124,7 @@ void load_level(char * levelFilename, Uint8 closePrevLevel)
 			file_temp = fopen(buffer, "r");
 			if (!file_temp)
 			{
-				slog("Error: could not open level file");
+				slog("Error: could not open tilemap file");
 				//fclose(file_temp);
 				continue;
 			}
@@ -147,7 +150,22 @@ void load_level(char * levelFilename, Uint8 closePrevLevel)
 			mouseSprite = gf2d_sprite_load_all(buffer, 32, 32, 16);
 			mouse = mouseSprite;
 		}
+		if (strcmp(buffer, "extraSprites:") == 0)
+		{
+			while (1)
+			{
+				fscanf(file, "%s", buffer);
+				if (strcmp(buffer, "END") == 0)
+				{
+					break;
+				}
+				gui = gf2d_sprite_load_image(buffer);
+			}
+		}
 	}
+
+	musicSheet = gf2d_sprite_load_image("images/gui/music_sheet.png");
+	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
 
 	fclose(file);
 }
@@ -167,8 +185,6 @@ int main(int argc, char * argv[])
 	Sprite *guyx;
 	Sprite *galSprite;
 	Sprite *mehSprite;
-	Sprite *musicSheet;
-	Sprite *controllerIcon;
 	int controllerConnected = 0;
 	/*Sprite *myTileMap;
 	const int level[] = 
@@ -265,8 +281,8 @@ int main(int argc, char * argv[])
     /*demo setup*/
     //backgroundSprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
 	//textBox = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
-    //mouseSprite = gf2d_sprite_load_all("images/pointer.png",32,32,16);
-	//mouse = mouseSprite;
+    mouseSprite = gf2d_sprite_load_all("images/pointer.png",32,32,16);
+	mouse = mouseSprite;
 	//thing = gf2d_sprite_load_all("images/sprites/test_dude.png", 32, 32, 1);
 	//thing2 = gf2d_sprite_load_all("images/sprites/test_dude3.png", 64, 64, 1);
 	//guyx = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 2);
@@ -726,6 +742,8 @@ int main(int argc, char * argv[])
 		//UI elements last
 		if (musicSheet)
 			gf2d_sprite_draw(musicSheet, vector2d(0, 592), &scaleUp, NULL, NULL, NULL, NULL, 0);
+		if (gui)
+			gf2d_sprite_draw(gui, vector2d(0, 0), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		//text_draw_all();
 		//text_draw(nameText);
 		if (message)
