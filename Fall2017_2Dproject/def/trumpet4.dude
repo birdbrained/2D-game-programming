@@ -1,0 +1,11 @@
+name:				Dipshit
+fav_thing:			Homosexuality
+sprite:				images/sprites/guy32x.png
+update:				move
+Instrument:			trumpet
+instrumentSprite:	images/sprites/instrument_trumpet.png
+statMarching:		40
+statMusic:			75
+statMorale:			76
+statMotivation:		30
+sectionLeader:		0

@@ -1,0 +1,11 @@
+name:				Austin
+fav_thing:			Being a boss
+sprite:				images/sprites/gal32x.png
+update:				move
+Instrument:			baritone
+instrumentSprite:	images/sprites/instrument_baritone.png
+statMarching:		90
+statMusic:			90
+statMorale:			100
+statMotivation:		95
+sectionLeader:		0

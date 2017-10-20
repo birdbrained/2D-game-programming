@@ -1,0 +1,11 @@
+name:				Whistle-face
+fav_thing:			Farting
+sprite:				images/sprites/meh32x.png
+update:				move
+Instrument:			flute
+instrumentSprite:	images/sprites/instrument_flute.png
+statMarching:		40
+statMusic:			47
+statMorale:			70
+statMotivation:		60
+sectionLeader:		0

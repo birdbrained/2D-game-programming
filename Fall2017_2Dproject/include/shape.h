@@ -63,4 +63,6 @@ int point_in_circle(float x, float y, Circle * c);
 
 void draw_line(Vector2D pointA, Vector2D pointB, Vector4D color);
 
+int random_int(int min, int max);
+
 #endif // !__SHAPE__

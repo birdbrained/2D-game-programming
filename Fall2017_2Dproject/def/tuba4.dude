@@ -1,0 +1,11 @@
+name:				Tromboner
+fav_thing:			Pasta
+sprite:				images/sprites/yellow32x.png
+update:				move
+Instrument:			tuba
+instrumentSprite:	images/sprites/instrument_tuba.png
+statMarching:		79
+statMusic:			65
+statMorale:			71
+statMotivation:		72
+sectionLeader:		0

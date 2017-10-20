@@ -1,0 +1,11 @@
+name:				Jazziel
+fav_thing:			Not being cool
+sprite:				images/sprites/cool32x.png
+update:				move
+Instrument:			altosax
+instrumentSprite:	images/sprites/instrument_alto_sax.png
+statMarching:		10
+statMusic:			92
+statMorale:			33
+statMotivation:		15
+sectionLeader:		0

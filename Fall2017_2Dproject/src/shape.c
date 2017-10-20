@@ -79,3 +79,8 @@ void draw_line(Vector2D pointA, Vector2D pointB, Vector4D color)
 	SDL_RenderDrawLine(gf2d_graphics_get_renderer(), pointA.x, pointA.y, pointB.x, pointB.y);
 	SDL_SetRenderDrawColor(gf2d_graphics_get_renderer(), 255, 255, 255, 255);
 }
+
+int random_int(int min, int max)
+{
+	return min + rand() % (max - min);
+}

@@ -414,7 +414,7 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 	return new_entity;
 }
 
-void entityLoadAllFromFile(FILE * file)
+void entityLoadAllFromFile(FILE * file, TileMap * map)
 {
 	Entity * currNew = NULL;
 	char buffer[512];
@@ -432,7 +432,7 @@ void entityLoadAllFromFile(FILE * file)
 		if (!entityFile)
 		{
 			slog("bad filename (%s)", buffer);
-			fclose(entityFile);
+			//fclose(entityFile);
 		}
 		else
 		{
@@ -440,15 +440,25 @@ void entityLoadAllFromFile(FILE * file)
 			entityLoadFromFile(entityFile, currNew);
 			fclose(entityFile);
 			currNew->instrumentSprite = gf2d_sprite_load_all(&currNew->instrumentSpriteFilePath, 32, 32, 1);
-			currNew->position = vector2d((i * 64), 0);
 			currNew->boundingBox = rect_new(currNew->position.x, currNew->position.y, 64, 64);
 			currNew->scale = vector2d(2, 2);
 			currNew->currentFrame = 0;
 			currNew->minFrame = 0;
 			currNew->maxFrame = 2;
-			currNew->currentPosition = i;
+			while (1)
+			{
+				i = random_int(0, map->width * map->height);
+				if (map->space[i] != 0)
+				{
+					continue;
+				}
+				currNew->currentPosition = i;
+				currNew->position = vector2d((i % 18) * 64, (i / 18) * 64);
+				map->space[i] = 1;
+				break;
+			}
+
 		}
-		i++;
 	}
 }
 

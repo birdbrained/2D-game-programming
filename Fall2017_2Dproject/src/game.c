@@ -1,6 +1,8 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 #include <stdio.h>
+#include <time.h>
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
@@ -74,6 +76,8 @@ static Sprite *gui;
 static TileMap *tile_map;
 static Entity *pickedUp = NULL;
 static Entity *collision = NULL;
+static Entity *cd;
+static Entity *playButton;
 
 void close_level()
 {
@@ -81,9 +85,22 @@ void close_level()
 	{
 		pickedUp = NULL;
 	}
+	if (gui)
+	{
+		gui = NULL;
+	}
+	if (playButton)
+	{
+		playButton = NULL;
+	}
+	if (cd)
+	{
+		cd = NULL;
+	}
 	entityDeleteAll();
 	tilemap_clear(tile_map);
 	gf2d_sprite_clear_all();
+	//soundDeleteAll();
 }
 
 void load_level(char * levelFilename, Uint8 closePrevLevel)
@@ -141,7 +158,7 @@ void load_level(char * levelFilename, Uint8 closePrevLevel)
 				//fclose(file_temp);
 				continue;
 			}
-			entityLoadAllFromFile(file_temp);
+			entityLoadAllFromFile(file_temp, tile_map);
 			fclose(file_temp);
 		}
 		if (strcmp(buffer, "mouse:") == 0)
@@ -162,9 +179,12 @@ void load_level(char * levelFilename, Uint8 closePrevLevel)
 				gui = gf2d_sprite_load_image(buffer);
 			}
 		}
+		if (strcmp(buffer, "musicSheet") == 0)
+		{
+			musicSheet = gf2d_sprite_load_image("images/gui/music_sheet.png");
+		}
 	}
 
-	musicSheet = gf2d_sprite_load_image("images/gui/music_sheet.png");
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
 
 	fclose(file);
@@ -227,7 +247,9 @@ int main(int argc, char * argv[])
 	Sound *trumpet = NULL;
 	Sound *altoSax = NULL;
 	Sound *tenorSax = NULL;
+	Uint32 musicPlaying = 0;
 	//Sound *clap = NULL;
+	Sound *cdEject = NULL;
 
 	/*TTF_Font *PencilFont = TTF_OpenFont("fonts/Pencil.ttf", 24);
 	if (!PencilFont)
@@ -251,6 +273,10 @@ int main(int argc, char * argv[])
 	SDL_Texture *instrumentTexture;
 	int instX = 0, instY = 0;
 	SDL_Rect instrumentRect = { 65, 660, 0, 0 };
+
+	Uint8 playButtonPressed = 0;
+
+	srand(time(NULL));
 
     /*program initializtion*/
     init_logger("dmdwa.log");
@@ -288,7 +314,7 @@ int main(int argc, char * argv[])
 	//guyx = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 2);
 	//galSprite = gf2d_sprite_load_all("images/sprites/gal32x.png", 32, 32, 2);
 	//mehSprite = gf2d_sprite_load_all("images/sprites/meh32x.png", 32, 32, 2);
-	musicSheet = gf2d_sprite_load_image("images/gui/music_sheet.png");
+	//musicSheet = gf2d_sprite_load_image("images/gui/music_sheet.png");
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
 	//myTileMap = gf2d_sprite_load_all("images/field_tiles.png", 64, 64, 2);
 	//person = student("Test", "Sex", thing2);
@@ -389,6 +415,8 @@ int main(int argc, char * argv[])
 	//soundPlay(NJITtheme, 1, 0, 0, 0);
 	//Mix_VolumeChunk(NJITtheme->sound, MIX_MAX_VOLUME); //Use this to change volume on the fly!
 	//clap = soundLoad("music/sfx/clap.ogg", 5.0f, 1);
+	cdEject = soundNew();
+	cdEject = soundLoad("music/sfx/cd_play.ogg", 18.0f, 0);
 
 	snareDrum = soundNew("music/bg/meeeeh-Snare_Drum.ogg");
 	snareDrum = soundLoad("music/bg/meeeeh-Snare_Drum.ogg", 12.0f, Instrument_Snare_Drum);
@@ -401,11 +429,11 @@ int main(int argc, char * argv[])
 	tenorSax = soundNew("music/bg/meeeeh-Tenor_Saxophone.ogg");
 	tenorSax = soundLoad("music/bg/meeeeh-Tenor_Saxophone.ogg", 12.0f, Instrument_Tenor_Saxophone);
 
-	soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
-	soundPlay(flute, -1, 1, flute->defaultChannel, 0);
-	soundPlay(trumpet, -1, 1, trumpet->defaultChannel, 0);
-	soundPlay(altoSax, -1, 1, altoSax->defaultChannel, 0);
-	soundPlay(tenorSax, -1, 1, tenorSax->defaultChannel, 0);
+	//soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
+	//soundPlay(flute, -1, 1, flute->defaultChannel, 0);
+	//soundPlay(trumpet, -1, 1, trumpet->defaultChannel, 0);
+	//soundPlay(altoSax, -1, 1, altoSax->defaultChannel, 0);
+	//soundPlay(tenorSax, -1, 1, tenorSax->defaultChannel, 0);
 
 	//text testing stuff
 	PencilFont = TTF_OpenFont("fonts/Pencil.ttf", 36);
@@ -426,6 +454,19 @@ int main(int argc, char * argv[])
 	SDL_QueryTexture(instrumentTexture, NULL, NULL, &instX, &instY);
 	instrumentRect.w = instX;
 	instrumentRect.h = instY;
+
+	cd = entityNew();
+	cd->mySprite = gf2d_sprite_load_all("images/gui/cd.png", 128, 128, 1);
+	cd->position = vector2d(0, 0);
+	cd->scale = vector2d(2, 2);
+	cd->boundingBox = rect_new(cd->position.x, cd->position.y, 128, 128);
+
+	playButton = entityNew();
+	playButton->mySprite = gf2d_sprite_load_image("images/gui/play.png");
+	playButton->position = vector2d(64, 256);
+	strncpy(playButton->name, "playButton", MAX_CHARS);
+	playButton->boundingBox = rect_new(playButton->position.x, playButton->position.y, playButton->mySprite->frame_w, playButton->mySprite->frame_h);
+	
 
     /*main game loop*/
     while(!done)
@@ -671,6 +712,18 @@ int main(int argc, char * argv[])
 					}
 				}
 			}
+			else if (e.button.button == SDL_BUTTON_LEFT)
+			{
+				if (playButton != NULL)
+				{
+					if (point_in_rect(mx, my, playButton->boundingBox))
+					{
+						//slog("hit da BUTT");
+						playButtonPressed = 1;
+						soundPlay(cdEject, 0, 5.0f, -1, 0);
+					}
+				}
+			}
 			break;
 		case SDL_MOUSEBUTTONUP:
 			if (e.button.button == SDL_BUTTON_LEFT)
@@ -700,7 +753,7 @@ int main(int argc, char * argv[])
 				}*/
 
 				collision = entityCheckCollisionInAll(mx, my);
-				if (collision != NULL)
+				if (collision != NULL && collision->myInstrument != Instrument_Unassigned)
 				{
 					slog("collision with guy (%s)", &collision->name);
 					if (pickedUp == NULL)
@@ -739,6 +792,31 @@ int main(int argc, char * argv[])
 			break;
 		}
 
+		if (playButtonPressed && cd != NULL)
+		{
+			cd->position.x += 5;
+		}
+
+		if (cd != NULL)
+		{
+			if (point_in_rect(1000, 10, cd->boundingBox))
+			{
+				load_level("def/level/myLevel.txt", 1);
+				if (musicPlaying > 0)
+				{
+					//Mix_RewindMusic();
+					Mix_HaltChannel(-1);
+				}
+				soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
+				soundPlay(flute, -1, 1, flute->defaultChannel, 0);
+				soundPlay(trumpet, -1, 1, trumpet->defaultChannel, 0);
+				soundPlay(altoSax, -1, 1, altoSax->defaultChannel, 0);
+				soundPlay(tenorSax, -1, 1, tenorSax->defaultChannel, 0);
+				musicPlaying = 1;
+			}
+		}
+		//slog("ds %i %i %i %i", cd->boundingBox->x, cd->boundingBox->y, cd->boundingBox->w, cd->boundingBox->h);
+
 		//UI elements last
 		if (musicSheet)
 			gf2d_sprite_draw(musicSheet, vector2d(0, 592), &scaleUp, NULL, NULL, NULL, NULL, 0);
@@ -746,7 +824,7 @@ int main(int argc, char * argv[])
 			gf2d_sprite_draw(gui, vector2d(0, 0), &scaleUp, NULL, NULL, NULL, NULL, 0);
 		//text_draw_all();
 		//text_draw(nameText);
-		if (message)
+		if (message && musicSheet)
 		{
 			SDL_RenderCopy(gf2d_graphics_get_renderer(), message, NULL, &rect);
 			SDL_RenderCopy(gf2d_graphics_get_renderer(), instrumentTexture, NULL, &instrumentRect);
@@ -785,6 +863,17 @@ int main(int argc, char * argv[])
 		{
 			//close_level(tile_map);
 			load_level("def/level/myLevel.txt", 1);
+			if (musicPlaying > 0)
+			{
+				//Mix_RewindMusic();
+				Mix_HaltChannel(-1);
+			}
+			soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
+			soundPlay(flute, -1, 1, flute->defaultChannel, 0);
+			soundPlay(trumpet, -1, 1, trumpet->defaultChannel, 0);
+			soundPlay(altoSax, -1, 1, altoSax->defaultChannel, 0);
+			soundPlay(tenorSax, -1, 1, tenorSax->defaultChannel, 0);
+			musicPlaying = 1;
 		}
 
         if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition

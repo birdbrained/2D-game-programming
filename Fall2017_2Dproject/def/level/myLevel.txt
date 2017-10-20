@@ -4,3 +4,4 @@ band:		def/_myBand.band
 mouse:		images/pointer.png
 extraSprites:
 END
+musicSheet
