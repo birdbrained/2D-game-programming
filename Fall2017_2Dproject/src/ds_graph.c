@@ -50,7 +50,7 @@ Graph * graph_init(int width, size_t elementSize)
 	new_graph->head = graph_new_node(elementSize);
 	new_graph->tail = graph_new_node(elementSize);
 	new_graph->width = width;
-	atexit(graph_clear);
+	//atexit(graph_clear);
 	return new_graph;
 }
 
@@ -89,6 +89,11 @@ int graph_clear(Graph ** graphThatDies)
 		slog("Error: trying to delete a graph that is null");
 		return -1;
 	}
+	if (!(*graphThatDies))
+	{
+		slog("Error: bad graph pointer");
+		return -1;
+	}
 
 	horizontal_iterator = (*graphThatDies)->head;
 	vertical_iterator = (*graphThatDies)->head;
@@ -108,7 +113,7 @@ int graph_clear(Graph ** graphThatDies)
 	return 0;
 }
 
-int graph_insert(Graph ** graph, void * data, int width, size_t elementSize)
+int graph_insert(Graph ** graph, void * data, int width, size_t elementSize, int firstInsert)
 {
 	GraphNode * n = graph_new_node(elementSize);
 	GraphNode * temp = NULL;
@@ -126,7 +131,7 @@ int graph_insert(Graph ** graph, void * data, int width, size_t elementSize)
 	n->data = data;
 	n->elementSize = elementSize;
 
-	if (!(*graph)->head)						//if the node is the first one in the graph
+	if ((*graph)->head == NULL || firstInsert == 0)						//if the node is the first one in the graph
 	{
 		(*graph)->head = n;
 		(*graph)->tail = n;
@@ -173,5 +178,95 @@ int graph_insert(Graph ** graph, void * data, int width, size_t elementSize)
 		}
 	}
 
+	if ((*graph)->tail == NULL)
+	{
+		(*graph)->tail = n;
+	}
+
 	return 0;
+}
+
+int graph_update_node(Graph ** graph, int x, int y, void * data, size_t elementSize)
+{
+	GraphNode * iter = NULL;
+	int currX = 0;
+	int currY = 0;
+	if (!graph)
+	{
+		slog("Error: cannot update node from a null graph");
+		return -1;
+	}
+	iter = (*graph)->head;
+	if (!iter)
+	{
+		slog("Error: graph's head was null!");
+		return -3;
+	}
+
+	while (currX < x)
+	{
+		iter = iter->right_node;
+		currX++;
+		if (iter == NULL)
+		{
+			slog("Error: could not find node with x (%i) y (%i)", x, y);
+			return -2;
+		}
+	}
+	while (currY < y)
+	{
+		iter = iter->down_node;
+		currY++;
+		if (iter == NULL)
+		{
+			slog("Error: could not find node with x (%i) y (%i)", x, y);
+			return -2;
+		}
+	}
+
+	iter->data = data;
+	return 0;
+}
+
+Graph * graph_init_from_tilemap(TileMap * map, size_t elementSize)
+{
+	Graph * grape = graph_init(map->width, elementSize);
+	int i = 0;
+	int max = 0;
+	if (!grape)
+	{
+		//error! could not allocate memeory for a new graph
+		return NULL;
+	}
+	if (!map)
+	{
+		slog("Error: cannot load a graph from a null tile map");
+		return NULL;
+	}
+	max = map->width * map->height;
+
+	for (i = 0; i < max; i++)
+	{
+		graph_insert(&grape, map->space[i], map->width, elementSize, i);
+	}
+
+	return grape;
+}
+
+void graph_print(Graph * graph)
+{
+	GraphNode * hor_iter = graph->head;
+	GraphNode * ver_iter = graph->head;
+	int data = 0;
+
+	while (ver_iter != NULL)
+	{
+		while (hor_iter != NULL)
+		{
+			slog("x: (%i), y: (%i), data: (%i)", hor_iter->x, hor_iter->y, hor_iter->data);
+			hor_iter = hor_iter->right_node;
+		}
+		ver_iter = ver_iter->down_node;
+		hor_iter = ver_iter;
+	}
 }

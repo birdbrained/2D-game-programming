@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include "simple_logger.h"
+#include "tilemap.h"
 
 /**
  * @brief A data structure that represents a single node in a graph
@@ -65,7 +66,11 @@ int graph_clear(Graph ** graphThatDies);
  * @param elementSize The size of the data to hold
  * @returns 0 if successful; -1 if could not allocate memory for a new node; -2 if graph is null pointer
  */
-int graph_insert(Graph ** graph, void * data, int width, size_t elementSize);
+int graph_insert(Graph ** graph, void * data, int width, size_t elementSize, int firstInsert);
+
+int graph_update_node(Graph ** graph, int x, int y, void * data, size_t elementSize);
+Graph * graph_init_from_tilemap(TileMap * map, size_t elementSize);
+void graph_print(Graph * graph);
 
 
 #endif // !__DS_GRAPH__

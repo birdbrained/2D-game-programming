@@ -10,6 +10,7 @@
 #include "gf2d_sprite.h"
 #include "shape.h"
 #include "tilemap.h"
+#include "ds_graph.h"
 
 typedef enum statusAliment
 {
@@ -177,8 +178,9 @@ void entityIncrementCurrentFrameAll();
  */
 Entity * entityLoadFromFile(FILE * file, Entity * new_entity);
 
-void entityLoadAllFromFile(FILE * file, TileMap * map);
+void entityLoadAllFromFile(FILE * file, TileMap * map/*, Graph ** graph*/);
 Entity * entityCheckCollisionInAll(int mx, int my);
 char * entityGetInstrumentName(Entity * e);
+void entityUpdateGraphPositionAll(Graph ** graph);
 
 #endif // ! __ENTITY_S__

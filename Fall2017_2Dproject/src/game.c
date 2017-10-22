@@ -8,6 +8,7 @@
 #include "simple_logger.h"
 #include "ds_linked_list.h"
 #include "ds_priority_queue.h"
+#include "ds_graph.h"
 #include "tilemap.h"
 #include "student.h"
 #include "entity_s.h"
@@ -73,13 +74,14 @@ static Sprite *mouseSprite;
 static Sprite *musicSheet;
 static Sprite *controllerIcon;
 static Sprite *gui;
-static TileMap *tile_map;
+//TileMap *tile_map;
 static Entity *pickedUp = NULL;
 static Entity *collision = NULL;
 static Entity *cd;
 static Entity *playButton;
+//Graph *fieldGraph;
 
-void close_level()
+void close_level(TileMap * tile_map, Graph * fieldGraph)
 {
 	if (pickedUp)
 	{
@@ -97,13 +99,14 @@ void close_level()
 	{
 		cd = NULL;
 	}
+	graph_clear(fieldGraph);
 	entityDeleteAll();
 	tilemap_clear(tile_map);
 	gf2d_sprite_clear_all();
 	//soundDeleteAll();
 }
 
-void load_level(char * levelFilename, Uint8 closePrevLevel)
+Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph, Uint8 closePrevLevel)
 {
 	char buffer[512];
 	FILE * file = NULL;
@@ -125,7 +128,7 @@ void load_level(char * levelFilename, Uint8 closePrevLevel)
 
 	if (closePrevLevel > 0)
 	{
-		close_level();
+		close_level(tile_map, fieldGraph);
 	}
 
 	while (fscanf(file, "%s", buffer) != EOF)
@@ -147,6 +150,8 @@ void load_level(char * levelFilename, Uint8 closePrevLevel)
 			}
 			tilemap_load_from_file(file_temp, tile_map);
 			fclose(file_temp);
+			fieldGraph = graph_init_from_tilemap(tile_map, sizeof(Entity));
+			graph_print(fieldGraph);
 		}
 		if (strcmp(buffer, "band:") == 0)
 		{
@@ -158,8 +163,10 @@ void load_level(char * levelFilename, Uint8 closePrevLevel)
 				//fclose(file_temp);
 				continue;
 			}
-			entityLoadAllFromFile(file_temp, tile_map);
+			entityLoadAllFromFile(file_temp, tile_map/*, &fieldGraph*/);
 			fclose(file_temp);
+			entityUpdateGraphPositionAll(&fieldGraph);
+			graph_print(fieldGraph);
 		}
 		if (strcmp(buffer, "mouse:") == 0)
 		{
@@ -188,6 +195,7 @@ void load_level(char * levelFilename, Uint8 closePrevLevel)
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
 
 	fclose(file);
+	return fieldGraph;
 }
 
 int main(int argc, char * argv[])
@@ -237,6 +245,8 @@ int main(int argc, char * argv[])
 	Entity *fileLoadedDude2 = NULL;*/
 	SDL_Event e;
 	SDL_Surface *icon = SDL_LoadBMP("images/sprites/guy16x.bmp");
+	TileMap *tile_map;
+	Graph *fieldGraph;
 
 	FILE *bandFile;
 	FILE *levelFile;
@@ -362,7 +372,8 @@ int main(int argc, char * argv[])
 	fileLoadedDude2->currentPosition = 20;*/
 
 	tile_map = tilemap_init();
-	load_level("def/level/mainMenu.txt", 0);
+	fieldGraph = graph_init(18, sizeof(Entity));
+	fieldGraph = load_level("def/level/mainMenu.txt", tile_map, fieldGraph, 0);
 
 	//textBox->texture = message;
 
@@ -698,6 +709,7 @@ int main(int argc, char * argv[])
 						pickedUp->position.x = (mx - tile_map->xPos) / tile_map->tileWidth * (tile_map->tileWidth);
 						pickedUp->position.y = (my - tile_map->yPos) / tile_map->tileHeight * (tile_map->tileHeight);
 						pickedUp = NULL;
+						entityUpdateGraphPositionAll(&fieldGraph);
 						surfaceMessage = TTF_RenderText_Solid(PencilFont, "None selected", colorBlack);
 						message = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), surfaceMessage);
 						SDL_QueryTexture(message, NULL, NULL, &texW, &texH);
@@ -801,7 +813,7 @@ int main(int argc, char * argv[])
 		{
 			if (point_in_rect(1000, 10, cd->boundingBox))
 			{
-				load_level("def/level/myLevel.txt", 1);
+				fieldGraph = load_level("def/level/myLevel.txt", tile_map, fieldGraph, 1);
 				if (musicPlaying > 0)
 				{
 					//Mix_RewindMusic();
@@ -862,7 +874,7 @@ int main(int argc, char * argv[])
 		if (keys[SDL_SCANCODE_Q])
 		{
 			//close_level(tile_map);
-			load_level("def/level/myLevel.txt", 1);
+			fieldGraph = load_level("def/level/myLevel.txt", tile_map, fieldGraph, 1);
 			if (musicPlaying > 0)
 			{
 				//Mix_RewindMusic();
@@ -880,6 +892,7 @@ int main(int argc, char * argv[])
         //slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());
     }
     slog("---==== END ====---");
+	graph_clear(fieldGraph);
 	TTF_Quit();
 	SDL_DestroyTexture(message);
 	SDL_FreeSurface(surfaceMessage);

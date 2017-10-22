@@ -414,7 +414,7 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 	return new_entity;
 }
 
-void entityLoadAllFromFile(FILE * file, TileMap * map)
+void entityLoadAllFromFile(FILE * file, TileMap * map/*, Graph ** graph*/)
 {
 	Entity * currNew = NULL;
 	char buffer[512];
@@ -450,14 +450,18 @@ void entityLoadAllFromFile(FILE * file, TileMap * map)
 				i = random_int(0, map->width * map->height);
 				if (map->space[i] != 0)
 				{
+					slog("Hey that spot is taken! (%i) Try again...", i);
 					continue;
 				}
 				currNew->currentPosition = i;
 				currNew->position = vector2d((i % 18) * 64, (i / 18) * 64);
 				map->space[i] = 1;
+				/*if (graph != NULL)
+				{
+					graph_update_node(graph, i % 18, i / 18, currNew, sizeof(Entity));
+				}*/
 				break;
 			}
-
 		}
 	}
 }
@@ -545,4 +549,20 @@ char * entityGetInstrumentName(Entity * e)
 	}
 
 	return buffer;
+}
+
+void entityUpdateGraphPositionAll(Graph ** graph)
+{
+	int i = 0;
+
+	for (i = 0; i < entityManager.maxEntities; i++)
+	{
+		if (entityManager.entityList[i].inUse > 0)
+		{
+			if (entityManager.entityList[i].myInstrument != Instrument_Unassigned)
+			{
+				graph_update_node(graph, entityManager.entityList[i].currentPosition % 18, entityManager.entityList[i].currentPosition / 18, &entityManager.entityList[i], sizeof(Entity));
+			}
+		}
+	}
 }
