@@ -228,6 +228,30 @@ int graph_update_node(Graph ** graph, int x, int y, void * data, size_t elementS
 	return 0;
 }
 
+int graph_zero_all(Graph ** graph)
+{
+	GraphNode * hor_iter = NULL;
+	GraphNode * ver_iter = NULL;
+	if (!graph)
+	{
+		slog("Error: cannot zero data from a null graph");
+		return -1;
+	}
+	hor_iter = (*graph)->head;
+	ver_iter = (*graph)->head;
+	while (ver_iter != NULL)
+	{
+		while (hor_iter != NULL)
+		{
+			hor_iter->data = 0;
+			hor_iter = hor_iter->right_node;
+		}
+		ver_iter = ver_iter->down_node;
+		hor_iter = ver_iter;
+	}
+	return 0;
+}
+
 Graph * graph_init_from_tilemap(TileMap * map, size_t elementSize)
 {
 	Graph * grape = graph_init(map->width, elementSize);

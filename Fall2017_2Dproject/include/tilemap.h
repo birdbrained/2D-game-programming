@@ -70,7 +70,19 @@ int tilemap_draw(Sprite *tilemap, const int *tiles, unsigned int width, unsigned
  */
 int tilemap_draw_from_data(TileMap * tilemap);
 
+/**
+ * @brief Find the index of a tile that a given x and y position is in
+ * @param mx X position of point to check
+ * @param my Y position of point to check
+ * @param map The map to check if the point is inside of
+ * @returns The index of the tile the point is inside of; -1 if point not inside map
+ */
 int tilemap_find_tile(int mx, int my, TileMap * map);
+
+/**
+ * @brief Clears all data associated with a tile map
+ * @param map The tile map to clear
+ */
 void tilemap_clear(TileMap * map);
 
 #endif // !__TILEMAP__

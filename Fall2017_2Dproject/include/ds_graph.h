@@ -68,8 +68,36 @@ int graph_clear(Graph ** graphThatDies);
  */
 int graph_insert(Graph ** graph, void * data, int width, size_t elementSize, int firstInsert);
 
+/**
+ * @brief Updates the value of a node in an already exisiting graph
+ * @param graph The graph that will have a node updated
+ * @param x X value of node to update
+ * @param y Y value of node to update
+ * @param data The data that the node will hold
+ * @param elementSize Size of data to hold
+ * @returns 0 if successful; -1 if graph is NULL; -2 if requested node could not be found; -3 if error finding graph's head
+ */
 int graph_update_node(Graph ** graph, int x, int y, void * data, size_t elementSize);
+
+/**
+ * @brief Sets all nodes' data to zero, but does not delete the graph or any nodes
+ * @param graph The graph to zero out
+ * @returns 0 if successful; -1 if graph is NULL
+ */
+int graph_zero_all(Graph ** graph);
+
+/**
+ * @brief Initializes a graph from a given tilemap
+ * @param map The TileMap to reference
+ * @param elementSize Size of data each node will hold
+ * @returns Pointer to new Graph if successful; NULL if error allocating memory or if map was NULL
+ */
 Graph * graph_init_from_tilemap(TileMap * map, size_t elementSize);
+
+/**
+ * @brief Iterates through a graph and prints out each nodes' position and data (as int)
+ * @param graph The graph to traverse
+ */
 void graph_print(Graph * graph);
 
 
