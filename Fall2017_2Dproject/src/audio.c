@@ -48,6 +48,7 @@ void audioSystemInit(Uint32 maxSounds, Uint32 channels, Uint32 channelGroups, Ui
 	{
 		slog("Error: failed to initialize some audio support (%s)", SDL_GetError());
 	}
+	Mix_AllocateChannels(channels);
 	atexit(Mix_Quit);
 	atexit(audioSystemClose);
 }
@@ -75,7 +76,7 @@ void soundSystemInit(Uint32 maxSounds)
 	atexit(audioSystemClose);
 }
 
-Sound * soundNew(/*char * filepath*/)
+Sound * soundNew(Instrument instrument/*char * filepath*/)
 {
 	int i;
 
@@ -87,6 +88,7 @@ Sound * soundNew(/*char * filepath*/)
 			memset(&soundManager.soundList[i], 0, sizeof(Sound));
 			soundManager.soundList[i].id = soundManager.increment++;
 			soundManager.soundList[i].inUse = 1;
+			soundManager.soundList[i].instrument = instrument;
 			//strncpy(soundManager.soundList[i].filepath, filepath, FILEPATH_CHAR_LEN);
 			return &soundManager.soundList[i];
 		}
@@ -112,7 +114,7 @@ Sound * soundGetByFilename(char * filename)
 	return NULL;
 }
 
-Sound * soundLoad(char * filename, float volume, int defaultChannel)
+Sound * soundLoad(char * filename, float volume, int defaultChannel, Instrument instrument)
 {
 	Sound *sound;
 	sound = soundGetByFilename(filename);
@@ -122,7 +124,7 @@ Sound * soundLoad(char * filename, float volume, int defaultChannel)
 		return sound;
 	}
 
-	sound = soundNew(filename);
+	sound = soundNew(instrument);
 	if (!sound)
 	{
 		return NULL;
@@ -167,6 +169,35 @@ void soundPlay(Sound * sound, int numLoops, float volume, int channel, int group
 
 	Mix_VolumeChunk(sound->sound, (int)(actualVolume));
 	Mix_PlayChannel(-1, sound->sound, numLoops);
+}
+
+Sound * soundFindByInstrument(Instrument instrument)
+{
+	int i = 0;
+
+	for (i = 0; i < soundManager.maxSounds; i++)
+	{
+		if (soundManager.soundList[i].inUse > 0)
+		{
+			if (soundManager.soundList[i].instrument == instrument)
+			{
+				return &soundManager.soundList[i];
+			}
+		}
+	}
+
+	return NULL;
+}
+
+void soundAdjustVolume(Sound * sound, float volume)
+{
+	if (!sound)
+	{
+		slog("Error: cannot adjust volume of a null sound");
+		return;
+	}
+
+	Mix_VolumeChunk(sound->sound, volume);
 }
 
 void soundFree(Sound * sound)

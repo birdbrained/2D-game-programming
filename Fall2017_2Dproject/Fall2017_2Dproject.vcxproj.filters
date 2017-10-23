@@ -69,6 +69,9 @@
     <ClCompile Include="src\text_s.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\formation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Makefile" />
@@ -129,6 +132,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\text_s.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\formation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

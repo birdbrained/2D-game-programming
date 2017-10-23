@@ -562,6 +562,27 @@ void entityUpdateGraphPositionAll(Graph ** graph)
 			if (entityManager.entityList[i].myInstrument != Instrument_Unassigned)
 			{
 				graph_update_node(graph, entityManager.entityList[i].currentPosition % 18, entityManager.entityList[i].currentPosition / 18, &entityManager.entityList[i], sizeof(Entity));
+				/*switch (entityManager.entityList[i].myInstrument)
+				{
+				case Instrument_Snare_Drum:
+					(*graph)->numSnareDrums++;
+					break;
+				case Instrument_Flute:
+					(*graph)->numFlutes++;
+					break;
+				case Instrument_Trumpet:
+					(*graph)->numTrumpets++;
+					break;
+				case Instrument_Alto_Saxophone:
+					(*graph)->numAltoSaxes++;
+					break;
+				case Instrument_Baritone:
+					(*graph)->numBaritones++;
+					break;
+				default:
+					(*graph)->numOtherInstruments++;
+					break;
+				}*/
 			}
 		}
 	}

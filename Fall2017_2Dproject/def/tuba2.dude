@@ -2,8 +2,8 @@ name:				Pasta
 fav_thing:			Pasta
 sprite:				images/sprites/yellow32x.png
 update:				move
-Instrument:			tuba
-instrumentSprite:	images/sprites/instrument_tuba.png
+Instrument:			snaredrum
+instrumentSprite:	images/sprites/instrument_snare_drum.png
 statMarching:		79
 statMusic:			65
 statMorale:			71

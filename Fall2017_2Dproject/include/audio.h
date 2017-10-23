@@ -8,6 +8,7 @@
 #include <SDL_mixer.h>
 #include <stdio.h>
 #include "simple_logger.h"
+#include "entity_s.h"
 
 /**
  * @brief A sound structure that represents...a sound
@@ -20,6 +21,7 @@ typedef struct sound_s
 	Mix_Chunk *sound;					/**<space for the sound chunk*/
 	float volume;						/**<earrape adjuster*/
 	int defaultChannel;					/**<default channel to play on*/
+	Instrument instrument;				/**<the instrument that is playing*/
 }Sound;
 
 /**
@@ -43,7 +45,7 @@ void soundSystemInit(Uint32 maxSounds);
  * @brief Allocates spot in sound manager for a new sound
  * @returns An address in memory for the new sound if successful; NULL if failed
  */
-Sound * soundNew(/*char * filepath*/);
+Sound * soundNew(Instrument instrument/*char * filepath*/);
 
 /**
  * @brief Searches to see if a certain sound is already loaded in memory
@@ -59,7 +61,7 @@ Sound * soundGetByFilename(char * filename);
  * @param defaultChannel Default channel to play on
  * @returns The sound that has been loaded; NULL if error
  */
-Sound * soundLoad(char * filename, float volume, int defaultChannel);
+Sound * soundLoad(char * filename, float volume, int defaultChannel, Instrument instrument);
 
 /**
  * @brief Plays a loaded sound
@@ -70,6 +72,9 @@ Sound * soundLoad(char * filename, float volume, int defaultChannel);
  * @param group Currently unimplemented
  */
 void soundPlay(Sound *sound, int numLoops, float volume, int channel, int group);
+
+Sound * soundFindByInstrument(Instrument instrument);
+void soundAdjustVolume(Sound * sound, float volume);
 
 /**
  * @brief Clears a sound from the sound manager, opening the spot back up

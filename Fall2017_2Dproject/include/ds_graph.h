@@ -27,6 +27,12 @@ typedef struct graph_s
 	GraphNode * head;					/**<Pointer to head node (start)*/
 	GraphNode * tail;					/**<Pointer to tail node (most recently added)*/
 	int width;							/**<How many nodes should be in one row*/
+	/*Uint16 numSnareDrums;
+	Uint16 numFlutes;
+	Uint16 numTrumpets;
+	Uint16 numAltoSaxes;
+	Uint16 numBaritones;
+	Uint16 numOtherInstruments;*/
 }Graph;
 
 /**

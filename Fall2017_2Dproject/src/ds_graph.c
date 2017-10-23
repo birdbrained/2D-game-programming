@@ -57,6 +57,11 @@ Graph * graph_init(int width, size_t elementSize)
 void * graph_delete_node(GraphNode ** nodeThatDies)
 {
 	void * data = NULL;
+	if (!nodeThatDies)
+	{
+		slog("Error: cannot delete a null graph node");
+		return NULL;
+	}
 	if (!(*nodeThatDies))
 	{
 		slog("Error: cannot delete a null graph node");
@@ -249,6 +254,12 @@ int graph_zero_all(Graph ** graph)
 		ver_iter = ver_iter->down_node;
 		hor_iter = ver_iter;
 	}
+	/*(*graph)->numAltoSaxes = 0;
+	(*graph)->numBaritones = 0;
+	(*graph)->numFlutes = 0;
+	(*graph)->numOtherInstruments = 0;
+	(*graph)->numSnareDrums = 0;
+	(*graph)->numTrumpets = 0;*/
 	return 0;
 }
 
