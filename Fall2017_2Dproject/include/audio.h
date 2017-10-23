@@ -75,6 +75,7 @@ void soundPlay(Sound *sound, int numLoops, float volume, int channel, int group)
 
 Sound * soundFindByInstrument(Instrument instrument);
 void soundAdjustVolume(Sound * sound, float volume);
+void soundAdjustVolumeAll(float volume);
 
 /**
  * @brief Clears a sound from the sound manager, opening the spot back up

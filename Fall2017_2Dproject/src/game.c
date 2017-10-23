@@ -12,6 +12,7 @@
 #include "tilemap.h"
 #include "student.h"
 #include "entity_s.h"
+#include "formation.h"
 #include "audio.h"
 #include "text_s.h"
 #include "think_functions.h"
@@ -81,6 +82,7 @@ static Entity *cd;
 static Entity *playButton;
 static Sprite *guiMarchingStat;
 //Graph *fieldGraph;
+static int score;
 
 void close_level(TileMap * tile_map, Graph * fieldGraph)
 {
@@ -172,14 +174,15 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 			fclose(file_temp);
 			graph_zero_all(&fieldGraph);
 			entityUpdateGraphPositionAll(&fieldGraph);
+			score = formation_detect(&fieldGraph);
 			//graph_print(fieldGraph);
-			/*slog("snares (%i) flutes (%i) trumpets (%i) alto saxes (%i) baritones (%i) others (%i)",
+			slog("snares (%i) flutes (%i) trumpets (%i) alto saxes (%i) baritones (%i) others (%i)",
 				fieldGraph->numSnareDrums,
 				fieldGraph->numFlutes,
 				fieldGraph->numTrumpets,
 				fieldGraph->numAltoSaxes,
 				fieldGraph->numBaritones,
-				fieldGraph->numOtherInstruments);*/
+				fieldGraph->numOtherInstruments);
 		}
 		if (strcmp(buffer, "mouse:") == 0)
 		{
@@ -207,6 +210,7 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 	}
 
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
+	//soundAdjustVolumeAll(0);
 
 	fclose(file);
 	return fieldGraph;
@@ -306,6 +310,12 @@ int main(int argc, char * argv[])
 	SDL_Rect statMarchingRect = { 550, 680, 0, 0 };
 	char statMarchingText[32];
 
+	SDL_Surface *scoreSurface;
+	SDL_Texture *scoreTexture;
+	int scoreX = 0, scoreY = 0;
+	SDL_Rect scoreRect = { 400, 680, 0, 0 };
+	char scoreText[32];
+
 	Uint8 playButtonPressed = 0;
 
 	srand(time(NULL));
@@ -329,6 +339,7 @@ int main(int argc, char * argv[])
 	audioSystemInit(50, 16, 2, 0, 0, 0);
 	soundSystemInit(25);
 	text_system_init(50);
+	score = 0;
     SDL_ShowCursor(SDL_DISABLE);
 	TTF_Init();
 	//fileLoadedDude = entityNew();
@@ -493,6 +504,13 @@ int main(int argc, char * argv[])
 	SDL_QueryTexture(statMarchingTexture, NULL, NULL, &statMarchingX, &statMarchingY);
 	statMarchingRect.w = statMarchingX;
 	statMarchingRect.h = statMarchingY;
+
+	snprintf(scoreText, 32, "%d", score);
+	scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
+	scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
+	SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreX, &scoreY);
+	scoreRect.w = scoreX;
+	scoreRect.h = scoreY;
 
 	cd = entityNew();
 	cd->mySprite = gf2d_sprite_load_all("images/gui/cd.png", 128, 128, 1);
@@ -709,6 +727,12 @@ int main(int argc, char * argv[])
 		entityDrawAll();
 		entityUpdateAll();
 		entityIncrementCurrentFrameAll();
+		snprintf(scoreText, 32, "%d", score);
+		scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
+		scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
+		SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreX, &scoreY);
+		scoreRect.w = scoreX;
+		scoreRect.h = scoreY;
 
 		if (pickedUp != NULL)
 		{
@@ -745,6 +769,8 @@ int main(int argc, char * argv[])
 						pickedUp = NULL;
 						graph_zero_all(&fieldGraph);
 						entityUpdateGraphPositionAll(&fieldGraph);
+						soundAdjustVolumeAll(0);
+						score = formation_detect(&fieldGraph);
 						surfaceMessage = TTF_RenderText_Solid(PencilFont, "None selected", colorBlack);
 					}
 					message = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), surfaceMessage);
@@ -868,11 +894,12 @@ int main(int argc, char * argv[])
 					//Mix_RewindMusic();
 					Mix_HaltChannel(-1);
 				}
-				soundPlay(snareDrum, -1, 6, snareDrum->defaultChannel, 0);
-				soundPlay(flute, -1, 6, flute->defaultChannel, 0);
-				soundPlay(trumpet, -1, 6, trumpet->defaultChannel, 0);
-				soundPlay(altoSax, -1, 6, altoSax->defaultChannel, 0);
-				soundPlay(baritone, -1, 6, baritone->defaultChannel, 0);
+				soundPlay(snareDrum, -1, MIX_MAX_VOLUME / 4, snareDrum->defaultChannel, 0);
+				soundPlay(flute, -1, MIX_MAX_VOLUME / 4, flute->defaultChannel, 0);
+				soundPlay(trumpet, -1, MIX_MAX_VOLUME / 4, trumpet->defaultChannel, 0);
+				soundPlay(altoSax, -1, MIX_MAX_VOLUME / 4, altoSax->defaultChannel, 0);
+				soundPlay(baritone, -1, MIX_MAX_VOLUME / 4, baritone->defaultChannel, 0);
+				soundAdjustVolumeAll(0);
 				//soundAdjustVolume(baritone, 0);
 				//soundAdjustVolume(snareDrum, 0);
 				//soundAdjustVolume(trumpet, 0);
@@ -895,6 +922,7 @@ int main(int argc, char * argv[])
 		{
 			SDL_RenderCopy(gf2d_graphics_get_renderer(), message, NULL, &rect);
 			SDL_RenderCopy(gf2d_graphics_get_renderer(), instrumentTexture, NULL, &instrumentRect);
+			SDL_RenderCopy(gf2d_graphics_get_renderer(), scoreTexture, NULL, &scoreRect);
 		}
 		if (guiMarchingStat)
 		{
@@ -939,11 +967,12 @@ int main(int argc, char * argv[])
 				//Mix_RewindMusic();
 				Mix_HaltChannel(-1);
 			}
-			soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
-			soundPlay(flute, -1, 1, flute->defaultChannel, 0);
-			soundPlay(trumpet, -1, 1, trumpet->defaultChannel, 0);
-			soundPlay(altoSax, -1, 1, altoSax->defaultChannel, 0);
-			soundPlay(baritone, -1, 1, baritone->defaultChannel, 0);
+			soundPlay(snareDrum, -1, MIX_MAX_VOLUME / 4, snareDrum->defaultChannel, 0);
+			soundPlay(flute, -1, MIX_MAX_VOLUME / 4, flute->defaultChannel, 0);
+			soundPlay(trumpet, -1, MIX_MAX_VOLUME / 4, trumpet->defaultChannel, 0);
+			soundPlay(altoSax, -1, MIX_MAX_VOLUME / 4, altoSax->defaultChannel, 0);
+			soundPlay(baritone, -1, MIX_MAX_VOLUME / 4, baritone->defaultChannel, 0);
+			soundAdjustVolumeAll(0);
 			musicPlaying = 1;
 		}
 
@@ -951,7 +980,7 @@ int main(int argc, char * argv[])
         //slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());
     }
     slog("---==== END ====---");
-	graph_clear(fieldGraph);
+	graph_clear(&fieldGraph);
 	TTF_Quit();
 	SDL_DestroyTexture(message);
 	SDL_FreeSurface(surfaceMessage);

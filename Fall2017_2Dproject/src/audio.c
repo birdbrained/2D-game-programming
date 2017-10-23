@@ -200,6 +200,22 @@ void soundAdjustVolume(Sound * sound, float volume)
 	Mix_VolumeChunk(sound->sound, volume);
 }
 
+void soundAdjustVolumeAll(float volume)
+{
+	int i = 0;
+
+	for (i = 0; i < soundManager.maxSounds; i++)
+	{
+		if (soundManager.soundList[i].inUse > 0)
+		{
+			if (soundManager.soundList[i].instrument != Instrument_Unassigned)
+			{
+				soundAdjustVolume(&soundManager.soundList[i], volume);
+			}
+		}
+	}
+}
+
 void soundFree(Sound * sound)
 {
 	if (!sound)

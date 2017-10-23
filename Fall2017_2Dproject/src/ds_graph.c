@@ -62,20 +62,56 @@ void * graph_delete_node(GraphNode ** nodeThatDies)
 		slog("Error: cannot delete a null graph node");
 		return NULL;
 	}
-	if (!(*nodeThatDies))
+	if (!(*nodeThatDies) || (*nodeThatDies) < 5)
 	{
 		slog("Error: cannot delete a null graph node");
 		return NULL;
 	}
 
 	if ((*nodeThatDies)->up_node != NULL)
-		(*nodeThatDies)->up_node->down_node = (*nodeThatDies)->down_node;
+	{
+		if ((*nodeThatDies)->down_node != NULL)
+		{
+			(*nodeThatDies)->up_node->down_node = (*nodeThatDies)->down_node;
+		}
+		else
+		{
+			(*nodeThatDies)->up_node->down_node = NULL;
+		}
+	}
 	if ((*nodeThatDies)->right_node != NULL)
-		(*nodeThatDies)->right_node->left_node = (*nodeThatDies)->left_node;
+	{
+		if ((*nodeThatDies)->left_node != NULL)
+		{
+			(*nodeThatDies)->right_node->left_node = (*nodeThatDies)->left_node;
+		}
+		else
+		{
+			(*nodeThatDies)->right_node->left_node = NULL;
+		}
+	}
 	if ((*nodeThatDies)->down_node != NULL)
-		(*nodeThatDies)->down_node->up_node = (*nodeThatDies)->up_node;
+	{
+		if ((*nodeThatDies)->up_node != NULL)
+		{
+			(*nodeThatDies)->down_node->up_node = (*nodeThatDies)->up_node;
+		}
+		else
+		{
+			(*nodeThatDies)->down_node->up_node = NULL;
+		}
+	}
 	if ((*nodeThatDies)->left_node != NULL)
-		(*nodeThatDies)->left_node->right_node = (*nodeThatDies)->right_node;
+	{
+		if ((*nodeThatDies)->right_node != NULL)
+		{
+			(*nodeThatDies)->left_node->right_node = (*nodeThatDies)->right_node;
+		}
+		else
+		{
+			(*nodeThatDies)->left_node->right_node = NULL;
+		}
+	}
 
 	data = (*nodeThatDies)->data;
 	(*nodeThatDies)->data = NULL;
@@ -111,7 +147,7 @@ int graph_clear(Graph ** graphThatDies)
 		{
 			temp = horizontal_iterator;
 			horizontal_iterator = horizontal_iterator->right_node;
-			graph_delete_node(temp);
+			graph_delete_node(&temp);
 		}
 	}
 
@@ -249,17 +285,18 @@ int graph_zero_all(Graph ** graph)
 		while (hor_iter != NULL)
 		{
 			hor_iter->data = 0;
+			hor_iter->traversed = 0;
 			hor_iter = hor_iter->right_node;
 		}
 		ver_iter = ver_iter->down_node;
 		hor_iter = ver_iter;
 	}
-	/*(*graph)->numAltoSaxes = 0;
+	(*graph)->numAltoSaxes = 0;
 	(*graph)->numBaritones = 0;
 	(*graph)->numFlutes = 0;
 	(*graph)->numOtherInstruments = 0;
 	(*graph)->numSnareDrums = 0;
-	(*graph)->numTrumpets = 0;*/
+	(*graph)->numTrumpets = 0;
 	return 0;
 }
 

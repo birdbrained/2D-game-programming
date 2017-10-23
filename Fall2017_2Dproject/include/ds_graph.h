@@ -17,6 +17,7 @@ typedef struct graphnode_s
 	struct graphnode_s * down_node;
 	struct graphnode_s * left_node;
 	size_t elementSize;					/**<The size of the data held*/
+	Uint8 traversed;
 }GraphNode;
 
 /**
@@ -27,12 +28,12 @@ typedef struct graph_s
 	GraphNode * head;					/**<Pointer to head node (start)*/
 	GraphNode * tail;					/**<Pointer to tail node (most recently added)*/
 	int width;							/**<How many nodes should be in one row*/
-	/*Uint16 numSnareDrums;
+	Uint16 numSnareDrums;
 	Uint16 numFlutes;
 	Uint16 numTrumpets;
 	Uint16 numAltoSaxes;
 	Uint16 numBaritones;
-	Uint16 numOtherInstruments;*/
+	Uint16 numOtherInstruments;
 }Graph;
 
 /**

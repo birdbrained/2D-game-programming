@@ -4,7 +4,7 @@ sprite:				images/sprites/cool32x.png
 update:				move
 Instrument:			altosax
 instrumentSprite:	images/sprites/instrument_alto_sax.png
-statMarching:		10
+statMarching:		30
 statMusic:			92
 statMorale:			33
 statMotivation:		15
