@@ -1,10 +1,10 @@
 name:				Nicolai
-fav_thing:			Farting
-sprite:				images/sprites/meh32x.png
+fav_thing:			Exisiting
+sprite:				images/sprites/green32x.png
 update:				move
 Instrument:			flute
 instrumentSprite:	images/sprites/instrument_flute.png
-statMarching:		40
+statMarching:		53
 statMusic:			47
 statMorale:			70
 statMotivation:		60

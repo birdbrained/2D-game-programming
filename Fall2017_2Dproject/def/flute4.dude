@@ -1,6 +1,6 @@
 name:				Whistle-face
 fav_thing:			Farting
-sprite:				images/sprites/meh32x.png
+sprite:				images/sprites/green32x.png
 update:				move
 Instrument:			flute
 instrumentSprite:	images/sprites/instrument_flute.png
