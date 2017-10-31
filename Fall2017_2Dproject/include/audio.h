@@ -7,6 +7,7 @@
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include <stdio.h>
+#include <fmod.h>
 #include "simple_logger.h"
 #include "entity_s.h"
 
@@ -22,6 +23,7 @@ typedef struct sound_s
 	float volume;						/**<earrape adjuster*/
 	int defaultChannel;					/**<default channel to play on*/
 	Instrument instrument;				/**<the instrument that is playing*/
+	FMOD_SOUND *fsound;
 }Sound;
 
 /**

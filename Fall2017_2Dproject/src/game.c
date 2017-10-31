@@ -3,6 +3,7 @@
 #include <SDL_mixer.h>
 #include <stdio.h>
 #include <time.h>
+#include <fmod.h>
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
@@ -106,7 +107,7 @@ void close_level(TileMap * tile_map, Graph * fieldGraph)
 	{
 		cd = NULL;
 	}
-	graph_clear(fieldGraph);
+	graph_clear(&fieldGraph);
 	entityDeleteAll();
 	tilemap_clear(tile_map);
 	gf2d_sprite_clear_all();
@@ -278,6 +279,9 @@ int main(int argc, char * argv[])
 	Uint32 musicPlaying = 0;
 	//Sound *clap = NULL;
 	Sound *cdEject = NULL;
+
+	FMOD_SYSTEM *system;
+	FMOD_SOUND *fsound;
 
 	/*TTF_Font *PencilFont = TTF_OpenFont("fonts/Pencil.ttf", 24);
 	if (!PencilFont)
@@ -473,6 +477,11 @@ int main(int argc, char * argv[])
 	//baritone = soundNew(Instrument_Baritone);
 	baritone = soundLoad("music/bg/meeeeh-Baritone.ogg", 12.0f, Instrument_Baritone, Instrument_Baritone);
 
+	FMOD_System_Create(&system);
+	FMOD_System_Init(system, 100, FMOD_INIT_NORMAL, 0);
+	FMOD_System_CreateSound(system, "music/bg/NJIT.ogg", FMOD_DEFAULT, 0, &fsound);
+	//FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
+
 	//soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
 	//soundPlay(flute, -1, 1, flute->defaultChannel, 0);
 	//soundPlay(trumpet, -1, 1, trumpet->defaultChannel, 0);
@@ -530,6 +539,7 @@ int main(int argc, char * argv[])
     {
         SDL_PumpEvents();   // update SDL's internal event structures
         keys = SDL_GetKeyboardState(NULL); // get the keyboard state for this frame
+		FMOD_System_Update(system);
         /*update things here*/
         SDL_GetMouseState(&mx,&my);
 		SDL_PollEvent(&e);
@@ -980,6 +990,8 @@ int main(int argc, char * argv[])
         //slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());
     }
     slog("---==== END ====---");
+	FMOD_Sound_Release(fsound);
+	FMOD_System_Release(system);
 	graph_clear(&fieldGraph);
 	TTF_Quit();
 	SDL_DestroyTexture(message);
