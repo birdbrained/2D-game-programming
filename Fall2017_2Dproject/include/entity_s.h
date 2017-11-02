@@ -105,6 +105,7 @@ typedef struct entity_s
 	int statMotivation;
 	short unsigned int isSectionLeader;
 	int currentPosition;
+	int nextPosition;
 	Vector2D pathToDraw;
 	Vector4D pathColor;
 }Entity;
@@ -170,7 +171,15 @@ void entityDraw(Entity * e);
  */
 void entityDrawAll();
 
+/**
+ * @brief Increments the frame of animation for the given entity, will loop once max frame is hit
+ * @param self The entity to change the frame of
+ */
 void entityIncrementCurrentFrame(Entity * self);
+
+/**
+ * @brief Increments all entity's frames
+ */
 void entityIncrementCurrentFrameAll();
 
 /**
@@ -208,6 +217,9 @@ char * entityGetInstrumentName(Entity * e);
  * @param graph The graph to update
  */
 void entityUpdateGraphPositionAll(Graph ** graph);
+
+void entityUpdatePosition(Entity * self, TileMap * map);
+void entityUpdatePositionAll(TileMap * map);
 
 
 

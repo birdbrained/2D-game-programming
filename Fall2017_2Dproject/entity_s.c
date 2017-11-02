@@ -14,6 +14,8 @@ typedef struct
 //similar to private in this case
 static EntityManager entityManager = { 0, NULL, 0 };
 
+Vector4D transparent = { 255, 255, 255, 122 };
+
 struct think_function think_table[] =
 {
 	{move, "move"},
@@ -224,9 +226,25 @@ void entityDraw(Entity * self)
 		);
 	}
 
+	if (self->nextPosition != self->currentPosition)
+	{
+		gf2d_sprite_draw(
+			self->mySprite,
+			vector2d(self->nextPosition % 18 * 64, self->nextPosition / 18 * 64),
+			&self->scale,
+			&self->scaleCenter,
+			&self->rotation,
+			&self->flip,
+			&transparent,
+			0
+		);
+		self->pathToDraw.x = self->nextPosition % 18 * 64 + 32;
+		self->pathToDraw.y = self->nextPosition / 18 * 64 + 32;
+	}
+
 	if (!vector2d_equal(self->pathToDraw, vector2d(-1, -1)))
 	{
-		gf2d_draw_line(self->position, self->pathToDraw, self->pathColor);
+		gf2d_draw_line(vector2d(self->position.x + 32, self->position.y + 32), self->pathToDraw, self->pathColor);
 	}
 }
 
@@ -485,6 +503,7 @@ void entityLoadAllFromFile(FILE * file, TileMap * map/*, Graph ** graph*/)
 					continue;
 				}
 				currNew->currentPosition = i;
+				currNew->nextPosition = i;
 				currNew->position = vector2d((i % 18) * 64, (i / 18) * 64);
 				map->space[i] = 1;
 				/*if (graph != NULL)
@@ -615,6 +634,36 @@ void entityUpdateGraphPositionAll(Graph ** graph)
 					break;
 				}
 			}
+		}
+	}
+}
+
+void entityUpdatePosition(Entity * self, TileMap * map)
+{
+	if (!self)
+	{
+		return;
+	}
+
+	if (self->nextPosition != self->currentPosition)
+	{
+		self->currentPosition = self->nextPosition;
+		self->position.x = self->currentPosition % map->width * map->tilemapSprite->frame_w + map->xPos;
+		self->position.y = self->currentPosition / map->width * map->tilemapSprite->frame_h + map->yPos;
+		self->pathToDraw.x = -1;
+		self->pathToDraw.y = -1;
+	}
+}
+
+void entityUpdatePositionAll(TileMap * map)
+{
+	int i = 0;
+
+	for (i = 0; i < entityManager.maxEntities; i++)
+	{
+		if (entityManager.entityList[i].inUse > 0)
+		{
+			entityUpdatePosition(&entityManager.entityList[i], map);
 		}
 	}
 }

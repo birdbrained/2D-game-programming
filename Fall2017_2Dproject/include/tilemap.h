@@ -85,4 +85,6 @@ int tilemap_find_tile(int mx, int my, TileMap * map);
  */
 void tilemap_clear(TileMap * map);
 
+void tilemap_clear_space(TileMap ** map);
+
 #endif // !__TILEMAP__

@@ -221,3 +221,13 @@ void tilemap_clear(TileMap * map)
 	map->boundingBox = malloc(sizeof(Rect));
 	memset(map->boundingBox, 0, sizeof(Rect));
 }
+
+void tilemap_clear_space(TileMap ** map)
+{
+	if (!map)
+	{
+		slog("Error: could not clear the space array from a null map");
+	}
+
+	memset((*map)->space, 0, sizeof((*map)->space));
+}

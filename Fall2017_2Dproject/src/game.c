@@ -778,16 +778,17 @@ int main(int argc, char * argv[])
 						//slog("poop");
 						tile_map->space[pickedUp->currentPosition] = 0;
 						tile_map->space[tileClicked] = 1;
-						pickedUp->currentPosition = tileClicked;
+						//pickedUp->currentPosition = tileClicked;
+						pickedUp->nextPosition = tileClicked;
 						mouse = mouseSprite;
-						pickedUp->position.x = (mx - tile_map->xPos) / tile_map->tileWidth * (tile_map->tileWidth);
-						pickedUp->position.y = (my - tile_map->yPos) / tile_map->tileHeight * (tile_map->tileHeight);
+						//pickedUp->position.x = (mx - tile_map->xPos) / tile_map->tileWidth * (tile_map->tileWidth);
+						//pickedUp->position.y = (my - tile_map->yPos) / tile_map->tileHeight * (tile_map->tileHeight);
 						pickedUp = NULL;
 						pickedUpNode = NULL;
-						graph_zero_all(&fieldGraph);
-						entityUpdateGraphPositionAll(&fieldGraph);
-						soundAdjustVolumeAll(0);
-						score = formation_detect(&fieldGraph);
+						//graph_zero_all(&fieldGraph);
+						//entityUpdateGraphPositionAll(&fieldGraph);
+						//soundAdjustVolumeAll(0);
+						//score = formation_detect(&fieldGraph);
 						surfaceMessage = TTF_RenderText_Solid(PencilFont, "None selected", colorBlack);
 					}
 					message = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), surfaceMessage);
@@ -870,6 +871,20 @@ int main(int argc, char * argv[])
 		case SDL_CONTROLLERDEVICEREMOVED:
 			slog("Removed a controller");
 			controllerConnected = 0;
+			break;
+		case SDL_KEYDOWN:
+			switch (e.key.keysym.sym)
+			{
+			case SDLK_RETURN:
+				//slog("pressed enter");
+				graph_zero_all(&fieldGraph);
+				tilemap_clear_space(&tile_map);
+				entityUpdatePositionAll(tile_map);
+				entityUpdateGraphPositionAll(&fieldGraph);
+				soundAdjustVolumeAll(0);
+				score = formation_detect(&fieldGraph);
+				break;
+			}
 			break;
 		}
 

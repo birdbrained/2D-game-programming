@@ -5,6 +5,7 @@
 #include "gf2d_graphics.h"
 
 #define COLOR_NONE vector4d(0, 0, 0, 0)
+#define COLOR_TRANSPARENT vector4d(0, 0, 0, 122)
 #define COLOR_WHITE vector4d(255, 255, 255, 255)
 #define COLOR_BLACK vector4d(0, 0, 0, 255)
 #define COLOR_RED vector4d(255, 0, 0, 255)
