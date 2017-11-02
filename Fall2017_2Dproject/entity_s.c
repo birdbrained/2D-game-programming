@@ -78,6 +78,8 @@ Entity * entityNew()
 			entityManager.entityList[i].id = entityManager.increment++;
 			entityManager.entityList[i].inUse = 1;
 			vector2d_set(entityManager.entityList[i].scale, 1, 1);
+			vector2d_set(entityManager.entityList[i].pathToDraw, -1, -1);
+			entityManager.entityList[i].pathColor = COLOR_NONE;
 			//entityManager.entityList[i].actor.color = vector4d(1, 1, 1, 1);
 			return &entityManager.entityList[i];
 		}
@@ -221,6 +223,11 @@ void entityDraw(Entity * self)
 			0
 		);
 	}
+
+	if (!vector2d_equal(self->pathToDraw, vector2d(-1, -1)))
+	{
+		gf2d_draw_line(self->position, self->pathToDraw, self->pathColor);
+	}
 }
 
 void entityDrawAll()
@@ -327,21 +334,45 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 		{
 			fscanf(file, "%s", holder);
 			if (strcmp(holder, "flute") == 0)
+			{
 				new_entity->myInstrument = Instrument_Flute;
+				new_entity->pathColor = COLOR_BLUE_LIGHT;
+			}
 			else if (strcmp(holder, "clarinet") == 0)
+			{
 				new_entity->myInstrument = Instrument_Clarinet;
+				new_entity->pathColor = COLOR_PURPLE;
+			}
 			else if (strcmp(holder, "altosax") == 0)
+			{
 				new_entity->myInstrument = Instrument_Alto_Saxophone;
+				new_entity->pathColor = COLOR_YELLOW;
+			}
 			else if (strcmp(holder, "tenorsax") == 0)
+			{
 				new_entity->myInstrument = Instrument_Tenor_Saxophone;
+				new_entity->pathColor = COLOR_ORANGE;
+			}
 			else if (strcmp(holder, "trumpet") == 0)
+			{
 				new_entity->myInstrument = Instrument_Trumpet;
+				new_entity->pathColor = COLOR_RED;
+			}
 			else if (strcmp(holder, "baritone") == 0)
+			{
 				new_entity->myInstrument = Instrument_Baritone;
+				new_entity->pathColor = COLOR_BLUE;
+			}
 			else if (strcmp(holder, "tuba") == 0)
+			{
 				new_entity->myInstrument = Instrument_Tuba;
+				new_entity->pathColor = COLOR_GREEN;
+			}
 			else if (strcmp(holder, "snaredrum") == 0)
+			{
 				new_entity->myInstrument = Instrument_Snare_Drum;
+				new_entity->pathColor = COLOR_BLACK;
+			}
 			else if (strcmp(holder, "bassdrum") == 0)
 				new_entity->myInstrument = Instrument_Bass_Drum;
 			else if (strcmp(holder, "cgflag") == 0)

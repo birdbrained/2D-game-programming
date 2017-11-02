@@ -2,6 +2,7 @@
 #define __DS_GRAPH__
 
 #include <stdlib.h>
+#include "gf2d_draw.h"
 #include "simple_logger.h"
 #include "tilemap.h"
 
@@ -106,6 +107,21 @@ Graph * graph_init_from_tilemap(TileMap * map, size_t elementSize);
  * @param graph The graph to traverse
  */
 void graph_print(Graph * graph);
+
+GraphNode * graph_find_node(Graph ** graph, unsigned int x, unsigned int y);
+
+/**
+ * @brief Draws a representation of all walkable tiles in a given radius
+ * @param node The starting node
+ * @param radius The maximum number of steps required to draw
+ * @param tileWidth The width (in pixels) of a tile
+ * @param tileHeight The height (in pixels) of a tile
+ * @param xPos X offset the graph starts at
+ * @param yPos Y offset the graph starts at
+ * @param color The color of the square to draw
+ * @param forceAll Set to 1 if you want to not care about what the data of each node holds
+ */
+void graph_draw_walkable_tiles(GraphNode * node, int radius, int tileWidth, int tileHeight, int xPos, int yPos, Vector4D color, Uint8 forceAll);
 
 
 #endif // !__DS_GRAPH__

@@ -4,6 +4,7 @@
 #include "gf2d_vector.h"
 #include "gf2d_graphics.h"
 
+#define COLOR_NONE vector4d(0, 0, 0, 0)
 #define COLOR_WHITE vector4d(255, 255, 255, 255)
 #define COLOR_BLACK vector4d(0, 0, 0, 255)
 #define COLOR_RED vector4d(255, 0, 0, 255)
@@ -12,6 +13,8 @@
 #define COLOR_YELLOW vector4d(255, 255, 0, 255)
 #define COLOR_ORANGE vector4d(255, 155, 0, 255)
 #define COLOR_PINK vector4d(255, 155, 255, 255)
+#define COLOR_PURPLE vector4d(102, 0, 255, 255)
+#define COLOR_BLUE_LIGHT vector4d(0, 201, 255, 255)
 
 typedef struct rect_s
 {

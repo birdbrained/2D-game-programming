@@ -8,6 +8,7 @@
 #include "gf2d_vector.h"
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
+#include "gf2d_draw.h"
 #include "shape.h"
 #include "tilemap.h"
 #include "ds_graph.h"
@@ -104,6 +105,8 @@ typedef struct entity_s
 	int statMotivation;
 	short unsigned int isSectionLeader;
 	int currentPosition;
+	Vector2D pathToDraw;
+	Vector4D pathColor;
 }Entity;
 
 /**
@@ -178,9 +181,34 @@ void entityIncrementCurrentFrameAll();
  */
 Entity * entityLoadFromFile(FILE * file, Entity * new_entity);
 
+/**
+ * @brief Loads all entities specified in a file
+ * @param file File to read through
+ * @map TileMap to populate entities onto
+ */
 void entityLoadAllFromFile(FILE * file, TileMap * map/*, Graph ** graph*/);
+
+/**
+ * @brief Checks to see if a specified point collides with any exisiting entity
+ * @param mx X position to check
+ * @param my Y position to check
+ * @returns A reference to the entity inside of the point; NULL if no collision
+ */
 Entity * entityCheckCollisionInAll(int mx, int my);
+
+/**
+ * @brief Gets a string representation of a given entity's instrument
+ * @param e The entity to grab the instrument from
+ * @returns A character array of the entity's instrument; joke answer if failure
+ */
 char * entityGetInstrumentName(Entity * e);
+
+/**
+ * @brief Updates the position of all entities on a graph
+ * @param graph The graph to update
+ */
 void entityUpdateGraphPositionAll(Graph ** graph);
+
+
 
 #endif // ! __ENTITY_S__

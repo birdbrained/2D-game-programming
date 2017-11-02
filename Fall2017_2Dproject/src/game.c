@@ -266,6 +266,7 @@ int main(int argc, char * argv[])
 	SDL_Surface *icon = SDL_LoadBMP("images/sprites/guy16x.bmp");
 	TileMap *tile_map;
 	Graph *fieldGraph;
+	GraphNode *pickedUpNode = NULL;
 
 	FILE *bandFile;
 	FILE *levelFile;
@@ -734,6 +735,11 @@ int main(int argc, char * argv[])
 
 		//entityDraw(fileLoadedDude);
 
+		if (pickedUpNode != NULL && pickedUp != NULL)
+		{
+			graph_draw_walkable_tiles(pickedUpNode, pickedUp->statMarching / 10, tile_map->tileWidth, tile_map->tileHeight, tile_map->xPos, tile_map->yPos, COLOR_RED, 0);
+		}
+
 		entityDrawAll();
 		entityUpdateAll();
 		entityIncrementCurrentFrameAll();
@@ -747,7 +753,7 @@ int main(int argc, char * argv[])
 		if (pickedUp != NULL)
 		{
 			draw_line(vector2d(pickedUp->position.x + pickedUp->mySprite->frame_w, pickedUp->position.y + pickedUp->mySprite->frame_h),
-						vector2d(mx, my), COLOR_RED);
+						vector2d(mx, my), pickedUp->pathColor);
 		}
 
 		switch (e.type)
@@ -777,6 +783,7 @@ int main(int argc, char * argv[])
 						pickedUp->position.x = (mx - tile_map->xPos) / tile_map->tileWidth * (tile_map->tileWidth);
 						pickedUp->position.y = (my - tile_map->yPos) / tile_map->tileHeight * (tile_map->tileHeight);
 						pickedUp = NULL;
+						pickedUpNode = NULL;
 						graph_zero_all(&fieldGraph);
 						entityUpdateGraphPositionAll(&fieldGraph);
 						soundAdjustVolumeAll(0);
@@ -816,31 +823,7 @@ int main(int argc, char * argv[])
 			break;
 		case SDL_MOUSEBUTTONUP:
 			if (e.button.button == SDL_BUTTON_LEFT)
-			//if (mousePress(&e.button))
 			{
-				/*if (point_in_rect(mx, my, guy->boundingBox))
-				{
-					slog("collision with guy (%s)", guy->name);
-				}
-				if (point_in_rect(mx, my, fileLoadedDude->boundingBox))
-				{
-					slog("collision with guy (%s)", &fileLoadedDude->name);
-					if (pickedUp == NULL)
-					{
-						pickedUp = fileLoadedDude;
-						mouse = fileLoadedDude->mySprite;
-					}
-				}
-				if (point_in_rect(mx, my, fileLoadedDude2->boundingBox))
-				{
-					slog("collision with guy (%s)", &fileLoadedDude2->name);
-					if (pickedUp == NULL)
-					{
-						pickedUp = fileLoadedDude2;
-						mouse = fileLoadedDude2->mySprite;
-					}
-				}*/
-
 				collision = entityCheckCollisionInAll(mx, my);
 				if (collision != NULL && collision->myInstrument != Instrument_Unassigned)
 				{
@@ -849,6 +832,8 @@ int main(int argc, char * argv[])
 					{
 						pickedUp = collision;
 						mouse = collision->mySprite;
+						pickedUpNode = graph_find_node(&fieldGraph, (pickedUp->currentPosition % tile_map->width), (pickedUp->currentPosition / tile_map->width));
+
 						surfaceMessage = TTF_RenderText_Solid(PencilFont, &pickedUp->name, colorBlack);
 						message = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), surfaceMessage);
 						SDL_QueryTexture(message, NULL, NULL, &texW, &texH);
@@ -861,7 +846,6 @@ int main(int argc, char * argv[])
 						instrumentRect.w = instX;
 						instrumentRect.h = instY;
 
-						//itoa/(pickedUp->statMarching, statMarchingText, 5);
 						snprintf(statMarchingText, 32, "%d", pickedUp->statMarching);
 						statMarchingSurface = TTF_RenderText_Solid(PencilFont, statMarchingText, colorWhite);
 						statMarchingTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), statMarchingSurface);

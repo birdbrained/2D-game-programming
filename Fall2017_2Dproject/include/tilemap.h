@@ -29,8 +29,8 @@ typedef struct tilemap_s
 	//const LL_Node *tiles;
 	//PriorityQueue *tiles_head;
 	//PriorityQueue *tiles_tail;
-	int tiles[512];
-	int space[512];
+	int tiles[512];					/**<array representing what tile to load from the file*/
+	int space[512];					/**<array representing what spaces are occupied*/
 	unsigned int width;
 	unsigned int height;
 	int xPos;						/**<Starting x position of tilemap*/

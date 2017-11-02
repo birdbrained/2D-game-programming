@@ -342,3 +342,149 @@ void graph_print(Graph * graph)
 		hor_iter = ver_iter;
 	}
 }
+
+GraphNode * graph_find_node(Graph ** graph, unsigned int x, unsigned int y)
+{
+	GraphNode * iter = NULL;
+
+	if (graph == NULL)
+	{
+		slog("Error: cannot find node from an empty graph");
+		return NULL;
+	}
+
+	iter = graph_new_node((*graph)->head->elementSize);
+	iter = (*graph)->head;
+
+	while (iter != NULL && iter->x < x)
+	{
+		iter = iter->right_node;
+	}
+	if (iter == NULL || iter->x != x)
+	{
+		slog("Error: node with x value (%i) does not exist in graph", x);
+		return NULL;
+	}
+	while (iter != NULL && iter->y < y)
+	{
+		iter = iter->down_node;
+	}
+	if (iter == NULL || iter->y != y)
+	{
+		slog("Error: node with y value (%i) does not exist in graph", y);
+		return NULL;
+	}
+
+	//slog("Found node x (%i) y (%i) data (%i)", iter->x, iter->y, iter->data);
+	return iter;
+}
+
+void graph_draw_walkable_tiles(GraphNode * node, int radius, int tileWidth, int tileHeight, int xPos, int yPos, Vector4D color, Uint8 forceAll)
+{
+	GraphNode * start = node;
+	GraphNode * hor_iter = node;
+	GraphNode * ver_iter = node;
+	SDL_Rect rect = { 0, 0, tileWidth, tileHeight };
+	int x = radius;
+	int i = 0;
+
+	if (!node)
+	{
+		slog("Error: node was null");
+		return;
+	}
+
+	//draw the right side
+	while (x >= 0)
+	{
+		rect.x = hor_iter->x * tileWidth + xPos;
+		rect.y = hor_iter->y * tileHeight + yPos;
+		gf2d_draw_rect(rect, color);
+		for (i = 0; i < x; i++)
+		{
+			ver_iter = ver_iter->up_node;
+			if (ver_iter == NULL)
+			{
+				break;
+			}
+			else
+			{
+				rect.x = ver_iter->x * tileWidth + xPos;
+				rect.y = ver_iter->y * tileHeight + yPos;
+				gf2d_draw_rect(rect, color);
+			}
+		}
+		ver_iter = hor_iter;
+		for (i = 0; i < x; i++)
+		{
+			ver_iter = ver_iter->down_node;
+			if (ver_iter == NULL)
+			{
+				break;
+			}
+			else
+			{
+				rect.x = ver_iter->x * tileWidth + xPos;
+				rect.y = ver_iter->y * tileHeight + yPos;
+				gf2d_draw_rect(rect, color);
+			}
+		}
+		hor_iter = hor_iter->right_node;
+		if (hor_iter == NULL)
+		{
+			break;
+		}
+		ver_iter = hor_iter;
+		x--;
+	}
+
+	//draw the left side
+	x = radius - 1;
+	ver_iter = start->left_node;
+	hor_iter = start->left_node;
+	if (ver_iter != NULL)
+	{
+		while (x >= 0)
+		{
+			rect.x = hor_iter->x * tileWidth + xPos;
+			rect.y = hor_iter->y * tileHeight + yPos;
+			gf2d_draw_rect(rect, color);
+			for (i = 0; i < x; i++)
+			{
+				ver_iter = ver_iter->up_node;
+				if (ver_iter == NULL)
+				{
+					break;
+				}
+				else
+				{
+					rect.x = ver_iter->x * tileWidth + xPos;
+					rect.y = ver_iter->y * tileHeight + yPos;
+					gf2d_draw_rect(rect, color);
+				}
+			}
+			ver_iter = hor_iter;
+			for (i = 0; i < x; i++)
+			{
+				ver_iter = ver_iter->down_node;
+				if (ver_iter == NULL)
+				{
+					break;
+				}
+				else
+				{
+					rect.x = ver_iter->x * tileWidth + xPos;
+					rect.y = ver_iter->y * tileHeight + yPos;
+					gf2d_draw_rect(rect, color);
+				}
+			}
+			hor_iter = hor_iter->left_node;
+			if (hor_iter == NULL)
+			{
+				break;
+			}
+			ver_iter = hor_iter;
+			x--;
+		}
+	}
+}
