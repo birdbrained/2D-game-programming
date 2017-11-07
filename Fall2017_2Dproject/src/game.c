@@ -317,6 +317,11 @@ int main(int argc, char * argv[])
 	SDL_Rect scoreRect = { 400, 680, 0, 0 };
 	char scoreText[32];
 
+	SDL_Surface *consoleSurface;
+	SDL_Texture *consoleTexture;
+	int consoleX = 0, consoleY = 0;
+	SDL_Rect consoleRectie = { 50, 100, 0, 0 };
+
 	Uint8 playButtonPressed = 0;
 
 	srand(time(NULL));
@@ -515,6 +520,12 @@ int main(int argc, char * argv[])
 	SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreX, &scoreY);
 	scoreRect.w = scoreX;
 	scoreRect.h = scoreY;
+
+	consoleSurface = TTF_RenderText_Solid(PencilFont, consoleText, colorBlack);
+	consoleTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), consoleSurface);
+	SDL_QueryTexture(consoleTexture, NULL, NULL, &consoleX, &consoleY);
+	consoleRectie.w = consoleX;
+	consoleRectie.h = consoleY;
 
 	cd = entityNew();
 	cd->mySprite = gf2d_sprite_load_all("images/gui/cd.png", 128, 128, 1);
@@ -882,7 +893,11 @@ int main(int argc, char * argv[])
 				{
 					SDL_StopTextInput();
 					slog("entered text: %s", consoleText);
-					consoleText[0] = 0x00;
+					consoleSurface = TTF_RenderText_Solid(PencilFont, "", colorBlack);
+					consoleTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), consoleSurface);
+					SDL_QueryTexture(consoleTexture, NULL, NULL, &consoleX, &consoleY);
+					consoleRectie.w = consoleX;
+					consoleRectie.h = consoleY;
 					//handle_console(gf2d_graphics_get_renderer());
 				}
 				break;
@@ -891,11 +906,23 @@ int main(int argc, char * argv[])
 		case SDL_TEXTINPUT:
 			if (SDL_IsTextInputActive() == SDL_TRUE)
 			{
-				strcat(consoleText, e.text.text);
+				//strcat(consoleText, e.text.text);
 				if (strlen(e.text.text) == 0 || e.text.text[0] == '\n' || markedRect.w < 0)
 					break;
 
-				//slog("Keyboard input: %s", e.text.text);
+				slog("Keyboard input: %s", e.text.text);
+
+				if (strlen(consoleText) + strlen(e.text.text) < sizeof(consoleText))
+				{
+					strncat(consoleText, e.text.text, sizeof(consoleText));
+					consoleSurface = TTF_RenderText_Solid(PencilFont, consoleText, colorBlack);
+					consoleTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), consoleSurface);
+					SDL_QueryTexture(consoleTexture, NULL, NULL, &consoleX, &consoleY);
+					consoleRectie.w = consoleX;
+					consoleRectie.h = consoleY;
+				}
+
+				slog("Text inputted: %s", consoleText);
 
 				consoleMarkedText[0] = 0;
 				//handle_console(gf2d_graphics_get_renderer());
@@ -963,6 +990,10 @@ int main(int argc, char * argv[])
 		//gf2d_sprite_draw_image(textBox, vector2d(50, 50));
 		if (controllerConnected && controllerIcon)
 			gf2d_sprite_draw(controllerIcon, vector2d(700, 600), &scaleUp, NULL, NULL, NULL, NULL, 0);
+
+		if (consoleTexture)
+			SDL_RenderCopy(gf2d_graphics_get_renderer(), consoleTexture, NULL, &consoleRectie);
+
 		if (pickedUp == NULL)
 		{
 			gf2d_sprite_draw(
