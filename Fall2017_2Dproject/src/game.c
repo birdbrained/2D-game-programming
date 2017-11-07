@@ -84,6 +84,14 @@ static Entity *playButton;
 static Sprite *guiMarchingStat;
 //Graph *fieldGraph;
 static int score;
+static char consoleText[512] = "";
+static char consoleMarkedText[512] = "";
+static SDL_Rect consoleRect, markedRect;
+static TTF_Font *PencilFont;
+static SDL_Color colorBlack = { 0, 0, 0, 255 };
+static SDL_Color colorWhite = { 255, 255, 255, 255 };
+static SDL_Color colorRed = { 255, 0, 0, 255 };
+static int cursor = 0;
 
 void close_level(TileMap * tile_map, Graph * fieldGraph)
 {
@@ -173,6 +181,7 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 			}
 			entityLoadAllFromFile(file_temp, tile_map/*, &fieldGraph*/);
 			fclose(file_temp);
+			tilemap_clear_space(&tile_map);
 			graph_zero_all(&fieldGraph);
 			entityUpdateGraphPositionAll(&fieldGraph);
 			score = formation_detect(&fieldGraph);
@@ -217,6 +226,20 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 	return fieldGraph;
 }
 
+void input_init()
+{
+	consoleRect.x = 100;
+	consoleRect.y = 100;
+	consoleRect.w = 1000;
+	consoleRect.h = 50;
+
+	consoleText[0] = 0;
+	markedRect = consoleRect;
+	consoleMarkedText[0] = 0;
+
+	SDL_StartTextInput();
+}
+
 int main(int argc, char * argv[])
 {
     /*variable declarations,
@@ -233,18 +256,7 @@ int main(int argc, char * argv[])
 	Sprite *galSprite;
 	Sprite *mehSprite;
 	int controllerConnected = 0;
-	/*Sprite *myTileMap;
-	const int level[] = 
-	{ 2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 
-	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2, 
-	  2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3,
-	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2,
-	  2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 
-	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2,
-	  2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 
-	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2,
-	  2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3,
-	  3, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 2 };*/
+
 	FILE *tilemapFile;
 	int tileClicked = 0;
 	int p = 0;
@@ -254,14 +266,7 @@ int main(int argc, char * argv[])
 	Vector2D scaleDown = { 0.5, 0.5 };
 	Vector2D scaleUp = { 2, 2 };
 	Vector2D scaleHalfUp = { 1.5, 1.5 };
-	//IntNode *myLL = IntNode_init(5);
-	/*Student *person;*/
-	/*Entity *guy, *testDude;
-	Entity *en = NULL;
-	Entity *biggo = NULL;
-	FILE *infile;
-	Entity *fileLoadedDude = NULL;
-	Entity *fileLoadedDude2 = NULL;*/
+
 	SDL_Event e;
 	SDL_Surface *icon = SDL_LoadBMP("images/sprites/guy16x.bmp");
 	TileMap *tile_map;
@@ -284,19 +289,10 @@ int main(int argc, char * argv[])
 	FMOD_SYSTEM *system;
 	FMOD_SOUND *fsound;
 
-	/*TTF_Font *PencilFont = TTF_OpenFont("fonts/Pencil.ttf", 24);
-	if (!PencilFont)
-	{
-		slog("Error loading font");
-	}
-	SDL_Color colorBlack = { 255, 255, 255, 255 };
-	SDL_Surface *surfaceMessage = TTF_RenderText_Solid(PencilFont, "placeholdha", colorBlack);
-	SDL_Texture *message = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer, surfaceMessage);
-	Sprite *textBox;*/
-	TTF_Font *PencilFont;
-	SDL_Color colorBlack = { 0, 0, 0, 255 };
-	SDL_Color colorWhite = { 255, 255, 255, 255 };
-	SDL_Color colorRed = { 255, 0, 0, 255 };
+	//TTF_Font *PencilFont;
+	//SDL_Color colorBlack = { 0, 0, 0, 255 };
+	//SDL_Color colorWhite = { 255, 255, 255, 255 };
+	//SDL_Color colorRed = { 255, 0, 0, 255 };
 	SDL_Surface *surfaceMessage;
 	SDL_Texture *message;
 	Sprite *textBox;
@@ -324,6 +320,7 @@ int main(int argc, char * argv[])
 	Uint8 playButtonPressed = 0;
 
 	srand(time(NULL));
+	SDL_SetTextInputRect(&consoleRect);
 
     /*program initializtion*/
     init_logger("dmdwa.log");
@@ -348,9 +345,6 @@ int main(int argc, char * argv[])
     SDL_ShowCursor(SDL_DISABLE);
 	TTF_Init();
 	//fileLoadedDude = entityNew();
-
-	//derp
-	//slog("%i", myLL->data);
     
     /*demo setup*/
     //backgroundSprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
@@ -534,6 +528,8 @@ int main(int argc, char * argv[])
 	strncpy(playButton->name, "playButton", MAX_CHARS);
 	playButton->boundingBox = rect_new(playButton->position.x, playButton->position.y, playButton->mySprite->frame_w, playButton->mySprite->frame_h);
 	
+	//Input for the console
+	//input_init();
 
     /*main game loop*/
     while(!done)
@@ -557,22 +553,10 @@ int main(int argc, char * argv[])
 			gf2d_sprite_draw_image(backgroundSprite, vector2d(0, 0));
 		}
 
-		//Me! trying to add a sprite
-		/*tilemap_draw(
-			myTileMap,
-			level,
-			18,
-			10,
-			0,
-			0);*/
 		if (tile_map)
 		{
 			tilemap_draw_from_data(tile_map);
 		}
-
-		//gf2d_sprite_draw(thing, vector2d(100, 10), &scaleUp, NULL, NULL, NULL, NULL, 0);
-		//gf2d_sprite_draw(thing, vector2d(100, 10), NULL, NULL, NULL, NULL, NULL, 0);
-		//gf2d_sprite_draw(guy->mySprite, guy->position, &(guy->scale), NULL, NULL, NULL, NULL, 0);
 
 		/*if (keys[SDL_SCANCODE_W])
 		{
@@ -884,6 +868,44 @@ int main(int argc, char * argv[])
 				soundAdjustVolumeAll(0);
 				score = formation_detect(&fieldGraph);
 				break;
+			case SDLK_BACKQUOTE:
+				slog("backtick pressed");
+				if (SDL_IsTextInputActive() == SDL_FALSE)
+				{
+					//SDL_StartTextInput();
+					input_init();
+				}
+				strncpy(consoleText, "", 512);
+				break;
+			case SDLK_EQUALS:
+				if (SDL_IsTextInputActive() == SDL_TRUE)
+				{
+					SDL_StopTextInput();
+					slog("entered text: %s", consoleText);
+					consoleText[0] = 0x00;
+					//handle_console(gf2d_graphics_get_renderer());
+				}
+				break;
+			}
+			break;
+		case SDL_TEXTINPUT:
+			if (SDL_IsTextInputActive() == SDL_TRUE)
+			{
+				strcat(consoleText, e.text.text);
+				if (strlen(e.text.text) == 0 || e.text.text[0] == '\n' || markedRect.w < 0)
+					break;
+
+				//slog("Keyboard input: %s", e.text.text);
+
+				consoleMarkedText[0] = 0;
+				//handle_console(gf2d_graphics_get_renderer());
+				break;
+			}
+			break;
+		case SDL_TEXTEDITING:
+			if (SDL_IsTextInputActive() == SDL_TRUE)
+			{
+				strncpy(consoleMarkedText, e.edit.text, 512);
 			}
 			break;
 		}
