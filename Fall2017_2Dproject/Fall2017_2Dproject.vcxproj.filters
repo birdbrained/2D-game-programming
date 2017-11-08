@@ -72,6 +72,9 @@
     <ClCompile Include="src\formation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\gui.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Makefile" />

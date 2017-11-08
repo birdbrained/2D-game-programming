@@ -105,3 +105,37 @@ void gui_delete_all()
 		gui_delete(&guiManager.guiList[i]);
 	}
 }
+
+void gui_draw(GUIWindow * window)
+{
+	if (!window)
+	{
+		slog("Error: cannot draw a gui that does not exist!");
+		return;
+	}
+	if (!window->inUse)
+	{
+		slog("Error: cannot draw a gui that is not in use");
+		return;
+	}
+	if (!(&window->window))
+	{
+		slog("Error: cannot draw a gui that does not have an sdl rect!");
+		return;
+	}
+
+	draw_filled_rect(window->window, window->windowColor);
+}
+
+void gui_draw_all()
+{
+	int i = 0;
+
+	for (i = 0; i < guiManager.maxGUIs; i++)
+	{
+		if (guiManager.guiList[i].inUse > 0)
+		{
+			gui_draw(&guiManager.guiList[i]);
+		}
+	}
+}

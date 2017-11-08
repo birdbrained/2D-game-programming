@@ -16,6 +16,7 @@
 #include "formation.h"
 #include "audio.h"
 #include "text_s.h"
+#include "gui.h"
 #include "think_functions.h"
 
 
@@ -324,6 +325,8 @@ int main(int argc, char * argv[])
 
 	Uint8 playButtonPressed = 0;
 
+	GUIWindow * guii;
+
 	srand(time(NULL));
 	SDL_SetTextInputRect(&consoleRect);
 
@@ -346,6 +349,7 @@ int main(int argc, char * argv[])
 	audioSystemInit(50, 16, 2, 0, 0, 0);
 	soundSystemInit(25);
 	text_system_init(50);
+	gui_system_init(15);
 	score = 0;
     SDL_ShowCursor(SDL_DISABLE);
 	TTF_Init();
@@ -539,6 +543,16 @@ int main(int argc, char * argv[])
 	strncpy(playButton->name, "playButton", MAX_CHARS);
 	playButton->boundingBox = rect_new(playButton->position.x, playButton->position.y, playButton->mySprite->frame_w, playButton->mySprite->frame_h);
 	
+	guii = gui_new();
+	guii->window.x = 10;
+	guii->window.y = 10;
+	guii->window.w = 201;
+	guii->window.h = 77;
+	guii->windowColor.x = 200;
+	guii->windowColor.y = 100;
+	guii->windowColor.z = 220;
+	guii->windowColor.w = 255;
+
 	//Input for the console
 	//input_init();
 
@@ -993,6 +1007,13 @@ int main(int argc, char * argv[])
 
 		if (consoleTexture)
 			SDL_RenderCopy(gf2d_graphics_get_renderer(), consoleTexture, NULL, &consoleRectie);
+
+		gui_draw_all();
+		if (guii->inUse)
+		{
+			//slog("aaa");
+			gui_draw(guii);
+		}
 
 		if (pickedUp == NULL)
 		{

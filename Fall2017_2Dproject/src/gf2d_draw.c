@@ -59,6 +59,21 @@ void gf2d_draw_rect(SDL_Rect rect,Vector4D color)
                            255);
 }
 
+void draw_filled_rect(SDL_Rect rect, Vector4D color)
+{
+	SDL_SetRenderDrawColor(gf2d_graphics_get_renderer(),
+		color.x,
+		color.y,
+		color.z,
+		color.w);
+	SDL_RenderFillRect(gf2d_graphics_get_renderer(), (const struct SDL_Rect *)&rect);
+	SDL_SetRenderDrawColor(gf2d_graphics_get_renderer(),
+		255,
+		255,
+		255,
+		255);
+}
+
 void draw_rect_from_vector4d(Vector4D rect, Vector4D color)
 {
 	SDL_Rect new_rect = { rect.x, rect.y, rect.z, rect.w };
