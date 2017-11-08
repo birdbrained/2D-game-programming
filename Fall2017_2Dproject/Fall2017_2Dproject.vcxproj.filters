@@ -137,5 +137,8 @@
     <ClInclude Include="include\formation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\gui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

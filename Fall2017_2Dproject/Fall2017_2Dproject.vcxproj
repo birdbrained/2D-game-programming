@@ -173,6 +173,7 @@
     <ClInclude Include="include\gf2d_text.h" />
     <ClInclude Include="include\gf2d_types.h" />
     <ClInclude Include="include\gf2d_vector.h" />
+    <ClInclude Include="include\gui.h" />
     <ClInclude Include="include\shape.h" />
     <ClInclude Include="include\simple_logger.h" />
     <ClInclude Include="include\student.h" />
