@@ -16,6 +16,7 @@
 #define COLOR_PINK vector4d(255, 155, 255, 255)
 #define COLOR_PURPLE vector4d(102, 0, 255, 255)
 #define COLOR_BLUE_LIGHT vector4d(0, 201, 255, 255)
+#define COLOR_RED_TRANSPARENT vector4d(255, 0, 0, 122)
 
 typedef struct rect_s
 {

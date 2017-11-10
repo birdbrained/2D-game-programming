@@ -399,7 +399,7 @@ void graph_draw_walkable_tiles(GraphNode * node, int radius, int tileWidth, int 
 	{
 		rect.x = hor_iter->x * tileWidth + xPos;
 		rect.y = hor_iter->y * tileHeight + yPos;
-		gf2d_draw_rect(rect, color);
+		draw_filled_rect(rect, color);
 		for (i = 0; i < x; i++)
 		{
 			ver_iter = ver_iter->up_node;
@@ -411,7 +411,7 @@ void graph_draw_walkable_tiles(GraphNode * node, int radius, int tileWidth, int 
 			{
 				rect.x = ver_iter->x * tileWidth + xPos;
 				rect.y = ver_iter->y * tileHeight + yPos;
-				gf2d_draw_rect(rect, color);
+				draw_filled_rect(rect, color);
 			}
 		}
 		ver_iter = hor_iter;
@@ -426,7 +426,7 @@ void graph_draw_walkable_tiles(GraphNode * node, int radius, int tileWidth, int 
 			{
 				rect.x = ver_iter->x * tileWidth + xPos;
 				rect.y = ver_iter->y * tileHeight + yPos;
-				gf2d_draw_rect(rect, color);
+				draw_filled_rect(rect, color);
 			}
 		}
 		hor_iter = hor_iter->right_node;
@@ -448,7 +448,7 @@ void graph_draw_walkable_tiles(GraphNode * node, int radius, int tileWidth, int 
 		{
 			rect.x = hor_iter->x * tileWidth + xPos;
 			rect.y = hor_iter->y * tileHeight + yPos;
-			gf2d_draw_rect(rect, color);
+			draw_filled_rect(rect, color);
 			for (i = 0; i < x; i++)
 			{
 				ver_iter = ver_iter->up_node;
@@ -460,7 +460,7 @@ void graph_draw_walkable_tiles(GraphNode * node, int radius, int tileWidth, int 
 				{
 					rect.x = ver_iter->x * tileWidth + xPos;
 					rect.y = ver_iter->y * tileHeight + yPos;
-					gf2d_draw_rect(rect, color);
+					draw_filled_rect(rect, color);
 				}
 			}
 			ver_iter = hor_iter;
@@ -475,7 +475,7 @@ void graph_draw_walkable_tiles(GraphNode * node, int radius, int tileWidth, int 
 				{
 					rect.x = ver_iter->x * tileWidth + xPos;
 					rect.y = ver_iter->y * tileHeight + yPos;
-					gf2d_draw_rect(rect, color);
+					draw_filled_rect(rect, color);
 				}
 			}
 			hor_iter = hor_iter->left_node;

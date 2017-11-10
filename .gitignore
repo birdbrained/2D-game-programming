@@ -62,3 +62,4 @@ makefile.dep
 /[Dd]ebug/
 /Fall2017_2Dproject/Debug/
 /.vs/
+/Fall2017_2Dproject/bin/

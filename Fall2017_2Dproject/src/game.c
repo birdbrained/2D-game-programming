@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <fmod.h>
+#include <physfs.h>
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
@@ -333,6 +334,14 @@ int main(int argc, char * argv[])
     /*program initializtion*/
     init_logger("dmdwa.log");
     slog("---==== BEGIN ====---");
+	PHYSFS_init(NULL);
+	PHYSFS_mount("zip/def.zip", "mnt", 1);
+	if (PHYSFS_exists("mnt/_myBand.band"))
+	{
+		slog("file exists");
+	}
+	else
+		slog("file does not exist");
     gf2d_graphics_initialize(
         "Drum Majors Don't Wear Aussies",
         1200,
@@ -551,7 +560,7 @@ int main(int argc, char * argv[])
 	guii->windowColor.x = 200;
 	guii->windowColor.y = 100;
 	guii->windowColor.z = 220;
-	guii->windowColor.w = 255;
+	guii->windowColor.w = 100;
 
 	//Input for the console
 	//input_init();
@@ -746,7 +755,7 @@ int main(int argc, char * argv[])
 
 		if (pickedUpNode != NULL && pickedUp != NULL)
 		{
-			graph_draw_walkable_tiles(pickedUpNode, pickedUp->statMarching / 10, tile_map->tileWidth, tile_map->tileHeight, tile_map->xPos, tile_map->yPos, COLOR_RED, 0);
+			graph_draw_walkable_tiles(pickedUpNode, pickedUp->statMarching / 10, tile_map->tileWidth, tile_map->tileHeight, tile_map->xPos, tile_map->yPos, COLOR_RED_TRANSPARENT, 0);
 		}
 
 		entityDrawAll();
@@ -881,7 +890,17 @@ int main(int argc, char * argv[])
 			slog("Removed a controller");
 			controllerConnected = 0;
 			break;
-		case SDL_KEYDOWN:
+		case SDL_KEYUP:
+			if (SDL_IsTextInputActive() == SDL_TRUE)
+			{
+				slog("key name (%s)", SDL_GetKeyName(e.key.keysym.sym));
+				strncat(consoleText, SDL_GetKeyName(e.key.keysym.sym), sizeof(consoleText));
+				consoleSurface = TTF_RenderText_Solid(PencilFont, consoleText, colorBlack);
+				consoleTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), consoleSurface);
+				SDL_QueryTexture(consoleTexture, NULL, NULL, &consoleX, &consoleY);
+				consoleRectie.w = consoleX;
+				consoleRectie.h = consoleY;
+			}
 			switch (e.key.keysym.sym)
 			{
 			case SDLK_RETURN:
@@ -917,7 +936,7 @@ int main(int argc, char * argv[])
 				break;
 			}
 			break;
-		case SDL_TEXTINPUT:
+		/*case SDL_TEXTINPUT:
 			if (SDL_IsTextInputActive() == SDL_TRUE)
 			{
 				//strcat(consoleText, e.text.text);
@@ -942,7 +961,7 @@ int main(int argc, char * argv[])
 				//handle_console(gf2d_graphics_get_renderer());
 				break;
 			}
-			break;
+			break;*/
 		case SDL_TEXTEDITING:
 			if (SDL_IsTextInputActive() == SDL_TRUE)
 			{
@@ -1069,6 +1088,7 @@ int main(int argc, char * argv[])
 	TTF_Quit();
 	SDL_DestroyTexture(message);
 	SDL_FreeSurface(surfaceMessage);
+	PHYSFS_deinit();
     return 0;
 }
 /*eol@eof*/
