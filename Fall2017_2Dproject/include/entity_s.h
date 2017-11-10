@@ -5,6 +5,7 @@
 #define MAX_FILEPATH_CHARS 256
 
 #include <stdio.h>
+#include <physfs.h>
 #include "gf2d_vector.h"
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
@@ -188,14 +189,16 @@ void entityIncrementCurrentFrameAll();
  * @param new_entity Entity that will be inited
  * @returns Populates new_entity parameter and returns it, NULL if invalid file pointer
  */
-Entity * entityLoadFromFile(FILE * file, Entity * new_entity);
+Entity * entityLoadFromFile(char * filename, Entity * new_entity);
+//Entity * entityLoadFromFile(FILE * file, Entity * new_entity);
 
 /**
  * @brief Loads all entities specified in a file
  * @param file File to read through
  * @map TileMap to populate entities onto
  */
-void entityLoadAllFromFile(FILE * file, TileMap * map/*, Graph ** graph*/);
+void entityLoadAllFromFile(char * filename, TileMap * map);
+//void entityLoadAllFromFile(FILE * file, TileMap * map/*, Graph ** graph*/);
 
 /**
  * @brief Checks to see if a specified point collides with any exisiting entity

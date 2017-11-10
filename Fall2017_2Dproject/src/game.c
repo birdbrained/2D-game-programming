@@ -127,6 +127,9 @@ void close_level(TileMap * tile_map, Graph * fieldGraph)
 Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph, Uint8 closePrevLevel)
 {
 	char buffer[512];
+	char * physBuffer = "";
+	int n = 0;
+	PHYSFS_File * physFile = NULL;
 	FILE * file = NULL;
 	FILE * file_temp = NULL;
 	if (!levelFilename)
@@ -134,31 +137,54 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 		slog("Error: level file name was null");
 		return;
 	}
+	//fscanf(physFile, "%s", buffer);
 
-	file = fopen(levelFilename, "r");
+	/*file = fopen(levelFilename, "r");
 	if (!file)
 	{
 		slog("Error: cannot load the level with filename (%s)", levelFilename);
 		fclose(file);
 		return;
 	}
-	rewind(file);
+	rewind(file);*/
+
+	if (!PHYSFS_exists(levelFilename))
+	{
+		slog("Error: cannot load the level with filename (%s)");
+		return;
+	}
+
+	physFile = PHYSFS_openRead(levelFilename);
+	physBuffer = (char *)malloc(PHYSFS_fileLength(physFile));
+	memset(physBuffer, 0, PHYSFS_fileLength(physFile));
+	PHYSFS_readBytes(physFile, physBuffer, PHYSFS_fileLength(physFile));
+	PHYSFS_close(physFile);
 
 	if (closePrevLevel > 0)
 	{
 		close_level(tile_map, fieldGraph);
 	}
 
-	while (fscanf(file, "%s", buffer) != EOF)
+	//while (fscanf(file, "%s", buffer) != EOF)
+	while (sscanf(physBuffer, " %s\n%n", buffer, &n) == 1)
 	{
+		if (buffer[0] == '~')
+		{
+			break;
+		}
+		physBuffer += n;
 		if (strcmp(buffer, "background:") == 0)
 		{
-			fscanf(file, "%s", buffer);
+			//fscanf(file, "%s", buffer);
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
 			backgroundSprite = gf2d_sprite_load_image(buffer);
 		}
 		if (strcmp(buffer, "tilemap:") == 0)
 		{
-			fscanf(file, "%s", buffer);
+			//fscanf(file, "%s", buffer);
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
 			file_temp = fopen(buffer, "r");
 			if (!file_temp)
 			{
@@ -173,16 +199,19 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 		}
 		if (strcmp(buffer, "band:") == 0)
 		{
-			fscanf(file, "%s", buffer);
-			file_temp = fopen(buffer, "r");
+			//fscanf(file, "%s", buffer);
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
+			/*file_temp = fopen(buffer, "r");
 			if (!file_temp)
 			{
 				slog("Error: could not open band file");
 				//fclose(file_temp);
 				continue;
-			}
-			entityLoadAllFromFile(file_temp, tile_map/*, &fieldGraph*/);
-			fclose(file_temp);
+			}*/
+			//entityLoadAllFromFile(file_temp, tile_map/*, &fieldGraph*/);
+			entityLoadAllFromFile(buffer, tile_map);
+			//fclose(file_temp);
 			tilemap_clear_space(&tile_map);
 			graph_zero_all(&fieldGraph);
 			entityUpdateGraphPositionAll(&fieldGraph);
@@ -198,7 +227,9 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 		}
 		if (strcmp(buffer, "mouse:") == 0)
 		{
-			fscanf(file, "%s", buffer);
+			//fscanf(file, "%s", buffer);
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
 			mouseSprite = gf2d_sprite_load_all(buffer, 32, 32, 16);
 			mouse = mouseSprite;
 		}
@@ -206,8 +237,10 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 		{
 			while (1)
 			{
-				fscanf(file, "%s", buffer);
-				if (strcmp(buffer, "END") == 0)
+				//fscanf(file, "%s", buffer);
+				sscanf(physBuffer, " %s\n%n", buffer, &n);
+				physBuffer += n;
+				if (buffer[0] == 'E' && buffer[1] == 'N' & buffer[2] == 'D')
 				{
 					break;
 				}
@@ -224,7 +257,7 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
 	//soundAdjustVolumeAll(0);
 
-	fclose(file);
+	//fclose(file);
 	return fieldGraph;
 }
 
@@ -327,6 +360,10 @@ int main(int argc, char * argv[])
 	Uint8 playButtonPressed = 0;
 
 	GUIWindow * guii;
+	PHYSFS_File * physFile = NULL;
+	char * physBuffer= "";
+	char token[512] = "";
+	int n;
 
 	srand(time(NULL));
 	SDL_SetTextInputRect(&consoleRect);
@@ -343,6 +380,27 @@ int main(int argc, char * argv[])
 	}
 	else
 		slog("file does not exist");
+
+	physFile = PHYSFS_openRead("mnt/_myBand.band");
+	//fscanf(physFile, "%s", physBuffer);
+	physBuffer = (char *)malloc(PHYSFS_fileLength(physFile));
+	memset(physBuffer, 0, PHYSFS_fileLength(physFile));
+	//physBuffer = "";
+	PHYSFS_readBytes(physFile, physBuffer, PHYSFS_fileLength(physFile));
+	PHYSFS_close(physFile);
+	//iterator = (char *)malloc(sizof(physBuffer));
+	//strncpy(iterator, physBuffer, sizeof(physBuffer));
+	while (sscanf(physBuffer, " %s\n%n", token, &n))
+	{
+		//puts(token);
+		if (token[0] == '~')
+		{
+			break;
+		}
+		slog("token (%s)", token);
+		physBuffer += n;
+	}
+
     gf2d_graphics_initialize(
         "Drum Majors Don't Wear Aussies",
         1200,
@@ -424,7 +482,7 @@ int main(int argc, char * argv[])
 
 	tile_map = tilemap_init();
 	fieldGraph = graph_init(18, sizeof(Entity));
-	fieldGraph = load_level("def/level/mainMenu.txt", tile_map, fieldGraph, 0);
+	fieldGraph = load_level("mnt/level/mainMenu.txt", tile_map, fieldGraph, 0);
 
 	//textBox->texture = message;
 
@@ -481,20 +539,20 @@ int main(int argc, char * argv[])
 	cdEject = soundLoad("music/sfx/cd_play.ogg", 18.0f, 0, Instrument_Unassigned);
 
 	//snareDrum = soundNew(Instrument_Snare_Drum);
-	snareDrum = soundLoad("mnt/bg/meeeeh-Snare_Drum.ogg", 12.0f, Instrument_Snare_Drum, Instrument_Snare_Drum);
+	snareDrum = soundLoad("music/bg/meeeeh-Snare_Drum.ogg", 12.0f, Instrument_Snare_Drum, Instrument_Snare_Drum);
 	//flute = soundNew(Instrument_Flute);
-	flute = soundLoad("mnt/bg/meeeeh-Flute.ogg", 12.0f, Instrument_Flute, Instrument_Flute);
+	flute = soundLoad("music/bg/meeeeh-Flute.ogg", 12.0f, Instrument_Flute, Instrument_Flute);
 	//trumpet = soundNew(Instrument_Trumpet);
-	trumpet = soundLoad("mnt/bg/meeeeh-Bb_Trumpet.ogg", 12.0f, Instrument_Trumpet, Instrument_Trumpet);
+	trumpet = soundLoad("music/bg/meeeeh-Bb_Trumpet.ogg", 12.0f, Instrument_Trumpet, Instrument_Trumpet);
 	//altoSax = soundNew(Instrument_Alto_Saxophone);
-	altoSax = soundLoad("mnt/bg/meeeeh-Alto_Saxophone.ogg", 12.0f, Instrument_Alto_Saxophone, Instrument_Alto_Saxophone);
+	altoSax = soundLoad("music/bg/meeeeh-Alto_Saxophone.ogg", 12.0f, Instrument_Alto_Saxophone, Instrument_Alto_Saxophone);
 	//baritone = soundNew(Instrument_Baritone);
-	baritone = soundLoad("mnt/bg/meeeeh-Baritone.ogg", 12.0f, Instrument_Baritone, Instrument_Baritone);
+	baritone = soundLoad("music/bg/meeeeh-Baritone.ogg", 12.0f, Instrument_Baritone, Instrument_Baritone);
 
 	FMOD_System_Create(&system);
 	FMOD_System_Init(system, 100, FMOD_INIT_NORMAL, 0);
-	FMOD_System_CreateSound(system, "mnt/bg/NJIT.ogg", FMOD_DEFAULT, 0, &fsound);
-	FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
+	FMOD_System_CreateSound(system, "music/bg/NJIT.ogg", FMOD_DEFAULT, 0, &fsound);
+	//FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
 
 	//soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
 	//soundPlay(flute, -1, 1, flute->defaultChannel, 0);
@@ -601,12 +659,12 @@ int main(int argc, char * argv[])
 		entityDrawAll();
 		entityUpdateAll();
 		entityIncrementCurrentFrameAll();
-		snprintf(scoreText, 32, "%d", score);
-		scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
-		scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
-		SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreX, &scoreY);
-		scoreRect.w = scoreX;
-		scoreRect.h = scoreY;
+		//snprintf(scoreText, 32, "%d", score);
+		//scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
+		//scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
+		//SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreX, &scoreY);
+		//scoreRect.w = scoreX;
+		//scoreRect.h = scoreY;
 
 		if (pickedUp != NULL)
 		{
@@ -751,6 +809,12 @@ int main(int argc, char * argv[])
 				entityUpdateGraphPositionAll(&fieldGraph);
 				soundAdjustVolumeAll(0);
 				score = formation_detect(&fieldGraph);
+				snprintf(scoreText, 32, "%d", score);
+				scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
+				scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
+				SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreX, &scoreY);
+				scoreRect.w = scoreX;
+				scoreRect.h = scoreY;
 				break;
 			case SDLK_BACKQUOTE:
 				slog("backtick pressed");
@@ -819,7 +883,7 @@ int main(int argc, char * argv[])
 		{
 			if (point_in_rect(1000, 10, cd->boundingBox))
 			{
-				fieldGraph = load_level("def/level/myLevel.txt", tile_map, fieldGraph, 1);
+				fieldGraph = load_level("mnt/level/myLevel.txt", tile_map, fieldGraph, 1);
 				if (musicPlaying > 0)
 				{
 					//Mix_RewindMusic();
@@ -903,7 +967,7 @@ int main(int argc, char * argv[])
 		if (keys[SDL_SCANCODE_Q])
 		{
 			//close_level(tile_map);
-			fieldGraph = load_level("def/level/myLevel.txt", tile_map, fieldGraph, 1);
+			fieldGraph = load_level("mnt/level/myLevel.txt", tile_map, fieldGraph, 1);
 			if (musicPlaying > 0)
 			{
 				//Mix_RewindMusic();

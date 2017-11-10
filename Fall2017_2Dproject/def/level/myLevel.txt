@@ -1,6 +1,6 @@
 background:	images/backgrounds/bg_flat.png
 tilemap:	def/level/field_0.tilemap
-band:		def/_myBand.band
+band:		mnt/_myBand.band
 mouse:		images/pointer.png
 extraSprites:
 END
