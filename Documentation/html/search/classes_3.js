@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['sprite_5fs',['Sprite_S',['../struct_sprite___s.html',1,'']]],
-  ['spritemanager',['SpriteManager',['../struct_sprite_manager.html',1,'']]],
-  ['student',['Student',['../struct_student.html',1,'']]]
+  ['entity_5fs',['entity_s',['../structentity__s.html',1,'']]],
+  ['entitymanager',['EntityManager',['../struct_entity_manager.html',1,'']]]
 ];

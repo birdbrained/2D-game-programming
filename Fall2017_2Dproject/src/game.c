@@ -336,6 +336,7 @@ int main(int argc, char * argv[])
     slog("---==== BEGIN ====---");
 	PHYSFS_init(NULL);
 	PHYSFS_mount("zip/def.zip", "mnt", 1);
+	PHYSFS_mount("zip/music.zip", "mnt", 1);
 	if (PHYSFS_exists("mnt/_myBand.band"))
 	{
 		slog("file exists");
@@ -480,20 +481,20 @@ int main(int argc, char * argv[])
 	cdEject = soundLoad("music/sfx/cd_play.ogg", 18.0f, 0, Instrument_Unassigned);
 
 	//snareDrum = soundNew(Instrument_Snare_Drum);
-	snareDrum = soundLoad("music/bg/meeeeh-Snare_Drum.ogg", 12.0f, Instrument_Snare_Drum, Instrument_Snare_Drum);
+	snareDrum = soundLoad("mnt/bg/meeeeh-Snare_Drum.ogg", 12.0f, Instrument_Snare_Drum, Instrument_Snare_Drum);
 	//flute = soundNew(Instrument_Flute);
-	flute = soundLoad("music/bg/meeeeh-Flute.ogg", 12.0f, Instrument_Flute, Instrument_Flute);
+	flute = soundLoad("mnt/bg/meeeeh-Flute.ogg", 12.0f, Instrument_Flute, Instrument_Flute);
 	//trumpet = soundNew(Instrument_Trumpet);
-	trumpet = soundLoad("music/bg/meeeeh-Bb_Trumpet.ogg", 12.0f, Instrument_Trumpet, Instrument_Trumpet);
+	trumpet = soundLoad("mnt/bg/meeeeh-Bb_Trumpet.ogg", 12.0f, Instrument_Trumpet, Instrument_Trumpet);
 	//altoSax = soundNew(Instrument_Alto_Saxophone);
-	altoSax = soundLoad("music/bg/meeeeh-Alto_Saxophone.ogg", 12.0f, Instrument_Alto_Saxophone, Instrument_Alto_Saxophone);
+	altoSax = soundLoad("mnt/bg/meeeeh-Alto_Saxophone.ogg", 12.0f, Instrument_Alto_Saxophone, Instrument_Alto_Saxophone);
 	//baritone = soundNew(Instrument_Baritone);
-	baritone = soundLoad("music/bg/meeeeh-Baritone.ogg", 12.0f, Instrument_Baritone, Instrument_Baritone);
+	baritone = soundLoad("mnt/bg/meeeeh-Baritone.ogg", 12.0f, Instrument_Baritone, Instrument_Baritone);
 
 	FMOD_System_Create(&system);
 	FMOD_System_Init(system, 100, FMOD_INIT_NORMAL, 0);
-	FMOD_System_CreateSound(system, "music/bg/NJIT.ogg", FMOD_DEFAULT, 0, &fsound);
-	//FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
+	FMOD_System_CreateSound(system, "mnt/bg/NJIT.ogg", FMOD_DEFAULT, 0, &fsound);
+	FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
 
 	//soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
 	//soundPlay(flute, -1, 1, flute->defaultChannel, 0);
@@ -591,167 +592,6 @@ int main(int argc, char * argv[])
 		{
 			tilemap_draw_from_data(tile_map);
 		}
-
-		/*if (keys[SDL_SCANCODE_W])
-		{
-			(*guy->update)(guy, vector2d(0, -2));
-		}
-		if (keys[SDL_SCANCODE_A])
-		{
-			(*guy->update)(guy, vector2d(-2, 0));
-		}
-		if (keys[SDL_SCANCODE_S])
-		{
-			(*guy->update)(guy, vector2d(0, 2));
-		}
-		if (keys[SDL_SCANCODE_D])
-		{
-			(*guy->update)(guy, vector2d(2, 0));
-		}*/
-		//guy->currentFrame = guyFrame;
-		//fileLoadedDude->currentFrame = guyFrame;
-
-		/*
-		//create an entity if it doesn't exist
-		if (keys[SDL_SCANCODE_O] && testDude == NULL)
-		{
-			testDude = entityNew();
-			testDude->mySprite = thing;
-			testDude->position = vector2d(500, 500);
-			testDude->update = move;
-		}
-		//if it exists, call its update function
-		//slog("%i", testDude != NULL);
-		if (testDude != NULL)
-		{
-			//(*testDude->update)(testDude, vector2d(1, 1));
-			gf2d_sprite_draw(testDude->mySprite, testDude->position, NULL, NULL, NULL, NULL, NULL, 0);
-		}
-		//delete it from memory
-		if (keys[SDL_SCANCODE_P] && testDude != NULL)
-		{
-			entityDelete(testDude);
-		}*/
-		/*if (keys[SDL_SCANCODE_L] && biggo == NULL)
-		{
-			biggo = entityNew();
-			biggo->mySprite = guyx;
-			biggo->position = vector2d(10, 10);
-			biggo->scale = vector2d(25, 25);
-			biggo->inUse = 1;
-			biggo->currentFrame = 0;
-			biggo->minFrame = 0;
-			biggo->maxFrame = 2;
-			biggo->update = move;
-			biggo->velocity = vector2d(0.5f, 0.5f);
-			biggo->acceleration = vector2d(0.5f, 0.5f);
-			biggo->myInstrument = Instrument_Flute;
-			biggo->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_flute.png", 32, 32, 1);
-		}
-		if (biggo != NULL)
-		{
-			//entityDraw(biggo);
-			(*biggo->update)(biggo, vector2d(0.5f, 0.5f));
-			//biggo->currentFrame = guyFrame;
-		}
-		if (biggo != NULL && biggo->inUse == 1 && keys[SDL_SCANCODE_P])
-		{
-			biggo->inUse = 0;
-			entityDelete(biggo);
-			biggo = NULL;
-		}
-		if (keys[SDL_SCANCODE_O] && testDude == NULL)
-		{
-			//slog("Let's make a new thing!");
-			testDude = entityNew();
-			testDude->mySprite = mehSprite;
-			testDude->position = vector2d(200, 200);
-			testDude->scale = scaleUp;
-			testDude->inUse = 1;
-			testDude->currentFrame = 0;
-			testDude->minFrame = 1;
-			testDude->maxFrame = 3;
-			testDude->update = move;
-			testDude->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_tuba.png", 32, 32, 1);
-		}
-		if (testDude != NULL)
-		{
-			//gf2d_sprite_draw(testDude->mySprite, testDude->position, &(testDude->scale), NULL, NULL, NULL, NULL, 0);
-			//entityDraw(testDude);
-			(*testDude->update)(testDude, vector2d(1, 1));
-			//testDude->currentFrame = guyFrame;
-		}
-		if (testDude != NULL && testDude->inUse == 1 && keys[SDL_SCANCODE_P])
-		{
-			testDude->inUse = 0;
-			entityDelete(testDude);
-			testDude = NULL;
-		}
-		if (keys[SDL_SCANCODE_M] && en == NULL)
-		{
-			en = entityNew();
-			en->mySprite = galSprite;
-			en->position = vector2d(300, 500);
-			en->scale = vector2d(1,1);
-			en->inUse = 1;
-			en->currentFrame = 0;
-			en->minFrame = 0;
-			en->maxFrame = 4;
-			en->update = move;
-			en->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_clarinet.png", 32, 32, 1);
-			//soundPlay(clap, 0, clap->volume, clap->defaultChannel, 0);
-		}
-		if (en != NULL && en->inUse == 1)
-		{
-			//entityDraw(en);
-			(*en->update)(en, vector2d(1, -1));
-			//en->currentFrame = guyFrame;
-		}
-		if (en != NULL && en->inUse == 1 && keys[SDL_SCANCODE_P])
-		{
-			en->inUse = 0;
-			entityDelete(en);
-			en = NULL;
-		}
-		if (en != NULL && en->inUse == 1 && en->position.x >= 400)
-		{
-			en->inUse = 0;
-			entityDelete(en);
-			en = NULL;
-		}*/
-
-		/*gf2d_sprite_draw(
-			guyx,
-			vector2d(64, 64),
-			&scaleUp,
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			0
-		);
-		gf2d_sprite_draw(
-			galSprite,
-			vector2d(128, 64),
-			&scaleUp,
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			0
-		);
-		gf2d_sprite_draw(
-			mehSprite,
-			vector2d(192, 64),
-			&scaleUp,
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			0
-		);*/
-
-		//entityDraw(fileLoadedDude);
 
 		if (pickedUpNode != NULL && pickedUp != NULL)
 		{
