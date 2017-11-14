@@ -435,98 +435,10 @@ int main(int argc, char * argv[])
 	//mehSprite = gf2d_sprite_load_all("images/sprites/meh32x.png", 32, 32, 2);
 	//musicSheet = gf2d_sprite_load_image("images/gui/music_sheet.png");
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
-	//myTileMap = gf2d_sprite_load_all("images/field_tiles.png", 64, 64, 2);
-	//person = student("Test", "Sex", thing2);
-	//slog("Initializing student %s", person->name);
-	/*guy = entityNew();
-	strncpy(guy->name, "McBandgeek", 32);
-	guy->mySprite = guyx;
-	guy->scale = scaleUp;
-	guy->currentFrame = 0;
-	guy->minFrame = 0;
-	guy->maxFrame = 2;
-	guy->position = vector2d(300, 100);
-	guy->update = move;
-	guy->myInstrument = Instrument_Tenor_Saxophone;
-	guy->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_tenor_sax.png", 32, 32, 1);
-	guy->boundingBox = rect_new(guy->position.x, guy->position.y, 64, 64);
-	testDude = NULL;
-	//SDL_SetTextureColorMod(thing2->texture, 100, 60, 0);
-	infile = fopen("def/dude.dude", "r");
-	fileLoadedDude = entityNew();
-	fileLoadedDude = entityLoadFromFile(infile, fileLoadedDude);
-	fclose(infile);
-	//fileLoadedDude->mySprite = mehSprite;
-	fileLoadedDude->instrumentSprite = gf2d_sprite_load_all(&fileLoadedDude->instrumentSpriteFilePath, 32, 32, 1);
-	fileLoadedDude->position = vector2d(64, 64);
-	fileLoadedDude->boundingBox = rect_new(fileLoadedDude->position.x, fileLoadedDude->position.y, 64, 64);
-	fileLoadedDude->scale = vector2d(2, 2);
-	fileLoadedDude->currentFrame = 0;
-	fileLoadedDude->minFrame = 0;
-	fileLoadedDude->maxFrame = 2;
-	fileLoadedDude->currentPosition = 19;
-	slog("the thing made has name: %s", &fileLoadedDude->name);
-
-	infile = fopen("def/dude2.dude", "r");
-	fileLoadedDude2 = entityNew();
-	fileLoadedDude2 = entityLoadFromFile(infile, fileLoadedDude2);
-	fclose(infile);
-	fileLoadedDude2->instrumentSprite = gf2d_sprite_load_all(&fileLoadedDude2->instrumentSpriteFilePath, 32, 32, 1);
-	fileLoadedDude2->position = vector2d(128, 64);
-	fileLoadedDude2->boundingBox = rect_new(fileLoadedDude2->position.x, fileLoadedDude2->position.y, 64, 64);
-	fileLoadedDude2->scale = vector2d(2, 2);
-	fileLoadedDude2->currentFrame = 0;
-	fileLoadedDude2->minFrame = 0;
-	fileLoadedDude2->maxFrame = 2;
-	fileLoadedDude2->currentPosition = 20;*/
 
 	tile_map = tilemap_init();
 	fieldGraph = graph_init(18, sizeof(Entity));
 	fieldGraph = load_level("mnt/level/mainMenu.txt", tile_map, fieldGraph, 0);
-
-	//textBox->texture = message;
-
-	//Trying to load a tilemap from file
-	//tilemapFile = fopen("def/level/field_0.tilemap", "r");
-	//tilemap_load_from_file(tilemapFile, tile_map);
-	//fclose(tilemapFile);
-	//slog("tilewidth: (%i) tileheight: (%i) tperline: (%i) filepath: (...) width: (%i) height: (%i) xPos: (%i) yPos: (%i)", tile_map->tileWidth,	tile_map->tileHeight, tile_map->tilesPerLine, tile_map->width, tile_map->height, tile_map->xPos, tile_map->yPos);
-	//slog("do i have a sprite? %i", tile_map->tilemapSprite != NULL);
-	//tile_map->space[19] = 1;
-	//tile_map->space[20] = 1;
-	/*slog("tile pq start");
-	while (tile_map->tiles_head != NULL)
-	{
-		p = pq_delete(tile_map->tiles_head, tile_map->tiles_tail);
-		if (p == NULL)
-		{
-			break;
-		}
-		slog("Removing (%d) from pq", p);
-	}
-	slog("tile pq end");*/
-	/*slog("start array");
-	for (p = 0; p < tile_map->width * tile_map->height; p++)
-	{
-		if (p == 512)
-		{
-			slog("end of array");
-		}
-		else if (tile_map->tiles[p] == -1)
-		{
-			slog("found a -1");
-		}
-		else
-		{
-			slog("tiles at index (%i) is (%i)", p, tile_map->tiles[p]);
-		}
-	}
-	slog("end array");*/
-
-	//Trying to load all entities from a file
-	//bandFile = fopen("def/_myBand.band", "r");
-	//entityLoadAllFromFile(bandFile);
-	//fclose(bandFile);
 
 	//Load sounds
 	//NJITtheme = soundNew("music/bg/NJIT.ogg");

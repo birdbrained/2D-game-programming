@@ -224,6 +224,8 @@ void entityDraw(Entity * self)
 			NULL,
 			0
 		);
+
+		//slog("position x (%f) y (%f)", self->position.x, self->position.y);
 	}
 
 	if (self->nextPosition != self->currentPosition)
@@ -379,7 +381,7 @@ Entity * entityLoadFromFile(char * filename, Entity * new_entity)
 		if (strcmp(buffer, "Instrument:") == 0)
 		{
 			//fscanf(file, "%s", holder);
-			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			sscanf(physBuffer, " %s\n%n", holder, &n);
 			physBuffer += n;
 			if (strcmp(holder, "flute") == 0)
 			{
