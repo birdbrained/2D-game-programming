@@ -481,20 +481,20 @@ int main(int argc, char * argv[])
 	cdEject = soundLoad("music/sfx/cd_play.ogg", 18.0f, 0, Instrument_Unassigned);
 
 	//snareDrum = soundNew(Instrument_Snare_Drum);
-	snareDrum = soundLoad("mnt/bg/meeeeh-Snare_Drum.ogg", 12.0f, Instrument_Snare_Drum, Instrument_Snare_Drum);
+	snareDrum = soundLoad("music/bg/meeeeh-Snare_Drum.ogg", 12.0f, Instrument_Snare_Drum, Instrument_Snare_Drum);
 	//flute = soundNew(Instrument_Flute);
-	flute = soundLoad("mnt/bg/meeeeh-Flute.ogg", 12.0f, Instrument_Flute, Instrument_Flute);
+	flute = soundLoad("music/bg/meeeeh-Flute.ogg", 12.0f, Instrument_Flute, Instrument_Flute);
 	//trumpet = soundNew(Instrument_Trumpet);
-	trumpet = soundLoad("mnt/bg/meeeeh-Bb_Trumpet.ogg", 12.0f, Instrument_Trumpet, Instrument_Trumpet);
+	trumpet = soundLoad("music/bg/meeeeh-Bb_Trumpet.ogg", 12.0f, Instrument_Trumpet, Instrument_Trumpet);
 	//altoSax = soundNew(Instrument_Alto_Saxophone);
-	altoSax = soundLoad("mnt/bg/meeeeh-Alto_Saxophone.ogg", 12.0f, Instrument_Alto_Saxophone, Instrument_Alto_Saxophone);
+	altoSax = soundLoad("music/bg/meeeeh-Alto_Saxophone.ogg", 12.0f, Instrument_Alto_Saxophone, Instrument_Alto_Saxophone);
 	//baritone = soundNew(Instrument_Baritone);
-	baritone = soundLoad("mnt/bg/meeeeh-Baritone.ogg", 12.0f, Instrument_Baritone, Instrument_Baritone);
+	baritone = soundLoad("music/bg/meeeeh-Baritone.ogg", 12.0f, Instrument_Baritone, Instrument_Baritone);
 
 	FMOD_System_Create(&system);
 	FMOD_System_Init(system, 100, FMOD_INIT_NORMAL, 0);
 	FMOD_System_CreateSound(system, "mnt/bg/NJIT.ogg", FMOD_DEFAULT, 0, &fsound);
-	FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
+	//FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
 
 	//soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
 	//soundPlay(flute, -1, 1, flute->defaultChannel, 0);
