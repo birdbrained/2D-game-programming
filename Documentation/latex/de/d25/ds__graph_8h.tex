@@ -1,0 +1,283 @@
+\hypertarget{ds__graph_8h}{}\section{Fall2017\+\_\+2\+Dproject/include/ds\+\_\+graph.h File Reference}
+\label{ds__graph_8h}\index{Fall2017\+\_\+2\+Dproject/include/ds\+\_\+graph.\+h@{Fall2017\+\_\+2\+Dproject/include/ds\+\_\+graph.\+h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+draw.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}simple\+\_\+logger.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tilemap.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s}
+\begin{DoxyCompactList}\small\item\em A data structure that represents a single node in a graph. \end{DoxyCompactList}\item 
+struct \hyperlink{structgraph__s}{graph\+\_\+s}
+\begin{DoxyCompactList}\small\item\em A data structure that represents an entire graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s} \hyperlink{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}{Graph\+Node}
+\begin{DoxyCompactList}\small\item\em A data structure that represents a single node in a graph. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{structgraph__s}{graph\+\_\+s} \hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph}
+\begin{DoxyCompactList}\small\item\em A data structure that represents an entire graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}{Graph\+Node} $\ast$ \hyperlink{ds__graph_8h_a9f6cc6cb76b5f9b16ed113e7cf556166}{graph\+\_\+new\+\_\+node} (size\+\_\+t element\+Size)
+\begin{DoxyCompactList}\small\item\em Creates one new graph node. \end{DoxyCompactList}\item 
+\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$ \hyperlink{ds__graph_8h_ab5497421474978fbda68c37c44fb5670}{graph\+\_\+init} (int width, size\+\_\+t element\+Size)
+\begin{DoxyCompactList}\small\item\em Initializes a new graph. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{ds__graph_8h_a2efbe7c0923f88db82699491fd9d8cd3}{graph\+\_\+delete\+\_\+node} (\hyperlink{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}{Graph\+Node} $\ast$$\ast$node\+That\+Dies)
+\begin{DoxyCompactList}\small\item\em Deletes one node from its graph; pointers will be fixed to point to the nodes to the up, down, left, and right surrounding the node. \end{DoxyCompactList}\item 
+int \hyperlink{ds__graph_8h_a010156ab8719c3561de6c6719d8a8fbb}{graph\+\_\+clear} (\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$graph\+That\+Dies)
+\begin{DoxyCompactList}\small\item\em Completely deletes a graph. \end{DoxyCompactList}\item 
+int \hyperlink{ds__graph_8h_a21f58453716b60f9c7f73bceb2dd8161}{graph\+\_\+insert} (\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$graph, void $\ast$data, int width, size\+\_\+t element\+Size, int first\+Insert)
+\begin{DoxyCompactList}\small\item\em Inserts a new node into the requested graph. \end{DoxyCompactList}\item 
+int \hyperlink{ds__graph_8h_a041b30d72d4bf4d9f9be1f88ab3dbccf}{graph\+\_\+update\+\_\+node} (\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$graph, int x, int y, void $\ast$data, size\+\_\+t element\+Size)
+\begin{DoxyCompactList}\small\item\em Updates the value of a node in an already exisiting graph. \end{DoxyCompactList}\item 
+int \hyperlink{ds__graph_8h_a32108532c5b955bf67525cdf84990812}{graph\+\_\+zero\+\_\+all} (\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$graph)
+\begin{DoxyCompactList}\small\item\em Sets all nodes\textquotesingle{} data to zero, but does not delete the graph or any nodes. \end{DoxyCompactList}\item 
+\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$ \hyperlink{ds__graph_8h_a866610d8086865032c55bcedbb924576}{graph\+\_\+init\+\_\+from\+\_\+tilemap} (\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$map, size\+\_\+t element\+Size)
+\begin{DoxyCompactList}\small\item\em Initializes a graph from a given tilemap. \end{DoxyCompactList}\item 
+void \hyperlink{ds__graph_8h_ae83de83d223009c5c5937cd77dd58a15}{graph\+\_\+print} (\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$graph)
+\begin{DoxyCompactList}\small\item\em Iterates through a graph and prints out each nodes\textquotesingle{} position and data (as int) \end{DoxyCompactList}\item 
+\hyperlink{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}{Graph\+Node} $\ast$ \hyperlink{ds__graph_8h_a654fbe9fa3ec1bd79fc360f7fda12e62}{graph\+\_\+find\+\_\+node} (\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$graph, unsigned int x, unsigned int y)
+\item 
+void \hyperlink{ds__graph_8h_a59f132ec714948b28ac98134a32b276e}{graph\+\_\+draw\+\_\+walkable\+\_\+tiles} (\hyperlink{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}{Graph\+Node} $\ast$node, int radius, int tile\+Width, int tile\+Height, int x\+Pos, int y\+Pos, \hyperlink{struct_vector4_d}{Vector4D} color, Uint8 force\+All)
+\begin{DoxyCompactList}\small\item\em Draws a representation of all walkable tiles in a given radius. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}\label{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!Graph@{Graph}}
+\index{Graph@{Graph}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{Graph}{Graph}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structgraph__s}{graph\+\_\+s} \hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph}}
+
+
+
+A data structure that represents an entire graph. 
+
+\mbox{\Hypertarget{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}\label{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!Graph\+Node@{Graph\+Node}}
+\index{Graph\+Node@{Graph\+Node}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{Graph\+Node}{GraphNode}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s} \hyperlink{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}{Graph\+Node}}
+
+
+
+A data structure that represents a single node in a graph. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ds__graph_8h_a010156ab8719c3561de6c6719d8a8fbb}\label{ds__graph_8h_a010156ab8719c3561de6c6719d8a8fbb}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!graph\+\_\+clear@{graph\+\_\+clear}}
+\index{graph\+\_\+clear@{graph\+\_\+clear}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{graph\+\_\+clear()}{graph\_clear()}}
+{\footnotesize\ttfamily int graph\+\_\+clear (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$}]{graph\+That\+Dies }\end{DoxyParamCaption})}
+
+
+
+Completely deletes a graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph\+That\+Dies} & The graph to brutally murder from memory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful; -\/1 if error 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__graph_8h_a2efbe7c0923f88db82699491fd9d8cd3}\label{ds__graph_8h_a2efbe7c0923f88db82699491fd9d8cd3}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!graph\+\_\+delete\+\_\+node@{graph\+\_\+delete\+\_\+node}}
+\index{graph\+\_\+delete\+\_\+node@{graph\+\_\+delete\+\_\+node}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{graph\+\_\+delete\+\_\+node()}{graph\_delete\_node()}}
+{\footnotesize\ttfamily void$\ast$ graph\+\_\+delete\+\_\+node (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}{Graph\+Node} $\ast$$\ast$}]{node\+That\+Dies }\end{DoxyParamCaption})}
+
+
+
+Deletes one node from its graph; pointers will be fixed to point to the nodes to the up, down, left, and right surrounding the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+That\+Dies} & The node to delete from the graph \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The data held by the deleted node; N\+U\+LL if could not delete node 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__graph_8h_a59f132ec714948b28ac98134a32b276e}\label{ds__graph_8h_a59f132ec714948b28ac98134a32b276e}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!graph\+\_\+draw\+\_\+walkable\+\_\+tiles@{graph\+\_\+draw\+\_\+walkable\+\_\+tiles}}
+\index{graph\+\_\+draw\+\_\+walkable\+\_\+tiles@{graph\+\_\+draw\+\_\+walkable\+\_\+tiles}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{graph\+\_\+draw\+\_\+walkable\+\_\+tiles()}{graph\_draw\_walkable\_tiles()}}
+{\footnotesize\ttfamily void graph\+\_\+draw\+\_\+walkable\+\_\+tiles (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}{Graph\+Node} $\ast$}]{node,  }\item[{int}]{radius,  }\item[{int}]{tile\+Width,  }\item[{int}]{tile\+Height,  }\item[{int}]{x\+Pos,  }\item[{int}]{y\+Pos,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{color,  }\item[{Uint8}]{force\+All }\end{DoxyParamCaption})}
+
+
+
+Draws a representation of all walkable tiles in a given radius. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The starting node \\
+\hline
+{\em radius} & The maximum number of steps required to draw \\
+\hline
+{\em tile\+Width} & The width (in pixels) of a tile \\
+\hline
+{\em tile\+Height} & The height (in pixels) of a tile \\
+\hline
+{\em x\+Pos} & X offset the graph starts at \\
+\hline
+{\em y\+Pos} & Y offset the graph starts at \\
+\hline
+{\em color} & The color of the square to draw \\
+\hline
+{\em force\+All} & Set to 1 if you want to not care about what the data of each node holds \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ds__graph_8h_a654fbe9fa3ec1bd79fc360f7fda12e62}\label{ds__graph_8h_a654fbe9fa3ec1bd79fc360f7fda12e62}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!graph\+\_\+find\+\_\+node@{graph\+\_\+find\+\_\+node}}
+\index{graph\+\_\+find\+\_\+node@{graph\+\_\+find\+\_\+node}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{graph\+\_\+find\+\_\+node()}{graph\_find\_node()}}
+{\footnotesize\ttfamily \hyperlink{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}{Graph\+Node}$\ast$ graph\+\_\+find\+\_\+node (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$}]{graph,  }\item[{unsigned int}]{x,  }\item[{unsigned int}]{y }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ds__graph_8h_ab5497421474978fbda68c37c44fb5670}\label{ds__graph_8h_ab5497421474978fbda68c37c44fb5670}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!graph\+\_\+init@{graph\+\_\+init}}
+\index{graph\+\_\+init@{graph\+\_\+init}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{graph\+\_\+init()}{graph\_init()}}
+{\footnotesize\ttfamily \hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph}$\ast$ graph\+\_\+init (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{size\+\_\+t}]{element\+Size }\end{DoxyParamCaption})}
+
+
+
+Initializes a new graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & How many nodes should be in one row \\
+\hline
+{\em element\+Size} & The size of the data each node will hold \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to new graph if successful; N\+U\+LL if could not allocate memory 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__graph_8h_a866610d8086865032c55bcedbb924576}\label{ds__graph_8h_a866610d8086865032c55bcedbb924576}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!graph\+\_\+init\+\_\+from\+\_\+tilemap@{graph\+\_\+init\+\_\+from\+\_\+tilemap}}
+\index{graph\+\_\+init\+\_\+from\+\_\+tilemap@{graph\+\_\+init\+\_\+from\+\_\+tilemap}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{graph\+\_\+init\+\_\+from\+\_\+tilemap()}{graph\_init\_from\_tilemap()}}
+{\footnotesize\ttfamily \hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph}$\ast$ graph\+\_\+init\+\_\+from\+\_\+tilemap (\begin{DoxyParamCaption}\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{map,  }\item[{size\+\_\+t}]{element\+Size }\end{DoxyParamCaption})}
+
+
+
+Initializes a graph from a given tilemap. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & The Tile\+Map to reference \\
+\hline
+{\em element\+Size} & Size of data each node will hold \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to new Graph if successful; N\+U\+LL if error allocating memory or if map was N\+U\+LL 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__graph_8h_a21f58453716b60f9c7f73bceb2dd8161}\label{ds__graph_8h_a21f58453716b60f9c7f73bceb2dd8161}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!graph\+\_\+insert@{graph\+\_\+insert}}
+\index{graph\+\_\+insert@{graph\+\_\+insert}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{graph\+\_\+insert()}{graph\_insert()}}
+{\footnotesize\ttfamily int graph\+\_\+insert (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$}]{graph,  }\item[{void $\ast$}]{data,  }\item[{int}]{width,  }\item[{size\+\_\+t}]{element\+Size,  }\item[{int}]{first\+Insert }\end{DoxyParamCaption})}
+
+
+
+Inserts a new node into the requested graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph to insert into \\
+\hline
+{\em data} & The data the new node will hold \\
+\hline
+{\em width} & How many nodes a graph should have in one row \\
+\hline
+{\em element\+Size} & The size of the data to hold \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful; -\/1 if could not allocate memory for a new node; -\/2 if graph is null pointer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__graph_8h_a9f6cc6cb76b5f9b16ed113e7cf556166}\label{ds__graph_8h_a9f6cc6cb76b5f9b16ed113e7cf556166}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!graph\+\_\+new\+\_\+node@{graph\+\_\+new\+\_\+node}}
+\index{graph\+\_\+new\+\_\+node@{graph\+\_\+new\+\_\+node}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{graph\+\_\+new\+\_\+node()}{graph\_new\_node()}}
+{\footnotesize\ttfamily \hyperlink{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}{Graph\+Node}$\ast$ graph\+\_\+new\+\_\+node (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{element\+Size }\end{DoxyParamCaption})}
+
+
+
+Creates one new graph node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em element\+Size} & The size of the data the node will hold \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to new node is successful; N\+U\+LL if could not allocate memory 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__graph_8h_ae83de83d223009c5c5937cd77dd58a15}\label{ds__graph_8h_ae83de83d223009c5c5937cd77dd58a15}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!graph\+\_\+print@{graph\+\_\+print}}
+\index{graph\+\_\+print@{graph\+\_\+print}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{graph\+\_\+print()}{graph\_print()}}
+{\footnotesize\ttfamily void graph\+\_\+print (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$}]{graph }\end{DoxyParamCaption})}
+
+
+
+Iterates through a graph and prints out each nodes\textquotesingle{} position and data (as int) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph to traverse \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ds__graph_8h_a041b30d72d4bf4d9f9be1f88ab3dbccf}\label{ds__graph_8h_a041b30d72d4bf4d9f9be1f88ab3dbccf}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!graph\+\_\+update\+\_\+node@{graph\+\_\+update\+\_\+node}}
+\index{graph\+\_\+update\+\_\+node@{graph\+\_\+update\+\_\+node}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{graph\+\_\+update\+\_\+node()}{graph\_update\_node()}}
+{\footnotesize\ttfamily int graph\+\_\+update\+\_\+node (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$}]{graph,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{void $\ast$}]{data,  }\item[{size\+\_\+t}]{element\+Size }\end{DoxyParamCaption})}
+
+
+
+Updates the value of a node in an already exisiting graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph that will have a node updated \\
+\hline
+{\em x} & X value of node to update \\
+\hline
+{\em y} & Y value of node to update \\
+\hline
+{\em data} & The data that the node will hold \\
+\hline
+{\em element\+Size} & Size of data to hold \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful; -\/1 if graph is N\+U\+LL; -\/2 if requested node could not be found; -\/3 if error finding graph\textquotesingle{}s head 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__graph_8h_a32108532c5b955bf67525cdf84990812}\label{ds__graph_8h_a32108532c5b955bf67525cdf84990812}} 
+\index{ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}!graph\+\_\+zero\+\_\+all@{graph\+\_\+zero\+\_\+all}}
+\index{graph\+\_\+zero\+\_\+all@{graph\+\_\+zero\+\_\+all}!ds\+\_\+graph.\+h@{ds\+\_\+graph.\+h}}
+\subsubsection{\texorpdfstring{graph\+\_\+zero\+\_\+all()}{graph\_zero\_all()}}
+{\footnotesize\ttfamily int graph\+\_\+zero\+\_\+all (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$}]{graph }\end{DoxyParamCaption})}
+
+
+
+Sets all nodes\textquotesingle{} data to zero, but does not delete the graph or any nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph to zero out \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful; -\/1 if graph is N\+U\+LL 
+\end{DoxyReturn}

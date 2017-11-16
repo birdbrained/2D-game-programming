@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['id',['id',['../structsound__s.html#a4158e9a3af9337e59f9b8de984c0efba',1,'sound_s::id()'],['../structentity__s.html#a4158e9a3af9337e59f9b8de984c0efba',1,'entity_s::id()']]],
-  ['instrument',['instrument',['../structsound__s.html#a88fb6e4086e01e476912df234d0f9d20',1,'sound_s']]],
-  ['inuse',['inUse',['../structsound__s.html#a13159f6b47122dc47eb11b1653a1663a',1,'sound_s::inUse()'],['../structentity__s.html#a13159f6b47122dc47eb11b1653a1663a',1,'entity_s::inUse()']]]
+  ['gmask',['gmask',['../d8/d8b/struct_graphics.html#a43613889bd9d644775e8da9db3a32375',1,'Graphics']]],
+  ['guilist',['guiList',['../d3/db7/structguimanager__s.html#ab4b2fa244546531438ab1e3d2aa6d403',1,'guimanager_s']]]
 ];

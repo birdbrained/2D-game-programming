@@ -81,6 +81,7 @@ static Sprite *gui;
 //TileMap *tile_map;
 static Entity *pickedUp = NULL;
 static Entity *collision = NULL;
+static GUIWindow *collisionGUI = NULL;
 static Entity *cd;
 static Entity *playButton;
 static Sprite *guiMarchingStat;
@@ -290,6 +291,7 @@ int main(int argc, char * argv[])
 	Sprite *guyx;
 	Sprite *galSprite;
 	Sprite *mehSprite;
+	Sprite *closeButton;
 	int controllerConnected = 0;
 
 	FILE *tilemapFile;
@@ -374,12 +376,13 @@ int main(int argc, char * argv[])
 	PHYSFS_init(NULL);
 	PHYSFS_mount("zip/def.zip", "mnt", 1);
 	PHYSFS_mount("zip/music.zip", "mnt", 1);
-	if (PHYSFS_exists("mnt/_myBand.band"))
+	if (PHYSFS_exists("mnt/test_tiles.png"))
 	{
 		slog("file exists");
 	}
 	else
 		slog("file does not exist");
+	
 
 	physFile = PHYSFS_openRead("mnt/_myBand.band");
 	//fscanf(physFile, "%s", physBuffer);
@@ -422,7 +425,7 @@ int main(int argc, char * argv[])
     SDL_ShowCursor(SDL_DISABLE);
 	TTF_Init();
 	//fileLoadedDude = entityNew();
-    
+
     /*demo setup*/
     //backgroundSprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
 	//textBox = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
@@ -435,6 +438,7 @@ int main(int argc, char * argv[])
 	//mehSprite = gf2d_sprite_load_all("images/sprites/meh32x.png", 32, 32, 2);
 	//musicSheet = gf2d_sprite_load_image("images/gui/music_sheet.png");
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
+	closeButton = gf2d_sprite_load_all("images/gui/close.png", 25, 25, 1);
 
 	tile_map = tilemap_init();
 	fieldGraph = graph_init(18, sizeof(Entity));
@@ -473,7 +477,7 @@ int main(int argc, char * argv[])
 	//soundPlay(baritone, -1, 1, baritone->defaultChannel, 0);
 
 	//text testing stuff
-	PencilFont = TTF_OpenFont("fonts/Pencil.ttf", 36);
+	PencilFont = TTF_OpenFont("fonts/Halogen.ttf", 36);
 	if (!PencilFont)
 	{
 		slog("Error loading font");
@@ -524,14 +528,21 @@ int main(int argc, char * argv[])
 	playButton->boundingBox = rect_new(playButton->position.x, playButton->position.y, playButton->mySprite->frame_w, playButton->mySprite->frame_h);
 	
 	guii = gui_new();
-	guii->window.x = 10;
-	guii->window.y = 10;
+	//guii->sprite = controllerIcon;
+	guii->closeButton = closeButton;
+	//guii->window.x = 10;
+	//guii->window.y = 10;
 	guii->window.w = 201;
 	guii->window.h = 77;
 	guii->windowColor.x = 200;
 	guii->windowColor.y = 100;
 	guii->windowColor.z = 220;
 	guii->windowColor.w = 100;
+	guii->position.x = 200;
+	guii->position.y = 300;
+	//strncpy(guii->text, "Hello this is text", GUI_MAX_TEXT_LENGTH);
+	guii->font = PencilFont;
+	gui_change_text("Hello this is text", guii);
 
 	//Input for the console
 	//input_init();
@@ -571,6 +582,7 @@ int main(int argc, char * argv[])
 		entityDrawAll();
 		entityUpdateAll();
 		entityIncrementCurrentFrameAll();
+		gui_update_all();
 		//snprintf(scoreText, 32, "%d", score);
 		//scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
 		//scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
@@ -685,10 +697,16 @@ int main(int argc, char * argv[])
 				}
 
 				//if (point_in_rect(mx, my, tile_map->boundingBox))
-				tileClicked = tilemap_find_tile(mx, my, tile_map);
-				if (tileClicked >= 0)
+				//tileClicked = tilemap_find_tile(mx, my, tile_map);
+				//if (tileClicked >= 0)
+				//{
+				//	slog("collided with tilemap on tile (%i), occupied (%i)", tileClicked, tile_map->space[tileClicked]);
+				//}
+
+				collisionGUI = gui_check_collision_in_all(mx, my);
+				if (collisionGUI != NULL)
 				{
-					//slog("collided with tilemap on tile (%i), occupied (%i)", tileClicked, tile_map->space[tileClicked]);
+					gui_delete(collisionGUI);
 				}
 			}
 			break;

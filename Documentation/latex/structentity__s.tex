@@ -9,95 +9,108 @@
 
 {\ttfamily \#include $<$entity\+\_\+s.\+h$>$}
 
-\subsection*{Data Fields}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-short unsigned int \hyperlink{structentity__s_a13159f6b47122dc47eb11b1653a1663a}{in\+Use}
-\item 
-Uint64 \hyperlink{structentity__s_a4158e9a3af9337e59f9b8de984c0efba}{id}
-\item 
-char \hyperlink{structentity__s_a1a416c8de05eed27aa81f653426597d8}{name} \mbox{[}M\+A\+X\+\_\+\+C\+H\+A\+RS\mbox{]}
-\item 
-char \hyperlink{structentity__s_ae0b5157d90563d37e8209f8ba094e494}{favorite\+Thing} \mbox{[}M\+A\+X\+\_\+\+C\+H\+A\+RS\mbox{]}
-\item 
-\mbox{\Hypertarget{structentity__s_ae526c5db6c94436bd908917383cd3b2b}\label{structentity__s_ae526c5db6c94436bd908917383cd3b2b}} 
+short unsigned int \hyperlink{structentity__s_ac630363dd06e4f209dfa9b3197f95fc4}{in\+Use}
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t ever touch this. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_ac954e51ff4ac8ad08753d7b8a9594c3e}\label{structentity__s_ac954e51ff4ac8ad08753d7b8a9594c3e}} 
+Uint64 \hyperlink{structentity__s_ac954e51ff4ac8ad08753d7b8a9594c3e}{id}
+\begin{DoxyCompactList}\small\item\em Auto increment id for this entity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_ae94942d1d88595805222e57c4c5254a0}\label{structentity__s_ae94942d1d88595805222e57c4c5254a0}} 
+char \hyperlink{structentity__s_ae94942d1d88595805222e57c4c5254a0}{name} \mbox{[}M\+A\+X\+\_\+\+C\+H\+A\+RS\mbox{]}
+\begin{DoxyCompactList}\small\item\em name of the object \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_ae22b0ebb779e7ab47426fa4517cb4289}\label{structentity__s_ae22b0ebb779e7ab47426fa4517cb4289}} 
+char \hyperlink{structentity__s_ae22b0ebb779e7ab47426fa4517cb4289}{favorite\+Thing} \mbox{[}M\+A\+X\+\_\+\+C\+H\+A\+RS\mbox{]}
+\begin{DoxyCompactList}\small\item\em guy\textquotesingle{}s favorite thing, just for funsies \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_a79768ccb2828c016e7f22756e6b8cb2a}\label{structentity__s_a79768ccb2828c016e7f22756e6b8cb2a}} 
 char {\bfseries instrument\+Sprite\+File\+Path} \mbox{[}M\+A\+X\+\_\+\+F\+I\+L\+E\+P\+A\+T\+H\+\_\+\+C\+H\+A\+RS\mbox{]}
 \item 
-\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_a2dc349a13930beaf26472e0d04d9563e}{position}
-\item 
-\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_a5b7790a4c9666f321ce2228f1b8bd118}{velocity}
-\item 
-\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_af4d83cb71edc9f387519fb3c7669f9bd}{acceleration}
-\item 
-\mbox{\Hypertarget{structentity__s_a3d49780e142d5f067cdd71be48ad284d}\label{structentity__s_a3d49780e142d5f067cdd71be48ad284d}} 
+\mbox{\Hypertarget{structentity__s_a563df82e5b0baef681ea2fddeee6a0b3}\label{structentity__s_a563df82e5b0baef681ea2fddeee6a0b3}} 
+\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_a563df82e5b0baef681ea2fddeee6a0b3}{position}
+\begin{DoxyCompactList}\small\item\em Draw position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_a0af6fba0533a87355ce3f5a80732c9d5}\label{structentity__s_a0af6fba0533a87355ce3f5a80732c9d5}} 
+\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_a0af6fba0533a87355ce3f5a80732c9d5}{velocity}
+\begin{DoxyCompactList}\small\item\em Desired movement direction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_ac3e41bdee60d6b8af992de0fe2bca35d}\label{structentity__s_ac3e41bdee60d6b8af992de0fe2bca35d}} 
+\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_ac3e41bdee60d6b8af992de0fe2bca35d}{acceleration}
+\begin{DoxyCompactList}\small\item\em Acceleration. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_afb450af644fe028e2a952aa35aa28241}\label{structentity__s_afb450af644fe028e2a952aa35aa28241}} 
 \hyperlink{structrect__s}{Rect} $\ast$ {\bfseries bounding\+Box}
 \item 
-\hyperlink{struct_sprite___s}{Sprite} $\ast$ \hyperlink{structentity__s_a09530f21303b5dbd659855de69a51e0c}{my\+Sprite}
-\item 
-\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_a1b187f4d1f81894380925e9de933801a}{scale}
-\item 
-\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_a8ff0fe80de1fcc51fee6f1d766e9de8b}{scale\+Center}
-\item 
-\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_ac4e0ffa54c436c5dad6ca9481266f9ed}{rotation}
-\item 
-\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_afc50ca9ba71427ea7962929de4b0e1bb}{flip}
-\item 
-float \hyperlink{structentity__s_a6c816fc91c0d3b73641b802cc889195d}{current\+Frame}
-\item 
-\mbox{\Hypertarget{structentity__s_a01ee90dc9c4db69ef58c8c6d8ba67f28}\label{structentity__s_a01ee90dc9c4db69ef58c8c6d8ba67f28}} 
+\mbox{\Hypertarget{structentity__s_a902a6ba59063b8b86dfcd77edb7edb00}\label{structentity__s_a902a6ba59063b8b86dfcd77edb7edb00}} 
+\hyperlink{struct_sprite___s}{Sprite} $\ast$ \hyperlink{structentity__s_a902a6ba59063b8b86dfcd77edb7edb00}{my\+Sprite}
+\begin{DoxyCompactList}\small\item\em The entity\textquotesingle{}s sprite, might get changed later. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_a9bb7d1a12c06b6cb82ee526b976bf44a}\label{structentity__s_a9bb7d1a12c06b6cb82ee526b976bf44a}} 
+\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_a9bb7d1a12c06b6cb82ee526b976bf44a}{scale}
+\begin{DoxyCompactList}\small\item\em Scale to draw the sprite at, will default to 1,1. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_a0ef27dcd4ae2dcb5d7d8d5f91d71f55b}\label{structentity__s_a0ef27dcd4ae2dcb5d7d8d5f91d71f55b}} 
+\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_a0ef27dcd4ae2dcb5d7d8d5f91d71f55b}{scale\+Center}
+\begin{DoxyCompactList}\small\item\em Center of sprite to scale at. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_a4b569747d882af629a46056eb49f8a6c}\label{structentity__s_a4b569747d882af629a46056eb49f8a6c}} 
+\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_a4b569747d882af629a46056eb49f8a6c}{rotation}
+\begin{DoxyCompactList}\small\item\em Rotation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_ac4e79a19c0a94b6e483a543063e2f753}\label{structentity__s_ac4e79a19c0a94b6e483a543063e2f753}} 
+\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{structentity__s_ac4e79a19c0a94b6e483a543063e2f753}{flip}
+\begin{DoxyCompactList}\small\item\em Flip horizontal or vertical. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_a98eb315f1b58fd10ebb47150b1b8dcd7}\label{structentity__s_a98eb315f1b58fd10ebb47150b1b8dcd7}} 
+float \hyperlink{structentity__s_a98eb315f1b58fd10ebb47150b1b8dcd7}{current\+Frame}
+\begin{DoxyCompactList}\small\item\em Current frame of animation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_a402032fb043e7ae447afc2fdca7bbb6b}\label{structentity__s_a402032fb043e7ae447afc2fdca7bbb6b}} 
 float {\bfseries min\+Frame}
 \item 
-\mbox{\Hypertarget{structentity__s_a0fe584f9e9339b6558acfff9faafe187}\label{structentity__s_a0fe584f9e9339b6558acfff9faafe187}} 
+\mbox{\Hypertarget{structentity__s_a45b9efb30402924e009bb268ef6a1f8d}\label{structentity__s_a45b9efb30402924e009bb268ef6a1f8d}} 
 float {\bfseries max\+Frame}
 \item 
-void($\ast$ \hyperlink{structentity__s_ae4dad0223ba78dddff3177bd20960ff2}{update} )(struct \hyperlink{structentity__s}{entity\+\_\+s} $\ast$self)
-\item 
-\mbox{\Hypertarget{structentity__s_a4585fbbdf8aed52da0855955d1a462ad}\label{structentity__s_a4585fbbdf8aed52da0855955d1a462ad}} 
+\mbox{\Hypertarget{structentity__s_a776a062f6989cc2e1a2ad5bea9a4f8f7}\label{structentity__s_a776a062f6989cc2e1a2ad5bea9a4f8f7}} 
+void($\ast$ \hyperlink{structentity__s_a776a062f6989cc2e1a2ad5bea9a4f8f7}{update} )(struct \hyperlink{structentity__s}{entity\+\_\+s} $\ast$self)
+\begin{DoxyCompactList}\small\item\em Pointer to an update function that will get called every frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structentity__s_ac257dd14ac652b641c45bc547e44cfe0}\label{structentity__s_ac257dd14ac652b641c45bc547e44cfe0}} 
 void($\ast$ {\bfseries on\+\_\+click} )(struct \hyperlink{structentity__s}{entity\+\_\+s} $\ast$self)
 \item 
-\mbox{\Hypertarget{structentity__s_ab7c43f12b245296f839eda999ed25896}\label{structentity__s_ab7c43f12b245296f839eda999ed25896}} 
+\mbox{\Hypertarget{structentity__s_a5909c0b97159616bea302921432f592f}\label{structentity__s_a5909c0b97159616bea302921432f592f}} 
 void($\ast$ {\bfseries die} )(struct \hyperlink{structentity__s}{entity\+\_\+s} $\ast$self)
 \item 
-\mbox{\Hypertarget{structentity__s_ad5a194015ada8926cdf00ff425d04d8a}\label{structentity__s_ad5a194015ada8926cdf00ff425d04d8a}} 
+\mbox{\Hypertarget{structentity__s_a57aac704311673d70a30a8908f6efe07}\label{structentity__s_a57aac704311673d70a30a8908f6efe07}} 
 Status\+Aliment {\bfseries current\+Status}
 \item 
-\mbox{\Hypertarget{structentity__s_a99fdae70672313aa145567525bb13042}\label{structentity__s_a99fdae70672313aa145567525bb13042}} 
+\mbox{\Hypertarget{structentity__s_ae0c2db5760d2d410ab1a04414ef9b723}\label{structentity__s_ae0c2db5760d2d410ab1a04414ef9b723}} 
 Entity\+State {\bfseries current\+State}
 \item 
-\mbox{\Hypertarget{structentity__s_ab2c76805fde47894da8bf16f81963db7}\label{structentity__s_ab2c76805fde47894da8bf16f81963db7}} 
+\mbox{\Hypertarget{structentity__s_a9746405130f2a414757b284c944ca984}\label{structentity__s_a9746405130f2a414757b284c944ca984}} 
 Instrument {\bfseries my\+Instrument}
 \item 
-\mbox{\Hypertarget{structentity__s_ad81be2aae4b919dfe48fcee74129eb10}\label{structentity__s_ad81be2aae4b919dfe48fcee74129eb10}} 
+\mbox{\Hypertarget{structentity__s_a448c3bebd13b4ba3a6a2d0b3193b763b}\label{structentity__s_a448c3bebd13b4ba3a6a2d0b3193b763b}} 
 Section {\bfseries my\+Section}
 \item 
-\mbox{\Hypertarget{structentity__s_a516cbd18313c08e3a86792d9945dd4fb}\label{structentity__s_a516cbd18313c08e3a86792d9945dd4fb}} 
+\mbox{\Hypertarget{structentity__s_a749e75a09335776cf930f98a44e4d951}\label{structentity__s_a749e75a09335776cf930f98a44e4d951}} 
 \hyperlink{struct_sprite___s}{Sprite} $\ast$ {\bfseries instrument\+Sprite}
 \item 
-\mbox{\Hypertarget{structentity__s_a2f5d2a226adffc3719a826f610de9be2}\label{structentity__s_a2f5d2a226adffc3719a826f610de9be2}} 
+\mbox{\Hypertarget{structentity__s_a4f7286ca0bafc729006f4685ca37ec97}\label{structentity__s_a4f7286ca0bafc729006f4685ca37ec97}} 
 int {\bfseries stat\+Marching}
 \item 
-\mbox{\Hypertarget{structentity__s_ae5341e0b53331ca3c7e81726895e68fa}\label{structentity__s_ae5341e0b53331ca3c7e81726895e68fa}} 
+\mbox{\Hypertarget{structentity__s_ac52bb6717b6ce50342c60bf045f4b14c}\label{structentity__s_ac52bb6717b6ce50342c60bf045f4b14c}} 
 int {\bfseries stat\+Music}
 \item 
-\mbox{\Hypertarget{structentity__s_ae988c5b9868840a73604a8d281c650ef}\label{structentity__s_ae988c5b9868840a73604a8d281c650ef}} 
+\mbox{\Hypertarget{structentity__s_a2c53da54831a0732b81e66f768360d19}\label{structentity__s_a2c53da54831a0732b81e66f768360d19}} 
 int {\bfseries stat\+Morale}
 \item 
-\mbox{\Hypertarget{structentity__s_ab44ea035652247e02518c0080e884c64}\label{structentity__s_ab44ea035652247e02518c0080e884c64}} 
+\mbox{\Hypertarget{structentity__s_a00a4eecd0cd21bc5f180d0ad34ca0a52}\label{structentity__s_a00a4eecd0cd21bc5f180d0ad34ca0a52}} 
 int {\bfseries stat\+Motivation}
 \item 
-\mbox{\Hypertarget{structentity__s_ace21314f7800da6d1b36dd730eba6e05}\label{structentity__s_ace21314f7800da6d1b36dd730eba6e05}} 
+\mbox{\Hypertarget{structentity__s_ac1a74b00351e03aa6c84cdd329af631f}\label{structentity__s_ac1a74b00351e03aa6c84cdd329af631f}} 
 short unsigned int {\bfseries is\+Section\+Leader}
 \item 
-\mbox{\Hypertarget{structentity__s_aa662efe820ee154e4fc6e5ef1a5af99a}\label{structentity__s_aa662efe820ee154e4fc6e5ef1a5af99a}} 
+\mbox{\Hypertarget{structentity__s_ab55082dfdbae7f56e940f4e827c3fb93}\label{structentity__s_ab55082dfdbae7f56e940f4e827c3fb93}} 
 int {\bfseries current\+Position}
 \item 
-\mbox{\Hypertarget{structentity__s_a3ce77101c89cf9167be88f050bd42f72}\label{structentity__s_a3ce77101c89cf9167be88f050bd42f72}} 
+\mbox{\Hypertarget{structentity__s_ac5ea4d4bbbacc9f59c4d3ddb834bc6b1}\label{structentity__s_ac5ea4d4bbbacc9f59c4d3ddb834bc6b1}} 
 int {\bfseries next\+Position}
 \item 
-\mbox{\Hypertarget{structentity__s_af06b629e4b5c3f2d9070ff0c4e3907a0}\label{structentity__s_af06b629e4b5c3f2d9070ff0c4e3907a0}} 
+\mbox{\Hypertarget{structentity__s_a30ca61c8a3696e1f7e1243fa434e89e7}\label{structentity__s_a30ca61c8a3696e1f7e1243fa434e89e7}} 
 \hyperlink{struct_vector2_d}{Vector2D} {\bfseries path\+To\+Draw}
 \item 
-\mbox{\Hypertarget{structentity__s_acc5d76b31818103e5e1b83cbc193e613}\label{structentity__s_acc5d76b31818103e5e1b83cbc193e613}} 
+\mbox{\Hypertarget{structentity__s_ae4b3f0ab92178d502729d0870770eafb}\label{structentity__s_ae4b3f0ab92178d502729d0870770eafb}} 
 \hyperlink{struct_vector4_d}{Vector4D} {\bfseries path\+Color}
 \end{DoxyCompactItemize}
 
@@ -105,92 +118,18 @@ int {\bfseries next\+Position}
 \subsection{Detailed Description}
 \hyperlink{structentity__s}{entity\+\_\+s} Struct that represents a generic entity 
 
-\subsection{Field Documentation}
-\mbox{\Hypertarget{structentity__s_af4d83cb71edc9f387519fb3c7669f9bd}\label{structentity__s_af4d83cb71edc9f387519fb3c7669f9bd}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!acceleration@{acceleration}}
-\index{acceleration@{acceleration}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{acceleration}{acceleration}}
-{\footnotesize\ttfamily \hyperlink{struct_vector2_d}{Vector2D} acceleration}
-
-Acceleration \mbox{\Hypertarget{structentity__s_a6c816fc91c0d3b73641b802cc889195d}\label{structentity__s_a6c816fc91c0d3b73641b802cc889195d}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!current\+Frame@{current\+Frame}}
-\index{current\+Frame@{current\+Frame}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{current\+Frame}{currentFrame}}
-{\footnotesize\ttfamily float current\+Frame}
-
-Current frame of animation \mbox{\Hypertarget{structentity__s_ae0b5157d90563d37e8209f8ba094e494}\label{structentity__s_ae0b5157d90563d37e8209f8ba094e494}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!favorite\+Thing@{favorite\+Thing}}
-\index{favorite\+Thing@{favorite\+Thing}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{favorite\+Thing}{favoriteThing}}
-{\footnotesize\ttfamily char favorite\+Thing\mbox{[}M\+A\+X\+\_\+\+C\+H\+A\+RS\mbox{]}}
-
-guy\textquotesingle{}s favorite thing, just for funsies \mbox{\Hypertarget{structentity__s_afc50ca9ba71427ea7962929de4b0e1bb}\label{structentity__s_afc50ca9ba71427ea7962929de4b0e1bb}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!flip@{flip}}
-\index{flip@{flip}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{flip}{flip}}
-{\footnotesize\ttfamily \hyperlink{struct_vector2_d}{Vector2D} flip}
-
-Flip horizontal or vertical \mbox{\Hypertarget{structentity__s_a4158e9a3af9337e59f9b8de984c0efba}\label{structentity__s_a4158e9a3af9337e59f9b8de984c0efba}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!id@{id}}
-\index{id@{id}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{id}{id}}
-{\footnotesize\ttfamily Uint64 id}
-
-Auto increment id for this entity \mbox{\Hypertarget{structentity__s_a13159f6b47122dc47eb11b1653a1663a}\label{structentity__s_a13159f6b47122dc47eb11b1653a1663a}} 
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structentity__s_ac630363dd06e4f209dfa9b3197f95fc4}\label{structentity__s_ac630363dd06e4f209dfa9b3197f95fc4}} 
 \index{entity\+\_\+s@{entity\+\_\+s}!in\+Use@{in\+Use}}
 \index{in\+Use@{in\+Use}!entity\+\_\+s@{entity\+\_\+s}}
 \subsubsection{\texorpdfstring{in\+Use}{inUse}}
-{\footnotesize\ttfamily short unsigned int in\+Use}
+{\footnotesize\ttfamily short unsigned int entity\+\_\+s\+::in\+Use}
 
-Don\textquotesingle{}t ever touch this. 1 if in use, 0 if not \mbox{\Hypertarget{structentity__s_a09530f21303b5dbd659855de69a51e0c}\label{structentity__s_a09530f21303b5dbd659855de69a51e0c}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!my\+Sprite@{my\+Sprite}}
-\index{my\+Sprite@{my\+Sprite}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{my\+Sprite}{mySprite}}
-{\footnotesize\ttfamily \hyperlink{struct_sprite___s}{Sprite}$\ast$ my\+Sprite}
 
-The entity\textquotesingle{}s sprite, might get changed later \mbox{\Hypertarget{structentity__s_a1a416c8de05eed27aa81f653426597d8}\label{structentity__s_a1a416c8de05eed27aa81f653426597d8}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!name@{name}}
-\index{name@{name}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{name}{name}}
-{\footnotesize\ttfamily char name\mbox{[}M\+A\+X\+\_\+\+C\+H\+A\+RS\mbox{]}}
 
-name of the object \mbox{\Hypertarget{structentity__s_a2dc349a13930beaf26472e0d04d9563e}\label{structentity__s_a2dc349a13930beaf26472e0d04d9563e}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!position@{position}}
-\index{position@{position}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{position}{position}}
-{\footnotesize\ttfamily \hyperlink{struct_vector2_d}{Vector2D} position}
+Don\textquotesingle{}t ever touch this. 
 
-Draw position \mbox{\Hypertarget{structentity__s_ac4e0ffa54c436c5dad6ca9481266f9ed}\label{structentity__s_ac4e0ffa54c436c5dad6ca9481266f9ed}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!rotation@{rotation}}
-\index{rotation@{rotation}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{rotation}{rotation}}
-{\footnotesize\ttfamily \hyperlink{struct_vector2_d}{Vector2D} rotation}
-
-Rotation \mbox{\Hypertarget{structentity__s_a1b187f4d1f81894380925e9de933801a}\label{structentity__s_a1b187f4d1f81894380925e9de933801a}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!scale@{scale}}
-\index{scale@{scale}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{scale}{scale}}
-{\footnotesize\ttfamily \hyperlink{struct_vector2_d}{Vector2D} scale}
-
-Scale to draw the sprite at, will default to 1,1 \mbox{\Hypertarget{structentity__s_a8ff0fe80de1fcc51fee6f1d766e9de8b}\label{structentity__s_a8ff0fe80de1fcc51fee6f1d766e9de8b}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!scale\+Center@{scale\+Center}}
-\index{scale\+Center@{scale\+Center}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{scale\+Center}{scaleCenter}}
-{\footnotesize\ttfamily \hyperlink{struct_vector2_d}{Vector2D} scale\+Center}
-
-Center of sprite to scale at \mbox{\Hypertarget{structentity__s_ae4dad0223ba78dddff3177bd20960ff2}\label{structentity__s_ae4dad0223ba78dddff3177bd20960ff2}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!update@{update}}
-\index{update@{update}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{update}{update}}
-{\footnotesize\ttfamily void($\ast$ update) (struct \hyperlink{structentity__s}{entity\+\_\+s} $\ast$self)}
-
-Pointer to an update function that will get called every frame \mbox{\Hypertarget{structentity__s_a5b7790a4c9666f321ce2228f1b8bd118}\label{structentity__s_a5b7790a4c9666f321ce2228f1b8bd118}} 
-\index{entity\+\_\+s@{entity\+\_\+s}!velocity@{velocity}}
-\index{velocity@{velocity}!entity\+\_\+s@{entity\+\_\+s}}
-\subsubsection{\texorpdfstring{velocity}{velocity}}
-{\footnotesize\ttfamily \hyperlink{struct_vector2_d}{Vector2D} velocity}
-
-Desired movement direction 
+1 if in use, 0 if not 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

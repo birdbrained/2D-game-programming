@@ -9,63 +9,40 @@ A data structure that represents a single node in a graph.
 
 {\ttfamily \#include $<$ds\+\_\+graph.\+h$>$}
 
-\subsection*{Data Fields}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-void $\ast$ \hyperlink{structgraphnode__s_a735984d41155bc1032e09bece8f8d66d}{data}
-\item 
-\mbox{\Hypertarget{structgraphnode__s_a6150e0515f7202e2fb518f7206ed97dc}\label{structgraphnode__s_a6150e0515f7202e2fb518f7206ed97dc}} 
+\mbox{\Hypertarget{structgraphnode__s_a33b281fd30a7f944f4ce7aa4bc123073}\label{structgraphnode__s_a33b281fd30a7f944f4ce7aa4bc123073}} 
+void $\ast$ \hyperlink{structgraphnode__s_a33b281fd30a7f944f4ce7aa4bc123073}{data}
+\begin{DoxyCompactList}\small\item\em The data this node will hold. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structgraphnode__s_a02f0fb76d82673f04337748e060e200f}\label{structgraphnode__s_a02f0fb76d82673f04337748e060e200f}} 
 int {\bfseries x}
 \item 
-int \hyperlink{structgraphnode__s_a0a2f84ed7838f07779ae24c5a9086d33}{y}
-\item 
-struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s} $\ast$ \hyperlink{structgraphnode__s_a7101dbac1154ba59495fffbdb030eba2}{up\+\_\+node}
-\item 
-\mbox{\Hypertarget{structgraphnode__s_a54cefd6e7df653a0115bae821fd1599c}\label{structgraphnode__s_a54cefd6e7df653a0115bae821fd1599c}} 
+\mbox{\Hypertarget{structgraphnode__s_a91452c9d1ccdc620827f06aa8bba6e64}\label{structgraphnode__s_a91452c9d1ccdc620827f06aa8bba6e64}} 
+int \hyperlink{structgraphnode__s_a91452c9d1ccdc620827f06aa8bba6e64}{y}
+\begin{DoxyCompactList}\small\item\em The position in the graph of this node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structgraphnode__s_aef70ef9729aeeb3fa4e6af6bece8ece4}\label{structgraphnode__s_aef70ef9729aeeb3fa4e6af6bece8ece4}} 
+struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s} $\ast$ \hyperlink{structgraphnode__s_aef70ef9729aeeb3fa4e6af6bece8ece4}{up\+\_\+node}
+\begin{DoxyCompactList}\small\item\em Pointers to the surrounding nodes in the graph. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structgraphnode__s_a0f8cbc8a46d4a36c195698aeab489242}\label{structgraphnode__s_a0f8cbc8a46d4a36c195698aeab489242}} 
 struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s} $\ast$ {\bfseries right\+\_\+node}
 \item 
-\mbox{\Hypertarget{structgraphnode__s_ae504c9f7ceef062009506664d993c7db}\label{structgraphnode__s_ae504c9f7ceef062009506664d993c7db}} 
+\mbox{\Hypertarget{structgraphnode__s_acf49746ce8b7499670a57ae6a13703aa}\label{structgraphnode__s_acf49746ce8b7499670a57ae6a13703aa}} 
 struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s} $\ast$ {\bfseries down\+\_\+node}
 \item 
-\mbox{\Hypertarget{structgraphnode__s_af65e2cb312f851ac682c732ce717418b}\label{structgraphnode__s_af65e2cb312f851ac682c732ce717418b}} 
+\mbox{\Hypertarget{structgraphnode__s_a3f5d8b5310c2a75d945eb7576e3dc558}\label{structgraphnode__s_a3f5d8b5310c2a75d945eb7576e3dc558}} 
 struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s} $\ast$ {\bfseries left\+\_\+node}
 \item 
-size\+\_\+t \hyperlink{structgraphnode__s_af884332e6713af9425451adde09e0024}{element\+Size}
-\item 
-\mbox{\Hypertarget{structgraphnode__s_a87f4c0982d29301b2438f3c7a3e2a493}\label{structgraphnode__s_a87f4c0982d29301b2438f3c7a3e2a493}} 
+\mbox{\Hypertarget{structgraphnode__s_a61c1eca5b2f01044e82b4344aae39580}\label{structgraphnode__s_a61c1eca5b2f01044e82b4344aae39580}} 
+size\+\_\+t \hyperlink{structgraphnode__s_a61c1eca5b2f01044e82b4344aae39580}{element\+Size}
+\begin{DoxyCompactList}\small\item\em The size of the data held. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structgraphnode__s_aab37a824f4d8a1880e1bd37e6b930f22}\label{structgraphnode__s_aab37a824f4d8a1880e1bd37e6b930f22}} 
 Uint8 {\bfseries traversed}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 A data structure that represents a single node in a graph. 
-
-\subsection{Field Documentation}
-\mbox{\Hypertarget{structgraphnode__s_a735984d41155bc1032e09bece8f8d66d}\label{structgraphnode__s_a735984d41155bc1032e09bece8f8d66d}} 
-\index{graphnode\+\_\+s@{graphnode\+\_\+s}!data@{data}}
-\index{data@{data}!graphnode\+\_\+s@{graphnode\+\_\+s}}
-\subsubsection{\texorpdfstring{data}{data}}
-{\footnotesize\ttfamily void$\ast$ data}
-
-The data this node will hold \mbox{\Hypertarget{structgraphnode__s_af884332e6713af9425451adde09e0024}\label{structgraphnode__s_af884332e6713af9425451adde09e0024}} 
-\index{graphnode\+\_\+s@{graphnode\+\_\+s}!element\+Size@{element\+Size}}
-\index{element\+Size@{element\+Size}!graphnode\+\_\+s@{graphnode\+\_\+s}}
-\subsubsection{\texorpdfstring{element\+Size}{elementSize}}
-{\footnotesize\ttfamily size\+\_\+t element\+Size}
-
-The size of the data held \mbox{\Hypertarget{structgraphnode__s_a7101dbac1154ba59495fffbdb030eba2}\label{structgraphnode__s_a7101dbac1154ba59495fffbdb030eba2}} 
-\index{graphnode\+\_\+s@{graphnode\+\_\+s}!up\+\_\+node@{up\+\_\+node}}
-\index{up\+\_\+node@{up\+\_\+node}!graphnode\+\_\+s@{graphnode\+\_\+s}}
-\subsubsection{\texorpdfstring{up\+\_\+node}{up\_node}}
-{\footnotesize\ttfamily struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s}$\ast$ up\+\_\+node}
-
-Pointers to the surrounding nodes in the graph \mbox{\Hypertarget{structgraphnode__s_a0a2f84ed7838f07779ae24c5a9086d33}\label{structgraphnode__s_a0a2f84ed7838f07779ae24c5a9086d33}} 
-\index{graphnode\+\_\+s@{graphnode\+\_\+s}!y@{y}}
-\index{y@{y}!graphnode\+\_\+s@{graphnode\+\_\+s}}
-\subsubsection{\texorpdfstring{y}{y}}
-{\footnotesize\ttfamily int y}
-
-The position in the graph of this node 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

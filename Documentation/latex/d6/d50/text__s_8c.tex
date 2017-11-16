@@ -1,0 +1,92 @@
+\hypertarget{text__s_8c}{}\section{Fall2017\+\_\+2\+Dproject/src/text\+\_\+s.c File Reference}
+\label{text__s_8c}\index{Fall2017\+\_\+2\+Dproject/src/text\+\_\+s.\+c@{Fall2017\+\_\+2\+Dproject/src/text\+\_\+s.\+c}}
+{\ttfamily \#include \char`\"{}text\+\_\+s.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtextmanager__s}{textmanager\+\_\+s}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structtextmanager__s}{textmanager\+\_\+s} \hyperlink{text__s_8c_a41e2bc0e535e90cdaa42572cd4206153}{Text\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{text__s_8c_a1085c0e6323198f0a60097ae5fb5d373}{text\+\_\+system\+\_\+close} ()
+\item 
+void \hyperlink{text__s_8c_a22225135ed4b2332c588046d64083f3d}{text\+\_\+system\+\_\+init} (Uint32 max\+Text\+Displays)
+\item 
+\hyperlink{text__s_8h_ad683586873c96cc0104ec26d2a21b580}{Text\+Display} $\ast$ \hyperlink{text__s_8c_a116a1146fcb03ae67a838ed4b59efa51}{text\+\_\+new} (T\+T\+F\+\_\+\+Font $\ast$font, char $\ast$text, S\+D\+L\+\_\+\+Color color)
+\item 
+void \hyperlink{text__s_8c_a84036cda3ad925d3ce7d34059d5935ee}{text\+\_\+delete} (\hyperlink{text__s_8h_ad683586873c96cc0104ec26d2a21b580}{Text\+Display} $\ast$text\+That\+Dies)
+\item 
+void \hyperlink{text__s_8c_a1f46532346d7a7e8c9610c4003a72687}{text\+\_\+free} (\hyperlink{text__s_8h_ad683586873c96cc0104ec26d2a21b580}{Text\+Display} $\ast$t)
+\item 
+void \hyperlink{text__s_8c_a63f943ffe657eb98be7c7cb191baa4f9}{text\+\_\+delete\+\_\+all} ()
+\item 
+void \hyperlink{text__s_8c_af908ccf57ac32ceb2598b085647780b8}{text\+\_\+draw} (\hyperlink{text__s_8h_ad683586873c96cc0104ec26d2a21b580}{Text\+Display} $\ast$t)
+\item 
+void \hyperlink{text__s_8c_ae3a62787d1f328b41d1b65092148db52}{text\+\_\+draw\+\_\+all} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{text__s_8c_a41e2bc0e535e90cdaa42572cd4206153}\label{text__s_8c_a41e2bc0e535e90cdaa42572cd4206153}} 
+\index{text\+\_\+s.\+c@{text\+\_\+s.\+c}!Text\+Manager@{Text\+Manager}}
+\index{Text\+Manager@{Text\+Manager}!text\+\_\+s.\+c@{text\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{Text\+Manager}{TextManager}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structtextmanager__s}{textmanager\+\_\+s} \hyperlink{text__s_8c_a41e2bc0e535e90cdaa42572cd4206153}{Text\+Manager}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{text__s_8c_a84036cda3ad925d3ce7d34059d5935ee}\label{text__s_8c_a84036cda3ad925d3ce7d34059d5935ee}} 
+\index{text\+\_\+s.\+c@{text\+\_\+s.\+c}!text\+\_\+delete@{text\+\_\+delete}}
+\index{text\+\_\+delete@{text\+\_\+delete}!text\+\_\+s.\+c@{text\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{text\+\_\+delete()}{text\_delete()}}
+{\footnotesize\ttfamily void text\+\_\+delete (\begin{DoxyParamCaption}\item[{\hyperlink{text__s_8h_ad683586873c96cc0104ec26d2a21b580}{Text\+Display} $\ast$}]{text\+That\+Dies }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{text__s_8c_a63f943ffe657eb98be7c7cb191baa4f9}\label{text__s_8c_a63f943ffe657eb98be7c7cb191baa4f9}} 
+\index{text\+\_\+s.\+c@{text\+\_\+s.\+c}!text\+\_\+delete\+\_\+all@{text\+\_\+delete\+\_\+all}}
+\index{text\+\_\+delete\+\_\+all@{text\+\_\+delete\+\_\+all}!text\+\_\+s.\+c@{text\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{text\+\_\+delete\+\_\+all()}{text\_delete\_all()}}
+{\footnotesize\ttfamily void text\+\_\+delete\+\_\+all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{text__s_8c_af908ccf57ac32ceb2598b085647780b8}\label{text__s_8c_af908ccf57ac32ceb2598b085647780b8}} 
+\index{text\+\_\+s.\+c@{text\+\_\+s.\+c}!text\+\_\+draw@{text\+\_\+draw}}
+\index{text\+\_\+draw@{text\+\_\+draw}!text\+\_\+s.\+c@{text\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{text\+\_\+draw()}{text\_draw()}}
+{\footnotesize\ttfamily void text\+\_\+draw (\begin{DoxyParamCaption}\item[{\hyperlink{text__s_8h_ad683586873c96cc0104ec26d2a21b580}{Text\+Display} $\ast$}]{t }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{text__s_8c_ae3a62787d1f328b41d1b65092148db52}\label{text__s_8c_ae3a62787d1f328b41d1b65092148db52}} 
+\index{text\+\_\+s.\+c@{text\+\_\+s.\+c}!text\+\_\+draw\+\_\+all@{text\+\_\+draw\+\_\+all}}
+\index{text\+\_\+draw\+\_\+all@{text\+\_\+draw\+\_\+all}!text\+\_\+s.\+c@{text\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{text\+\_\+draw\+\_\+all()}{text\_draw\_all()}}
+{\footnotesize\ttfamily void text\+\_\+draw\+\_\+all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{text__s_8c_a1f46532346d7a7e8c9610c4003a72687}\label{text__s_8c_a1f46532346d7a7e8c9610c4003a72687}} 
+\index{text\+\_\+s.\+c@{text\+\_\+s.\+c}!text\+\_\+free@{text\+\_\+free}}
+\index{text\+\_\+free@{text\+\_\+free}!text\+\_\+s.\+c@{text\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{text\+\_\+free()}{text\_free()}}
+{\footnotesize\ttfamily void text\+\_\+free (\begin{DoxyParamCaption}\item[{\hyperlink{text__s_8h_ad683586873c96cc0104ec26d2a21b580}{Text\+Display} $\ast$}]{t }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{text__s_8c_a116a1146fcb03ae67a838ed4b59efa51}\label{text__s_8c_a116a1146fcb03ae67a838ed4b59efa51}} 
+\index{text\+\_\+s.\+c@{text\+\_\+s.\+c}!text\+\_\+new@{text\+\_\+new}}
+\index{text\+\_\+new@{text\+\_\+new}!text\+\_\+s.\+c@{text\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{text\+\_\+new()}{text\_new()}}
+{\footnotesize\ttfamily \hyperlink{text__s_8h_ad683586873c96cc0104ec26d2a21b580}{Text\+Display}$\ast$ text\+\_\+new (\begin{DoxyParamCaption}\item[{T\+T\+F\+\_\+\+Font $\ast$}]{font,  }\item[{char $\ast$}]{text,  }\item[{S\+D\+L\+\_\+\+Color}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{text__s_8c_a1085c0e6323198f0a60097ae5fb5d373}\label{text__s_8c_a1085c0e6323198f0a60097ae5fb5d373}} 
+\index{text\+\_\+s.\+c@{text\+\_\+s.\+c}!text\+\_\+system\+\_\+close@{text\+\_\+system\+\_\+close}}
+\index{text\+\_\+system\+\_\+close@{text\+\_\+system\+\_\+close}!text\+\_\+s.\+c@{text\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{text\+\_\+system\+\_\+close()}{text\_system\_close()}}
+{\footnotesize\ttfamily void text\+\_\+system\+\_\+close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{text__s_8c_a22225135ed4b2332c588046d64083f3d}\label{text__s_8c_a22225135ed4b2332c588046d64083f3d}} 
+\index{text\+\_\+s.\+c@{text\+\_\+s.\+c}!text\+\_\+system\+\_\+init@{text\+\_\+system\+\_\+init}}
+\index{text\+\_\+system\+\_\+init@{text\+\_\+system\+\_\+init}!text\+\_\+s.\+c@{text\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{text\+\_\+system\+\_\+init()}{text\_system\_init()}}
+{\footnotesize\ttfamily void text\+\_\+system\+\_\+init (\begin{DoxyParamCaption}\item[{Uint32}]{max\+Text\+Displays }\end{DoxyParamCaption})}
+

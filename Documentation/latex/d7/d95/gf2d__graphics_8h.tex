@@ -1,0 +1,174 @@
+\hypertarget{gf2d__graphics_8h}{}\section{Fall2017\+\_\+2\+Dproject/include/gf2d\+\_\+graphics.h File Reference}
+\label{gf2d__graphics_8h}\index{Fall2017\+\_\+2\+Dproject/include/gf2d\+\_\+graphics.\+h@{Fall2017\+\_\+2\+Dproject/include/gf2d\+\_\+graphics.\+h}}
+{\ttfamily \#include $<$S\+D\+L.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+types.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+vector.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{gf2d__graphics_8h_a9ee57e81ded9e328a18edce6f109cadb}{gf2d\+\_\+graphics\+\_\+initialize} (char $\ast$window\+Name, int view\+Width, int view\+Height, int render\+Width, int render\+Height, \hyperlink{struct_vector4_d}{Vector4D} bgcolor, \hyperlink{gf2d__types_8h_a4a1d8cd6ef103fc1f5d5307454f581e1}{Bool} fullscreen, S\+D\+L\+\_\+\+Surface $\ast$icon)
+\begin{DoxyCompactList}\small\item\em initializes S\+DL and setups up basic window and rendering contexts \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__graphics_8h_abb9c909bc08be13d6d397bd98bdf1168}{gf2d\+\_\+graphics\+\_\+set\+\_\+frame\+\_\+delay} (Uint32 frame\+Delay)
+\begin{DoxyCompactList}\small\item\em sets the amount of delay to aim for between frames. \end{DoxyCompactList}\item 
+float \hyperlink{gf2d__graphics_8h_ac31a0f73586f50662eadf3d37482dedc}{gf2d\+\_\+graphics\+\_\+get\+\_\+frames\+\_\+per\+\_\+second} ()
+\begin{DoxyCompactList}\small\item\em gets the functional number of frames rendered per second \end{DoxyCompactList}\item 
+S\+D\+L\+\_\+\+Renderer $\ast$ \hyperlink{gf2d__graphics_8h_a53577592ce5a887245a75b04ee27a52a}{gf2d\+\_\+graphics\+\_\+get\+\_\+renderer} ()
+\begin{DoxyCompactList}\small\item\em get the current rendering context \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__graphics_8h_afd64f542ee6a555e7ad59a0747e87faa}{gf2d\+\_\+grahics\+\_\+next\+\_\+frame} ()
+\begin{DoxyCompactList}\small\item\em render the current frame to screen \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__graphics_8h_aa6bcc7bc148c5a0b9425a281c3778a7a}{gf2d\+\_\+graphics\+\_\+clear\+\_\+screen} ()
+\begin{DoxyCompactList}\small\item\em clears drawing buffer. \end{DoxyCompactList}\item 
+S\+D\+L\+\_\+\+Surface $\ast$ \hyperlink{gf2d__graphics_8h_aa583587079565cea86547cb87c6a92f9}{gf2d\+\_\+graphics\+\_\+create\+\_\+surface} (Uint32 w, Uint32 h)
+\begin{DoxyCompactList}\small\item\em creates an S\+D\+L\+\_\+\+Surface that is compatible with the current drawing context \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__graphics_8h_a56147c9f658909fde461688181ffe347}{gf2d\+\_\+graphics\+\_\+blit\+\_\+surface\+\_\+to\+\_\+screen} (S\+D\+L\+\_\+\+Surface $\ast$surface, const S\+D\+L\+\_\+\+Rect $\ast$src\+Rect, S\+D\+L\+\_\+\+Rect $\ast$dst\+Rect)
+\begin{DoxyCompactList}\small\item\em draw a surface to the current drawing context \end{DoxyCompactList}\item 
+S\+D\+L\+\_\+\+Surface $\ast$ \hyperlink{gf2d__graphics_8h_a4932a776dd1be1a35d6eda7cbdacb8a5}{gf2d\+\_\+graphics\+\_\+screen\+\_\+convert} (S\+D\+L\+\_\+\+Surface $\ast$$\ast$surface)
+\begin{DoxyCompactList}\small\item\em convert an S\+DL Surface to the format compatible with the rendering context \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gf2d__graphics_8h_afd64f542ee6a555e7ad59a0747e87faa}\label{gf2d__graphics_8h_afd64f542ee6a555e7ad59a0747e87faa}} 
+\index{gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}!gf2d\+\_\+grahics\+\_\+next\+\_\+frame@{gf2d\+\_\+grahics\+\_\+next\+\_\+frame}}
+\index{gf2d\+\_\+grahics\+\_\+next\+\_\+frame@{gf2d\+\_\+grahics\+\_\+next\+\_\+frame}!gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+grahics\+\_\+next\+\_\+frame()}{gf2d\_grahics\_next\_frame()}}
+{\footnotesize\ttfamily void gf2d\+\_\+grahics\+\_\+next\+\_\+frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+render the current frame to screen 
+
+\mbox{\Hypertarget{gf2d__graphics_8h_a56147c9f658909fde461688181ffe347}\label{gf2d__graphics_8h_a56147c9f658909fde461688181ffe347}} 
+\index{gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}!gf2d\+\_\+graphics\+\_\+blit\+\_\+surface\+\_\+to\+\_\+screen@{gf2d\+\_\+graphics\+\_\+blit\+\_\+surface\+\_\+to\+\_\+screen}}
+\index{gf2d\+\_\+graphics\+\_\+blit\+\_\+surface\+\_\+to\+\_\+screen@{gf2d\+\_\+graphics\+\_\+blit\+\_\+surface\+\_\+to\+\_\+screen}!gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+graphics\+\_\+blit\+\_\+surface\+\_\+to\+\_\+screen()}{gf2d\_graphics\_blit\_surface\_to\_screen()}}
+{\footnotesize\ttfamily void gf2d\+\_\+graphics\+\_\+blit\+\_\+surface\+\_\+to\+\_\+screen (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{surface,  }\item[{const S\+D\+L\+\_\+\+Rect $\ast$}]{src\+Rect,  }\item[{S\+D\+L\+\_\+\+Rect $\ast$}]{dst\+Rect }\end{DoxyParamCaption})}
+
+
+
+draw a surface to the current drawing context 
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & the surface to draw \\
+\hline
+{\em src\+Rect} & the clip rect to draw from (if N\+U\+LL, whole surface is used) \\
+\hline
+{\em dst\+Rect} & the position data of the rext is used for the destination position \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__graphics_8h_aa6bcc7bc148c5a0b9425a281c3778a7a}\label{gf2d__graphics_8h_aa6bcc7bc148c5a0b9425a281c3778a7a}} 
+\index{gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}!gf2d\+\_\+graphics\+\_\+clear\+\_\+screen@{gf2d\+\_\+graphics\+\_\+clear\+\_\+screen}}
+\index{gf2d\+\_\+graphics\+\_\+clear\+\_\+screen@{gf2d\+\_\+graphics\+\_\+clear\+\_\+screen}!gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+graphics\+\_\+clear\+\_\+screen()}{gf2d\_graphics\_clear\_screen()}}
+{\footnotesize\ttfamily void gf2d\+\_\+graphics\+\_\+clear\+\_\+screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+clears drawing buffer. 
+
+Should be called each frame before drawing \mbox{\Hypertarget{gf2d__graphics_8h_aa583587079565cea86547cb87c6a92f9}\label{gf2d__graphics_8h_aa583587079565cea86547cb87c6a92f9}} 
+\index{gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}!gf2d\+\_\+graphics\+\_\+create\+\_\+surface@{gf2d\+\_\+graphics\+\_\+create\+\_\+surface}}
+\index{gf2d\+\_\+graphics\+\_\+create\+\_\+surface@{gf2d\+\_\+graphics\+\_\+create\+\_\+surface}!gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+graphics\+\_\+create\+\_\+surface()}{gf2d\_graphics\_create\_surface()}}
+{\footnotesize\ttfamily S\+D\+L\+\_\+\+Surface$\ast$ gf2d\+\_\+graphics\+\_\+create\+\_\+surface (\begin{DoxyParamCaption}\item[{Uint32}]{w,  }\item[{Uint32}]{h }\end{DoxyParamCaption})}
+
+
+
+creates an S\+D\+L\+\_\+\+Surface that is compatible with the current drawing context 
+
+
+\begin{DoxyParams}{Parameters}
+{\em w} & the width of the surface to create \\
+\hline
+{\em h} & the height of the surface to create \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N\+U\+LL on error or the S\+D\+L\+\_\+\+Surface created 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gf2d__graphics_8h_ac31a0f73586f50662eadf3d37482dedc}\label{gf2d__graphics_8h_ac31a0f73586f50662eadf3d37482dedc}} 
+\index{gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}!gf2d\+\_\+graphics\+\_\+get\+\_\+frames\+\_\+per\+\_\+second@{gf2d\+\_\+graphics\+\_\+get\+\_\+frames\+\_\+per\+\_\+second}}
+\index{gf2d\+\_\+graphics\+\_\+get\+\_\+frames\+\_\+per\+\_\+second@{gf2d\+\_\+graphics\+\_\+get\+\_\+frames\+\_\+per\+\_\+second}!gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+graphics\+\_\+get\+\_\+frames\+\_\+per\+\_\+second()}{gf2d\_graphics\_get\_frames\_per\_second()}}
+{\footnotesize\ttfamily float gf2d\+\_\+graphics\+\_\+get\+\_\+frames\+\_\+per\+\_\+second (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets the functional number of frames rendered per second 
+
+\begin{DoxyReturn}{Returns}
+the current frame rate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gf2d__graphics_8h_a53577592ce5a887245a75b04ee27a52a}\label{gf2d__graphics_8h_a53577592ce5a887245a75b04ee27a52a}} 
+\index{gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}!gf2d\+\_\+graphics\+\_\+get\+\_\+renderer@{gf2d\+\_\+graphics\+\_\+get\+\_\+renderer}}
+\index{gf2d\+\_\+graphics\+\_\+get\+\_\+renderer@{gf2d\+\_\+graphics\+\_\+get\+\_\+renderer}!gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+graphics\+\_\+get\+\_\+renderer()}{gf2d\_graphics\_get\_renderer()}}
+{\footnotesize\ttfamily S\+D\+L\+\_\+\+Renderer$\ast$ gf2d\+\_\+graphics\+\_\+get\+\_\+renderer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get the current rendering context 
+
+\begin{DoxyReturn}{Returns}
+N\+U\+LL on error or the current rendering context 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gf2d__graphics_8h_a9ee57e81ded9e328a18edce6f109cadb}\label{gf2d__graphics_8h_a9ee57e81ded9e328a18edce6f109cadb}} 
+\index{gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}!gf2d\+\_\+graphics\+\_\+initialize@{gf2d\+\_\+graphics\+\_\+initialize}}
+\index{gf2d\+\_\+graphics\+\_\+initialize@{gf2d\+\_\+graphics\+\_\+initialize}!gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+graphics\+\_\+initialize()}{gf2d\_graphics\_initialize()}}
+{\footnotesize\ttfamily void gf2d\+\_\+graphics\+\_\+initialize (\begin{DoxyParamCaption}\item[{char $\ast$}]{window\+Name,  }\item[{int}]{view\+Width,  }\item[{int}]{view\+Height,  }\item[{int}]{render\+Width,  }\item[{int}]{render\+Height,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{bgcolor,  }\item[{\hyperlink{gf2d__types_8h_a4a1d8cd6ef103fc1f5d5307454f581e1}{Bool}}]{fullscreen,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{icon }\end{DoxyParamCaption})}
+
+
+
+initializes S\+DL and setups up basic window and rendering contexts 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window\+Name} & the name that you would want displayed on the game window \\
+\hline
+{\em view\+Width} & how wide you want your game window to be \\
+\hline
+{\em view\+Height} & how high you want your game window to be \\
+\hline
+{\em render\+Width} & How much draw width you want to work with logically \\
+\hline
+{\em render\+Height} & How much draw height you want to work with logically \\
+\hline
+{\em bgcolor} & what you want the default background color to be \\
+\hline
+{\em fullscreen} & if you want the window to render full screen or not \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__graphics_8h_a4932a776dd1be1a35d6eda7cbdacb8a5}\label{gf2d__graphics_8h_a4932a776dd1be1a35d6eda7cbdacb8a5}} 
+\index{gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}!gf2d\+\_\+graphics\+\_\+screen\+\_\+convert@{gf2d\+\_\+graphics\+\_\+screen\+\_\+convert}}
+\index{gf2d\+\_\+graphics\+\_\+screen\+\_\+convert@{gf2d\+\_\+graphics\+\_\+screen\+\_\+convert}!gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+graphics\+\_\+screen\+\_\+convert()}{gf2d\_graphics\_screen\_convert()}}
+{\footnotesize\ttfamily S\+D\+L\+\_\+\+Surface$\ast$ gf2d\+\_\+graphics\+\_\+screen\+\_\+convert (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Surface $\ast$$\ast$}]{surface }\end{DoxyParamCaption})}
+
+
+
+convert an S\+DL Surface to the format compatible with the rendering context 
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & a pointer to your surface pointer. The surface is automatically freed upon success \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N\+U\+LL on error, or the new S\+DL Surface upon success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gf2d__graphics_8h_abb9c909bc08be13d6d397bd98bdf1168}\label{gf2d__graphics_8h_abb9c909bc08be13d6d397bd98bdf1168}} 
+\index{gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}!gf2d\+\_\+graphics\+\_\+set\+\_\+frame\+\_\+delay@{gf2d\+\_\+graphics\+\_\+set\+\_\+frame\+\_\+delay}}
+\index{gf2d\+\_\+graphics\+\_\+set\+\_\+frame\+\_\+delay@{gf2d\+\_\+graphics\+\_\+set\+\_\+frame\+\_\+delay}!gf2d\+\_\+graphics.\+h@{gf2d\+\_\+graphics.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+graphics\+\_\+set\+\_\+frame\+\_\+delay()}{gf2d\_graphics\_set\_frame\_delay()}}
+{\footnotesize\ttfamily void gf2d\+\_\+graphics\+\_\+set\+\_\+frame\+\_\+delay (\begin{DoxyParamCaption}\item[{Uint32}]{frame\+Delay }\end{DoxyParamCaption})}
+
+
+
+sets the amount of delay to aim for between frames. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame\+Delay} & the amount of time, in milliseconds, that each frame should take \\
+\hline
+\end{DoxyParams}

@@ -9,75 +9,37 @@ A sound structure that represents...a sound.
 
 {\ttfamily \#include $<$audio.\+h$>$}
 
-\subsection*{Data Fields}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-Uint64 \hyperlink{structsound__s_a4158e9a3af9337e59f9b8de984c0efba}{id}
-\item 
-short unsigned int \hyperlink{structsound__s_a13159f6b47122dc47eb11b1653a1663a}{in\+Use}
-\item 
-char \hyperlink{structsound__s_aa860b866620309ee03358dbb835ca4d7}{filepath} \mbox{[}F\+I\+L\+E\+P\+A\+T\+H\+\_\+\+C\+H\+A\+R\+\_\+\+L\+EN\mbox{]}
-\item 
-Mix\+\_\+\+Chunk $\ast$ \hyperlink{structsound__s_a0bb45d52afdd032f48e17a8519361d54}{sound}
-\item 
-float \hyperlink{structsound__s_a016abda2855c77dcc1630f9d2f9f8d18}{volume}
-\item 
-int \hyperlink{structsound__s_a5a158796b730c78bbae975d936e229f0}{default\+Channel}
-\item 
-Instrument \hyperlink{structsound__s_a88fb6e4086e01e476912df234d0f9d20}{instrument}
-\item 
-\mbox{\Hypertarget{structsound__s_ac1072fb2f49995e1342ffcfef83774c4}\label{structsound__s_ac1072fb2f49995e1342ffcfef83774c4}} 
+\mbox{\Hypertarget{structsound__s_a2f7e13cc9fb0c3f0c4ee04ed6047035b}\label{structsound__s_a2f7e13cc9fb0c3f0c4ee04ed6047035b}} 
+Uint64 \hyperlink{structsound__s_a2f7e13cc9fb0c3f0c4ee04ed6047035b}{id}
+\begin{DoxyCompactList}\small\item\em id of the sound, unique \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structsound__s_a9408151d72733b3365d20df4f0c79122}\label{structsound__s_a9408151d72733b3365d20df4f0c79122}} 
+short unsigned int \hyperlink{structsound__s_a9408151d72733b3365d20df4f0c79122}{in\+Use}
+\begin{DoxyCompactList}\small\item\em 1 if memory space in use, 0 if free \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structsound__s_a67aa7fa8339fd9db841aa18a914d6a4f}\label{structsound__s_a67aa7fa8339fd9db841aa18a914d6a4f}} 
+char \hyperlink{structsound__s_a67aa7fa8339fd9db841aa18a914d6a4f}{filepath} \mbox{[}F\+I\+L\+E\+P\+A\+T\+H\+\_\+\+C\+H\+A\+R\+\_\+\+L\+EN\mbox{]}
+\begin{DoxyCompactList}\small\item\em filepath to the sound file, wav or ogg \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structsound__s_a7ad81e5b32667e8ab848cb2366e2e852}\label{structsound__s_a7ad81e5b32667e8ab848cb2366e2e852}} 
+Mix\+\_\+\+Chunk $\ast$ \hyperlink{structsound__s_a7ad81e5b32667e8ab848cb2366e2e852}{sound}
+\begin{DoxyCompactList}\small\item\em space for the sound chunk \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structsound__s_a2c4fc8cb89f5f2aa3d8a7df38b34fdf4}\label{structsound__s_a2c4fc8cb89f5f2aa3d8a7df38b34fdf4}} 
+float \hyperlink{structsound__s_a2c4fc8cb89f5f2aa3d8a7df38b34fdf4}{volume}
+\begin{DoxyCompactList}\small\item\em earrape adjuster \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structsound__s_a3aa7c97af690532eb7f83143dcb13839}\label{structsound__s_a3aa7c97af690532eb7f83143dcb13839}} 
+int \hyperlink{structsound__s_a3aa7c97af690532eb7f83143dcb13839}{default\+Channel}
+\begin{DoxyCompactList}\small\item\em default channel to play on \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structsound__s_aa741df12e0b33f0552fb198750723572}\label{structsound__s_aa741df12e0b33f0552fb198750723572}} 
+Instrument \hyperlink{structsound__s_aa741df12e0b33f0552fb198750723572}{instrument}
+\begin{DoxyCompactList}\small\item\em the instrument that is playing \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structsound__s_ac47d76565b5a9c8532eb864e13c880d1}\label{structsound__s_ac47d76565b5a9c8532eb864e13c880d1}} 
 F\+M\+O\+D\+\_\+\+S\+O\+U\+ND $\ast$ {\bfseries fsound}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 A sound structure that represents...a sound. 
-
-\subsection{Field Documentation}
-\mbox{\Hypertarget{structsound__s_a5a158796b730c78bbae975d936e229f0}\label{structsound__s_a5a158796b730c78bbae975d936e229f0}} 
-\index{sound\+\_\+s@{sound\+\_\+s}!default\+Channel@{default\+Channel}}
-\index{default\+Channel@{default\+Channel}!sound\+\_\+s@{sound\+\_\+s}}
-\subsubsection{\texorpdfstring{default\+Channel}{defaultChannel}}
-{\footnotesize\ttfamily int default\+Channel}
-
-default channel to play on \mbox{\Hypertarget{structsound__s_aa860b866620309ee03358dbb835ca4d7}\label{structsound__s_aa860b866620309ee03358dbb835ca4d7}} 
-\index{sound\+\_\+s@{sound\+\_\+s}!filepath@{filepath}}
-\index{filepath@{filepath}!sound\+\_\+s@{sound\+\_\+s}}
-\subsubsection{\texorpdfstring{filepath}{filepath}}
-{\footnotesize\ttfamily char filepath\mbox{[}F\+I\+L\+E\+P\+A\+T\+H\+\_\+\+C\+H\+A\+R\+\_\+\+L\+EN\mbox{]}}
-
-filepath to the sound file, wav or ogg \mbox{\Hypertarget{structsound__s_a4158e9a3af9337e59f9b8de984c0efba}\label{structsound__s_a4158e9a3af9337e59f9b8de984c0efba}} 
-\index{sound\+\_\+s@{sound\+\_\+s}!id@{id}}
-\index{id@{id}!sound\+\_\+s@{sound\+\_\+s}}
-\subsubsection{\texorpdfstring{id}{id}}
-{\footnotesize\ttfamily Uint64 id}
-
-id of the sound, unique \mbox{\Hypertarget{structsound__s_a88fb6e4086e01e476912df234d0f9d20}\label{structsound__s_a88fb6e4086e01e476912df234d0f9d20}} 
-\index{sound\+\_\+s@{sound\+\_\+s}!instrument@{instrument}}
-\index{instrument@{instrument}!sound\+\_\+s@{sound\+\_\+s}}
-\subsubsection{\texorpdfstring{instrument}{instrument}}
-{\footnotesize\ttfamily Instrument instrument}
-
-the instrument that is playing \mbox{\Hypertarget{structsound__s_a13159f6b47122dc47eb11b1653a1663a}\label{structsound__s_a13159f6b47122dc47eb11b1653a1663a}} 
-\index{sound\+\_\+s@{sound\+\_\+s}!in\+Use@{in\+Use}}
-\index{in\+Use@{in\+Use}!sound\+\_\+s@{sound\+\_\+s}}
-\subsubsection{\texorpdfstring{in\+Use}{inUse}}
-{\footnotesize\ttfamily short unsigned int in\+Use}
-
-1 if memory space in use, 0 if free \mbox{\Hypertarget{structsound__s_a0bb45d52afdd032f48e17a8519361d54}\label{structsound__s_a0bb45d52afdd032f48e17a8519361d54}} 
-\index{sound\+\_\+s@{sound\+\_\+s}!sound@{sound}}
-\index{sound@{sound}!sound\+\_\+s@{sound\+\_\+s}}
-\subsubsection{\texorpdfstring{sound}{sound}}
-{\footnotesize\ttfamily Mix\+\_\+\+Chunk$\ast$ sound}
-
-space for the sound chunk \mbox{\Hypertarget{structsound__s_a016abda2855c77dcc1630f9d2f9f8d18}\label{structsound__s_a016abda2855c77dcc1630f9d2f9f8d18}} 
-\index{sound\+\_\+s@{sound\+\_\+s}!volume@{volume}}
-\index{volume@{volume}!sound\+\_\+s@{sound\+\_\+s}}
-\subsubsection{\texorpdfstring{volume}{volume}}
-{\footnotesize\ttfamily float volume}
-
-earrape adjuster 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

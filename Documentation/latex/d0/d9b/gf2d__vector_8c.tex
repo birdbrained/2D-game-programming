@@ -1,0 +1,530 @@
+\hypertarget{gf2d__vector_8c}{}\section{Fall2017\+\_\+2\+Dproject/src/gf2d\+\_\+vector.c File Reference}
+\label{gf2d__vector_8c}\index{Fall2017\+\_\+2\+Dproject/src/gf2d\+\_\+vector.\+c@{Fall2017\+\_\+2\+Dproject/src/gf2d\+\_\+vector.\+c}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+vector.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{gf2d__vector_8c_a48c7d1bc60983b352b562f4c3b1d7e9b}{vector2d} (double x, double y)
+\begin{DoxyCompactList}\small\item\em create and return an \hyperlink{struct_vector2_d}{Vector2D} \end{DoxyCompactList}\item 
+\hyperlink{struct_vector3_d}{Vector3D} \hyperlink{gf2d__vector_8c_ae2ad9f831c2e5b09e66b1a982a037bdc}{vector3d} (double x, double y, double z)
+\begin{DoxyCompactList}\small\item\em create and return an \hyperlink{struct_vector3_d}{Vector3D} \end{DoxyCompactList}\item 
+\hyperlink{struct_vector4_d}{Vector4D} \hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d} (double x, double y, double z, double w)
+\begin{DoxyCompactList}\small\item\em create and return an \hyperlink{struct_vector4_d}{Vector4D} \end{DoxyCompactList}\item 
+float \hyperlink{gf2d__vector_8c_a9431ef41f25d964ed8f67a3191cc9b73}{vector2d\+\_\+magnitude} (\hyperlink{struct_vector2_d}{Vector2D} V)
+\begin{DoxyCompactList}\small\item\em normalizes the vector passed. \end{DoxyCompactList}\item 
+float \hyperlink{gf2d__vector_8c_a725414ed76f1c180d0e189108a81cdd1}{vector3d\+\_\+magnitude} (\hyperlink{struct_vector3_d}{Vector3D} V)
+\item 
+float \hyperlink{gf2d__vector_8c_a666208d872734a92668b00088349f328}{vector4d\+\_\+magnitude} (\hyperlink{struct_vector4_d}{Vector4D} V)
+\item 
+float \hyperlink{gf2d__vector_8c_a910e3613387dd203c36fc7b3b8adae8b}{vector2d\+\_\+magnitude\+\_\+squared} (\hyperlink{struct_vector2_d}{Vector2D} V)
+\begin{DoxyCompactList}\small\item\em returns the magnitude squared, which is faster than getting the magnitude which would involve taking the square root of a floating point number. \end{DoxyCompactList}\item 
+float \hyperlink{gf2d__vector_8c_ad4221545d26f02780026bde6a33d51b3}{vector3d\+\_\+magnitude\+\_\+squared} (\hyperlink{struct_vector3_d}{Vector3D} V)
+\item 
+float \hyperlink{gf2d__vector_8c_ad52288457fbd5327f9a954614dfdbbc3}{vector4d\+\_\+magnitude\+\_\+squared} (\hyperlink{struct_vector4_d}{Vector4D} V)
+\item 
+void \hyperlink{gf2d__vector_8c_a0e3ec8f86d28ed4e3cb11b58a4926c40}{vector2d\+\_\+set\+\_\+magnitude} (\hyperlink{struct_vector2_d}{Vector2D} $\ast$V, float magnitude)
+\begin{DoxyCompactList}\small\item\em scales the vector to the specified length without changing direction No op is magnitude is 0 or V is N\+U\+LL \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__vector_8c_a0abed17debe4078f92ebdb60f3bb7c5d}{vector3d\+\_\+set\+\_\+magnitude} (\hyperlink{struct_vector3_d}{Vector3D} $\ast$V, float magnitude)
+\item 
+void \hyperlink{gf2d__vector_8c_ab32b36639d76259caaa208542f9f4365}{vector4d\+\_\+set\+\_\+magnitude} (\hyperlink{struct_vector4_d}{Vector4D} $\ast$V, float magnitude)
+\item 
+int \hyperlink{gf2d__vector_8c_a1bb9a5de2f6831cc0a335da59ab0cf85}{vector2d\+\_\+magnitude\+\_\+compare} (\hyperlink{struct_vector2_d}{Vector2D} V, float size)
+\begin{DoxyCompactList}\small\item\em checks if the magnitude of V against size. \end{DoxyCompactList}\item 
+int \hyperlink{gf2d__vector_8c_a4dd84732fef1c09e82efacf9dbe8d133}{vector3d\+\_\+magnitude\+\_\+compare} (\hyperlink{struct_vector3_d}{Vector3D} V, float size)
+\item 
+int \hyperlink{gf2d__vector_8c_aec1614e57be85c591060756b7a40a1b7}{vector4d\+\_\+magnitude\+\_\+compare} (\hyperlink{struct_vector4_d}{Vector4D} V, float size)
+\item 
+void \hyperlink{gf2d__vector_8c_aaded56c53473ff31be46b6265d281343}{vector3d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians} (\hyperlink{struct_vector3_d}{Vector3D} $\ast$out, float radians)
+\begin{DoxyCompactList}\small\item\em sets the outvector to a unit vector pointing at the angle specified \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__vector_8c_a7c250d1c0fbc5e36be643b76a06eacf9}{vector4d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians} (\hyperlink{struct_vector4_d}{Vector4D} $\ast$out, float radians)
+\item 
+void \hyperlink{gf2d__vector_8c_a57ed83507326341b38924043439e0309}{vector2d\+\_\+normalize} (\hyperlink{struct_vector2_d}{Vector2D} $\ast$V)
+\item 
+void \hyperlink{gf2d__vector_8c_a1f505ffd904edacc5639113f75a8b66d}{vector3d\+\_\+normalize} (\hyperlink{struct_vector3_d}{Vector3D} $\ast$V)
+\item 
+void \hyperlink{gf2d__vector_8c_a3ebdd9a1a0a7ce49558c8e237a41bef2}{vector4d\+\_\+normalize} (\hyperlink{struct_vector4_d}{Vector4D} $\ast$V)
+\item 
+\hyperlink{struct_vector2_d}{Vector2D} $\ast$ \hyperlink{gf2d__vector_8c_ab5404e3eff87dbdc4e17ebfd38d1b8c3}{vector2d\+\_\+dup} (\hyperlink{struct_vector2_d}{Vector2D} old)
+\item 
+\hyperlink{struct_vector3_d}{Vector3D} $\ast$ \hyperlink{gf2d__vector_8c_aa28907b0e32d5625ba692758ef514ed6}{vector3d\+\_\+dup} (\hyperlink{struct_vector3_d}{Vector3D} old)
+\item 
+\hyperlink{struct_vector4_d}{Vector4D} $\ast$ \hyperlink{gf2d__vector_8c_ac876ccd38fd330cddcb08a35ace5f80e}{vector4d\+\_\+dup} (\hyperlink{struct_vector4_d}{Vector4D} old)
+\item 
+\hyperlink{struct_vector2_d}{Vector2D} $\ast$ \hyperlink{gf2d__vector_8c_a8b935c34566cffa6fb0f0762f874ca18}{vector2d\+\_\+new} ()
+\item 
+\hyperlink{struct_vector3_d}{Vector3D} $\ast$ \hyperlink{gf2d__vector_8c_ab189d97019b96c1da3288ee038cc6b48}{vector3d\+\_\+new} ()
+\item 
+\hyperlink{struct_vector4_d}{Vector4D} $\ast$ \hyperlink{gf2d__vector_8c_ab8cc183b533bb302724704afae6dd4f7}{vector4d\+\_\+new} ()
+\item 
+void \hyperlink{gf2d__vector_8c_a58d168b406d7754fb7365d7645b604a9}{vector3d\+\_\+project\+\_\+to\+\_\+plane} (\hyperlink{struct_vector3_d}{Vector3D} $\ast$dst, \hyperlink{struct_vector3_d}{Vector3D} p, \hyperlink{struct_vector3_d}{Vector3D} normal)
+\item 
+void \hyperlink{gf2d__vector_8c_ac064bcabc9b75f45329440471ec0da43}{vector3d\+\_\+perpendicular} (\hyperlink{struct_vector3_d}{Vector3D} $\ast$dst, \hyperlink{struct_vector3_d}{Vector3D} src)
+\item 
+void \hyperlink{gf2d__vector_8c_a6d0f3cc11a40a11b62fe8c7d642e06d6}{rotation\+\_\+concacenate} (float in1\mbox{[}3\mbox{]}\mbox{[}3\mbox{]}, float in2\mbox{[}3\mbox{]}\mbox{[}3\mbox{]}, float out\mbox{[}3\mbox{]}\mbox{[}3\mbox{]})
+\item 
+void \hyperlink{gf2d__vector_8c_a217857e3b706f07c8b7cf5a9d15e8c9f}{vector3d\+\_\+rotate\+\_\+about\+\_\+vector} (\hyperlink{struct_vector3_d}{Vector3D} $\ast$dst, \hyperlink{struct_vector3_d}{Vector3D} dir, \hyperlink{struct_vector3_d}{Vector3D} point, float degrees)
+\begin{DoxyCompactList}\small\item\em rotate an \hyperlink{struct_vector3_d}{Vector3D} about another vector \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__vector_8c_a1a399bf23a49d184c4218caa1de51034}{vector3d\+\_\+rotate\+\_\+about\+\_\+x} (\hyperlink{struct_vector3_d}{Vector3D} $\ast$vect, float angle)
+\item 
+void \hyperlink{gf2d__vector_8c_a7a16ce1748d4eb58b3ccfe619b517858}{vector3d\+\_\+rotate\+\_\+about\+\_\+y} (\hyperlink{struct_vector3_d}{Vector3D} $\ast$vect, float angle)
+\item 
+void \hyperlink{gf2d__vector_8c_a13c00dd1c70ecefbf647b1c5afc08b5f}{vector3d\+\_\+rotate\+\_\+about\+\_\+z} (\hyperlink{struct_vector3_d}{Vector3D} $\ast$vect, float angle)
+\item 
+void \hyperlink{gf2d__vector_8c_a477d9fc7f9c9c2e04aaedb1d52d7df2a}{vector3d\+\_\+angle\+\_\+vectors} (\hyperlink{struct_vector3_d}{Vector3D} angles, \hyperlink{struct_vector3_d}{Vector3D} $\ast$forward, \hyperlink{struct_vector3_d}{Vector3D} $\ast$right, \hyperlink{struct_vector3_d}{Vector3D} $\ast$up)
+\begin{DoxyCompactList}\small\item\em given a rotation, get the component vectors \end{DoxyCompactList}\item 
+float \hyperlink{gf2d__vector_8c_a6096d2ce84f90712d23a8544ec3ff129}{vector2d\+\_\+angle} (\hyperlink{struct_vector2_d}{Vector2D} v)
+\begin{DoxyCompactList}\small\item\em returns the angle of a vector in 2D space. \end{DoxyCompactList}\item 
+\hyperlink{struct_vector2_d}{Vector2D} \hyperlink{gf2d__vector_8c_adade771793455e831f68e45f0ed07df7}{vector2d\+\_\+rotate} (\hyperlink{struct_vector2_d}{Vector2D} in, float angle)
+\begin{DoxyCompactList}\small\item\em rotate a 2D vector by the angle specified (in radians) \end{DoxyCompactList}\item 
+float \hyperlink{gf2d__vector_8c_acb131c39f1b4e982705880739759bf18}{vector\+\_\+angle} (float x, float y)
+\begin{DoxyCompactList}\small\item\em returns the angle of a vector in 2D space. \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__vector_8c_a9778189edc28ace4e5e1caf9bbbeb85f}{angle\+\_\+clamp\+\_\+degrees} (float $\ast$a)
+\item 
+float \hyperlink{gf2d__vector_8c_a01ccbf83503b8cffe741e1ce28c76bd9}{angle\+\_\+between\+\_\+degrees} (float a, float b)
+\begin{DoxyCompactList}\small\item\em returns the angle between the two angles. \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__vector_8c_a169e504dd7bef753623e258a0582f250}{vector2d\+\_\+reflect} (\hyperlink{struct_vector2_d}{Vector2D} $\ast$out, \hyperlink{struct_vector2_d}{Vector2D} normal, \hyperlink{struct_vector2_d}{Vector2D} in)
+\begin{DoxyCompactList}\small\item\em reflect a vector about a normal. \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__vector_8c_a240d2f2121f4b4746beeb4b575e0b474}{vector3d\+\_\+reflect} (\hyperlink{struct_vector3_d}{Vector3D} $\ast$out, \hyperlink{struct_vector3_d}{Vector3D} normal, \hyperlink{struct_vector3_d}{Vector3D} in)
+\item 
+void \hyperlink{gf2d__vector_8c_aec74626cc71c5cf967354645d4e9fb2b}{vector4d\+\_\+reflect} (\hyperlink{struct_vector4_d}{Vector4D} $\ast$out, \hyperlink{struct_vector4_d}{Vector4D} normal, \hyperlink{struct_vector4_d}{Vector4D} in)
+\item 
+void \hyperlink{gf2d__vector_8c_a8bd47d679e8f3e23ac23c75e0600dfa5}{vector3d\+\_\+cross\+\_\+product} (\hyperlink{struct_vector3_d}{Vector3D} $\ast$out, \hyperlink{struct_vector3_d}{Vector3D} v1, \hyperlink{struct_vector3_d}{Vector3D} v2)
+\begin{DoxyCompactList}\small\item\em calculates the cross product of the two input vectors \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gf2d__vector_8c_a01ccbf83503b8cffe741e1ce28c76bd9}\label{gf2d__vector_8c_a01ccbf83503b8cffe741e1ce28c76bd9}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!angle\+\_\+between\+\_\+degrees@{angle\+\_\+between\+\_\+degrees}}
+\index{angle\+\_\+between\+\_\+degrees@{angle\+\_\+between\+\_\+degrees}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{angle\+\_\+between\+\_\+degrees()}{angle\_between\_degrees()}}
+{\footnotesize\ttfamily float angle\+\_\+between\+\_\+degrees (\begin{DoxyParamCaption}\item[{float}]{a,  }\item[{float}]{b }\end{DoxyParamCaption})}
+
+
+
+returns the angle between the two angles. 
+
+Takes into account wraping around 0 and 360 units are degrees  a one of the angles in question  b one of the angles in question \begin{DoxyReturn}{Returns}
+the angle, in degrees, between the two angles 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gf2d__vector_8c_a9778189edc28ace4e5e1caf9bbbeb85f}\label{gf2d__vector_8c_a9778189edc28ace4e5e1caf9bbbeb85f}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!angle\+\_\+clamp\+\_\+degrees@{angle\+\_\+clamp\+\_\+degrees}}
+\index{angle\+\_\+clamp\+\_\+degrees@{angle\+\_\+clamp\+\_\+degrees}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{angle\+\_\+clamp\+\_\+degrees()}{angle\_clamp\_degrees()}}
+{\footnotesize\ttfamily void angle\+\_\+clamp\+\_\+degrees (\begin{DoxyParamCaption}\item[{float $\ast$}]{a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a6d0f3cc11a40a11b62fe8c7d642e06d6}\label{gf2d__vector_8c_a6d0f3cc11a40a11b62fe8c7d642e06d6}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!rotation\+\_\+concacenate@{rotation\+\_\+concacenate}}
+\index{rotation\+\_\+concacenate@{rotation\+\_\+concacenate}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{rotation\+\_\+concacenate()}{rotation\_concacenate()}}
+{\footnotesize\ttfamily void rotation\+\_\+concacenate (\begin{DoxyParamCaption}\item[{float}]{in1\mbox{[}3\mbox{]}\mbox{[}3\mbox{]},  }\item[{float}]{in2\mbox{[}3\mbox{]}\mbox{[}3\mbox{]},  }\item[{float}]{out\mbox{[}3\mbox{]}\mbox{[}3\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a48c7d1bc60983b352b562f4c3b1d7e9b}\label{gf2d__vector_8c_a48c7d1bc60983b352b562f4c3b1d7e9b}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector2d@{vector2d}}
+\index{vector2d@{vector2d}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector2d()}{vector2d()}}
+{\footnotesize\ttfamily \hyperlink{struct_vector2_d}{Vector2D} vector2d (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y }\end{DoxyParamCaption})}
+
+
+
+create and return an \hyperlink{struct_vector2_d}{Vector2D} 
+
+\mbox{\Hypertarget{gf2d__vector_8c_a6096d2ce84f90712d23a8544ec3ff129}\label{gf2d__vector_8c_a6096d2ce84f90712d23a8544ec3ff129}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector2d\+\_\+angle@{vector2d\+\_\+angle}}
+\index{vector2d\+\_\+angle@{vector2d\+\_\+angle}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector2d\+\_\+angle()}{vector2d\_angle()}}
+{\footnotesize\ttfamily float vector2d\+\_\+angle (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{v }\end{DoxyParamCaption})}
+
+
+
+returns the angle of a vector in 2D space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the angle of the vector in radians. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gf2d__vector_8c_ab5404e3eff87dbdc4e17ebfd38d1b8c3}\label{gf2d__vector_8c_ab5404e3eff87dbdc4e17ebfd38d1b8c3}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector2d\+\_\+dup@{vector2d\+\_\+dup}}
+\index{vector2d\+\_\+dup@{vector2d\+\_\+dup}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector2d\+\_\+dup()}{vector2d\_dup()}}
+{\footnotesize\ttfamily \hyperlink{struct_vector2_d}{Vector2D}$\ast$ vector2d\+\_\+dup (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{old }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a9431ef41f25d964ed8f67a3191cc9b73}\label{gf2d__vector_8c_a9431ef41f25d964ed8f67a3191cc9b73}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector2d\+\_\+magnitude@{vector2d\+\_\+magnitude}}
+\index{vector2d\+\_\+magnitude@{vector2d\+\_\+magnitude}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector2d\+\_\+magnitude()}{vector2d\_magnitude()}}
+{\footnotesize\ttfamily float vector2d\+\_\+magnitude (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{V }\end{DoxyParamCaption})}
+
+
+
+normalizes the vector passed. 
+
+does nothing for a zero length vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & pointer to the vector to be normalized. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__vector_8c_a1bb9a5de2f6831cc0a335da59ab0cf85}\label{gf2d__vector_8c_a1bb9a5de2f6831cc0a335da59ab0cf85}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector2d\+\_\+magnitude\+\_\+compare@{vector2d\+\_\+magnitude\+\_\+compare}}
+\index{vector2d\+\_\+magnitude\+\_\+compare@{vector2d\+\_\+magnitude\+\_\+compare}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector2d\+\_\+magnitude\+\_\+compare()}{vector2d\_magnitude\_compare()}}
+{\footnotesize\ttfamily int vector2d\+\_\+magnitude\+\_\+compare (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{V,  }\item[{float}]{size }\end{DoxyParamCaption})}
+
+
+
+checks if the magnitude of V against size. 
+
+It does this without doing square roots, which are costly. It will still do floating point multiplication 
+\begin{DoxyParams}{Parameters}
+{\em V} & the vector to check \\
+\hline
+{\em size} & the magnitude to check against \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 f V is less than size, 0 if equal or 1 if size is greater than V 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gf2d__vector_8c_a910e3613387dd203c36fc7b3b8adae8b}\label{gf2d__vector_8c_a910e3613387dd203c36fc7b3b8adae8b}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector2d\+\_\+magnitude\+\_\+squared@{vector2d\+\_\+magnitude\+\_\+squared}}
+\index{vector2d\+\_\+magnitude\+\_\+squared@{vector2d\+\_\+magnitude\+\_\+squared}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector2d\+\_\+magnitude\+\_\+squared()}{vector2d\_magnitude\_squared()}}
+{\footnotesize\ttfamily float vector2d\+\_\+magnitude\+\_\+squared (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{V }\end{DoxyParamCaption})}
+
+
+
+returns the magnitude squared, which is faster than getting the magnitude which would involve taking the square root of a floating point number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em V} & the vector to get the magnitude for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the square of the magnitude of V 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gf2d__vector_8c_a8b935c34566cffa6fb0f0762f874ca18}\label{gf2d__vector_8c_a8b935c34566cffa6fb0f0762f874ca18}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector2d\+\_\+new@{vector2d\+\_\+new}}
+\index{vector2d\+\_\+new@{vector2d\+\_\+new}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector2d\+\_\+new()}{vector2d\_new()}}
+{\footnotesize\ttfamily \hyperlink{struct_vector2_d}{Vector2D}$\ast$ vector2d\+\_\+new (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a57ed83507326341b38924043439e0309}\label{gf2d__vector_8c_a57ed83507326341b38924043439e0309}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector2d\+\_\+normalize@{vector2d\+\_\+normalize}}
+\index{vector2d\+\_\+normalize@{vector2d\+\_\+normalize}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector2d\+\_\+normalize()}{vector2d\_normalize()}}
+{\footnotesize\ttfamily void vector2d\+\_\+normalize (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D} $\ast$}]{V }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a169e504dd7bef753623e258a0582f250}\label{gf2d__vector_8c_a169e504dd7bef753623e258a0582f250}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector2d\+\_\+reflect@{vector2d\+\_\+reflect}}
+\index{vector2d\+\_\+reflect@{vector2d\+\_\+reflect}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector2d\+\_\+reflect()}{vector2d\_reflect()}}
+{\footnotesize\ttfamily void vector2d\+\_\+reflect (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D} $\ast$}]{out,  }\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{normal,  }\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{in }\end{DoxyParamCaption})}
+
+
+
+reflect a vector about a normal. 
+
+Simulates \char`\"{}\+Bounce\char`\"{} 
+\begin{DoxyParams}{Parameters}
+{\em out} & the resultant vector \\
+\hline
+{\em normal} & the normal vector for the surface that is providing the bounce \\
+\hline
+{\em in} & the input vector that will bounce off of the normal \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__vector_8c_adade771793455e831f68e45f0ed07df7}\label{gf2d__vector_8c_adade771793455e831f68e45f0ed07df7}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector2d\+\_\+rotate@{vector2d\+\_\+rotate}}
+\index{vector2d\+\_\+rotate@{vector2d\+\_\+rotate}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector2d\+\_\+rotate()}{vector2d\_rotate()}}
+{\footnotesize\ttfamily \hyperlink{struct_vector2_d}{Vector2D} vector2d\+\_\+rotate (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{in,  }\item[{float}]{angle }\end{DoxyParamCaption})}
+
+
+
+rotate a 2D vector by the angle specified (in radians) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & the input vector \\
+\hline
+{\em angle} & the angle to rotate by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gf2d__vector_8c_a0e3ec8f86d28ed4e3cb11b58a4926c40}\label{gf2d__vector_8c_a0e3ec8f86d28ed4e3cb11b58a4926c40}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector2d\+\_\+set\+\_\+magnitude@{vector2d\+\_\+set\+\_\+magnitude}}
+\index{vector2d\+\_\+set\+\_\+magnitude@{vector2d\+\_\+set\+\_\+magnitude}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector2d\+\_\+set\+\_\+magnitude()}{vector2d\_set\_magnitude()}}
+{\footnotesize\ttfamily void vector2d\+\_\+set\+\_\+magnitude (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D} $\ast$}]{V,  }\item[{float}]{magnitude }\end{DoxyParamCaption})}
+
+
+
+scales the vector to the specified length without changing direction No op is magnitude is 0 or V is N\+U\+LL 
+
+
+\begin{DoxyParams}{Parameters}
+{\em V} & a pointer to the vector to scale \\
+\hline
+{\em magnitude} & the new length for the vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__vector_8c_ae2ad9f831c2e5b09e66b1a982a037bdc}\label{gf2d__vector_8c_ae2ad9f831c2e5b09e66b1a982a037bdc}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d@{vector3d}}
+\index{vector3d@{vector3d}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d()}{vector3d()}}
+{\footnotesize\ttfamily \hyperlink{struct_vector3_d}{Vector3D} vector3d (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y,  }\item[{double}]{z }\end{DoxyParamCaption})}
+
+
+
+create and return an \hyperlink{struct_vector3_d}{Vector3D} 
+
+\mbox{\Hypertarget{gf2d__vector_8c_a477d9fc7f9c9c2e04aaedb1d52d7df2a}\label{gf2d__vector_8c_a477d9fc7f9c9c2e04aaedb1d52d7df2a}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+angle\+\_\+vectors@{vector3d\+\_\+angle\+\_\+vectors}}
+\index{vector3d\+\_\+angle\+\_\+vectors@{vector3d\+\_\+angle\+\_\+vectors}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+angle\+\_\+vectors()}{vector3d\_angle\_vectors()}}
+{\footnotesize\ttfamily void vector3d\+\_\+angle\+\_\+vectors (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{angles,  }\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{forward,  }\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{right,  }\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{up }\end{DoxyParamCaption})}
+
+
+
+given a rotation, get the component vectors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em angles} & the input rotation \\
+\hline
+{\em forward} & output optional calculated forward vector \\
+\hline
+{\em right} & output optional calculated right vector \\
+\hline
+{\em up} & output optional calculated up vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__vector_8c_a8bd47d679e8f3e23ac23c75e0600dfa5}\label{gf2d__vector_8c_a8bd47d679e8f3e23ac23c75e0600dfa5}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+cross\+\_\+product@{vector3d\+\_\+cross\+\_\+product}}
+\index{vector3d\+\_\+cross\+\_\+product@{vector3d\+\_\+cross\+\_\+product}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+cross\+\_\+product()}{vector3d\_cross\_product()}}
+{\footnotesize\ttfamily void vector3d\+\_\+cross\+\_\+product (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{out,  }\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{v1,  }\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{v2 }\end{DoxyParamCaption})}
+
+
+
+calculates the cross product of the two input vectors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & the resultant cross product \\
+\hline
+{\em v1} & one of the components \\
+\hline
+{\em v2} & one of the components \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__vector_8c_aa28907b0e32d5625ba692758ef514ed6}\label{gf2d__vector_8c_aa28907b0e32d5625ba692758ef514ed6}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+dup@{vector3d\+\_\+dup}}
+\index{vector3d\+\_\+dup@{vector3d\+\_\+dup}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+dup()}{vector3d\_dup()}}
+{\footnotesize\ttfamily \hyperlink{struct_vector3_d}{Vector3D}$\ast$ vector3d\+\_\+dup (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{old }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a725414ed76f1c180d0e189108a81cdd1}\label{gf2d__vector_8c_a725414ed76f1c180d0e189108a81cdd1}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+magnitude@{vector3d\+\_\+magnitude}}
+\index{vector3d\+\_\+magnitude@{vector3d\+\_\+magnitude}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+magnitude()}{vector3d\_magnitude()}}
+{\footnotesize\ttfamily float vector3d\+\_\+magnitude (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{V }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a4dd84732fef1c09e82efacf9dbe8d133}\label{gf2d__vector_8c_a4dd84732fef1c09e82efacf9dbe8d133}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+magnitude\+\_\+compare@{vector3d\+\_\+magnitude\+\_\+compare}}
+\index{vector3d\+\_\+magnitude\+\_\+compare@{vector3d\+\_\+magnitude\+\_\+compare}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+magnitude\+\_\+compare()}{vector3d\_magnitude\_compare()}}
+{\footnotesize\ttfamily int vector3d\+\_\+magnitude\+\_\+compare (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{V,  }\item[{float}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_ad4221545d26f02780026bde6a33d51b3}\label{gf2d__vector_8c_ad4221545d26f02780026bde6a33d51b3}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+magnitude\+\_\+squared@{vector3d\+\_\+magnitude\+\_\+squared}}
+\index{vector3d\+\_\+magnitude\+\_\+squared@{vector3d\+\_\+magnitude\+\_\+squared}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+magnitude\+\_\+squared()}{vector3d\_magnitude\_squared()}}
+{\footnotesize\ttfamily float vector3d\+\_\+magnitude\+\_\+squared (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{V }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_ab189d97019b96c1da3288ee038cc6b48}\label{gf2d__vector_8c_ab189d97019b96c1da3288ee038cc6b48}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+new@{vector3d\+\_\+new}}
+\index{vector3d\+\_\+new@{vector3d\+\_\+new}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+new()}{vector3d\_new()}}
+{\footnotesize\ttfamily \hyperlink{struct_vector3_d}{Vector3D}$\ast$ vector3d\+\_\+new (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a1f505ffd904edacc5639113f75a8b66d}\label{gf2d__vector_8c_a1f505ffd904edacc5639113f75a8b66d}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+normalize@{vector3d\+\_\+normalize}}
+\index{vector3d\+\_\+normalize@{vector3d\+\_\+normalize}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+normalize()}{vector3d\_normalize()}}
+{\footnotesize\ttfamily void vector3d\+\_\+normalize (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{V }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_ac064bcabc9b75f45329440471ec0da43}\label{gf2d__vector_8c_ac064bcabc9b75f45329440471ec0da43}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+perpendicular@{vector3d\+\_\+perpendicular}}
+\index{vector3d\+\_\+perpendicular@{vector3d\+\_\+perpendicular}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+perpendicular()}{vector3d\_perpendicular()}}
+{\footnotesize\ttfamily void vector3d\+\_\+perpendicular (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{dst,  }\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{src }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a58d168b406d7754fb7365d7645b604a9}\label{gf2d__vector_8c_a58d168b406d7754fb7365d7645b604a9}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+project\+\_\+to\+\_\+plane@{vector3d\+\_\+project\+\_\+to\+\_\+plane}}
+\index{vector3d\+\_\+project\+\_\+to\+\_\+plane@{vector3d\+\_\+project\+\_\+to\+\_\+plane}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+project\+\_\+to\+\_\+plane()}{vector3d\_project\_to\_plane()}}
+{\footnotesize\ttfamily void vector3d\+\_\+project\+\_\+to\+\_\+plane (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{dst,  }\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{p,  }\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{normal }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a240d2f2121f4b4746beeb4b575e0b474}\label{gf2d__vector_8c_a240d2f2121f4b4746beeb4b575e0b474}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+reflect@{vector3d\+\_\+reflect}}
+\index{vector3d\+\_\+reflect@{vector3d\+\_\+reflect}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+reflect()}{vector3d\_reflect()}}
+{\footnotesize\ttfamily void vector3d\+\_\+reflect (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{out,  }\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{normal,  }\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{in }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a217857e3b706f07c8b7cf5a9d15e8c9f}\label{gf2d__vector_8c_a217857e3b706f07c8b7cf5a9d15e8c9f}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+rotate\+\_\+about\+\_\+vector@{vector3d\+\_\+rotate\+\_\+about\+\_\+vector}}
+\index{vector3d\+\_\+rotate\+\_\+about\+\_\+vector@{vector3d\+\_\+rotate\+\_\+about\+\_\+vector}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+rotate\+\_\+about\+\_\+vector()}{vector3d\_rotate\_about\_vector()}}
+{\footnotesize\ttfamily void vector3d\+\_\+rotate\+\_\+about\+\_\+vector (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{dst,  }\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{dir,  }\item[{\hyperlink{struct_vector3_d}{Vector3D}}]{point,  }\item[{float}]{degrees }\end{DoxyParamCaption})}
+
+
+
+rotate an \hyperlink{struct_vector3_d}{Vector3D} about another vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dst} & output result \\
+\hline
+{\em dir} & the vector to rotate about \\
+\hline
+{\em point} & the point to rotate \\
+\hline
+{\em degrees} & how far to rotate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__vector_8c_a1a399bf23a49d184c4218caa1de51034}\label{gf2d__vector_8c_a1a399bf23a49d184c4218caa1de51034}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+rotate\+\_\+about\+\_\+x@{vector3d\+\_\+rotate\+\_\+about\+\_\+x}}
+\index{vector3d\+\_\+rotate\+\_\+about\+\_\+x@{vector3d\+\_\+rotate\+\_\+about\+\_\+x}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+rotate\+\_\+about\+\_\+x()}{vector3d\_rotate\_about\_x()}}
+{\footnotesize\ttfamily void vector3d\+\_\+rotate\+\_\+about\+\_\+x (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{vect,  }\item[{float}]{angle }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a7a16ce1748d4eb58b3ccfe619b517858}\label{gf2d__vector_8c_a7a16ce1748d4eb58b3ccfe619b517858}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+rotate\+\_\+about\+\_\+y@{vector3d\+\_\+rotate\+\_\+about\+\_\+y}}
+\index{vector3d\+\_\+rotate\+\_\+about\+\_\+y@{vector3d\+\_\+rotate\+\_\+about\+\_\+y}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+rotate\+\_\+about\+\_\+y()}{vector3d\_rotate\_about\_y()}}
+{\footnotesize\ttfamily void vector3d\+\_\+rotate\+\_\+about\+\_\+y (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{vect,  }\item[{float}]{angle }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a13c00dd1c70ecefbf647b1c5afc08b5f}\label{gf2d__vector_8c_a13c00dd1c70ecefbf647b1c5afc08b5f}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+rotate\+\_\+about\+\_\+z@{vector3d\+\_\+rotate\+\_\+about\+\_\+z}}
+\index{vector3d\+\_\+rotate\+\_\+about\+\_\+z@{vector3d\+\_\+rotate\+\_\+about\+\_\+z}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+rotate\+\_\+about\+\_\+z()}{vector3d\_rotate\_about\_z()}}
+{\footnotesize\ttfamily void vector3d\+\_\+rotate\+\_\+about\+\_\+z (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{vect,  }\item[{float}]{angle }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_aaded56c53473ff31be46b6265d281343}\label{gf2d__vector_8c_aaded56c53473ff31be46b6265d281343}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians@{vector3d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians}}
+\index{vector3d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians@{vector3d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians()}{vector3d\_set\_angle\_by\_radians()}}
+{\footnotesize\ttfamily void vector3d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{out,  }\item[{float}]{radians }\end{DoxyParamCaption})}
+
+
+
+sets the outvector to a unit vector pointing at the angle specified 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & output. Vector will be set to a unit vector rotated by radians \\
+\hline
+{\em radians} & specify the angle of the vector to be set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__vector_8c_a0abed17debe4078f92ebdb60f3bb7c5d}\label{gf2d__vector_8c_a0abed17debe4078f92ebdb60f3bb7c5d}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector3d\+\_\+set\+\_\+magnitude@{vector3d\+\_\+set\+\_\+magnitude}}
+\index{vector3d\+\_\+set\+\_\+magnitude@{vector3d\+\_\+set\+\_\+magnitude}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector3d\+\_\+set\+\_\+magnitude()}{vector3d\_set\_magnitude()}}
+{\footnotesize\ttfamily void vector3d\+\_\+set\+\_\+magnitude (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{V,  }\item[{float}]{magnitude }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}\label{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector4d@{vector4d}}
+\index{vector4d@{vector4d}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector4d()}{vector4d()}}
+{\footnotesize\ttfamily \hyperlink{struct_vector4_d}{Vector4D} vector4d (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y,  }\item[{double}]{z,  }\item[{double}]{w }\end{DoxyParamCaption})}
+
+
+
+create and return an \hyperlink{struct_vector4_d}{Vector4D} 
+
+\mbox{\Hypertarget{gf2d__vector_8c_ac876ccd38fd330cddcb08a35ace5f80e}\label{gf2d__vector_8c_ac876ccd38fd330cddcb08a35ace5f80e}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector4d\+\_\+dup@{vector4d\+\_\+dup}}
+\index{vector4d\+\_\+dup@{vector4d\+\_\+dup}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector4d\+\_\+dup()}{vector4d\_dup()}}
+{\footnotesize\ttfamily \hyperlink{struct_vector4_d}{Vector4D}$\ast$ vector4d\+\_\+dup (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{old }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a666208d872734a92668b00088349f328}\label{gf2d__vector_8c_a666208d872734a92668b00088349f328}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector4d\+\_\+magnitude@{vector4d\+\_\+magnitude}}
+\index{vector4d\+\_\+magnitude@{vector4d\+\_\+magnitude}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector4d\+\_\+magnitude()}{vector4d\_magnitude()}}
+{\footnotesize\ttfamily float vector4d\+\_\+magnitude (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{V }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_aec1614e57be85c591060756b7a40a1b7}\label{gf2d__vector_8c_aec1614e57be85c591060756b7a40a1b7}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector4d\+\_\+magnitude\+\_\+compare@{vector4d\+\_\+magnitude\+\_\+compare}}
+\index{vector4d\+\_\+magnitude\+\_\+compare@{vector4d\+\_\+magnitude\+\_\+compare}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector4d\+\_\+magnitude\+\_\+compare()}{vector4d\_magnitude\_compare()}}
+{\footnotesize\ttfamily int vector4d\+\_\+magnitude\+\_\+compare (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{V,  }\item[{float}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_ad52288457fbd5327f9a954614dfdbbc3}\label{gf2d__vector_8c_ad52288457fbd5327f9a954614dfdbbc3}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector4d\+\_\+magnitude\+\_\+squared@{vector4d\+\_\+magnitude\+\_\+squared}}
+\index{vector4d\+\_\+magnitude\+\_\+squared@{vector4d\+\_\+magnitude\+\_\+squared}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector4d\+\_\+magnitude\+\_\+squared()}{vector4d\_magnitude\_squared()}}
+{\footnotesize\ttfamily float vector4d\+\_\+magnitude\+\_\+squared (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{V }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_ab8cc183b533bb302724704afae6dd4f7}\label{gf2d__vector_8c_ab8cc183b533bb302724704afae6dd4f7}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector4d\+\_\+new@{vector4d\+\_\+new}}
+\index{vector4d\+\_\+new@{vector4d\+\_\+new}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector4d\+\_\+new()}{vector4d\_new()}}
+{\footnotesize\ttfamily \hyperlink{struct_vector4_d}{Vector4D}$\ast$ vector4d\+\_\+new (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a3ebdd9a1a0a7ce49558c8e237a41bef2}\label{gf2d__vector_8c_a3ebdd9a1a0a7ce49558c8e237a41bef2}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector4d\+\_\+normalize@{vector4d\+\_\+normalize}}
+\index{vector4d\+\_\+normalize@{vector4d\+\_\+normalize}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector4d\+\_\+normalize()}{vector4d\_normalize()}}
+{\footnotesize\ttfamily void vector4d\+\_\+normalize (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector4_d}{Vector4D} $\ast$}]{V }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_aec74626cc71c5cf967354645d4e9fb2b}\label{gf2d__vector_8c_aec74626cc71c5cf967354645d4e9fb2b}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector4d\+\_\+reflect@{vector4d\+\_\+reflect}}
+\index{vector4d\+\_\+reflect@{vector4d\+\_\+reflect}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector4d\+\_\+reflect()}{vector4d\_reflect()}}
+{\footnotesize\ttfamily void vector4d\+\_\+reflect (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector4_d}{Vector4D} $\ast$}]{out,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{normal,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{in }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_a7c250d1c0fbc5e36be643b76a06eacf9}\label{gf2d__vector_8c_a7c250d1c0fbc5e36be643b76a06eacf9}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector4d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians@{vector4d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians}}
+\index{vector4d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians@{vector4d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector4d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians()}{vector4d\_set\_angle\_by\_radians()}}
+{\footnotesize\ttfamily void vector4d\+\_\+set\+\_\+angle\+\_\+by\+\_\+radians (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector4_d}{Vector4D} $\ast$}]{out,  }\item[{float}]{radians }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_ab32b36639d76259caaa208542f9f4365}\label{gf2d__vector_8c_ab32b36639d76259caaa208542f9f4365}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector4d\+\_\+set\+\_\+magnitude@{vector4d\+\_\+set\+\_\+magnitude}}
+\index{vector4d\+\_\+set\+\_\+magnitude@{vector4d\+\_\+set\+\_\+magnitude}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector4d\+\_\+set\+\_\+magnitude()}{vector4d\_set\_magnitude()}}
+{\footnotesize\ttfamily void vector4d\+\_\+set\+\_\+magnitude (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector4_d}{Vector4D} $\ast$}]{V,  }\item[{float}]{magnitude }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__vector_8c_acb131c39f1b4e982705880739759bf18}\label{gf2d__vector_8c_acb131c39f1b4e982705880739759bf18}} 
+\index{gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}!vector\+\_\+angle@{vector\+\_\+angle}}
+\index{vector\+\_\+angle@{vector\+\_\+angle}!gf2d\+\_\+vector.\+c@{gf2d\+\_\+vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+angle()}{vector\_angle()}}
+{\footnotesize\ttfamily float vector\+\_\+angle (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+returns the angle of a vector in 2D space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the x component of the vector \\
+\hline
+{\em y} & the y component of the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the angle of the vector in radians. 
+\end{DoxyReturn}

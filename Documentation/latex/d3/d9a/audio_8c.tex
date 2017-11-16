@@ -1,0 +1,234 @@
+\hypertarget{audio_8c}{}\section{Fall2017\+\_\+2\+Dproject/src/audio.c File Reference}
+\label{audio_8c}\index{Fall2017\+\_\+2\+Dproject/src/audio.\+c@{Fall2017\+\_\+2\+Dproject/src/audio.\+c}}
+{\ttfamily \#include \char`\"{}audio.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structaudio__manager}{audio\+\_\+manager}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structaudio__manager}{audio\+\_\+manager} \hyperlink{audio_8c_ac115501be2e8226d593845823ff9bf9a}{Sound\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{audio_8c_a3e986a316621e18c552e3a40cb75ea2c}{audio\+System\+Close} ()
+\item 
+void \hyperlink{audio_8c_a8aa1d26a7f28abc4b31a266ac69e077f}{audio\+System\+Init} (Uint32 max\+Sounds, Uint32 channels, Uint32 channel\+Groups, Uint32 max\+Music, Uint8 enable\+M\+P3, Uint8 enable\+O\+GG)
+\begin{DoxyCompactList}\small\item\em Initializes the audio system (for actually playing audio) \end{DoxyCompactList}\item 
+void \hyperlink{audio_8c_a74a510a70a2650d95a5fa86c394cc344}{sound\+System\+Init} (Uint32 max\+Sounds)
+\begin{DoxyCompactList}\small\item\em Initializes the sound system (space in memory to store sounds) \end{DoxyCompactList}\item 
+\hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound} $\ast$ \hyperlink{audio_8c_a19867a90504307bcfb54c4e45b855b35}{sound\+New} (\hyperlink{entity__s_8h_a498adc21b55fb917031c541073699945}{Instrument} \hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017}{instrument})
+\begin{DoxyCompactList}\small\item\em Allocates spot in sound manager for a new sound. \end{DoxyCompactList}\item 
+\hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound} $\ast$ \hyperlink{audio_8c_a0d8ea56c47dff1ab110bd5f3bcb42d6f}{sound\+Get\+By\+Filename} (char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Searches to see if a certain sound is already loaded in memory. \end{DoxyCompactList}\item 
+\hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound} $\ast$ \hyperlink{audio_8c_ae9bfb6df99cbb85f552258dfd590aeb1}{sound\+Load} (char $\ast$filename, float volume, int default\+Channel, \hyperlink{entity__s_8h_a498adc21b55fb917031c541073699945}{Instrument} \hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017}{instrument})
+\begin{DoxyCompactList}\small\item\em Will load the actual sound. \end{DoxyCompactList}\item 
+void \hyperlink{audio_8c_a748abc7a7e13d21d7e458d3aca68a81d}{sound\+Play} (\hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound} $\ast$sound, int num\+Loops, float volume, int channel, int group)
+\begin{DoxyCompactList}\small\item\em Plays a loaded sound. \end{DoxyCompactList}\item 
+\hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound} $\ast$ \hyperlink{audio_8c_a5a28acda353e2e1c784f1c018deaeff3}{sound\+Find\+By\+Instrument} (\hyperlink{entity__s_8h_a498adc21b55fb917031c541073699945}{Instrument} \hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017}{instrument})
+\item 
+void \hyperlink{audio_8c_ae9045859e8fdbd7222a46c3e33aa54f9}{sound\+Adjust\+Volume} (\hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound} $\ast$sound, float volume)
+\item 
+void \hyperlink{audio_8c_a4178c2a152f24d639f3e88ba32f334ee}{sound\+Adjust\+Volume\+All} (float volume)
+\item 
+void \hyperlink{audio_8c_a042d699dc666ae0bc1c962c259f4b192}{sound\+Free} (\hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound} $\ast$sound)
+\begin{DoxyCompactList}\small\item\em Clears a sound from the sound manager, opening the spot back up. \end{DoxyCompactList}\item 
+void \hyperlink{audio_8c_acbc4420caac5edbb636ae1c71fc0e9a2}{sound\+Delete} (\hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound} $\ast$sound\+To\+Kill)
+\begin{DoxyCompactList}\small\item\em Deletes a specified sound from memory. \end{DoxyCompactList}\item 
+void \hyperlink{audio_8c_a8652a6821e48dab7253d4d3e7d63aa2d}{sound\+Delete\+All} ()
+\begin{DoxyCompactList}\small\item\em Deletes all loaded sounds from memory, but does not close the sound system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{audio_8c_ac115501be2e8226d593845823ff9bf9a}\label{audio_8c_ac115501be2e8226d593845823ff9bf9a}} 
+\index{audio.\+c@{audio.\+c}!Sound\+Manager@{Sound\+Manager}}
+\index{Sound\+Manager@{Sound\+Manager}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{Sound\+Manager}{SoundManager}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structaudio__manager}{audio\+\_\+manager} \hyperlink{audio_8c_ac115501be2e8226d593845823ff9bf9a}{Sound\+Manager}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{audio_8c_a3e986a316621e18c552e3a40cb75ea2c}\label{audio_8c_a3e986a316621e18c552e3a40cb75ea2c}} 
+\index{audio.\+c@{audio.\+c}!audio\+System\+Close@{audio\+System\+Close}}
+\index{audio\+System\+Close@{audio\+System\+Close}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{audio\+System\+Close()}{audioSystemClose()}}
+{\footnotesize\ttfamily void audio\+System\+Close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{audio_8c_a8aa1d26a7f28abc4b31a266ac69e077f}\label{audio_8c_a8aa1d26a7f28abc4b31a266ac69e077f}} 
+\index{audio.\+c@{audio.\+c}!audio\+System\+Init@{audio\+System\+Init}}
+\index{audio\+System\+Init@{audio\+System\+Init}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{audio\+System\+Init()}{audioSystemInit()}}
+{\footnotesize\ttfamily void audio\+System\+Init (\begin{DoxyParamCaption}\item[{Uint32}]{max\+Sounds,  }\item[{Uint32}]{channels,  }\item[{Uint32}]{channel\+Groups,  }\item[{Uint32}]{max\+Music,  }\item[{Uint8}]{enable\+M\+P3,  }\item[{Uint8}]{enable\+O\+GG }\end{DoxyParamCaption})}
+
+
+
+Initializes the audio system (for actually playing audio) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Sounds} & Max number of sounds that can be loaded into memory at once \\
+\hline
+{\em channels} & Max number of channels to play sounds on \\
+\hline
+{\em channel\+Groups} & Currently unimplemented \\
+\hline
+{\em max\+Music} & Currently unimplemented \\
+\hline
+{\em enable\+M\+P3} & Currently unimplemented \\
+\hline
+{\em enable\+O\+GG} & Currently unimplemented \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{audio_8c_ae9045859e8fdbd7222a46c3e33aa54f9}\label{audio_8c_ae9045859e8fdbd7222a46c3e33aa54f9}} 
+\index{audio.\+c@{audio.\+c}!sound\+Adjust\+Volume@{sound\+Adjust\+Volume}}
+\index{sound\+Adjust\+Volume@{sound\+Adjust\+Volume}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{sound\+Adjust\+Volume()}{soundAdjustVolume()}}
+{\footnotesize\ttfamily void sound\+Adjust\+Volume (\begin{DoxyParamCaption}\item[{\hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound} $\ast$}]{sound,  }\item[{float}]{volume }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{audio_8c_a4178c2a152f24d639f3e88ba32f334ee}\label{audio_8c_a4178c2a152f24d639f3e88ba32f334ee}} 
+\index{audio.\+c@{audio.\+c}!sound\+Adjust\+Volume\+All@{sound\+Adjust\+Volume\+All}}
+\index{sound\+Adjust\+Volume\+All@{sound\+Adjust\+Volume\+All}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{sound\+Adjust\+Volume\+All()}{soundAdjustVolumeAll()}}
+{\footnotesize\ttfamily void sound\+Adjust\+Volume\+All (\begin{DoxyParamCaption}\item[{float}]{volume }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{audio_8c_acbc4420caac5edbb636ae1c71fc0e9a2}\label{audio_8c_acbc4420caac5edbb636ae1c71fc0e9a2}} 
+\index{audio.\+c@{audio.\+c}!sound\+Delete@{sound\+Delete}}
+\index{sound\+Delete@{sound\+Delete}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{sound\+Delete()}{soundDelete()}}
+{\footnotesize\ttfamily void sound\+Delete (\begin{DoxyParamCaption}\item[{\hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound} $\ast$}]{sound\+To\+Kill }\end{DoxyParamCaption})}
+
+
+
+Deletes a specified sound from memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sound\+To\+Kill} & The sound to delete \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{audio_8c_a8652a6821e48dab7253d4d3e7d63aa2d}\label{audio_8c_a8652a6821e48dab7253d4d3e7d63aa2d}} 
+\index{audio.\+c@{audio.\+c}!sound\+Delete\+All@{sound\+Delete\+All}}
+\index{sound\+Delete\+All@{sound\+Delete\+All}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{sound\+Delete\+All()}{soundDeleteAll()}}
+{\footnotesize\ttfamily void sound\+Delete\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Deletes all loaded sounds from memory, but does not close the sound system. 
+
+\mbox{\Hypertarget{audio_8c_a5a28acda353e2e1c784f1c018deaeff3}\label{audio_8c_a5a28acda353e2e1c784f1c018deaeff3}} 
+\index{audio.\+c@{audio.\+c}!sound\+Find\+By\+Instrument@{sound\+Find\+By\+Instrument}}
+\index{sound\+Find\+By\+Instrument@{sound\+Find\+By\+Instrument}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{sound\+Find\+By\+Instrument()}{soundFindByInstrument()}}
+{\footnotesize\ttfamily \hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound}$\ast$ sound\+Find\+By\+Instrument (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a498adc21b55fb917031c541073699945}{Instrument}}]{instrument }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{audio_8c_a042d699dc666ae0bc1c962c259f4b192}\label{audio_8c_a042d699dc666ae0bc1c962c259f4b192}} 
+\index{audio.\+c@{audio.\+c}!sound\+Free@{sound\+Free}}
+\index{sound\+Free@{sound\+Free}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{sound\+Free()}{soundFree()}}
+{\footnotesize\ttfamily void sound\+Free (\begin{DoxyParamCaption}\item[{\hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound} $\ast$}]{sound }\end{DoxyParamCaption})}
+
+
+
+Clears a sound from the sound manager, opening the spot back up. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sound} & The sound to free \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{audio_8c_a0d8ea56c47dff1ab110bd5f3bcb42d6f}\label{audio_8c_a0d8ea56c47dff1ab110bd5f3bcb42d6f}} 
+\index{audio.\+c@{audio.\+c}!sound\+Get\+By\+Filename@{sound\+Get\+By\+Filename}}
+\index{sound\+Get\+By\+Filename@{sound\+Get\+By\+Filename}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{sound\+Get\+By\+Filename()}{soundGetByFilename()}}
+{\footnotesize\ttfamily \hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound}$\ast$ sound\+Get\+By\+Filename (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Searches to see if a certain sound is already loaded in memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & File location \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The address in memory of the requested sound; N\+U\+LL if that sound is not loaded in memory 
+\end{DoxyReturn}
+\mbox{\Hypertarget{audio_8c_ae9bfb6df99cbb85f552258dfd590aeb1}\label{audio_8c_ae9bfb6df99cbb85f552258dfd590aeb1}} 
+\index{audio.\+c@{audio.\+c}!sound\+Load@{sound\+Load}}
+\index{sound\+Load@{sound\+Load}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{sound\+Load()}{soundLoad()}}
+{\footnotesize\ttfamily \hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound}$\ast$ sound\+Load (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{float}]{volume,  }\item[{int}]{default\+Channel,  }\item[{\hyperlink{entity__s_8h_a498adc21b55fb917031c541073699945}{Instrument}}]{instrument }\end{DoxyParamCaption})}
+
+
+
+Will load the actual sound. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & File location \\
+\hline
+{\em volume} & Earrape adjuster \\
+\hline
+{\em default\+Channel} & Default channel to play on \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sound that has been loaded; N\+U\+LL if error 
+\end{DoxyReturn}
+\mbox{\Hypertarget{audio_8c_a19867a90504307bcfb54c4e45b855b35}\label{audio_8c_a19867a90504307bcfb54c4e45b855b35}} 
+\index{audio.\+c@{audio.\+c}!sound\+New@{sound\+New}}
+\index{sound\+New@{sound\+New}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{sound\+New()}{soundNew()}}
+{\footnotesize\ttfamily \hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound}$\ast$ sound\+New (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a498adc21b55fb917031c541073699945}{Instrument}}]{instrument }\end{DoxyParamCaption})}
+
+
+
+Allocates spot in sound manager for a new sound. 
+
+\begin{DoxyReturn}{Returns}
+An address in memory for the new sound if successful; N\+U\+LL if failed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{audio_8c_a748abc7a7e13d21d7e458d3aca68a81d}\label{audio_8c_a748abc7a7e13d21d7e458d3aca68a81d}} 
+\index{audio.\+c@{audio.\+c}!sound\+Play@{sound\+Play}}
+\index{sound\+Play@{sound\+Play}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{sound\+Play()}{soundPlay()}}
+{\footnotesize\ttfamily void sound\+Play (\begin{DoxyParamCaption}\item[{\hyperlink{audio_8h_aa9272c2e4e238417673f542719f44a32}{Sound} $\ast$}]{sound,  }\item[{int}]{num\+Loops,  }\item[{float}]{volume,  }\item[{int}]{channel,  }\item[{int}]{group }\end{DoxyParamCaption})}
+
+
+
+Plays a loaded sound. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sound} & The sound to play \\
+\hline
+{\em num\+Loops} & Number of times to loop, -\/1 to loop infinitely \\
+\hline
+{\em volume} & Earrape adjuster \\
+\hline
+{\em channel} & The channel to play on \\
+\hline
+{\em group} & Currently unimplemented \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{audio_8c_a74a510a70a2650d95a5fa86c394cc344}\label{audio_8c_a74a510a70a2650d95a5fa86c394cc344}} 
+\index{audio.\+c@{audio.\+c}!sound\+System\+Init@{sound\+System\+Init}}
+\index{sound\+System\+Init@{sound\+System\+Init}!audio.\+c@{audio.\+c}}
+\subsubsection{\texorpdfstring{sound\+System\+Init()}{soundSystemInit()}}
+{\footnotesize\ttfamily void sound\+System\+Init (\begin{DoxyParamCaption}\item[{Uint32}]{max\+Sounds }\end{DoxyParamCaption})}
+
+
+
+Initializes the sound system (space in memory to store sounds) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Sounds} & Max number of sounds that can be loaded into memory at once \\
+\hline
+\end{DoxyParams}

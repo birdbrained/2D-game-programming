@@ -1,0 +1,110 @@
+\hypertarget{formation_8h}{}\section{Fall2017\+\_\+2\+Dproject/include/formation.h File Reference}
+\label{formation_8h}\index{Fall2017\+\_\+2\+Dproject/include/formation.\+h@{Fall2017\+\_\+2\+Dproject/include/formation.\+h}}
+{\ttfamily \#include \char`\"{}ds\+\_\+graph.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}simple\+\_\+logger.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}audio.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{formation_8h_a9600bef2fad07b9b0bd803db60cc1583}{F\+O\+R\+M\+\_\+\+C\+H\+A\+R\+\_\+\+L\+EN}~512
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \hyperlink{formation_8h_a82e6079b3e69d3c624f224bc93051959}{formation\+\_\+e} \hyperlink{formation_8h_a80b9339327d014554f456ae926f49401}{Formation}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{formation_8h_a82e6079b3e69d3c624f224bc93051959}{formation\+\_\+e} \{ \hyperlink{formation_8h_a82e6079b3e69d3c624f224bc93051959a9b272973f5fb4bff0058ada308ef7326}{Formation\+\_\+\+None}, 
+\hyperlink{formation_8h_a82e6079b3e69d3c624f224bc93051959abf1c2ecabe869f3b9d3c053b416ac8a0}{Formation\+\_\+\+Line}, 
+\hyperlink{formation_8h_a82e6079b3e69d3c624f224bc93051959a6aeb3652383668e2c1a6ad535231e139}{Formation\+\_\+\+Rectangle}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{formation_8h_a75a647b23a27bd1b187c63a899d232fb}{formation\+\_\+detect} (\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$graph)
+\begin{DoxyCompactList}\small\item\em Attempts to detect a formation/pattern from a graph. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{formation_8h_a8c1515471b9061b57a38057459a2fdcb}{formation\+\_\+to\+\_\+string} (\hyperlink{formation_8h_a80b9339327d014554f456ae926f49401}{Formation} f)
+\begin{DoxyCompactList}\small\item\em Creates a string representation of a certain formation \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{formation_8h_a9600bef2fad07b9b0bd803db60cc1583}\label{formation_8h_a9600bef2fad07b9b0bd803db60cc1583}} 
+\index{formation.\+h@{formation.\+h}!F\+O\+R\+M\+\_\+\+C\+H\+A\+R\+\_\+\+L\+EN@{F\+O\+R\+M\+\_\+\+C\+H\+A\+R\+\_\+\+L\+EN}}
+\index{F\+O\+R\+M\+\_\+\+C\+H\+A\+R\+\_\+\+L\+EN@{F\+O\+R\+M\+\_\+\+C\+H\+A\+R\+\_\+\+L\+EN}!formation.\+h@{formation.\+h}}
+\subsubsection{\texorpdfstring{F\+O\+R\+M\+\_\+\+C\+H\+A\+R\+\_\+\+L\+EN}{FORM\_CHAR\_LEN}}
+{\footnotesize\ttfamily \#define F\+O\+R\+M\+\_\+\+C\+H\+A\+R\+\_\+\+L\+EN~512}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{formation_8h_a80b9339327d014554f456ae926f49401}\label{formation_8h_a80b9339327d014554f456ae926f49401}} 
+\index{formation.\+h@{formation.\+h}!Formation@{Formation}}
+\index{Formation@{Formation}!formation.\+h@{formation.\+h}}
+\subsubsection{\texorpdfstring{Formation}{Formation}}
+{\footnotesize\ttfamily typedef enum \hyperlink{formation_8h_a82e6079b3e69d3c624f224bc93051959}{formation\+\_\+e} \hyperlink{formation_8h_a80b9339327d014554f456ae926f49401}{Formation}}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{formation_8h_a82e6079b3e69d3c624f224bc93051959}\label{formation_8h_a82e6079b3e69d3c624f224bc93051959}} 
+\index{formation.\+h@{formation.\+h}!formation\+\_\+e@{formation\+\_\+e}}
+\index{formation\+\_\+e@{formation\+\_\+e}!formation.\+h@{formation.\+h}}
+\subsubsection{\texorpdfstring{formation\+\_\+e}{formation\_e}}
+{\footnotesize\ttfamily enum \hyperlink{formation_8h_a82e6079b3e69d3c624f224bc93051959}{formation\+\_\+e}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Formation\+\_\+\+None@{Formation\+\_\+\+None}!formation.\+h@{formation.\+h}}\index{formation.\+h@{formation.\+h}!Formation\+\_\+\+None@{Formation\+\_\+\+None}}}\mbox{\Hypertarget{formation_8h_a82e6079b3e69d3c624f224bc93051959a9b272973f5fb4bff0058ada308ef7326}\label{formation_8h_a82e6079b3e69d3c624f224bc93051959a9b272973f5fb4bff0058ada308ef7326}} 
+Formation\+\_\+\+None&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Formation\+\_\+\+Line@{Formation\+\_\+\+Line}!formation.\+h@{formation.\+h}}\index{formation.\+h@{formation.\+h}!Formation\+\_\+\+Line@{Formation\+\_\+\+Line}}}\mbox{\Hypertarget{formation_8h_a82e6079b3e69d3c624f224bc93051959abf1c2ecabe869f3b9d3c053b416ac8a0}\label{formation_8h_a82e6079b3e69d3c624f224bc93051959abf1c2ecabe869f3b9d3c053b416ac8a0}} 
+Formation\+\_\+\+Line&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Formation\+\_\+\+Rectangle@{Formation\+\_\+\+Rectangle}!formation.\+h@{formation.\+h}}\index{formation.\+h@{formation.\+h}!Formation\+\_\+\+Rectangle@{Formation\+\_\+\+Rectangle}}}\mbox{\Hypertarget{formation_8h_a82e6079b3e69d3c624f224bc93051959a6aeb3652383668e2c1a6ad535231e139}\label{formation_8h_a82e6079b3e69d3c624f224bc93051959a6aeb3652383668e2c1a6ad535231e139}} 
+Formation\+\_\+\+Rectangle&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{formation_8h_a75a647b23a27bd1b187c63a899d232fb}\label{formation_8h_a75a647b23a27bd1b187c63a899d232fb}} 
+\index{formation.\+h@{formation.\+h}!formation\+\_\+detect@{formation\+\_\+detect}}
+\index{formation\+\_\+detect@{formation\+\_\+detect}!formation.\+h@{formation.\+h}}
+\subsubsection{\texorpdfstring{formation\+\_\+detect()}{formation\_detect()}}
+{\footnotesize\ttfamily int formation\+\_\+detect (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$}]{graph }\end{DoxyParamCaption})}
+
+
+
+Attempts to detect a formation/pattern from a graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total score of all formations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{formation_8h_a8c1515471b9061b57a38057459a2fdcb}\label{formation_8h_a8c1515471b9061b57a38057459a2fdcb}} 
+\index{formation.\+h@{formation.\+h}!formation\+\_\+to\+\_\+string@{formation\+\_\+to\+\_\+string}}
+\index{formation\+\_\+to\+\_\+string@{formation\+\_\+to\+\_\+string}!formation.\+h@{formation.\+h}}
+\subsubsection{\texorpdfstring{formation\+\_\+to\+\_\+string()}{formation\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ formation\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\hyperlink{formation_8h_a80b9339327d014554f456ae926f49401}{Formation}}]{f }\end{DoxyParamCaption})}
+
+
+
+Creates a string representation of a certain formation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & The formation enum to build a string from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The character array of the formation; \char`\"{}\+No formation\char`\"{} if no formation 
+\end{DoxyReturn}

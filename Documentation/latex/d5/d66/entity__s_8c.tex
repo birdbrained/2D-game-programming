@@ -1,0 +1,341 @@
+\hypertarget{entity__s_8c}{}\section{Fall2017\+\_\+2\+Dproject/entity\+\_\+s.c File Reference}
+\label{entity__s_8c}\index{Fall2017\+\_\+2\+Dproject/entity\+\_\+s.\+c@{Fall2017\+\_\+2\+Dproject/entity\+\_\+s.\+c}}
+{\ttfamily \#include \char`\"{}entity\+\_\+s.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}simple\+\_\+logger.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+sprite.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}think\+\_\+functions.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_entity_manager}{Entity\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{entity__s_8c_afd7fb6357fed6486748206b439af77ce}{entity\+System\+Close} ()
+\begin{DoxyCompactList}\small\item\em Entity system clean-\/up function. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_a71a9f08a84502bcb4edf7832fe87cbec}{entity\+System\+Init} (Uint32 max)
+\begin{DoxyCompactList}\small\item\em Initializes the Entity Manager. \end{DoxyCompactList}\item 
+\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$ \hyperlink{entity__s_8c_a7fe0df272dfa361b836266e86459d264}{entity\+New} ()
+\begin{DoxyCompactList}\small\item\em Finds a memory address in the Entity Manager that is not in use, and returns that address. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_a37ec892288316b4d784771196e0b6328}{entity\+Delete} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$thing\+That\+Dies)
+\begin{DoxyCompactList}\small\item\em Deletes a specified Entity from memory. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_a2464812d6154d2f26c493c7d5aa3bcec}{entity\+Free} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Clears an entity from the entity manager, opening the spot back up. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_ad67c193f03e965e7e0ba9592243dda35}{entity\+Delete\+All} ()
+\begin{DoxyCompactList}\small\item\em Deletes all loaded enities from memory, but does not close the entity system. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_a89a8042a6fd913d84406c206e480ae86}{entity\+Update} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$self)
+\begin{DoxyCompactList}\small\item\em Performs generic entity updates (velocity/position updating, collision box movement, etc.) \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_a8b0b5578f9c29c842cd883ec6d9afc15}{entity\+Update\+All} ()
+\begin{DoxyCompactList}\small\item\em Updates every entity currently existing. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_a39f61a6098c467a842422df6c800c072}{entity\+Draw} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$self)
+\begin{DoxyCompactList}\small\item\em Draws the specified entity with it\textquotesingle{}s parameters. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_a86b9697a9d4b9aa7e3355f66c5d6d79a}{entity\+Draw\+All} ()
+\begin{DoxyCompactList}\small\item\em Draws every valid entity in the entity manager. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_a4552cffce1718f69ee9e0308dcaeae15}{entity\+Increment\+Current\+Frame} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$self)
+\begin{DoxyCompactList}\small\item\em Increments the frame of animation for the given entity, will loop once max frame is hit. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_a04a7342215c86812a3f626e2adb71031}{entity\+Increment\+Current\+Frame\+All} ()
+\begin{DoxyCompactList}\small\item\em Increments all entity\textquotesingle{}s frames. \end{DoxyCompactList}\item 
+\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$ \hyperlink{entity__s_8c_a167a1c963a2d762b642a0a6a163e155a}{entity\+Load\+From\+File} (char $\ast$filename, \hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$new\+\_\+entity)
+\begin{DoxyCompactList}\small\item\em Inits an entity\textquotesingle{}s parameters from a specified file. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_afe935e9d3c413b86dbf7352bbe149836}{entity\+Load\+All\+From\+File} (char $\ast$filename, \hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$map)
+\begin{DoxyCompactList}\small\item\em Loads all entities specified in a file. \end{DoxyCompactList}\item 
+\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$ \hyperlink{entity__s_8c_a0df866948a21dda71750d9acbeb66003}{entity\+Check\+Collision\+In\+All} (int mx, int my)
+\begin{DoxyCompactList}\small\item\em Checks to see if a specified point collides with any exisiting entity. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{entity__s_8c_a7c9bb489925d03b33aeec12cf9482d8b}{entity\+Get\+Instrument\+Name} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Gets a string representation of a given entity\textquotesingle{}s instrument. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_a845c235dca3b2732c5367c4b3c01dfd9}{entity\+Update\+Graph\+Position\+All} (\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$graph)
+\begin{DoxyCompactList}\small\item\em Updates the position of all entities on a graph. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8c_a2f0f0cca903a4ff851d922e516597a15}{entity\+Update\+Position} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$self, \hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$map)
+\item 
+void \hyperlink{entity__s_8c_a2c2bcc1a627104c3db79ca364854d0a1}{entity\+Update\+Position\+All} (\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$map)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_vector4_d}{Vector4D} \hyperlink{entity__s_8c_a51dfc43ddb8af1d62fe02a1121d24cd5}{transparent} = \{ 255, 255, 255, 122 \}
+\item 
+struct \hyperlink{structthink__function}{think\+\_\+function} \hyperlink{entity__s_8c_ac60b8706583864d73c2a0ff5695bef01}{think\+\_\+table} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{entity__s_8c_a0df866948a21dda71750d9acbeb66003}\label{entity__s_8c_a0df866948a21dda71750d9acbeb66003}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Check\+Collision\+In\+All@{entity\+Check\+Collision\+In\+All}}
+\index{entity\+Check\+Collision\+In\+All@{entity\+Check\+Collision\+In\+All}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Check\+Collision\+In\+All()}{entityCheckCollisionInAll()}}
+{\footnotesize\ttfamily \hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity}$\ast$ entity\+Check\+Collision\+In\+All (\begin{DoxyParamCaption}\item[{int}]{mx,  }\item[{int}]{my }\end{DoxyParamCaption})}
+
+
+
+Checks to see if a specified point collides with any exisiting entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mx} & X position to check \\
+\hline
+{\em my} & Y position to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the entity inside of the point; N\+U\+LL if no collision 
+\end{DoxyReturn}
+\mbox{\Hypertarget{entity__s_8c_a37ec892288316b4d784771196e0b6328}\label{entity__s_8c_a37ec892288316b4d784771196e0b6328}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Delete@{entity\+Delete}}
+\index{entity\+Delete@{entity\+Delete}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Delete()}{entityDelete()}}
+{\footnotesize\ttfamily void entity\+Delete (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{thing\+That\+Dies }\end{DoxyParamCaption})}
+
+
+
+Deletes a specified Entity from memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thing\+That\+Dies} & Pointer to entity that will be deleted \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8c_ad67c193f03e965e7e0ba9592243dda35}\label{entity__s_8c_ad67c193f03e965e7e0ba9592243dda35}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Delete\+All@{entity\+Delete\+All}}
+\index{entity\+Delete\+All@{entity\+Delete\+All}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Delete\+All()}{entityDeleteAll()}}
+{\footnotesize\ttfamily void entity\+Delete\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Deletes all loaded enities from memory, but does not close the entity system. 
+
+\mbox{\Hypertarget{entity__s_8c_a39f61a6098c467a842422df6c800c072}\label{entity__s_8c_a39f61a6098c467a842422df6c800c072}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Draw@{entity\+Draw}}
+\index{entity\+Draw@{entity\+Draw}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Draw()}{entityDraw()}}
+{\footnotesize\ttfamily void entity\+Draw (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Draws the specified entity with it\textquotesingle{}s parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The entity to draw \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8c_a86b9697a9d4b9aa7e3355f66c5d6d79a}\label{entity__s_8c_a86b9697a9d4b9aa7e3355f66c5d6d79a}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Draw\+All@{entity\+Draw\+All}}
+\index{entity\+Draw\+All@{entity\+Draw\+All}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Draw\+All()}{entityDrawAll()}}
+{\footnotesize\ttfamily void entity\+Draw\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Draws every valid entity in the entity manager. 
+
+\mbox{\Hypertarget{entity__s_8c_a2464812d6154d2f26c493c7d5aa3bcec}\label{entity__s_8c_a2464812d6154d2f26c493c7d5aa3bcec}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Free@{entity\+Free}}
+\index{entity\+Free@{entity\+Free}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Free()}{entityFree()}}
+{\footnotesize\ttfamily void entity\+Free (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Clears an entity from the entity manager, opening the spot back up. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The entity to free \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8c_a7c9bb489925d03b33aeec12cf9482d8b}\label{entity__s_8c_a7c9bb489925d03b33aeec12cf9482d8b}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Get\+Instrument\+Name@{entity\+Get\+Instrument\+Name}}
+\index{entity\+Get\+Instrument\+Name@{entity\+Get\+Instrument\+Name}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Get\+Instrument\+Name()}{entityGetInstrumentName()}}
+{\footnotesize\ttfamily char$\ast$ entity\+Get\+Instrument\+Name (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Gets a string representation of a given entity\textquotesingle{}s instrument. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The entity to grab the instrument from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A character array of the entity\textquotesingle{}s instrument; joke answer if failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{entity__s_8c_a4552cffce1718f69ee9e0308dcaeae15}\label{entity__s_8c_a4552cffce1718f69ee9e0308dcaeae15}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Increment\+Current\+Frame@{entity\+Increment\+Current\+Frame}}
+\index{entity\+Increment\+Current\+Frame@{entity\+Increment\+Current\+Frame}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Increment\+Current\+Frame()}{entityIncrementCurrentFrame()}}
+{\footnotesize\ttfamily void entity\+Increment\+Current\+Frame (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Increments the frame of animation for the given entity, will loop once max frame is hit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & The entity to change the frame of \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8c_a04a7342215c86812a3f626e2adb71031}\label{entity__s_8c_a04a7342215c86812a3f626e2adb71031}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Increment\+Current\+Frame\+All@{entity\+Increment\+Current\+Frame\+All}}
+\index{entity\+Increment\+Current\+Frame\+All@{entity\+Increment\+Current\+Frame\+All}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Increment\+Current\+Frame\+All()}{entityIncrementCurrentFrameAll()}}
+{\footnotesize\ttfamily void entity\+Increment\+Current\+Frame\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Increments all entity\textquotesingle{}s frames. 
+
+\mbox{\Hypertarget{entity__s_8c_afe935e9d3c413b86dbf7352bbe149836}\label{entity__s_8c_afe935e9d3c413b86dbf7352bbe149836}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Load\+All\+From\+File@{entity\+Load\+All\+From\+File}}
+\index{entity\+Load\+All\+From\+File@{entity\+Load\+All\+From\+File}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Load\+All\+From\+File()}{entityLoadAllFromFile()}}
+{\footnotesize\ttfamily void entity\+Load\+All\+From\+File (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{map }\end{DoxyParamCaption})}
+
+
+
+Loads all entities specified in a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & File to read through  Tile\+Map to populate entities onto \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8c_a167a1c963a2d762b642a0a6a163e155a}\label{entity__s_8c_a167a1c963a2d762b642a0a6a163e155a}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Load\+From\+File@{entity\+Load\+From\+File}}
+\index{entity\+Load\+From\+File@{entity\+Load\+From\+File}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Load\+From\+File()}{entityLoadFromFile()}}
+{\footnotesize\ttfamily \hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity}$\ast$ entity\+Load\+From\+File (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{new\+\_\+entity }\end{DoxyParamCaption})}
+
+
+
+Inits an entity\textquotesingle{}s parameters from a specified file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & File to read through \\
+\hline
+{\em new\+\_\+entity} & Entity that will be inited \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Populates new\+\_\+entity parameter and returns it, N\+U\+LL if invalid file pointer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{entity__s_8c_a7fe0df272dfa361b836266e86459d264}\label{entity__s_8c_a7fe0df272dfa361b836266e86459d264}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+New@{entity\+New}}
+\index{entity\+New@{entity\+New}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+New()}{entityNew()}}
+{\footnotesize\ttfamily \hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity}$\ast$ entity\+New (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Finds a memory address in the Entity Manager that is not in use, and returns that address. 
+
+\begin{DoxyReturn}{Returns}
+An address in memory for the new entity if successful; N\+U\+LL if failed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{entity__s_8c_afd7fb6357fed6486748206b439af77ce}\label{entity__s_8c_afd7fb6357fed6486748206b439af77ce}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+System\+Close@{entity\+System\+Close}}
+\index{entity\+System\+Close@{entity\+System\+Close}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+System\+Close()}{entitySystemClose()}}
+{\footnotesize\ttfamily void entity\+System\+Close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Entity system clean-\/up function. 
+
+\mbox{\Hypertarget{entity__s_8c_a71a9f08a84502bcb4edf7832fe87cbec}\label{entity__s_8c_a71a9f08a84502bcb4edf7832fe87cbec}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+System\+Init@{entity\+System\+Init}}
+\index{entity\+System\+Init@{entity\+System\+Init}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+System\+Init()}{entitySystemInit()}}
+{\footnotesize\ttfamily void entity\+System\+Init (\begin{DoxyParamCaption}\item[{Uint32}]{max }\end{DoxyParamCaption})}
+
+
+
+Initializes the Entity Manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max} & The maximum number of entities that can be handled at once \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8c_a89a8042a6fd913d84406c206e480ae86}\label{entity__s_8c_a89a8042a6fd913d84406c206e480ae86}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Update@{entity\+Update}}
+\index{entity\+Update@{entity\+Update}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Update()}{entityUpdate()}}
+{\footnotesize\ttfamily void entity\+Update (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Performs generic entity updates (velocity/position updating, collision box movement, etc.) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & Entity to update \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Early return if error 
+\end{DoxyReturn}
+\mbox{\Hypertarget{entity__s_8c_a8b0b5578f9c29c842cd883ec6d9afc15}\label{entity__s_8c_a8b0b5578f9c29c842cd883ec6d9afc15}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Update\+All@{entity\+Update\+All}}
+\index{entity\+Update\+All@{entity\+Update\+All}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Update\+All()}{entityUpdateAll()}}
+{\footnotesize\ttfamily void entity\+Update\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates every entity currently existing. 
+
+\mbox{\Hypertarget{entity__s_8c_a845c235dca3b2732c5367c4b3c01dfd9}\label{entity__s_8c_a845c235dca3b2732c5367c4b3c01dfd9}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Update\+Graph\+Position\+All@{entity\+Update\+Graph\+Position\+All}}
+\index{entity\+Update\+Graph\+Position\+All@{entity\+Update\+Graph\+Position\+All}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Update\+Graph\+Position\+All()}{entityUpdateGraphPositionAll()}}
+{\footnotesize\ttfamily void entity\+Update\+Graph\+Position\+All (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$}]{graph }\end{DoxyParamCaption})}
+
+
+
+Updates the position of all entities on a graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph to update \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8c_a2f0f0cca903a4ff851d922e516597a15}\label{entity__s_8c_a2f0f0cca903a4ff851d922e516597a15}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Update\+Position@{entity\+Update\+Position}}
+\index{entity\+Update\+Position@{entity\+Update\+Position}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Update\+Position()}{entityUpdatePosition()}}
+{\footnotesize\ttfamily void entity\+Update\+Position (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{self,  }\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{map }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{entity__s_8c_a2c2bcc1a627104c3db79ca364854d0a1}\label{entity__s_8c_a2c2bcc1a627104c3db79ca364854d0a1}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!entity\+Update\+Position\+All@{entity\+Update\+Position\+All}}
+\index{entity\+Update\+Position\+All@{entity\+Update\+Position\+All}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{entity\+Update\+Position\+All()}{entityUpdatePositionAll()}}
+{\footnotesize\ttfamily void entity\+Update\+Position\+All (\begin{DoxyParamCaption}\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{map }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{entity__s_8c_ac60b8706583864d73c2a0ff5695bef01}\label{entity__s_8c_ac60b8706583864d73c2a0ff5695bef01}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!think\+\_\+table@{think\+\_\+table}}
+\index{think\+\_\+table@{think\+\_\+table}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{think\+\_\+table}{think\_table}}
+{\footnotesize\ttfamily struct \hyperlink{structthink__function}{think\+\_\+function} think\+\_\+table\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=
+\{
+    \{\hyperlink{think__functions_8h_a090fb5b9bff006f0c7c6f769416ebba8}{move}, \textcolor{stringliteral}{"move"}\},
+    \{ NULL, NULL \}
+\}
+\end{DoxyCode}
+\mbox{\Hypertarget{entity__s_8c_a51dfc43ddb8af1d62fe02a1121d24cd5}\label{entity__s_8c_a51dfc43ddb8af1d62fe02a1121d24cd5}} 
+\index{entity\+\_\+s.\+c@{entity\+\_\+s.\+c}!transparent@{transparent}}
+\index{transparent@{transparent}!entity\+\_\+s.\+c@{entity\+\_\+s.\+c}}
+\subsubsection{\texorpdfstring{transparent}{transparent}}
+{\footnotesize\ttfamily \hyperlink{struct_vector4_d}{Vector4D} transparent = \{ 255, 255, 255, 122 \}}
+

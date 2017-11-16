@@ -1,0 +1,161 @@
+\hypertarget{gf2d__types_8h}{}\section{Fall2017\+\_\+2\+Dproject/include/gf2d\+\_\+types.h File Reference}
+\label{gf2d__types_8h}\index{Fall2017\+\_\+2\+Dproject/include/gf2d\+\_\+types.\+h@{Fall2017\+\_\+2\+Dproject/include/gf2d\+\_\+types.\+h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gf2d__types_8h_ae71449b1cc6e6250b91f539153a7a0d3}{M\+\_\+\+PI}~3.\+14159265358979323846
+\item 
+\#define \hyperlink{gf2d__types_8h_ab9847a4711420efbfbb166d28f48d167}{G\+F2\+D\+\_\+\+E\+P\+S\+I\+L\+ON}~1e-\/6f
+\item 
+\#define \hyperlink{gf2d__types_8h_a43559c2d4f05c8a726fa89b79bb9b095}{G\+F2\+D\+\_\+\+R\+O\+O\+T2}~1.\+414213562
+\item 
+\#define \hyperlink{gf2d__types_8h_a7429e82a8ebe0bd0951223e1260288e2}{G\+F2\+D\+\_\+2\+PI}~6.\+283185308
+\item 
+\#define \hyperlink{gf2d__types_8h_af65068a39c18c8d1ed2e41d1feccc176}{G\+F2\+D\+\_\+\+PI}~3.\+141592654
+\item 
+\#define \hyperlink{gf2d__types_8h_aaa66b1d423ade1869bd676d92cfaaf8c}{G\+F2\+D\+\_\+\+H\+A\+L\+F\+\_\+\+PI}~1.\+570796327
+\item 
+\#define \hyperlink{gf2d__types_8h_af643c8b26f035dbf6a2eb64c18ef99f7}{G\+F2\+D\+\_\+\+R\+A\+D\+T\+O\+D\+EG}~57.\+295779513082
+\item 
+\#define \hyperlink{gf2d__types_8h_a9d9c7b2728ed47c1e2e22bee4b5a9375}{G\+F2\+D\+\_\+\+D\+E\+G\+T\+O\+R\+AD}~0.\+017453292519943295769236907684886
+\item 
+\#define \hyperlink{gf2d__types_8h_a65e9886d74aaee76545e83dd09011727}{false}~0
+\item 
+\#define \hyperlink{gf2d__types_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}{true}~1
+\item 
+\#define \hyperlink{gf2d__types_8h_a10834731966ae297087d67b25fe6e165}{gf2d\+\_\+random}()~((rand ()\%1000)/(float)1000.\+0)
+\begin{DoxyCompactList}\small\item\em random macro taken from Id Software\textquotesingle{}s Quake 2 Source. \end{DoxyCompactList}\item 
+\#define \hyperlink{gf2d__types_8h_a48e5b6fdc45d58d48ce3c20318e91794}{gf2d\+\_\+crandom}()~(((float)((rand()\%1000)/(float)1000.\+0) $\ast$ 2.\+0) -\/ 1.\+0)
+\begin{DoxyCompactList}\small\item\em random macro taken from Id Software\textquotesingle{}s Quake 2 Source. \end{DoxyCompactList}\item 
+\#define \hyperlink{gf2d__types_8h_a3acffbd305ee72dcd4593c0d8af64a4f}{M\+IN}(a,  b)~(a$<$=b?a\+:b)
+\begin{DoxyCompactList}\small\item\em basic operations \end{DoxyCompactList}\item 
+\#define \hyperlink{gf2d__types_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}{M\+AX}(a,  b)~(a$>$=b?a\+:b)
+\item 
+\#define \hyperlink{gf2d__types_8h_a29ef86992c7c9c012f2ace7f808c44d5}{gf2d\+\_\+rect\+\_\+set}(r,  a,  b,  c,  d)~(r.\+x=(a), r.\+y=(b), r.\+w=(c), r.\+h=(d))
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef short unsigned int \hyperlink{gf2d__types_8h_a4a1d8cd6ef103fc1f5d5307454f581e1}{Bool}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gf2d__types_8h_a65e9886d74aaee76545e83dd09011727}\label{gf2d__types_8h_a65e9886d74aaee76545e83dd09011727}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!false@{false}}
+\index{false@{false}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{false}{false}}
+{\footnotesize\ttfamily \#define false~0}
+
+\mbox{\Hypertarget{gf2d__types_8h_a7429e82a8ebe0bd0951223e1260288e2}\label{gf2d__types_8h_a7429e82a8ebe0bd0951223e1260288e2}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!G\+F2\+D\+\_\+2\+PI@{G\+F2\+D\+\_\+2\+PI}}
+\index{G\+F2\+D\+\_\+2\+PI@{G\+F2\+D\+\_\+2\+PI}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{G\+F2\+D\+\_\+2\+PI}{GF2D\_2PI}}
+{\footnotesize\ttfamily \#define G\+F2\+D\+\_\+2\+PI~6.\+283185308}
+
+\mbox{\Hypertarget{gf2d__types_8h_a48e5b6fdc45d58d48ce3c20318e91794}\label{gf2d__types_8h_a48e5b6fdc45d58d48ce3c20318e91794}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!gf2d\+\_\+crandom@{gf2d\+\_\+crandom}}
+\index{gf2d\+\_\+crandom@{gf2d\+\_\+crandom}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+crandom}{gf2d\_crandom}}
+{\footnotesize\ttfamily \#define gf2d\+\_\+crandom(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~(((float)((rand()\%1000)/(float)1000.\+0) $\ast$ 2.\+0) -\/ 1.\+0)}
+
+
+
+random macro taken from Id Software\textquotesingle{}s Quake 2 Source. 
+
+This macro exposes the more random bits from the rand() function \begin{DoxyReturn}{Returns}
+a random float between -\/1.\+0 and 1.\+0 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gf2d__types_8h_a9d9c7b2728ed47c1e2e22bee4b5a9375}\label{gf2d__types_8h_a9d9c7b2728ed47c1e2e22bee4b5a9375}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!G\+F2\+D\+\_\+\+D\+E\+G\+T\+O\+R\+AD@{G\+F2\+D\+\_\+\+D\+E\+G\+T\+O\+R\+AD}}
+\index{G\+F2\+D\+\_\+\+D\+E\+G\+T\+O\+R\+AD@{G\+F2\+D\+\_\+\+D\+E\+G\+T\+O\+R\+AD}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{G\+F2\+D\+\_\+\+D\+E\+G\+T\+O\+R\+AD}{GF2D\_DEGTORAD}}
+{\footnotesize\ttfamily \#define G\+F2\+D\+\_\+\+D\+E\+G\+T\+O\+R\+AD~0.\+017453292519943295769236907684886}
+
+\mbox{\Hypertarget{gf2d__types_8h_ab9847a4711420efbfbb166d28f48d167}\label{gf2d__types_8h_ab9847a4711420efbfbb166d28f48d167}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!G\+F2\+D\+\_\+\+E\+P\+S\+I\+L\+ON@{G\+F2\+D\+\_\+\+E\+P\+S\+I\+L\+ON}}
+\index{G\+F2\+D\+\_\+\+E\+P\+S\+I\+L\+ON@{G\+F2\+D\+\_\+\+E\+P\+S\+I\+L\+ON}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{G\+F2\+D\+\_\+\+E\+P\+S\+I\+L\+ON}{GF2D\_EPSILON}}
+{\footnotesize\ttfamily \#define G\+F2\+D\+\_\+\+E\+P\+S\+I\+L\+ON~1e-\/6f}
+
+\mbox{\Hypertarget{gf2d__types_8h_aaa66b1d423ade1869bd676d92cfaaf8c}\label{gf2d__types_8h_aaa66b1d423ade1869bd676d92cfaaf8c}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!G\+F2\+D\+\_\+\+H\+A\+L\+F\+\_\+\+PI@{G\+F2\+D\+\_\+\+H\+A\+L\+F\+\_\+\+PI}}
+\index{G\+F2\+D\+\_\+\+H\+A\+L\+F\+\_\+\+PI@{G\+F2\+D\+\_\+\+H\+A\+L\+F\+\_\+\+PI}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{G\+F2\+D\+\_\+\+H\+A\+L\+F\+\_\+\+PI}{GF2D\_HALF\_PI}}
+{\footnotesize\ttfamily \#define G\+F2\+D\+\_\+\+H\+A\+L\+F\+\_\+\+PI~1.\+570796327}
+
+\mbox{\Hypertarget{gf2d__types_8h_af65068a39c18c8d1ed2e41d1feccc176}\label{gf2d__types_8h_af65068a39c18c8d1ed2e41d1feccc176}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!G\+F2\+D\+\_\+\+PI@{G\+F2\+D\+\_\+\+PI}}
+\index{G\+F2\+D\+\_\+\+PI@{G\+F2\+D\+\_\+\+PI}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{G\+F2\+D\+\_\+\+PI}{GF2D\_PI}}
+{\footnotesize\ttfamily \#define G\+F2\+D\+\_\+\+PI~3.\+141592654}
+
+\mbox{\Hypertarget{gf2d__types_8h_af643c8b26f035dbf6a2eb64c18ef99f7}\label{gf2d__types_8h_af643c8b26f035dbf6a2eb64c18ef99f7}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!G\+F2\+D\+\_\+\+R\+A\+D\+T\+O\+D\+EG@{G\+F2\+D\+\_\+\+R\+A\+D\+T\+O\+D\+EG}}
+\index{G\+F2\+D\+\_\+\+R\+A\+D\+T\+O\+D\+EG@{G\+F2\+D\+\_\+\+R\+A\+D\+T\+O\+D\+EG}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{G\+F2\+D\+\_\+\+R\+A\+D\+T\+O\+D\+EG}{GF2D\_RADTODEG}}
+{\footnotesize\ttfamily \#define G\+F2\+D\+\_\+\+R\+A\+D\+T\+O\+D\+EG~57.\+295779513082}
+
+\mbox{\Hypertarget{gf2d__types_8h_a10834731966ae297087d67b25fe6e165}\label{gf2d__types_8h_a10834731966ae297087d67b25fe6e165}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!gf2d\+\_\+random@{gf2d\+\_\+random}}
+\index{gf2d\+\_\+random@{gf2d\+\_\+random}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+random}{gf2d\_random}}
+{\footnotesize\ttfamily \#define gf2d\+\_\+random(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~((rand ()\%1000)/(float)1000.\+0)}
+
+
+
+random macro taken from Id Software\textquotesingle{}s Quake 2 Source. 
+
+This macro exposes the more random bits from the rand() function \begin{DoxyReturn}{Returns}
+a random float between 0 and 1.\+0 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gf2d__types_8h_a29ef86992c7c9c012f2ace7f808c44d5}\label{gf2d__types_8h_a29ef86992c7c9c012f2ace7f808c44d5}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!gf2d\+\_\+rect\+\_\+set@{gf2d\+\_\+rect\+\_\+set}}
+\index{gf2d\+\_\+rect\+\_\+set@{gf2d\+\_\+rect\+\_\+set}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+rect\+\_\+set}{gf2d\_rect\_set}}
+{\footnotesize\ttfamily \#define gf2d\+\_\+rect\+\_\+set(\begin{DoxyParamCaption}\item[{}]{r,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{c,  }\item[{}]{d }\end{DoxyParamCaption})~(r.\+x=(a), r.\+y=(b), r.\+w=(c), r.\+h=(d))}
+
+\mbox{\Hypertarget{gf2d__types_8h_a43559c2d4f05c8a726fa89b79bb9b095}\label{gf2d__types_8h_a43559c2d4f05c8a726fa89b79bb9b095}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!G\+F2\+D\+\_\+\+R\+O\+O\+T2@{G\+F2\+D\+\_\+\+R\+O\+O\+T2}}
+\index{G\+F2\+D\+\_\+\+R\+O\+O\+T2@{G\+F2\+D\+\_\+\+R\+O\+O\+T2}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{G\+F2\+D\+\_\+\+R\+O\+O\+T2}{GF2D\_ROOT2}}
+{\footnotesize\ttfamily \#define G\+F2\+D\+\_\+\+R\+O\+O\+T2~1.\+414213562}
+
+\mbox{\Hypertarget{gf2d__types_8h_ae71449b1cc6e6250b91f539153a7a0d3}\label{gf2d__types_8h_ae71449b1cc6e6250b91f539153a7a0d3}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!M\+\_\+\+PI@{M\+\_\+\+PI}}
+\index{M\+\_\+\+PI@{M\+\_\+\+PI}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{M\+\_\+\+PI}{M\_PI}}
+{\footnotesize\ttfamily \#define M\+\_\+\+PI~3.\+14159265358979323846}
+
+\mbox{\Hypertarget{gf2d__types_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}\label{gf2d__types_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!M\+AX@{M\+AX}}
+\index{M\+AX@{M\+AX}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{M\+AX}{MAX}}
+{\footnotesize\ttfamily \#define M\+AX(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(a$>$=b?a\+:b)}
+
+\mbox{\Hypertarget{gf2d__types_8h_a3acffbd305ee72dcd4593c0d8af64a4f}\label{gf2d__types_8h_a3acffbd305ee72dcd4593c0d8af64a4f}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!M\+IN@{M\+IN}}
+\index{M\+IN@{M\+IN}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{M\+IN}{MIN}}
+{\footnotesize\ttfamily \#define M\+IN(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(a$<$=b?a\+:b)}
+
+
+
+basic operations 
+
+\mbox{\Hypertarget{gf2d__types_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}\label{gf2d__types_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!true@{true}}
+\index{true@{true}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{true}{true}}
+{\footnotesize\ttfamily \#define true~1}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{gf2d__types_8h_a4a1d8cd6ef103fc1f5d5307454f581e1}\label{gf2d__types_8h_a4a1d8cd6ef103fc1f5d5307454f581e1}} 
+\index{gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}!Bool@{Bool}}
+\index{Bool@{Bool}!gf2d\+\_\+types.\+h@{gf2d\+\_\+types.\+h}}
+\subsubsection{\texorpdfstring{Bool}{Bool}}
+{\footnotesize\ttfamily typedef short unsigned int \hyperlink{gf2d__types_8h_a4a1d8cd6ef103fc1f5d5307454f581e1}{Bool}}
+

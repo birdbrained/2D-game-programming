@@ -1,5 +1,25 @@
 var searchData=
 [
-  ['circle_5fs',['circle_s',['../structcircle__s.html',1,'']]],
-  ['currentframe',['currentFrame',['../structentity__s.html#a6c816fc91c0d3b73641b802cc889195d',1,'entity_s']]]
+  ['background_5fcolor',['background_color',['../d8/d8b/struct_graphics.html#ae1a2c84bb5fab92239b98f2ee5d7b72d',1,'Graphics']]],
+  ['background_5fcolor_5fv',['background_color_v',['../d8/d8b/struct_graphics.html#af80b492818c20f805c4067a6a1b2c750',1,'Graphics']]],
+  ['band',['Band',['../d9/dc2/band_8h.html#a5959b9ab30d9996f51864066edd35d2e',1,'band.h']]],
+  ['band_2ec',['band.c',['../dd/dfc/band_8c.html',1,'']]],
+  ['band_2eh',['band.h',['../d9/dc2/band_8h.html',1,'']]],
+  ['band_5finit',['band_init',['../d9/dc2/band_8h.html#a53ab6c5acb7b3b142bd3b01af2a8cf58',1,'band_init(Uint32 numMembers):&#160;band.c'],['../dd/dfc/band_8c.html#a53ab6c5acb7b3b142bd3b01af2a8cf58',1,'band_init(Uint32 numMembers):&#160;band.c']]],
+  ['band_5fload_5ffrom_5ffile',['band_load_from_file',['../d9/dc2/band_8h.html#a325ec9eda6e5cf2b7f1d036dc8776948',1,'band_load_from_file(FILE *file):&#160;band.c'],['../dd/dfc/band_8c.html#a325ec9eda6e5cf2b7f1d036dc8776948',1,'band_load_from_file(FILE *file):&#160;band.c']]],
+  ['band_5fs',['band_s',['../db/d57/structband__s.html',1,'']]],
+  ['basemarchingstat',['baseMarchingStat',['../d0/d71/struct_student.html#af4ba11ccfbd6c945ffd3a0982d7c5d03',1,'Student']]],
+  ['basemusicstat',['baseMusicStat',['../d0/d71/struct_student.html#a961dda4935fec71b930a5e890dfd800f',1,'Student']]],
+  ['binarytreenode',['BinaryTreeNode',['../d3/d9f/ds__binary__tree_8h.html#ae331688918b14610d4a7475307c5c11c',1,'ds_binary_tree.h']]],
+  ['bitdepth',['bitdepth',['../d8/d8b/struct_graphics.html#a433154291df15ef1463eda4941fa2fba',1,'Graphics']]],
+  ['bitreenode_5fs',['bitreenode_s',['../dc/dda/structbitreenode__s.html',1,'']]],
+  ['bmask',['bmask',['../d8/d8b/struct_graphics.html#a14b0866344628e753ba7670a11b780b4',1,'Graphics']]],
+  ['bool',['Bool',['../de/deb/gf2d__types_8h.html#a4a1d8cd6ef103fc1f5d5307454f581e1',1,'gf2d_types.h']]],
+  ['boundingbox',['boundingBox',['../de/d0b/structentity__s.html#a3d49780e142d5f067cdd71be48ad284d',1,'entity_s::boundingBox()'],['../d4/dbe/structguiwindow__s.html#a3d49780e142d5f067cdd71be48ad284d',1,'guiwindow_s::boundingBox()'],['../d5/d7d/structtile__s.html#a3d49780e142d5f067cdd71be48ad284d',1,'tile_s::boundingBox()'],['../d9/dbe/structtilemap__s.html#a3d49780e142d5f067cdd71be48ad284d',1,'tilemap_s::boundingBox()']]],
+  ['bt_5ffind',['bt_find',['../d3/d9f/ds__binary__tree_8h.html#a2ab3de55599d9dc37bfb0675b4f7873a',1,'bt_find(BinaryTreeNode *bt, void *data):&#160;ds_binary_tree.c'],['../df/d7a/ds__binary__tree_8c.html#a2ab3de55599d9dc37bfb0675b4f7873a',1,'bt_find(BinaryTreeNode *bt, void *data):&#160;ds_binary_tree.c']]],
+  ['bt_5ffind_5fmax',['bt_find_max',['../d3/d9f/ds__binary__tree_8h.html#a2164edc037379b8bbe006ae2b14a5807',1,'bt_find_max(BinaryTreeNode *bt):&#160;ds_binary_tree.c'],['../df/d7a/ds__binary__tree_8c.html#a2164edc037379b8bbe006ae2b14a5807',1,'bt_find_max(BinaryTreeNode *bt):&#160;ds_binary_tree.c']]],
+  ['bt_5ffind_5fmin',['bt_find_min',['../d3/d9f/ds__binary__tree_8h.html#a3eaf8b7d06db1d267c7e84eb1d753091',1,'bt_find_min(BinaryTreeNode *bt):&#160;ds_binary_tree.c'],['../df/d7a/ds__binary__tree_8c.html#a3eaf8b7d06db1d267c7e84eb1d753091',1,'bt_find_min(BinaryTreeNode *bt):&#160;ds_binary_tree.c']]],
+  ['bt_5finorder_5ftraversal',['bt_inorder_traversal',['../d3/d9f/ds__binary__tree_8h.html#a305300e15e8ccd673b67e6b89e9f0c98',1,'bt_inorder_traversal(BinaryTreeNode *bt):&#160;ds_binary_tree.c'],['../df/d7a/ds__binary__tree_8c.html#a305300e15e8ccd673b67e6b89e9f0c98',1,'bt_inorder_traversal(BinaryTreeNode *bt):&#160;ds_binary_tree.c']]],
+  ['bt_5finsert',['bt_insert',['../d3/d9f/ds__binary__tree_8h.html#a1639c13b4ff5cbe61a1268371bff9f71',1,'bt_insert(BinaryTreeNode **bt, void *data, size_t elementSize):&#160;ds_binary_tree.c'],['../df/d7a/ds__binary__tree_8c.html#a1639c13b4ff5cbe61a1268371bff9f71',1,'bt_insert(BinaryTreeNode **bt, void *data, size_t elementSize):&#160;ds_binary_tree.c']]],
+  ['bt_5fnew_5fnode',['bt_new_node',['../d3/d9f/ds__binary__tree_8h.html#a4df033bc59e674e4b2b93712e253401f',1,'bt_new_node(size_t elementSize):&#160;ds_binary_tree.c'],['../df/d7a/ds__binary__tree_8c.html#a4df033bc59e674e4b2b93712e253401f',1,'bt_new_node(size_t elementSize):&#160;ds_binary_tree.c']]]
 ];

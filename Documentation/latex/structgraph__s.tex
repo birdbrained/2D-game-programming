@@ -9,58 +9,40 @@ A data structure that represents an entire graph.
 
 {\ttfamily \#include $<$ds\+\_\+graph.\+h$>$}
 
-\subsection*{Data Fields}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{structgraphnode__s}{Graph\+Node} $\ast$ \hyperlink{structgraph__s_a14d4df7f6c1f9d2c91c64b716680b8c8}{head}
-\item 
-\hyperlink{structgraphnode__s}{Graph\+Node} $\ast$ \hyperlink{structgraph__s_ac3263bb2bbf0b4404d76fbbba2c036c9}{tail}
-\item 
-int \hyperlink{structgraph__s_a2474a5474cbff19523a51eb1de01cda4}{width}
-\item 
-\mbox{\Hypertarget{structgraph__s_a5ed7381790782351b9a8e4283b1d2abd}\label{structgraph__s_a5ed7381790782351b9a8e4283b1d2abd}} 
+\mbox{\Hypertarget{structgraph__s_a0d3056727913ba7008cfabef89101969}\label{structgraph__s_a0d3056727913ba7008cfabef89101969}} 
+\hyperlink{structgraphnode__s}{Graph\+Node} $\ast$ \hyperlink{structgraph__s_a0d3056727913ba7008cfabef89101969}{head}
+\begin{DoxyCompactList}\small\item\em Pointer to head node (start) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structgraph__s_abd61942b52cd5454ace79a4029233215}\label{structgraph__s_abd61942b52cd5454ace79a4029233215}} 
+\hyperlink{structgraphnode__s}{Graph\+Node} $\ast$ \hyperlink{structgraph__s_abd61942b52cd5454ace79a4029233215}{tail}
+\begin{DoxyCompactList}\small\item\em Pointer to tail node (most recently added) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structgraph__s_a3bcd4da7297c045e4bef045287dda45b}\label{structgraph__s_a3bcd4da7297c045e4bef045287dda45b}} 
+int \hyperlink{structgraph__s_a3bcd4da7297c045e4bef045287dda45b}{width}
+\begin{DoxyCompactList}\small\item\em How many nodes should be in one row. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structgraph__s_a7e4856b461b7e0696c4368012490c40e}\label{structgraph__s_a7e4856b461b7e0696c4368012490c40e}} 
 Uint16 {\bfseries num\+Snare\+Drums}
 \item 
-\mbox{\Hypertarget{structgraph__s_ac587abf040d7f36a88e9e4a9f782e920}\label{structgraph__s_ac587abf040d7f36a88e9e4a9f782e920}} 
+\mbox{\Hypertarget{structgraph__s_a7eb6417456c673dc03c8e94e6f02dc70}\label{structgraph__s_a7eb6417456c673dc03c8e94e6f02dc70}} 
 Uint16 {\bfseries num\+Flutes}
 \item 
-\mbox{\Hypertarget{structgraph__s_a97a3d2a9434f13d7f1bfe83f40aa3252}\label{structgraph__s_a97a3d2a9434f13d7f1bfe83f40aa3252}} 
+\mbox{\Hypertarget{structgraph__s_a548182b3e70187deb4cfc0dc43c15978}\label{structgraph__s_a548182b3e70187deb4cfc0dc43c15978}} 
 Uint16 {\bfseries num\+Trumpets}
 \item 
-\mbox{\Hypertarget{structgraph__s_a3dfd862f54e2c1060394efb8162fe91f}\label{structgraph__s_a3dfd862f54e2c1060394efb8162fe91f}} 
+\mbox{\Hypertarget{structgraph__s_a0afe5a0ad698dfe5256d7ce8b7ea36cd}\label{structgraph__s_a0afe5a0ad698dfe5256d7ce8b7ea36cd}} 
 Uint16 {\bfseries num\+Alto\+Saxes}
 \item 
-\mbox{\Hypertarget{structgraph__s_a23e654bd85fc7df1caba0a10a6e70bed}\label{structgraph__s_a23e654bd85fc7df1caba0a10a6e70bed}} 
+\mbox{\Hypertarget{structgraph__s_a563f8acda584a9310a41aef33c53e3a3}\label{structgraph__s_a563f8acda584a9310a41aef33c53e3a3}} 
 Uint16 {\bfseries num\+Baritones}
 \item 
-\mbox{\Hypertarget{structgraph__s_aa0c8e54b3c22839b437ddf389421f0b8}\label{structgraph__s_aa0c8e54b3c22839b437ddf389421f0b8}} 
+\mbox{\Hypertarget{structgraph__s_a46dc033abc8e94141c68f355d00bf846}\label{structgraph__s_a46dc033abc8e94141c68f355d00bf846}} 
 Uint16 {\bfseries num\+Other\+Instruments}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 A data structure that represents an entire graph. 
-
-\subsection{Field Documentation}
-\mbox{\Hypertarget{structgraph__s_a14d4df7f6c1f9d2c91c64b716680b8c8}\label{structgraph__s_a14d4df7f6c1f9d2c91c64b716680b8c8}} 
-\index{graph\+\_\+s@{graph\+\_\+s}!head@{head}}
-\index{head@{head}!graph\+\_\+s@{graph\+\_\+s}}
-\subsubsection{\texorpdfstring{head}{head}}
-{\footnotesize\ttfamily \hyperlink{structgraphnode__s}{Graph\+Node}$\ast$ head}
-
-Pointer to head node (start) \mbox{\Hypertarget{structgraph__s_ac3263bb2bbf0b4404d76fbbba2c036c9}\label{structgraph__s_ac3263bb2bbf0b4404d76fbbba2c036c9}} 
-\index{graph\+\_\+s@{graph\+\_\+s}!tail@{tail}}
-\index{tail@{tail}!graph\+\_\+s@{graph\+\_\+s}}
-\subsubsection{\texorpdfstring{tail}{tail}}
-{\footnotesize\ttfamily \hyperlink{structgraphnode__s}{Graph\+Node}$\ast$ tail}
-
-Pointer to tail node (most recently added) \mbox{\Hypertarget{structgraph__s_a2474a5474cbff19523a51eb1de01cda4}\label{structgraph__s_a2474a5474cbff19523a51eb1de01cda4}} 
-\index{graph\+\_\+s@{graph\+\_\+s}!width@{width}}
-\index{width@{width}!graph\+\_\+s@{graph\+\_\+s}}
-\subsubsection{\texorpdfstring{width}{width}}
-{\footnotesize\ttfamily int width}
-
-How many nodes should be in one row 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

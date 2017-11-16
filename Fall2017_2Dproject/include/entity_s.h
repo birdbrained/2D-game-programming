@@ -77,7 +77,7 @@ typedef struct entity_s
 	Vector2D acceleration;			/**<Acceleration*/
 
 	//collision
-	Rect *boundingBox;
+	Rect *boundingBox;				/**<Entity's bounding box*/
 
 	//grahpics
 	Sprite *mySprite;				/**<The entity's sprite, might get changed later*/

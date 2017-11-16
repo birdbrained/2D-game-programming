@@ -1,0 +1,57 @@
+\hypertarget{think__functions_8h}{}\section{Fall2017\+\_\+2\+Dproject/include/think\+\_\+functions.h File Reference}
+\label{think__functions_8h}\index{Fall2017\+\_\+2\+Dproject/include/think\+\_\+functions.\+h@{Fall2017\+\_\+2\+Dproject/include/think\+\_\+functions.\+h}}
+{\ttfamily \#include \char`\"{}entity\+\_\+s.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}simple\+\_\+logger.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{think__functions_8h_a090fb5b9bff006f0c7c6f769416ebba8}{move} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$e, \hyperlink{struct_vector2_d}{Vector2D} vec)
+\begin{DoxyCompactList}\small\item\em Crappy little function that just moves an entity. \end{DoxyCompactList}\item 
+void \hyperlink{think__functions_8h_a270777bfb0822eebc937f91c1dc8d62a}{die\+\_\+after\+\_\+time} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$e)
+\item 
+int \hyperlink{think__functions_8h_a581046da529a029993733f6825f83a41}{mouse\+Press} (S\+D\+L\+\_\+\+Mouse\+Button\+Event $\ast$b)
+\begin{DoxyCompactList}\small\item\em Checks to see if any mouse button was pressed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{think__functions_8h_a270777bfb0822eebc937f91c1dc8d62a}\label{think__functions_8h_a270777bfb0822eebc937f91c1dc8d62a}} 
+\index{think\+\_\+functions.\+h@{think\+\_\+functions.\+h}!die\+\_\+after\+\_\+time@{die\+\_\+after\+\_\+time}}
+\index{die\+\_\+after\+\_\+time@{die\+\_\+after\+\_\+time}!think\+\_\+functions.\+h@{think\+\_\+functions.\+h}}
+\subsubsection{\texorpdfstring{die\+\_\+after\+\_\+time()}{die\_after\_time()}}
+{\footnotesize\ttfamily void die\+\_\+after\+\_\+time (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{e }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{think__functions_8h_a581046da529a029993733f6825f83a41}\label{think__functions_8h_a581046da529a029993733f6825f83a41}} 
+\index{think\+\_\+functions.\+h@{think\+\_\+functions.\+h}!mouse\+Press@{mouse\+Press}}
+\index{mouse\+Press@{mouse\+Press}!think\+\_\+functions.\+h@{think\+\_\+functions.\+h}}
+\subsubsection{\texorpdfstring{mouse\+Press()}{mousePress()}}
+{\footnotesize\ttfamily int mouse\+Press (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Mouse\+Button\+Event $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Checks to see if any mouse button was pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & S\+D\+L\+\_\+\+Mouse\+Button\+Event to pass in (\&event.\+button) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if left mouse button was pressed, 0 if no buttons were pressed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{think__functions_8h_a090fb5b9bff006f0c7c6f769416ebba8}\label{think__functions_8h_a090fb5b9bff006f0c7c6f769416ebba8}} 
+\index{think\+\_\+functions.\+h@{think\+\_\+functions.\+h}!move@{move}}
+\index{move@{move}!think\+\_\+functions.\+h@{think\+\_\+functions.\+h}}
+\subsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void move (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{e,  }\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{vec }\end{DoxyParamCaption})}
+
+
+
+Crappy little function that just moves an entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em move} & The entity to move \\
+\hline
+{\em vec} & Vector to move entity by \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,107 @@
+\hypertarget{gf2d__draw_8c}{}\section{Fall2017\+\_\+2\+Dproject/src/gf2d\+\_\+draw.c File Reference}
+\label{gf2d__draw_8c}\index{Fall2017\+\_\+2\+Dproject/src/gf2d\+\_\+draw.\+c@{Fall2017\+\_\+2\+Dproject/src/gf2d\+\_\+draw.\+c}}
+{\ttfamily \#include \char`\"{}gf2d\+\_\+draw.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+graphics.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}simple\+\_\+logger.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{gf2d__draw_8c_ae5a1cb0982cad5245d65f2b703ea54b5}{gf2d\+\_\+draw\+\_\+lines} (\hyperlink{struct_vector2_d}{Vector2D} $\ast$p1, \hyperlink{struct_vector2_d}{Vector2D} $\ast$p2, Uint32 lines, \hyperlink{struct_vector4_d}{Vector4D} color)
+\item 
+void \hyperlink{gf2d__draw_8c_a8a9e974a7b72119ba2e43bb5c8579bf5}{gf2d\+\_\+draw\+\_\+line} (\hyperlink{struct_vector2_d}{Vector2D} p1, \hyperlink{struct_vector2_d}{Vector2D} p2, \hyperlink{struct_vector4_d}{Vector4D} color)
+\begin{DoxyCompactList}\small\item\em draw a line to the current rendering context \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__draw_8c_a3b027c2729c0ce377989662b314ecb31}{gf2d\+\_\+draw\+\_\+rect} (S\+D\+L\+\_\+\+Rect rect, \hyperlink{struct_vector4_d}{Vector4D} color)
+\item 
+void \hyperlink{gf2d__draw_8c_ae832715aa4d0093e3c20791be465a260}{draw\+\_\+filled\+\_\+rect} (S\+D\+L\+\_\+\+Rect rect, \hyperlink{struct_vector4_d}{Vector4D} color)
+\item 
+void \hyperlink{gf2d__draw_8c_afcd4dc9b856d0e4ad982d7a72c62d29e}{draw\+\_\+rect\+\_\+from\+\_\+vector4d} (\hyperlink{struct_vector4_d}{Vector4D} rect, \hyperlink{struct_vector4_d}{Vector4D} color)
+\item 
+void \hyperlink{gf2d__draw_8c_afd67d7306d00471623953652123a25bd}{gf2d\+\_\+draw\+\_\+rects} (S\+D\+L\+\_\+\+Rect $\ast$rects, Uint32 count, \hyperlink{struct_vector4_d}{Vector4D} color)
+\item 
+void \hyperlink{gf2d__draw_8c_a7eb1deee9dafdce43424eeb6a421fd12}{gf2d\+\_\+draw\+\_\+pixel} (\hyperlink{struct_vector2_d}{Vector2D} pixel, \hyperlink{struct_vector4_d}{Vector4D} color)
+\begin{DoxyCompactList}\small\item\em draw a pixel to the current rendering context \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__draw_8c_a7b636c86dbaafefc3dfd235b86c6ef4e}{gf2d\+\_\+draw\+\_\+pixel\+\_\+list} (S\+D\+L\+\_\+\+Point $\ast$pixels, Uint32 count, \hyperlink{struct_vector4_d}{Vector4D} color)
+\item 
+void \hyperlink{gf2d__draw_8c_a73ab81de7aea2680421e995d1d11866e}{gf2d\+\_\+draw\+\_\+circle} (\hyperlink{struct_vector2_d}{Vector2D} center, int radius, \hyperlink{struct_vector4_d}{Vector4D} color)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gf2d__draw_8c_ae832715aa4d0093e3c20791be465a260}\label{gf2d__draw_8c_ae832715aa4d0093e3c20791be465a260}} 
+\index{gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}!draw\+\_\+filled\+\_\+rect@{draw\+\_\+filled\+\_\+rect}}
+\index{draw\+\_\+filled\+\_\+rect@{draw\+\_\+filled\+\_\+rect}!gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}}
+\subsubsection{\texorpdfstring{draw\+\_\+filled\+\_\+rect()}{draw\_filled\_rect()}}
+{\footnotesize\ttfamily void draw\+\_\+filled\+\_\+rect (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Rect}]{rect,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__draw_8c_afcd4dc9b856d0e4ad982d7a72c62d29e}\label{gf2d__draw_8c_afcd4dc9b856d0e4ad982d7a72c62d29e}} 
+\index{gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}!draw\+\_\+rect\+\_\+from\+\_\+vector4d@{draw\+\_\+rect\+\_\+from\+\_\+vector4d}}
+\index{draw\+\_\+rect\+\_\+from\+\_\+vector4d@{draw\+\_\+rect\+\_\+from\+\_\+vector4d}!gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}}
+\subsubsection{\texorpdfstring{draw\+\_\+rect\+\_\+from\+\_\+vector4d()}{draw\_rect\_from\_vector4d()}}
+{\footnotesize\ttfamily void draw\+\_\+rect\+\_\+from\+\_\+vector4d (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{rect,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__draw_8c_a73ab81de7aea2680421e995d1d11866e}\label{gf2d__draw_8c_a73ab81de7aea2680421e995d1d11866e}} 
+\index{gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}!gf2d\+\_\+draw\+\_\+circle@{gf2d\+\_\+draw\+\_\+circle}}
+\index{gf2d\+\_\+draw\+\_\+circle@{gf2d\+\_\+draw\+\_\+circle}!gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+draw\+\_\+circle()}{gf2d\_draw\_circle()}}
+{\footnotesize\ttfamily void gf2d\+\_\+draw\+\_\+circle (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{center,  }\item[{int}]{radius,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__draw_8c_a8a9e974a7b72119ba2e43bb5c8579bf5}\label{gf2d__draw_8c_a8a9e974a7b72119ba2e43bb5c8579bf5}} 
+\index{gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}!gf2d\+\_\+draw\+\_\+line@{gf2d\+\_\+draw\+\_\+line}}
+\index{gf2d\+\_\+draw\+\_\+line@{gf2d\+\_\+draw\+\_\+line}!gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+draw\+\_\+line()}{gf2d\_draw\_line()}}
+{\footnotesize\ttfamily void gf2d\+\_\+draw\+\_\+line (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{p1,  }\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{p2,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{color }\end{DoxyParamCaption})}
+
+
+
+draw a line to the current rendering context 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & starting point \\
+\hline
+{\em p2} & ending point \\
+\hline
+{\em color} & the color to draw with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__draw_8c_ae5a1cb0982cad5245d65f2b703ea54b5}\label{gf2d__draw_8c_ae5a1cb0982cad5245d65f2b703ea54b5}} 
+\index{gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}!gf2d\+\_\+draw\+\_\+lines@{gf2d\+\_\+draw\+\_\+lines}}
+\index{gf2d\+\_\+draw\+\_\+lines@{gf2d\+\_\+draw\+\_\+lines}!gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+draw\+\_\+lines()}{gf2d\_draw\_lines()}}
+{\footnotesize\ttfamily void gf2d\+\_\+draw\+\_\+lines (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D} $\ast$}]{p1,  }\item[{\hyperlink{struct_vector2_d}{Vector2D} $\ast$}]{p2,  }\item[{Uint32}]{lines,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__draw_8c_a7eb1deee9dafdce43424eeb6a421fd12}\label{gf2d__draw_8c_a7eb1deee9dafdce43424eeb6a421fd12}} 
+\index{gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}!gf2d\+\_\+draw\+\_\+pixel@{gf2d\+\_\+draw\+\_\+pixel}}
+\index{gf2d\+\_\+draw\+\_\+pixel@{gf2d\+\_\+draw\+\_\+pixel}!gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+draw\+\_\+pixel()}{gf2d\_draw\_pixel()}}
+{\footnotesize\ttfamily void gf2d\+\_\+draw\+\_\+pixel (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{pixel,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{color }\end{DoxyParamCaption})}
+
+
+
+draw a pixel to the current rendering context 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pixel} & the screen position to draw at \\
+\hline
+{\em color} & the color to draw with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__draw_8c_a7b636c86dbaafefc3dfd235b86c6ef4e}\label{gf2d__draw_8c_a7b636c86dbaafefc3dfd235b86c6ef4e}} 
+\index{gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}!gf2d\+\_\+draw\+\_\+pixel\+\_\+list@{gf2d\+\_\+draw\+\_\+pixel\+\_\+list}}
+\index{gf2d\+\_\+draw\+\_\+pixel\+\_\+list@{gf2d\+\_\+draw\+\_\+pixel\+\_\+list}!gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+draw\+\_\+pixel\+\_\+list()}{gf2d\_draw\_pixel\_list()}}
+{\footnotesize\ttfamily void gf2d\+\_\+draw\+\_\+pixel\+\_\+list (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Point $\ast$}]{pixels,  }\item[{Uint32}]{count,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__draw_8c_a3b027c2729c0ce377989662b314ecb31}\label{gf2d__draw_8c_a3b027c2729c0ce377989662b314ecb31}} 
+\index{gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}!gf2d\+\_\+draw\+\_\+rect@{gf2d\+\_\+draw\+\_\+rect}}
+\index{gf2d\+\_\+draw\+\_\+rect@{gf2d\+\_\+draw\+\_\+rect}!gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+draw\+\_\+rect()}{gf2d\_draw\_rect()}}
+{\footnotesize\ttfamily void gf2d\+\_\+draw\+\_\+rect (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Rect}]{rect,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gf2d__draw_8c_afd67d7306d00471623953652123a25bd}\label{gf2d__draw_8c_afd67d7306d00471623953652123a25bd}} 
+\index{gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}!gf2d\+\_\+draw\+\_\+rects@{gf2d\+\_\+draw\+\_\+rects}}
+\index{gf2d\+\_\+draw\+\_\+rects@{gf2d\+\_\+draw\+\_\+rects}!gf2d\+\_\+draw.\+c@{gf2d\+\_\+draw.\+c}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+draw\+\_\+rects()}{gf2d\_draw\_rects()}}
+{\footnotesize\ttfamily void gf2d\+\_\+draw\+\_\+rects (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Rect $\ast$}]{rects,  }\item[{Uint32}]{count,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{color }\end{DoxyParamCaption})}
+

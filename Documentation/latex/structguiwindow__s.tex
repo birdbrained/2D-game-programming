@@ -1,39 +1,129 @@
 \hypertarget{structguiwindow__s}{}\section{guiwindow\+\_\+s Struct Reference}
 \label{structguiwindow__s}\index{guiwindow\+\_\+s@{guiwindow\+\_\+s}}
-\subsection*{Data Fields}
+
+
+A struct that represents a G\+UI window.  
+
+
+
+
+{\ttfamily \#include $<$gui.\+h$>$}
+
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structguiwindow__s_a11061b5287f78ab2e0ceba22ecb7cb49}\label{structguiwindow__s_a11061b5287f78ab2e0ceba22ecb7cb49}} 
-Uint8 {\bfseries in\+Use}
-\item 
-\mbox{\Hypertarget{structguiwindow__s_a4158e9a3af9337e59f9b8de984c0efba}\label{structguiwindow__s_a4158e9a3af9337e59f9b8de984c0efba}} 
-Uint64 {\bfseries id}
-\item 
-\mbox{\Hypertarget{structguiwindow__s_a919229fae17969e3b7654415a1ddfd06}\label{structguiwindow__s_a919229fae17969e3b7654415a1ddfd06}} 
-S\+D\+L\+\_\+\+Rect {\bfseries window}
-\item 
-\mbox{\Hypertarget{structguiwindow__s_a51801116a41ba4f4c50852a351bb44c6}\label{structguiwindow__s_a51801116a41ba4f4c50852a351bb44c6}} 
-\hyperlink{struct_vector4_d}{Vector4D} {\bfseries window\+Color}
-\item 
-\mbox{\Hypertarget{structguiwindow__s_a2dc349a13930beaf26472e0d04d9563e}\label{structguiwindow__s_a2dc349a13930beaf26472e0d04d9563e}} 
+\mbox{\Hypertarget{structguiwindow__s_a31241d3d16a5e55ea1025fd08e5835bd}\label{structguiwindow__s_a31241d3d16a5e55ea1025fd08e5835bd}} 
+Uint8 \hyperlink{structguiwindow__s_a31241d3d16a5e55ea1025fd08e5835bd}{in\+Use}
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t touch this! \end{DoxyCompactList}\item 
+Uint64 \hyperlink{structguiwindow__s_a8517fe666071281d8060f4f59459623f}{id}
+\begin{DoxyCompactList}\small\item\em ID of the gui. \end{DoxyCompactList}\item 
+\hyperlink{struct_sprite___s}{Sprite} $\ast$ \hyperlink{structguiwindow__s_a44df1a42aae23bae63ec9a7a9243b80e}{sprite}
+\begin{DoxyCompactList}\small\item\em Optional. \end{DoxyCompactList}\item 
+\hyperlink{struct_sprite___s}{Sprite} $\ast$ \hyperlink{structguiwindow__s_ac2a0369e93d29393cf3b5353a989dc9b}{close\+Button}
+\begin{DoxyCompactList}\small\item\em Optional, but really should include. \end{DoxyCompactList}\item 
+S\+D\+L\+\_\+\+Rect \hyperlink{structguiwindow__s_a4f1cb1337e6c6ea0924a54bbc411a1ce}{window}
+\begin{DoxyCompactList}\small\item\em The size of the rectangle gui. \end{DoxyCompactList}\item 
+\hyperlink{struct_vector4_d}{Vector4D} \hyperlink{structguiwindow__s_aea6170e71a582fa8ea892ae629b9f3fb}{window\+Color}
+\begin{DoxyCompactList}\small\item\em The background color of a gui window. \end{DoxyCompactList}\item 
+char \hyperlink{structguiwindow__s_ae89913af12503b162dd7fbb8b5969d55}{text} \mbox{[}G\+U\+I\+\_\+\+M\+A\+X\+\_\+\+T\+E\+X\+T\+\_\+\+L\+E\+N\+G\+TH\mbox{]}
+\begin{DoxyCompactList}\small\item\em Text that will be included in a gui. \end{DoxyCompactList}\item 
+\hyperlink{structrect__s}{Rect} $\ast$ \hyperlink{structguiwindow__s_ac1cd7b4e29cbb1aebb92f3908a901a8f}{bounding\+Box}
+\begin{DoxyCompactList}\small\item\em Refers to bounding box of the close button. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structguiwindow__s_ae378a51bbd37318bd8bdd3b103737fdd}\label{structguiwindow__s_ae378a51bbd37318bd8bdd3b103737fdd}} 
 \hyperlink{struct_vector2_d}{Vector2D} {\bfseries position}
 \item 
-\mbox{\Hypertarget{structguiwindow__s_a1b187f4d1f81894380925e9de933801a}\label{structguiwindow__s_a1b187f4d1f81894380925e9de933801a}} 
+\mbox{\Hypertarget{structguiwindow__s_aeeb171eb302bca1f073227ae2ef3ae2b}\label{structguiwindow__s_aeeb171eb302bca1f073227ae2ef3ae2b}} 
 \hyperlink{struct_vector2_d}{Vector2D} {\bfseries scale}
 \item 
-\mbox{\Hypertarget{structguiwindow__s_a8ff0fe80de1fcc51fee6f1d766e9de8b}\label{structguiwindow__s_a8ff0fe80de1fcc51fee6f1d766e9de8b}} 
+\mbox{\Hypertarget{structguiwindow__s_a051c4e48d8783f0e6a25c2d990c776f0}\label{structguiwindow__s_a051c4e48d8783f0e6a25c2d990c776f0}} 
 \hyperlink{struct_vector2_d}{Vector2D} {\bfseries scale\+Center}
 \item 
-\mbox{\Hypertarget{structguiwindow__s_ac4e0ffa54c436c5dad6ca9481266f9ed}\label{structguiwindow__s_ac4e0ffa54c436c5dad6ca9481266f9ed}} 
+\mbox{\Hypertarget{structguiwindow__s_a465f32d596c25181f7e11582712684c6}\label{structguiwindow__s_a465f32d596c25181f7e11582712684c6}} 
 \hyperlink{struct_vector2_d}{Vector2D} {\bfseries rotation}
 \item 
-\mbox{\Hypertarget{structguiwindow__s_afc50ca9ba71427ea7962929de4b0e1bb}\label{structguiwindow__s_afc50ca9ba71427ea7962929de4b0e1bb}} 
+\mbox{\Hypertarget{structguiwindow__s_a4978e49b0f2e65bddec9eb59603a63de}\label{structguiwindow__s_a4978e49b0f2e65bddec9eb59603a63de}} 
 \hyperlink{struct_vector2_d}{Vector2D} {\bfseries flip}
 \item 
-\mbox{\Hypertarget{structguiwindow__s_a6c816fc91c0d3b73641b802cc889195d}\label{structguiwindow__s_a6c816fc91c0d3b73641b802cc889195d}} 
+\mbox{\Hypertarget{structguiwindow__s_a736e5f29e84d441ad80d28763d11cc45}\label{structguiwindow__s_a736e5f29e84d441ad80d28763d11cc45}} 
 float {\bfseries current\+Frame}
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+A struct that represents a G\+UI window. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structguiwindow__s_ac1cd7b4e29cbb1aebb92f3908a901a8f}\label{structguiwindow__s_ac1cd7b4e29cbb1aebb92f3908a901a8f}} 
+\index{guiwindow\+\_\+s@{guiwindow\+\_\+s}!bounding\+Box@{bounding\+Box}}
+\index{bounding\+Box@{bounding\+Box}!guiwindow\+\_\+s@{guiwindow\+\_\+s}}
+\subsubsection{\texorpdfstring{bounding\+Box}{boundingBox}}
+{\footnotesize\ttfamily \hyperlink{structrect__s}{Rect}$\ast$ guiwindow\+\_\+s\+::bounding\+Box}
+
+
+
+Refers to bounding box of the close button. 
+
+\mbox{\Hypertarget{structguiwindow__s_ac2a0369e93d29393cf3b5353a989dc9b}\label{structguiwindow__s_ac2a0369e93d29393cf3b5353a989dc9b}} 
+\index{guiwindow\+\_\+s@{guiwindow\+\_\+s}!close\+Button@{close\+Button}}
+\index{close\+Button@{close\+Button}!guiwindow\+\_\+s@{guiwindow\+\_\+s}}
+\subsubsection{\texorpdfstring{close\+Button}{closeButton}}
+{\footnotesize\ttfamily \hyperlink{struct_sprite___s}{Sprite}$\ast$ guiwindow\+\_\+s\+::close\+Button}
+
+
+
+Optional, but really should include. 
+
+25x25 sprite for a close button. \mbox{\Hypertarget{structguiwindow__s_a8517fe666071281d8060f4f59459623f}\label{structguiwindow__s_a8517fe666071281d8060f4f59459623f}} 
+\index{guiwindow\+\_\+s@{guiwindow\+\_\+s}!id@{id}}
+\index{id@{id}!guiwindow\+\_\+s@{guiwindow\+\_\+s}}
+\subsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily Uint64 guiwindow\+\_\+s\+::id}
+
+
+
+ID of the gui. 
+
+Probably shouldn\textquotesingle{}t touch this. \mbox{\Hypertarget{structguiwindow__s_a44df1a42aae23bae63ec9a7a9243b80e}\label{structguiwindow__s_a44df1a42aae23bae63ec9a7a9243b80e}} 
+\index{guiwindow\+\_\+s@{guiwindow\+\_\+s}!sprite@{sprite}}
+\index{sprite@{sprite}!guiwindow\+\_\+s@{guiwindow\+\_\+s}}
+\subsubsection{\texorpdfstring{sprite}{sprite}}
+{\footnotesize\ttfamily \hyperlink{struct_sprite___s}{Sprite}$\ast$ guiwindow\+\_\+s\+::sprite}
+
+
+
+Optional. 
+
+Changes background from a plain rectangle to a sprite. \mbox{\Hypertarget{structguiwindow__s_ae89913af12503b162dd7fbb8b5969d55}\label{structguiwindow__s_ae89913af12503b162dd7fbb8b5969d55}} 
+\index{guiwindow\+\_\+s@{guiwindow\+\_\+s}!text@{text}}
+\index{text@{text}!guiwindow\+\_\+s@{guiwindow\+\_\+s}}
+\subsubsection{\texorpdfstring{text}{text}}
+{\footnotesize\ttfamily char guiwindow\+\_\+s\+::text\mbox{[}G\+U\+I\+\_\+\+M\+A\+X\+\_\+\+T\+E\+X\+T\+\_\+\+L\+E\+N\+G\+TH\mbox{]}}
+
+
+
+Text that will be included in a gui. 
+
+T\+O\+DO \mbox{\Hypertarget{structguiwindow__s_a4f1cb1337e6c6ea0924a54bbc411a1ce}\label{structguiwindow__s_a4f1cb1337e6c6ea0924a54bbc411a1ce}} 
+\index{guiwindow\+\_\+s@{guiwindow\+\_\+s}!window@{window}}
+\index{window@{window}!guiwindow\+\_\+s@{guiwindow\+\_\+s}}
+\subsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily S\+D\+L\+\_\+\+Rect guiwindow\+\_\+s\+::window}
+
+
+
+The size of the rectangle gui. 
+
+\mbox{\Hypertarget{structguiwindow__s_aea6170e71a582fa8ea892ae629b9f3fb}\label{structguiwindow__s_aea6170e71a582fa8ea892ae629b9f3fb}} 
+\index{guiwindow\+\_\+s@{guiwindow\+\_\+s}!window\+Color@{window\+Color}}
+\index{window\+Color@{window\+Color}!guiwindow\+\_\+s@{guiwindow\+\_\+s}}
+\subsubsection{\texorpdfstring{window\+Color}{windowColor}}
+{\footnotesize\ttfamily \hyperlink{struct_vector4_d}{Vector4D} guiwindow\+\_\+s\+::window\+Color}
+
+
+
+The background color of a gui window. 
+
+Applies to sprites and standard windows. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
