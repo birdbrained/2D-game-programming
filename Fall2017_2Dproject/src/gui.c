@@ -129,7 +129,7 @@ void gui_draw(GUIWindow * window)
 	else
 		gf2d_sprite_draw_image(window->sprite, window->position);
 
-	if (window->closeButton != NULL)
+	if (window->closeButton != NULL && window->closeable > 0)
 	{
 		gf2d_sprite_draw_image(window->closeButton, window->position);
 	}
@@ -172,14 +172,14 @@ void gui_update(GUIWindow * window)
 	//bounding box always is at top-left corner
 	//when bounding box is pressed, it acts as the "x" button
 	//and closes the window / delete the gui
-	//if (window->sprite == NULL)
-	//{
+	if (window->closeable)
+	{
 		window->boundingBox = rect_new(window->position.x, window->position.y, 25.0f, 25.0f);
-	//}
-	//else
-	//{
-
-	//}
+	}
+	else
+	{
+		window->boundingBox = rect_new(0, 0, 0, 0);
+	}
 }
 
 void gui_update_all()
@@ -195,14 +195,26 @@ void gui_update_all()
 	}
 }
 
-void gui_change_text(char * text, GUIWindow * window)
+void gui_change_text(GUIWindow * window, char * text, Uint32 wrapLength)
 {
 	strncpy(window->text, text, GUI_MAX_TEXT_LENGTH);
-	window->surface = TTF_RenderText_Solid(window->font, window->text, window->textColor);
+	window->surface = TTF_RenderText_Blended_Wrapped(window->font, window->text, window->textColor, wrapLength);
+	//TTF_RenderText_Blended_Wrapped()
 	window->texture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), window->surface);
 	SDL_QueryTexture(window->texture, NULL, NULL, &window->rectW, &window->rectH);
 	window->window.w = window->rectW;
 	window->window.h = window->rectH;
+}
+
+void gui_set_closeability(GUIWindow * window, Uint8 closeable)
+{
+	if (!window)
+	{
+		slog("Error: cannot change closeability of a null window");
+		return;
+	}
+
+	window->closeable = closeable;
 }
 
 GUIWindow * gui_check_collision_in_all(int mx, int my)

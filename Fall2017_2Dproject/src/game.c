@@ -16,6 +16,7 @@
 #include "entity_s.h"
 #include "formation.h"
 #include "audio.h"
+//#include "audio_with_fmod.h"
 #include "text_s.h"
 #include "gui.h"
 #include "think_functions.h"
@@ -325,6 +326,7 @@ int main(int argc, char * argv[])
 
 	FMOD_SYSTEM *system;
 	FMOD_SOUND *fsound;
+	//FSound * test_fsound;
 
 	//TTF_Font *PencilFont;
 	//SDL_Color colorBlack = { 0, 0, 0, 255 };
@@ -421,6 +423,7 @@ int main(int argc, char * argv[])
 	soundSystemInit(25);
 	text_system_init(50);
 	gui_system_init(15);
+	//fsound_system_init(20, 100, FMOD_INIT_NORMAL, 0);
 	score = 0;
     SDL_ShowCursor(SDL_DISABLE);
 	TTF_Init();
@@ -468,7 +471,9 @@ int main(int argc, char * argv[])
 	FMOD_System_Create(&system);
 	FMOD_System_Init(system, 100, FMOD_INIT_NORMAL, 0);
 	FMOD_System_CreateSound(system, "music/bg/NJIT.ogg", FMOD_DEFAULT, 0, &fsound);
-	//FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
+	FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
+	//test_fsound = fsound_load(system, "music/bg/NJIT.ogg", FMOD_DEFAULT, 0, Instrument_Unassigned);
+	//fsound_play(system, test_fsound);
 
 	//soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
 	//soundPlay(flute, -1, 1, flute->defaultChannel, 0);
@@ -542,8 +547,8 @@ int main(int argc, char * argv[])
 	guii->position.y = 300;
 	//strncpy(guii->text, "Hello this is text", GUI_MAX_TEXT_LENGTH);
 	guii->font = PencilFont;
-	gui_change_text("Hello this is text", guii);
-
+	gui_change_text(guii, "Hello this is text\tThis is more text", 300);
+	gui_set_closeability(guii, 1);
 	//Input for the console
 	//input_init();
 
@@ -552,7 +557,7 @@ int main(int argc, char * argv[])
     {
         SDL_PumpEvents();   // update SDL's internal event structures
         keys = SDL_GetKeyboardState(NULL); // get the keyboard state for this frame
-		FMOD_System_Update(system);
+		//FMOD_System_Update(system);
         /*update things here*/
         SDL_GetMouseState(&mx,&my);
 		SDL_PollEvent(&e);

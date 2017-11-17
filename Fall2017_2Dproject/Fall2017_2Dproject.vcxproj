@@ -136,6 +136,7 @@
     <ClCompile Include="ds_priority_queue.c" />
     <ClCompile Include="entity_s.c" />
     <ClCompile Include="src\audio.c" />
+    <ClCompile Include="src\audio_with_fmod.c" />
     <ClCompile Include="src\band.c" />
     <ClCompile Include="src\ds_binary_tree.c" />
     <ClCompile Include="src\ds_graph.c" />
@@ -158,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\audio.h" />
+    <ClInclude Include="include\audio_with_fmod.h" />
     <ClInclude Include="include\band.h" />
     <ClInclude Include="include\ds_binary_tree.h" />
     <ClInclude Include="include\ds_graph.h" />

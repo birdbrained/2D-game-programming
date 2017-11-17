@@ -20,6 +20,7 @@ typedef struct guiwindow_s
 	Uint64 id;				/**<ID of the gui. Probably shouldn't touch this.*/
 	Sprite * sprite;		/**<Optional. Changes background from a plain rectangle to a sprite.*/
 	Sprite * closeButton;	/**<Optional, but really should include. 25x25 sprite for a close button.*/
+	Uint8 closeable;		/**<Non-zero if GUI will have a close icon; 0 if not*/
 	SDL_Rect window;		/**<The size of the rectangle gui.*/
 	Vector4D windowColor;	/**<The background color of a gui window. Applies to sprites and standard windows.*/
 	Rect * boundingBox;		/**<Refers to bounding box of the close button.*/
@@ -86,7 +87,21 @@ void gui_update(GUIWindow * window);
  */
 void gui_update_all();
 
-void gui_change_text(char * text, GUIWindow * window);
+/**
+ * @brief Changes the text to be displayed on a GUI
+ * @param window The GUI window to add text onto
+ * @param text The text to insert onto the GUI
+ * @param wrapLength The length of the line before moving onto the next one
+ */
+void gui_change_text(GUIWindow * window, char * text, Uint32 wrapLength);
+
+/**
+ * @brief Sets if a GUI window should be closeable from a user clicking the "X" button
+ * @param window The GUI window to edit
+ * @param closeable Set to 0 if user should not be able to manually close a window;
+ *                  Set to non-zero if user should be able to manually close a window
+ */
+void gui_set_closeability(GUIWindow * window, Uint8 closeable);
 
 /**
  * @brief Checks for a collision with the specified x and y value and all of the GUIs currently in use
