@@ -16,6 +16,7 @@
 #include "entity_s.h"
 #include "formation.h"
 #include "audio.h"
+//#include "audio_with_fmod.h"
 #include "text_s.h"
 #include "gui.h"
 #include "think_functions.h"
@@ -81,6 +82,7 @@ static Sprite *gui;
 //TileMap *tile_map;
 static Entity *pickedUp = NULL;
 static Entity *collision = NULL;
+static GUIWindow *collisionGUI = NULL;
 static Entity *cd;
 static Entity *playButton;
 static Sprite *guiMarchingStat;
@@ -94,6 +96,30 @@ static SDL_Color colorBlack = { 0, 0, 0, 255 };
 static SDL_Color colorWhite = { 255, 255, 255, 255 };
 static SDL_Color colorRed = { 255, 0, 0, 255 };
 static int cursor = 0;
+
+//game state
+static int currentSet = 0;
+static int maxSets = 0;
+
+char * format_set_text(char text[32], int currentSet, int maxSets)
+{
+	char buffer[5];
+
+	if (!text)
+	{
+		slog("Error: cannot format a text that is null");
+		return NULL;
+	}
+
+	strncpy(text, "Set: ", 32);
+	snprintf(buffer, 5, "%d", currentSet);
+	strcat(text, buffer);
+	strcat(text, "/");
+	snprintf(buffer, 5, "%d", maxSets);
+	strcat(text, buffer);
+
+	return text;
+}
 
 void close_level(TileMap * tile_map, Graph * fieldGraph)
 {
@@ -127,6 +153,9 @@ void close_level(TileMap * tile_map, Graph * fieldGraph)
 Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph, Uint8 closePrevLevel)
 {
 	char buffer[512];
+	char * physBuffer = "";
+	int n = 0;
+	PHYSFS_File * physFile = NULL;
 	FILE * file = NULL;
 	FILE * file_temp = NULL;
 	if (!levelFilename)
@@ -134,31 +163,54 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 		slog("Error: level file name was null");
 		return;
 	}
+	//fscanf(physFile, "%s", buffer);
 
-	file = fopen(levelFilename, "r");
+	/*file = fopen(levelFilename, "r");
 	if (!file)
 	{
 		slog("Error: cannot load the level with filename (%s)", levelFilename);
 		fclose(file);
 		return;
 	}
-	rewind(file);
+	rewind(file);*/
+
+	if (!PHYSFS_exists(levelFilename))
+	{
+		slog("Error: cannot load the level with filename (%s)");
+		return;
+	}
+
+	physFile = PHYSFS_openRead(levelFilename);
+	physBuffer = (char *)malloc(PHYSFS_fileLength(physFile));
+	memset(physBuffer, 0, PHYSFS_fileLength(physFile));
+	PHYSFS_readBytes(physFile, physBuffer, PHYSFS_fileLength(physFile));
+	PHYSFS_close(physFile);
 
 	if (closePrevLevel > 0)
 	{
 		close_level(tile_map, fieldGraph);
 	}
 
-	while (fscanf(file, "%s", buffer) != EOF)
+	//while (fscanf(file, "%s", buffer) != EOF)
+	while (sscanf(physBuffer, " %s\n%n", buffer, &n) == 1)
 	{
+		if (buffer[0] == '~')
+		{
+			break;
+		}
+		physBuffer += n;
 		if (strcmp(buffer, "background:") == 0)
 		{
-			fscanf(file, "%s", buffer);
+			//fscanf(file, "%s", buffer);
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
 			backgroundSprite = gf2d_sprite_load_image(buffer);
 		}
 		if (strcmp(buffer, "tilemap:") == 0)
 		{
-			fscanf(file, "%s", buffer);
+			//fscanf(file, "%s", buffer);
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
 			file_temp = fopen(buffer, "r");
 			if (!file_temp)
 			{
@@ -173,16 +225,19 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 		}
 		if (strcmp(buffer, "band:") == 0)
 		{
-			fscanf(file, "%s", buffer);
-			file_temp = fopen(buffer, "r");
+			//fscanf(file, "%s", buffer);
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
+			/*file_temp = fopen(buffer, "r");
 			if (!file_temp)
 			{
 				slog("Error: could not open band file");
 				//fclose(file_temp);
 				continue;
-			}
-			entityLoadAllFromFile(file_temp, tile_map/*, &fieldGraph*/);
-			fclose(file_temp);
+			}*/
+			//entityLoadAllFromFile(file_temp, tile_map/*, &fieldGraph*/);
+			entityLoadAllFromFile(buffer, tile_map);
+			//fclose(file_temp);
 			tilemap_clear_space(&tile_map);
 			graph_zero_all(&fieldGraph);
 			entityUpdateGraphPositionAll(&fieldGraph);
@@ -198,16 +253,26 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 		}
 		if (strcmp(buffer, "mouse:") == 0)
 		{
-			fscanf(file, "%s", buffer);
+			//fscanf(file, "%s", buffer);
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
 			mouseSprite = gf2d_sprite_load_all(buffer, 32, 32, 16);
 			mouse = mouseSprite;
+		}
+		if (strcmp(buffer, "sets:") == 0)
+		{
+			sscanf(physBuffer, " %i\n%n", &maxSets, &n);
+			physBuffer += n;
+			slog("MAX SETS: (%i)", maxSets);
 		}
 		if (strcmp(buffer, "extraSprites:") == 0)
 		{
 			while (1)
 			{
-				fscanf(file, "%s", buffer);
-				if (strcmp(buffer, "END") == 0)
+				//fscanf(file, "%s", buffer);
+				sscanf(physBuffer, " %s\n%n", buffer, &n);
+				physBuffer += n;
+				if (buffer[0] == 'E' && buffer[1] == 'N' & buffer[2] == 'D')
 				{
 					break;
 				}
@@ -224,7 +289,7 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
 	//soundAdjustVolumeAll(0);
 
-	fclose(file);
+	//fclose(file);
 	return fieldGraph;
 }
 
@@ -255,8 +320,10 @@ int main(int argc, char * argv[])
 	Sprite *thing;
 	Sprite *thing2;
 	Sprite *guyx;
+	//Sprite *wups;
 	Sprite *galSprite;
 	Sprite *mehSprite;
+	Sprite *closeButton;
 	int controllerConnected = 0;
 
 	FILE *tilemapFile;
@@ -268,6 +335,8 @@ int main(int argc, char * argv[])
 	Vector2D scaleDown = { 0.5, 0.5 };
 	Vector2D scaleUp = { 2, 2 };
 	Vector2D scaleHalfUp = { 1.5, 1.5 };
+	Vector3D rotate = { 16, 16, 0 };
+	float SPEEEEEED = 0.1f;
 
 	SDL_Event e;
 	SDL_Surface *icon = SDL_LoadBMP("images/sprites/guy16x.bmp");
@@ -290,6 +359,7 @@ int main(int argc, char * argv[])
 
 	FMOD_SYSTEM *system;
 	FMOD_SOUND *fsound;
+	//FSound * test_fsound;
 
 	//TTF_Font *PencilFont;
 	//SDL_Color colorBlack = { 0, 0, 0, 255 };
@@ -324,9 +394,19 @@ int main(int argc, char * argv[])
 	int consoleX = 0, consoleY = 0;
 	SDL_Rect consoleRectie = { 50, 100, 0, 0 };
 
+	SDL_Surface *setSurface;
+	SDL_Texture *setTexture;
+	int setW = 0, setH = 0;
+	SDL_Rect setRect = { 620, 680, 0, 0 };
+	char setText[32];
+
 	Uint8 playButtonPressed = 0;
 
 	GUIWindow * guii;
+	PHYSFS_File * physFile = NULL;
+	char * physBuffer= "";
+	char token[512] = "";
+	int n;
 
 	srand(time(NULL));
 	SDL_SetTextInputRect(&consoleRect);
@@ -337,12 +417,34 @@ int main(int argc, char * argv[])
 	PHYSFS_init(NULL);
 	PHYSFS_mount("zip/def.zip", "mnt", 1);
 	PHYSFS_mount("zip/music.zip", "mnt", 1);
-	if (PHYSFS_exists("mnt/_myBand.band"))
+	if (PHYSFS_exists("mnt/test_tiles.png"))
 	{
 		slog("file exists");
 	}
 	else
 		slog("file does not exist");
+	
+
+	physFile = PHYSFS_openRead("mnt/_myBand.band");
+	//fscanf(physFile, "%s", physBuffer);
+	physBuffer = (char *)malloc(PHYSFS_fileLength(physFile));
+	memset(physBuffer, 0, PHYSFS_fileLength(physFile));
+	//physBuffer = "";
+	PHYSFS_readBytes(physFile, physBuffer, PHYSFS_fileLength(physFile));
+	PHYSFS_close(physFile);
+	//iterator = (char *)malloc(sizof(physBuffer));
+	//strncpy(iterator, physBuffer, sizeof(physBuffer));
+	while (sscanf(physBuffer, " %s\n%n", token, &n))
+	{
+		//puts(token);
+		if (token[0] == '~')
+		{
+			break;
+		}
+		slog("token (%s)", token);
+		physBuffer += n;
+	}
+
     gf2d_graphics_initialize(
         "Drum Majors Don't Wear Aussies",
         1200,
@@ -360,11 +462,12 @@ int main(int argc, char * argv[])
 	soundSystemInit(25);
 	text_system_init(50);
 	gui_system_init(15);
+	//fsound_system_init(20, 100, FMOD_INIT_NORMAL, 0);
 	score = 0;
     SDL_ShowCursor(SDL_DISABLE);
 	TTF_Init();
 	//fileLoadedDude = entityNew();
-    
+
     /*demo setup*/
     //backgroundSprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
 	//textBox = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
@@ -376,99 +479,13 @@ int main(int argc, char * argv[])
 	//galSprite = gf2d_sprite_load_all("images/sprites/gal32x.png", 32, 32, 2);
 	//mehSprite = gf2d_sprite_load_all("images/sprites/meh32x.png", 32, 32, 2);
 	//musicSheet = gf2d_sprite_load_image("images/gui/music_sheet.png");
+	//wups = gf2d_sprite_load_all("images/sprites/wups.png", 32, 32, 2);
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
-	//myTileMap = gf2d_sprite_load_all("images/field_tiles.png", 64, 64, 2);
-	//person = student("Test", "Sex", thing2);
-	//slog("Initializing student %s", person->name);
-	/*guy = entityNew();
-	strncpy(guy->name, "McBandgeek", 32);
-	guy->mySprite = guyx;
-	guy->scale = scaleUp;
-	guy->currentFrame = 0;
-	guy->minFrame = 0;
-	guy->maxFrame = 2;
-	guy->position = vector2d(300, 100);
-	guy->update = move;
-	guy->myInstrument = Instrument_Tenor_Saxophone;
-	guy->instrumentSprite = gf2d_sprite_load_all("images/sprites/instrument_tenor_sax.png", 32, 32, 1);
-	guy->boundingBox = rect_new(guy->position.x, guy->position.y, 64, 64);
-	testDude = NULL;
-	//SDL_SetTextureColorMod(thing2->texture, 100, 60, 0);
-	infile = fopen("def/dude.dude", "r");
-	fileLoadedDude = entityNew();
-	fileLoadedDude = entityLoadFromFile(infile, fileLoadedDude);
-	fclose(infile);
-	//fileLoadedDude->mySprite = mehSprite;
-	fileLoadedDude->instrumentSprite = gf2d_sprite_load_all(&fileLoadedDude->instrumentSpriteFilePath, 32, 32, 1);
-	fileLoadedDude->position = vector2d(64, 64);
-	fileLoadedDude->boundingBox = rect_new(fileLoadedDude->position.x, fileLoadedDude->position.y, 64, 64);
-	fileLoadedDude->scale = vector2d(2, 2);
-	fileLoadedDude->currentFrame = 0;
-	fileLoadedDude->minFrame = 0;
-	fileLoadedDude->maxFrame = 2;
-	fileLoadedDude->currentPosition = 19;
-	slog("the thing made has name: %s", &fileLoadedDude->name);
-
-	infile = fopen("def/dude2.dude", "r");
-	fileLoadedDude2 = entityNew();
-	fileLoadedDude2 = entityLoadFromFile(infile, fileLoadedDude2);
-	fclose(infile);
-	fileLoadedDude2->instrumentSprite = gf2d_sprite_load_all(&fileLoadedDude2->instrumentSpriteFilePath, 32, 32, 1);
-	fileLoadedDude2->position = vector2d(128, 64);
-	fileLoadedDude2->boundingBox = rect_new(fileLoadedDude2->position.x, fileLoadedDude2->position.y, 64, 64);
-	fileLoadedDude2->scale = vector2d(2, 2);
-	fileLoadedDude2->currentFrame = 0;
-	fileLoadedDude2->minFrame = 0;
-	fileLoadedDude2->maxFrame = 2;
-	fileLoadedDude2->currentPosition = 20;*/
+	closeButton = gf2d_sprite_load_all("images/gui/close.png", 25, 25, 1);
 
 	tile_map = tilemap_init();
 	fieldGraph = graph_init(18, sizeof(Entity));
-	fieldGraph = load_level("def/level/mainMenu.txt", tile_map, fieldGraph, 0);
-
-	//textBox->texture = message;
-
-	//Trying to load a tilemap from file
-	//tilemapFile = fopen("def/level/field_0.tilemap", "r");
-	//tilemap_load_from_file(tilemapFile, tile_map);
-	//fclose(tilemapFile);
-	//slog("tilewidth: (%i) tileheight: (%i) tperline: (%i) filepath: (...) width: (%i) height: (%i) xPos: (%i) yPos: (%i)", tile_map->tileWidth,	tile_map->tileHeight, tile_map->tilesPerLine, tile_map->width, tile_map->height, tile_map->xPos, tile_map->yPos);
-	//slog("do i have a sprite? %i", tile_map->tilemapSprite != NULL);
-	//tile_map->space[19] = 1;
-	//tile_map->space[20] = 1;
-	/*slog("tile pq start");
-	while (tile_map->tiles_head != NULL)
-	{
-		p = pq_delete(tile_map->tiles_head, tile_map->tiles_tail);
-		if (p == NULL)
-		{
-			break;
-		}
-		slog("Removing (%d) from pq", p);
-	}
-	slog("tile pq end");*/
-	/*slog("start array");
-	for (p = 0; p < tile_map->width * tile_map->height; p++)
-	{
-		if (p == 512)
-		{
-			slog("end of array");
-		}
-		else if (tile_map->tiles[p] == -1)
-		{
-			slog("found a -1");
-		}
-		else
-		{
-			slog("tiles at index (%i) is (%i)", p, tile_map->tiles[p]);
-		}
-	}
-	slog("end array");*/
-
-	//Trying to load all entities from a file
-	//bandFile = fopen("def/_myBand.band", "r");
-	//entityLoadAllFromFile(bandFile);
-	//fclose(bandFile);
+	fieldGraph = load_level("mnt/level/mainMenu.txt", tile_map, fieldGraph, 0);
 
 	//Load sounds
 	//NJITtheme = soundNew("music/bg/NJIT.ogg");
@@ -493,8 +510,15 @@ int main(int argc, char * argv[])
 
 	FMOD_System_Create(&system);
 	FMOD_System_Init(system, 100, FMOD_INIT_NORMAL, 0);
+<<<<<<< HEAD
 	FMOD_System_CreateSound(system, "mnt/bg/NJIT.ogg", FMOD_DEFAULT, 0, &fsound);
 	//FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
+=======
+	FMOD_System_CreateSound(system, "music/bg/NJIT.ogg", FMOD_DEFAULT, 0, &fsound);
+	//FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
+	//test_fsound = fsound_load(system, "music/bg/NJIT.ogg", FMOD_DEFAULT, 0, Instrument_Unassigned);
+	//fsound_play(system, test_fsound);
+>>>>>>> physfs
 
 	//soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
 	//soundPlay(flute, -1, 1, flute->defaultChannel, 0);
@@ -503,7 +527,7 @@ int main(int argc, char * argv[])
 	//soundPlay(baritone, -1, 1, baritone->defaultChannel, 0);
 
 	//text testing stuff
-	PencilFont = TTF_OpenFont("fonts/Pencil.ttf", 36);
+	PencilFont = TTF_OpenFont("fonts/Halogen.ttf", 36);
 	if (!PencilFont)
 	{
 		slog("Error loading font");
@@ -541,6 +565,13 @@ int main(int argc, char * argv[])
 	consoleRectie.w = consoleX;
 	consoleRectie.h = consoleY;
 
+	strncpy(setText, format_set_text(setText, currentSet, maxSets), 32);
+	setSurface = TTF_RenderText_Solid(PencilFont, setText, colorBlack);
+	setTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), setSurface);
+	SDL_QueryTexture(setTexture, NULL, NULL, &setW, &setH);
+	setRect.w = setW;
+	setRect.h = setH;
+
 	cd = entityNew();
 	cd->mySprite = gf2d_sprite_load_all("images/gui/cd.png", 128, 128, 1);
 	cd->position = vector2d(0, 0);
@@ -554,15 +585,23 @@ int main(int argc, char * argv[])
 	playButton->boundingBox = rect_new(playButton->position.x, playButton->position.y, playButton->mySprite->frame_w, playButton->mySprite->frame_h);
 	
 	guii = gui_new();
-	guii->window.x = 10;
-	guii->window.y = 10;
+	//guii->sprite = controllerIcon;
+	guii->closeButton = closeButton;
+	//guii->window.x = 10;
+	//guii->window.y = 10;
 	guii->window.w = 201;
 	guii->window.h = 77;
 	guii->windowColor.x = 200;
 	guii->windowColor.y = 100;
 	guii->windowColor.z = 220;
 	guii->windowColor.w = 100;
-
+	guii->position.x = 200;
+	guii->position.y = 300;
+	guii->padding = 0;
+	//strncpy(guii->text, "Hello this is text", GUI_MAX_TEXT_LENGTH);
+	guii->font = PencilFont;
+	gui_change_text(guii, "Hello this is text\tThis is more text", 300);
+	gui_set_closeability(guii, 1);
 	//Input for the console
 	//input_init();
 
@@ -571,9 +610,10 @@ int main(int argc, char * argv[])
     {
         SDL_PumpEvents();   // update SDL's internal event structures
         keys = SDL_GetKeyboardState(NULL); // get the keyboard state for this frame
-		FMOD_System_Update(system);
+		//FMOD_System_Update(system);
         /*update things here*/
         SDL_GetMouseState(&mx,&my);
+		//e = 0;
 		SDL_PollEvent(&e);
         mf+=0.1;
         if (mf >= 16.0)mf = 0;        
@@ -601,12 +641,13 @@ int main(int argc, char * argv[])
 		entityDrawAll();
 		entityUpdateAll();
 		entityIncrementCurrentFrameAll();
-		snprintf(scoreText, 32, "%d", score);
-		scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
-		scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
-		SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreX, &scoreY);
-		scoreRect.w = scoreX;
-		scoreRect.h = scoreY;
+		gui_update_all();
+		//snprintf(scoreText, 32, "%d", score);
+		//scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
+		//scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
+		//SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreX, &scoreY);
+		//scoreRect.w = scoreX;
+		//scoreRect.h = scoreY;
 
 		if (pickedUp != NULL)
 		{
@@ -679,6 +720,7 @@ int main(int argc, char * argv[])
 					}
 				}
 			}
+			e.button.button = 0;
 			break;
 		case SDL_MOUSEBUTTONUP:
 			if (e.button.button == SDL_BUTTON_LEFT)
@@ -715,10 +757,16 @@ int main(int argc, char * argv[])
 				}
 
 				//if (point_in_rect(mx, my, tile_map->boundingBox))
-				tileClicked = tilemap_find_tile(mx, my, tile_map);
-				if (tileClicked >= 0)
+				//tileClicked = tilemap_find_tile(mx, my, tile_map);
+				//if (tileClicked >= 0)
+				//{
+				//	slog("collided with tilemap on tile (%i), occupied (%i)", tileClicked, tile_map->space[tileClicked]);
+				//}
+
+				collisionGUI = gui_check_collision_in_all(mx, my);
+				if (collisionGUI != NULL)
 				{
-					//slog("collided with tilemap on tile (%i), occupied (%i)", tileClicked, tile_map->space[tileClicked]);
+					gui_delete(collisionGUI);
 				}
 			}
 			break;
@@ -734,7 +782,14 @@ int main(int argc, char * argv[])
 			if (SDL_IsTextInputActive() == SDL_TRUE)
 			{
 				slog("key name (%s)", SDL_GetKeyName(e.key.keysym.sym));
-				strncat(consoleText, SDL_GetKeyName(e.key.keysym.sym), sizeof(consoleText));
+				if (strcmp(SDL_GetKeyName(e.key.keysym.sym), "Space") == 0)
+				{
+					strncat(consoleText, " ", sizeof(consoleText));
+				}
+				else
+				{
+					strncat(consoleText, SDL_GetKeyName(e.key.keysym.sym), sizeof(consoleText));
+				}
 				consoleSurface = TTF_RenderText_Solid(PencilFont, consoleText, colorBlack);
 				consoleTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), consoleSurface);
 				SDL_QueryTexture(consoleTexture, NULL, NULL, &consoleX, &consoleY);
@@ -751,6 +806,24 @@ int main(int argc, char * argv[])
 				entityUpdateGraphPositionAll(&fieldGraph);
 				soundAdjustVolumeAll(0);
 				score = formation_detect(&fieldGraph);
+				snprintf(scoreText, 32, "%d", score);
+				scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
+				scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
+				SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreX, &scoreY);
+				scoreRect.w = scoreX;
+				scoreRect.h = scoreY;
+
+				//update current set
+				currentSet++;
+				strncpy(setText, format_set_text(setText, currentSet, maxSets), 32);
+				setSurface = TTF_RenderText_Solid(PencilFont, setText, colorBlack);
+				setTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), setSurface);
+				SDL_QueryTexture(setTexture, NULL, NULL, &setW, &setH);
+				setRect.w = setW;
+				setRect.h = setH;
+
+				//e.key.keysym.sym = SDLK_UNKNOWN;
+
 				break;
 			case SDLK_BACKQUOTE:
 				slog("backtick pressed");
@@ -775,6 +848,7 @@ int main(int argc, char * argv[])
 				}
 				break;
 			}
+			e.key.keysym.sym = SDLK_UNKNOWN;
 			break;
 		/*case SDL_TEXTINPUT:
 			if (SDL_IsTextInputActive() == SDL_TRUE)
@@ -819,7 +893,7 @@ int main(int argc, char * argv[])
 		{
 			if (point_in_rect(1000, 10, cd->boundingBox))
 			{
-				fieldGraph = load_level("def/level/myLevel.txt", tile_map, fieldGraph, 1);
+				fieldGraph = load_level("mnt/level/myLevel.txt", tile_map, fieldGraph, 1);
 				if (musicPlaying > 0)
 				{
 					//Mix_RewindMusic();
@@ -859,6 +933,10 @@ int main(int argc, char * argv[])
 		{
 			SDL_RenderCopy(gf2d_graphics_get_renderer(), statMarchingTexture, NULL, &statMarchingRect);
 		}
+		if (setTexture && maxSets > 0)
+		{
+			SDL_RenderCopy(gf2d_graphics_get_renderer(), setTexture, NULL, &setRect);
+		}
 		//SDL_RenderPresent(renderer);
 		//gf2d_sprite_draw_image(textBox, vector2d(50, 50));
 		if (controllerConnected && controllerIcon)
@@ -866,6 +944,10 @@ int main(int argc, char * argv[])
 
 		if (consoleTexture)
 			SDL_RenderCopy(gf2d_graphics_get_renderer(), consoleTexture, NULL, &consoleRectie);
+
+		//gf2d_sprite_draw(wups, vector2d(200, 200), &scaleUp, NULL, &rotate, NULL, NULL, 0);
+		//rotate.z += SPEEEEEED;
+		//SPEEEEEED *= 1.005;
 
 		gui_draw_all();
 		if (guii->inUse)
@@ -903,7 +985,7 @@ int main(int argc, char * argv[])
 		if (keys[SDL_SCANCODE_Q])
 		{
 			//close_level(tile_map);
-			fieldGraph = load_level("def/level/myLevel.txt", tile_map, fieldGraph, 1);
+			fieldGraph = load_level("mnt/level/myLevel.txt", tile_map, fieldGraph, 1);
 			if (musicPlaying > 0)
 			{
 				//Mix_RewindMusic();

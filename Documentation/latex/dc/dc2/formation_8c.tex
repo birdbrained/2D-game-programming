@@ -1,0 +1,57 @@
+\hypertarget{formation_8c}{}\section{Fall2017\+\_\+2\+Dproject/src/formation.c File Reference}
+\label{formation_8c}\index{Fall2017\+\_\+2\+Dproject/src/formation.\+c@{Fall2017\+\_\+2\+Dproject/src/formation.\+c}}
+{\ttfamily \#include \char`\"{}formation.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{formation_8c_a945c4f85d097d172932b843a06c040de}{formation\+\_\+rectangle} (\hyperlink{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}{Graph\+Node} $\ast$n)
+\item 
+int \hyperlink{formation_8c_a75a647b23a27bd1b187c63a899d232fb}{formation\+\_\+detect} (\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$graph)
+\begin{DoxyCompactList}\small\item\em Attempts to detect a formation/pattern from a graph. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{formation_8c_a8c1515471b9061b57a38057459a2fdcb}{formation\+\_\+to\+\_\+string} (\hyperlink{formation_8h_a80b9339327d014554f456ae926f49401}{Formation} f)
+\begin{DoxyCompactList}\small\item\em Creates a string representation of a certain formation \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{formation_8c_a75a647b23a27bd1b187c63a899d232fb}\label{formation_8c_a75a647b23a27bd1b187c63a899d232fb}} 
+\index{formation.\+c@{formation.\+c}!formation\+\_\+detect@{formation\+\_\+detect}}
+\index{formation\+\_\+detect@{formation\+\_\+detect}!formation.\+c@{formation.\+c}}
+\subsubsection{\texorpdfstring{formation\+\_\+detect()}{formation\_detect()}}
+{\footnotesize\ttfamily int formation\+\_\+detect (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$}]{graph }\end{DoxyParamCaption})}
+
+
+
+Attempts to detect a formation/pattern from a graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total score of all formations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{formation_8c_a945c4f85d097d172932b843a06c040de}\label{formation_8c_a945c4f85d097d172932b843a06c040de}} 
+\index{formation.\+c@{formation.\+c}!formation\+\_\+rectangle@{formation\+\_\+rectangle}}
+\index{formation\+\_\+rectangle@{formation\+\_\+rectangle}!formation.\+c@{formation.\+c}}
+\subsubsection{\texorpdfstring{formation\+\_\+rectangle()}{formation\_rectangle()}}
+{\footnotesize\ttfamily int formation\+\_\+rectangle (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_aacd6aa952164ec63f7de5c1d413f49a5}{Graph\+Node} $\ast$}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{formation_8c_a8c1515471b9061b57a38057459a2fdcb}\label{formation_8c_a8c1515471b9061b57a38057459a2fdcb}} 
+\index{formation.\+c@{formation.\+c}!formation\+\_\+to\+\_\+string@{formation\+\_\+to\+\_\+string}}
+\index{formation\+\_\+to\+\_\+string@{formation\+\_\+to\+\_\+string}!formation.\+c@{formation.\+c}}
+\subsubsection{\texorpdfstring{formation\+\_\+to\+\_\+string()}{formation\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ formation\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\hyperlink{formation_8h_a80b9339327d014554f456ae926f49401}{Formation}}]{f }\end{DoxyParamCaption})}
+
+
+
+Creates a string representation of a certain formation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & The formation enum to build a string from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The character array of the formation; \char`\"{}\+No formation\char`\"{} if no formation 
+\end{DoxyReturn}

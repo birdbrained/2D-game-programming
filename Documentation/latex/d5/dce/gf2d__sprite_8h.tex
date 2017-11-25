@@ -1,0 +1,170 @@
+\hypertarget{gf2d__sprite_8h}{}\section{Fall2017\+\_\+2\+Dproject/include/gf2d\+\_\+sprite.h File Reference}
+\label{gf2d__sprite_8h}\index{Fall2017\+\_\+2\+Dproject/include/gf2d\+\_\+sprite.\+h@{Fall2017\+\_\+2\+Dproject/include/gf2d\+\_\+sprite.\+h}}
+{\ttfamily \#include $<$S\+D\+L.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+types.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+vector.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+text.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_sprite___s}{Sprite\+\_\+S}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_sprite___s}{Sprite\+\_\+S} \hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{gf2d__sprite_8h_afd858e40b0606bc62b4fde4d76b92879}{gf2d\+\_\+sprite\+\_\+init} (Uint32 max)
+\begin{DoxyCompactList}\small\item\em initializes the sprite manager \end{DoxyCompactList}\item 
+\hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite} $\ast$ \hyperlink{gf2d__sprite_8h_a939b8314a6284fee740b6468262e800f}{gf2d\+\_\+sprite\+\_\+load\+\_\+image} (char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em loads a simple image using the sprite system \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__sprite_8h_a735417ecea3df12cefda377b12d1e3eb}{gf2d\+\_\+sprite\+\_\+draw\+\_\+image} (\hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite} $\ast$image, \hyperlink{struct_vector2_d}{Vector2D} position)
+\begin{DoxyCompactList}\small\item\em draw a simple image to screen at the position provided \end{DoxyCompactList}\item 
+\hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite} $\ast$ \hyperlink{gf2d__sprite_8h_a15ee96bff89f0d97e750282b5aa009e7}{gf2d\+\_\+sprite\+\_\+load\+\_\+all} (char $\ast$filename, Sint32 frame\+Width, Sint32 frame\+Heigh, Sint32 frames\+Per\+Line)
+\begin{DoxyCompactList}\small\item\em loads a sprite from file using the sprite system \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__sprite_8h_a00ab9cf64fffedc0602a4e7274f163ca}{gf2d\+\_\+sprite\+\_\+draw} (\hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite} $\ast$sprite, \hyperlink{struct_vector2_d}{Vector2D} position, \hyperlink{struct_vector2_d}{Vector2D} $\ast$scale, \hyperlink{struct_vector2_d}{Vector2D} $\ast$scale\+Center, \hyperlink{struct_vector3_d}{Vector3D} $\ast$rotation, \hyperlink{struct_vector2_d}{Vector2D} $\ast$flip, \hyperlink{struct_vector4_d}{Vector4D} $\ast$color\+Shift, Uint32 frame)
+\begin{DoxyCompactList}\small\item\em draw a sprite to the screen \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__sprite_8h_aacfdb0ec990399f7f43db200dfd7eba4}{gf2d\+\_\+sprite\+\_\+free} (\hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite} $\ast$sprite)
+\begin{DoxyCompactList}\small\item\em free a sprite back to the sprite manager Stays in memory until the space is needed \end{DoxyCompactList}\item 
+void \hyperlink{gf2d__sprite_8h_a89fd0a485629950781e2a0c477dea18c}{gf2d\+\_\+sprite\+\_\+clear\+\_\+all} ()
+\begin{DoxyCompactList}\small\item\em delete all loaded sprites from memory does not close the sprite system \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}\label{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}} 
+\index{gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}!Sprite@{Sprite}}
+\index{Sprite@{Sprite}!gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}}
+\subsubsection{\texorpdfstring{Sprite}{Sprite}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct_sprite___s}{Sprite\+\_\+S} \hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gf2d__sprite_8h_a89fd0a485629950781e2a0c477dea18c}\label{gf2d__sprite_8h_a89fd0a485629950781e2a0c477dea18c}} 
+\index{gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}!gf2d\+\_\+sprite\+\_\+clear\+\_\+all@{gf2d\+\_\+sprite\+\_\+clear\+\_\+all}}
+\index{gf2d\+\_\+sprite\+\_\+clear\+\_\+all@{gf2d\+\_\+sprite\+\_\+clear\+\_\+all}!gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+sprite\+\_\+clear\+\_\+all()}{gf2d\_sprite\_clear\_all()}}
+{\footnotesize\ttfamily void gf2d\+\_\+sprite\+\_\+clear\+\_\+all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+delete all loaded sprites from memory does not close the sprite system 
+
+\mbox{\Hypertarget{gf2d__sprite_8h_a00ab9cf64fffedc0602a4e7274f163ca}\label{gf2d__sprite_8h_a00ab9cf64fffedc0602a4e7274f163ca}} 
+\index{gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}!gf2d\+\_\+sprite\+\_\+draw@{gf2d\+\_\+sprite\+\_\+draw}}
+\index{gf2d\+\_\+sprite\+\_\+draw@{gf2d\+\_\+sprite\+\_\+draw}!gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+sprite\+\_\+draw()}{gf2d\_sprite\_draw()}}
+{\footnotesize\ttfamily void gf2d\+\_\+sprite\+\_\+draw (\begin{DoxyParamCaption}\item[{\hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite} $\ast$}]{sprite,  }\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{position,  }\item[{\hyperlink{struct_vector2_d}{Vector2D} $\ast$}]{scale,  }\item[{\hyperlink{struct_vector2_d}{Vector2D} $\ast$}]{scale\+Center,  }\item[{\hyperlink{struct_vector3_d}{Vector3D} $\ast$}]{rotation,  }\item[{\hyperlink{struct_vector2_d}{Vector2D} $\ast$}]{flip,  }\item[{\hyperlink{struct_vector4_d}{Vector4D} $\ast$}]{color\+Shift,  }\item[{Uint32}]{frame }\end{DoxyParamCaption})}
+
+
+
+draw a sprite to the screen 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sprite} & the sprite to draw \\
+\hline
+{\em position} & here on the screen to draw it \\
+\hline
+{\em scale} & (optional) if you want to scale the sprite \\
+\hline
+{\em scale\+Center} & (optional) scale the sprite from the position in the sprite \\
+\hline
+{\em rotation} & (optional) the position of the rotation center and the angle in degrees to rotate \\
+\hline
+{\em flip} & (optional) set to 1 if you want to flip in the horizontal,vertical axis \\
+\hline
+{\em color\+Shift} & (optional) if you want to gamma shift the sprite or set an alpha value \\
+\hline
+{\em frame} & which frame to draw \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__sprite_8h_a735417ecea3df12cefda377b12d1e3eb}\label{gf2d__sprite_8h_a735417ecea3df12cefda377b12d1e3eb}} 
+\index{gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}!gf2d\+\_\+sprite\+\_\+draw\+\_\+image@{gf2d\+\_\+sprite\+\_\+draw\+\_\+image}}
+\index{gf2d\+\_\+sprite\+\_\+draw\+\_\+image@{gf2d\+\_\+sprite\+\_\+draw\+\_\+image}!gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+sprite\+\_\+draw\+\_\+image()}{gf2d\_sprite\_draw\_image()}}
+{\footnotesize\ttfamily void gf2d\+\_\+sprite\+\_\+draw\+\_\+image (\begin{DoxyParamCaption}\item[{\hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite} $\ast$}]{image,  }\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{position }\end{DoxyParamCaption})}
+
+
+
+draw a simple image to screen at the position provided 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & the sprite image to draw \\
+\hline
+{\em position} & the x and y position to draw the image at (top left corner) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__sprite_8h_aacfdb0ec990399f7f43db200dfd7eba4}\label{gf2d__sprite_8h_aacfdb0ec990399f7f43db200dfd7eba4}} 
+\index{gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}!gf2d\+\_\+sprite\+\_\+free@{gf2d\+\_\+sprite\+\_\+free}}
+\index{gf2d\+\_\+sprite\+\_\+free@{gf2d\+\_\+sprite\+\_\+free}!gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+sprite\+\_\+free()}{gf2d\_sprite\_free()}}
+{\footnotesize\ttfamily void gf2d\+\_\+sprite\+\_\+free (\begin{DoxyParamCaption}\item[{\hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite} $\ast$}]{sprite }\end{DoxyParamCaption})}
+
+
+
+free a sprite back to the sprite manager Stays in memory until the space is needed 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sprite} & the sprite to free \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__sprite_8h_afd858e40b0606bc62b4fde4d76b92879}\label{gf2d__sprite_8h_afd858e40b0606bc62b4fde4d76b92879}} 
+\index{gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}!gf2d\+\_\+sprite\+\_\+init@{gf2d\+\_\+sprite\+\_\+init}}
+\index{gf2d\+\_\+sprite\+\_\+init@{gf2d\+\_\+sprite\+\_\+init}!gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+sprite\+\_\+init()}{gf2d\_sprite\_init()}}
+{\footnotesize\ttfamily void gf2d\+\_\+sprite\+\_\+init (\begin{DoxyParamCaption}\item[{Uint32}]{max }\end{DoxyParamCaption})}
+
+
+
+initializes the sprite manager 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max} & the maximum number of sprites the system will handle at once \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__sprite_8h_a15ee96bff89f0d97e750282b5aa009e7}\label{gf2d__sprite_8h_a15ee96bff89f0d97e750282b5aa009e7}} 
+\index{gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}!gf2d\+\_\+sprite\+\_\+load\+\_\+all@{gf2d\+\_\+sprite\+\_\+load\+\_\+all}}
+\index{gf2d\+\_\+sprite\+\_\+load\+\_\+all@{gf2d\+\_\+sprite\+\_\+load\+\_\+all}!gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+sprite\+\_\+load\+\_\+all()}{gf2d\_sprite\_load\_all()}}
+{\footnotesize\ttfamily \hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite}$\ast$ gf2d\+\_\+sprite\+\_\+load\+\_\+all (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{Sint32}]{frame\+Width,  }\item[{Sint32}]{frame\+Heigh,  }\item[{Sint32}]{frames\+Per\+Line }\end{DoxyParamCaption})}
+
+
+
+loads a sprite from file using the sprite system 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & the sprite sheet to load \\
+\hline
+{\em frame\+Width} & the width of an individual sprite frame \\
+\hline
+{\em frame\+Heigh} & the height of an individual sprite frame \\
+\hline
+{\em frames\+Per\+Line} & how many frames go in a row in the sprite sheet \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gf2d__sprite_8h_a939b8314a6284fee740b6468262e800f}\label{gf2d__sprite_8h_a939b8314a6284fee740b6468262e800f}} 
+\index{gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}!gf2d\+\_\+sprite\+\_\+load\+\_\+image@{gf2d\+\_\+sprite\+\_\+load\+\_\+image}}
+\index{gf2d\+\_\+sprite\+\_\+load\+\_\+image@{gf2d\+\_\+sprite\+\_\+load\+\_\+image}!gf2d\+\_\+sprite.\+h@{gf2d\+\_\+sprite.\+h}}
+\subsubsection{\texorpdfstring{gf2d\+\_\+sprite\+\_\+load\+\_\+image()}{gf2d\_sprite\_load\_image()}}
+{\footnotesize\ttfamily \hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite}$\ast$ gf2d\+\_\+sprite\+\_\+load\+\_\+image (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+loads a simple image using the sprite system 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & the image file to load \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N\+U\+LL on error or the sprite loaded 
+\end{DoxyReturn}

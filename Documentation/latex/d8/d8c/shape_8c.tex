@@ -1,0 +1,131 @@
+\hypertarget{shape_8c}{}\section{Fall2017\+\_\+2\+Dproject/src/shape.c File Reference}
+\label{shape_8c}\index{Fall2017\+\_\+2\+Dproject/src/shape.\+c@{Fall2017\+\_\+2\+Dproject/src/shape.\+c}}
+{\ttfamily \#include $<$S\+D\+L.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}shape.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}simple\+\_\+logger.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$ \hyperlink{shape_8c_a9a396a18db71799f9456417736c94734}{rect\+\_\+new} (float x, float y, float width, float height)
+\begin{DoxyCompactList}\small\item\em Creates a rectangle structure. \end{DoxyCompactList}\item 
+int \hyperlink{shape_8c_a533f78d1d795edd8923543d3d3dc7bf0}{point\+\_\+in\+\_\+rect} (float x, float y, \hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$rect)
+\begin{DoxyCompactList}\small\item\em Checks to see if a point is in a Rect. \end{DoxyCompactList}\item 
+int \hyperlink{shape_8c_ae2e961d007b9053cee090c91253c78a5}{rect\+\_\+in\+\_\+rect} (\hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$a, \hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$b)
+\begin{DoxyCompactList}\small\item\em Checks to see if two rects are colliding. \end{DoxyCompactList}\item 
+\hyperlink{shape_8h_aba3c0317200e0faecd7281d47803e929}{Circle} $\ast$ \hyperlink{shape_8c_aa29cffe7a8028bf8b7411aa46d30f289}{circle\+\_\+new} (float x, float y, float radius)
+\item 
+int \hyperlink{shape_8c_a8f2ed700d59b000bc67d1144422e8dbb}{point\+\_\+in\+\_\+circle} (float x, float y, \hyperlink{shape_8h_aba3c0317200e0faecd7281d47803e929}{Circle} $\ast$c)
+\begin{DoxyCompactList}\small\item\em Checks to see if a point is in a circle. \end{DoxyCompactList}\item 
+void \hyperlink{shape_8c_ae65f63fa483822826c574476045fc2a5}{draw\+\_\+line} (\hyperlink{struct_vector2_d}{Vector2D} pointA, \hyperlink{struct_vector2_d}{Vector2D} pointB, \hyperlink{struct_vector4_d}{Vector4D} color)
+\item 
+int \hyperlink{shape_8c_ad7954e6a1b9ea073c7bc894dc5af85a9}{random\+\_\+int} (int min, int max)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{shape_8c_aa29cffe7a8028bf8b7411aa46d30f289}\label{shape_8c_aa29cffe7a8028bf8b7411aa46d30f289}} 
+\index{shape.\+c@{shape.\+c}!circle\+\_\+new@{circle\+\_\+new}}
+\index{circle\+\_\+new@{circle\+\_\+new}!shape.\+c@{shape.\+c}}
+\subsubsection{\texorpdfstring{circle\+\_\+new()}{circle\_new()}}
+{\footnotesize\ttfamily \hyperlink{shape_8h_aba3c0317200e0faecd7281d47803e929}{Circle}$\ast$ circle\+\_\+new (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{shape_8c_ae65f63fa483822826c574476045fc2a5}\label{shape_8c_ae65f63fa483822826c574476045fc2a5}} 
+\index{shape.\+c@{shape.\+c}!draw\+\_\+line@{draw\+\_\+line}}
+\index{draw\+\_\+line@{draw\+\_\+line}!shape.\+c@{shape.\+c}}
+\subsubsection{\texorpdfstring{draw\+\_\+line()}{draw\_line()}}
+{\footnotesize\ttfamily void draw\+\_\+line (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{pointA,  }\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{pointB,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{shape_8c_a8f2ed700d59b000bc67d1144422e8dbb}\label{shape_8c_a8f2ed700d59b000bc67d1144422e8dbb}} 
+\index{shape.\+c@{shape.\+c}!point\+\_\+in\+\_\+circle@{point\+\_\+in\+\_\+circle}}
+\index{point\+\_\+in\+\_\+circle@{point\+\_\+in\+\_\+circle}!shape.\+c@{shape.\+c}}
+\subsubsection{\texorpdfstring{point\+\_\+in\+\_\+circle()}{point\_in\_circle()}}
+{\footnotesize\ttfamily int point\+\_\+in\+\_\+circle (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{\hyperlink{shape_8h_aba3c0317200e0faecd7281d47803e929}{Circle} $\ast$}]{c }\end{DoxyParamCaption})}
+
+
+
+Checks to see if a point is in a circle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x pos of the point \\
+\hline
+{\em y} & The y pos of the point \\
+\hline
+{\em c} & The circle to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if point in circle; 0 if it is not or if c was null 
+\end{DoxyReturn}
+\mbox{\Hypertarget{shape_8c_a533f78d1d795edd8923543d3d3dc7bf0}\label{shape_8c_a533f78d1d795edd8923543d3d3dc7bf0}} 
+\index{shape.\+c@{shape.\+c}!point\+\_\+in\+\_\+rect@{point\+\_\+in\+\_\+rect}}
+\index{point\+\_\+in\+\_\+rect@{point\+\_\+in\+\_\+rect}!shape.\+c@{shape.\+c}}
+\subsubsection{\texorpdfstring{point\+\_\+in\+\_\+rect()}{point\_in\_rect()}}
+{\footnotesize\ttfamily int point\+\_\+in\+\_\+rect (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{\hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$}]{rect }\end{DoxyParamCaption})}
+
+
+
+Checks to see if a point is in a Rect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X point \\
+\hline
+{\em y} & Y point \\
+\hline
+{\em rect} & The Rect to compare against \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if point is in Rect; 0 if it\textquotesingle{}s not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{shape_8c_ad7954e6a1b9ea073c7bc894dc5af85a9}\label{shape_8c_ad7954e6a1b9ea073c7bc894dc5af85a9}} 
+\index{shape.\+c@{shape.\+c}!random\+\_\+int@{random\+\_\+int}}
+\index{random\+\_\+int@{random\+\_\+int}!shape.\+c@{shape.\+c}}
+\subsubsection{\texorpdfstring{random\+\_\+int()}{random\_int()}}
+{\footnotesize\ttfamily int random\+\_\+int (\begin{DoxyParamCaption}\item[{int}]{min,  }\item[{int}]{max }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{shape_8c_ae2e961d007b9053cee090c91253c78a5}\label{shape_8c_ae2e961d007b9053cee090c91253c78a5}} 
+\index{shape.\+c@{shape.\+c}!rect\+\_\+in\+\_\+rect@{rect\+\_\+in\+\_\+rect}}
+\index{rect\+\_\+in\+\_\+rect@{rect\+\_\+in\+\_\+rect}!shape.\+c@{shape.\+c}}
+\subsubsection{\texorpdfstring{rect\+\_\+in\+\_\+rect()}{rect\_in\_rect()}}
+{\footnotesize\ttfamily int rect\+\_\+in\+\_\+rect (\begin{DoxyParamCaption}\item[{\hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$}]{a,  }\item[{\hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Checks to see if two rects are colliding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first rect \\
+\hline
+{\em b} & The second rect \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if rects are colliding; 0 if they are not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{shape_8c_a9a396a18db71799f9456417736c94734}\label{shape_8c_a9a396a18db71799f9456417736c94734}} 
+\index{shape.\+c@{shape.\+c}!rect\+\_\+new@{rect\+\_\+new}}
+\index{rect\+\_\+new@{rect\+\_\+new}!shape.\+c@{shape.\+c}}
+\subsubsection{\texorpdfstring{rect\+\_\+new()}{rect\_new()}}
+{\footnotesize\ttfamily \hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect}$\ast$ rect\+\_\+new (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height }\end{DoxyParamCaption})}
+
+
+
+Creates a rectangle structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X position of rect (leftmost) \\
+\hline
+{\em y} & Y position of rect (topmost) \\
+\hline
+{\em width} & Width of rectangle \\
+\hline
+{\em height} & Height of rectangle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Rect pointer to new Rect; N\+U\+LL if no memory can be allocated 
+\end{DoxyReturn}

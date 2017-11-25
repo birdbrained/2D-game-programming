@@ -124,7 +124,26 @@ void gui_draw(GUIWindow * window)
 		return;
 	}
 
-	draw_filled_rect(window->window, window->windowColor);
+	if (window->sprite == NULL)
+		draw_filled_rect(window->window, window->windowColor);
+	else
+		gf2d_sprite_draw_image(window->sprite, window->position);
+
+	if (window->closeButton != NULL && window->closeable > 0)
+	{
+		gf2d_sprite_draw_image(window->closeButton, window->position);
+	}
+
+	//if (window->text[0] != '\0')
+	if (window->texture != NULL)
+	{
+		//window->surface = TTF_RenderText_Solid(window->font, window->text, window->textColor);
+		//window->texture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), window->surface);
+		//SDL_QueryTexture(window->texture, NULL, NULL, &window->rectW, &window->rectH);
+		//window->window.w = window->rectW;
+		//window->window.h = window->rectH;
+		SDL_RenderCopy(gf2d_graphics_get_renderer(), window->texture, NULL, &window->window);
+	}
 }
 
 void gui_draw_all()
@@ -138,4 +157,80 @@ void gui_draw_all()
 			gui_draw(&guiManager.guiList[i]);
 		}
 	}
+}
+
+void gui_update(GUIWindow * window)
+{
+	if (!window)
+	{
+		return;
+	}
+
+	window->window.x = window->position.x;
+	window->window.y = window->position.y;
+
+	//bounding box always is at top-left corner
+	//when bounding box is pressed, it acts as the "x" button
+	//and closes the window / delete the gui
+	if (window->closeable)
+	{
+		window->boundingBox = rect_new(window->position.x, window->position.y, 25.0f, 25.0f);
+	}
+	else
+	{
+		window->boundingBox = rect_new(0, 0, 0, 0);
+	}
+}
+
+void gui_update_all()
+{
+	int i = 0;
+
+	for (i = 0; i < guiManager.maxGUIs; i++)
+	{
+		if (guiManager.guiList[i].inUse > 0)
+		{
+			gui_update(&guiManager.guiList[i]);
+		}
+	}
+}
+
+void gui_change_text(GUIWindow * window, char * text, Uint32 wrapLength)
+{
+	strncpy(window->text, text, GUI_MAX_TEXT_LENGTH);
+	window->surface = TTF_RenderText_Blended_Wrapped(window->font, window->text, window->textColor, wrapLength);
+	//TTF_RenderText_Blended_Wrapped()
+	window->texture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), window->surface);
+	SDL_QueryTexture(window->texture, NULL, NULL, &window->rectW, &window->rectH);
+	window->window.w = window->rectW;
+	window->window.h = window->rectH;
+}
+
+void gui_set_closeability(GUIWindow * window, Uint8 closeable)
+{
+	if (!window)
+	{
+		slog("Error: cannot change closeability of a null window");
+		return;
+	}
+
+	window->closeable = closeable;
+}
+
+GUIWindow * gui_check_collision_in_all(int mx, int my)
+{
+	int i = 0;
+
+	for (i = 0; i < guiManager.maxGUIs; i++)
+	{
+		if (guiManager.guiList[i].inUse > 0)
+		{
+			if (point_in_rect(mx, my, guiManager.guiList[i].boundingBox))
+			{
+				return &guiManager.guiList[i];
+			}
+		}
+	}
+
+	return NULL;
 }

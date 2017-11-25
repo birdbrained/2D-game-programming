@@ -1,0 +1,581 @@
+\hypertarget{entity__s_8h}{}\section{Fall2017\+\_\+2\+Dproject/include/entity\+\_\+s.h File Reference}
+\label{entity__s_8h}\index{Fall2017\+\_\+2\+Dproject/include/entity\+\_\+s.\+h@{Fall2017\+\_\+2\+Dproject/include/entity\+\_\+s.\+h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$physfs.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+vector.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+graphics.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+sprite.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+draw.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}shape.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tilemap.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ds\+\_\+graph.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structentity__s}{entity\+\_\+s}
+\begin{DoxyCompactList}\small\item\em \hyperlink{structentity__s}{entity\+\_\+s} Struct that represents a generic entity \end{DoxyCompactList}\item 
+struct \hyperlink{structthink__function}{think\+\_\+function}
+\begin{DoxyCompactList}\small\item\em Start of think function look-\/up table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{entity__s_8h_a8adbf2b1e0569dded992fee665e86e70}{M\+A\+X\+\_\+\+C\+H\+A\+RS}~32
+\item 
+\#define \hyperlink{entity__s_8h_ac0bfa0f6f2de4169dd0df48602b67146}{M\+A\+X\+\_\+\+F\+I\+L\+E\+P\+A\+T\+H\+\_\+\+C\+H\+A\+RS}~256
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \hyperlink{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53}{status\+Aliment} \hyperlink{entity__s_8h_a0d7bb91e8dc77eb36211e30983b47be4}{Status\+Aliment}
+\item 
+typedef enum \hyperlink{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00}{entity\+States} \hyperlink{entity__s_8h_a7712b41d8b546c939974a1e653651aea}{Entity\+State}
+\item 
+typedef enum \hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017}{instrument} \hyperlink{entity__s_8h_a498adc21b55fb917031c541073699945}{Instrument}
+\item 
+typedef enum \hyperlink{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aa}{section} \hyperlink{entity__s_8h_a74c066b9a2662a48095c47acf5debac4}{Section}
+\item 
+typedef struct \hyperlink{structentity__s}{entity\+\_\+s} \hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity}
+\begin{DoxyCompactList}\small\item\em \hyperlink{structentity__s}{entity\+\_\+s} Struct that represents a generic entity \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53}{status\+Aliment} \{ \newline
+\hyperlink{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a39fce02dd4146b9f0ba291aa8b076b1f}{Status\+\_\+\+None}, 
+\hyperlink{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a03b7c1290c1d40015f417a4299277929}{Status\+\_\+\+Offstep}, 
+\hyperlink{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a64761eac94176d2166843ee9ca41e748}{Status\+\_\+\+Flat}, 
+\hyperlink{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a15cb4afc67c7565821ea75d3101973b0}{Status\+\_\+\+Sharp}, 
+\newline
+\hyperlink{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53aec45fd4eddf59ae734b6b5b435c9dc0a}{Status\+\_\+\+Exhausted}, 
+\hyperlink{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a2736c02abe0ee5d008a8615b6c6b3768}{Status\+\_\+\+Adrenaline\+\_\+\+Rush}
+ \}
+\item 
+enum \hyperlink{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00}{entity\+States} \{ \hyperlink{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00a07f5ae433797f9e91676ef107cff83ad}{E\+S\+\_\+\+Idle}, 
+\hyperlink{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00aa388a4d5c9b7e890bc9b4fc56acbd742}{E\+S\+\_\+\+Moving}, 
+\hyperlink{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00a89c2e44b7ce3955d373040f213886102}{E\+S\+\_\+\+Music\+\_\+\+Time}
+ \}
+\item 
+enum \hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017}{instrument} \{ \newline
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a65c6e3092f1d6cc1b292751531a4e991}{Instrument\+\_\+\+Unassigned}, 
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a3cf42cfe10bc0cee039a87c127ac5d5a}{Instrument\+\_\+\+Flute}, 
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a2b7845d0a395afb3a569acb52ef6be01}{Instrument\+\_\+\+Clarinet}, 
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a34ae9f6b3d21c0998bcc994d84bc09e5}{Instrument\+\_\+\+Alto\+\_\+\+Saxophone}, 
+\newline
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017ace8d4c896ea5d29fde72372e88112664}{Instrument\+\_\+\+Tenor\+\_\+\+Saxophone}, 
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a705596c57aef241902860a6cdd057820}{Instrument\+\_\+\+Trumpet}, 
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a6304ae051220509f2d97aadb4d4eebfd}{Instrument\+\_\+\+Baritone}, 
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017ad4ab6be5bb88f3b295322935ee39d78d}{Instrument\+\_\+\+Tuba}, 
+\newline
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017ab268854117e1ff4cd8d87201b6e1d4d4}{Instrument\+\_\+\+Snare\+\_\+\+Drum}, 
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017ad22cb8285e3adaa668c49afa531f551b}{Instrument\+\_\+\+Bass\+\_\+\+Drum}, 
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a60ea75a7b34e1326f52824414db79187}{Instrument\+\_\+\+Pit\+\_\+\+Marimba}, 
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a0d30fe4a66eef7f8626c308aff79bf96}{Instrument\+\_\+\+Pit\+\_\+\+Xylophone}, 
+\newline
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a09ac25d686a08da3fbd835450a1c89fd}{Instrument\+\_\+\+Pit\+\_\+\+Guitar}, 
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017aa8f2ec1ef4dc7bac10a8c8eac322dc7b}{Instrument\+\_\+\+Pit\+\_\+\+Synthesizer}, 
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017aa0acebe3817ee19597562d87c4f2aade}{Instrument\+\_\+\+Pit\+\_\+\+Gong}, 
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a2365c896afbe152f14bb977b8e05aac1}{Instrument\+\_\+\+Colorguard\+\_\+\+Flag}, 
+\newline
+\hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017aa64c4e37b5a78e39a2ef3b1da35c002e}{Instrument\+\_\+\+Colorguard\+\_\+\+Rifle}
+ \}
+\item 
+enum \hyperlink{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aa}{section} \{ \hyperlink{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aaac3334147f057f83ba284e5f8ebaae2a9}{Section\+\_\+\+Band}, 
+\hyperlink{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aaade25aefdf2a770fde08beadabc337d68}{Section\+\_\+\+Drumline}, 
+\hyperlink{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aaa55fc7045f53fa6f016b950ee5124d943}{Section\+\_\+\+Colorguard}, 
+\hyperlink{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aaae60274a9d73fddd244cd30b6a69aa518}{Section\+\_\+\+Pit}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{entity__s_8h_a71a9f08a84502bcb4edf7832fe87cbec}{entity\+System\+Init} (Uint32 max)
+\begin{DoxyCompactList}\small\item\em Initializes the Entity Manager. \end{DoxyCompactList}\item 
+\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$ \hyperlink{entity__s_8h_a7fe0df272dfa361b836266e86459d264}{entity\+New} ()
+\begin{DoxyCompactList}\small\item\em Finds a memory address in the Entity Manager that is not in use, and returns that address. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8h_a37ec892288316b4d784771196e0b6328}{entity\+Delete} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$thing\+That\+Dies)
+\begin{DoxyCompactList}\small\item\em Deletes a specified Entity from memory. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8h_a2464812d6154d2f26c493c7d5aa3bcec}{entity\+Free} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Clears an entity from the entity manager, opening the spot back up. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8h_ad67c193f03e965e7e0ba9592243dda35}{entity\+Delete\+All} ()
+\begin{DoxyCompactList}\small\item\em Deletes all loaded enities from memory, but does not close the entity system. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8h_a89a8042a6fd913d84406c206e480ae86}{entity\+Update} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$self)
+\begin{DoxyCompactList}\small\item\em Performs generic entity updates (velocity/position updating, collision box movement, etc.) \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8h_a8b0b5578f9c29c842cd883ec6d9afc15}{entity\+Update\+All} ()
+\begin{DoxyCompactList}\small\item\em Updates every entity currently existing. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8h_a1e89d25340441d9b7f509722e6a8b733}{entity\+Draw} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Draws the specified entity with it\textquotesingle{}s parameters. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8h_a86b9697a9d4b9aa7e3355f66c5d6d79a}{entity\+Draw\+All} ()
+\begin{DoxyCompactList}\small\item\em Draws every valid entity in the entity manager. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8h_a4552cffce1718f69ee9e0308dcaeae15}{entity\+Increment\+Current\+Frame} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$self)
+\begin{DoxyCompactList}\small\item\em Increments the frame of animation for the given entity, will loop once max frame is hit. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8h_a04a7342215c86812a3f626e2adb71031}{entity\+Increment\+Current\+Frame\+All} ()
+\begin{DoxyCompactList}\small\item\em Increments all entity\textquotesingle{}s frames. \end{DoxyCompactList}\item 
+\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$ \hyperlink{entity__s_8h_a167a1c963a2d762b642a0a6a163e155a}{entity\+Load\+From\+File} (char $\ast$filename, \hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$new\+\_\+entity)
+\begin{DoxyCompactList}\small\item\em Inits an entity\textquotesingle{}s parameters from a specified file. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8h_afe935e9d3c413b86dbf7352bbe149836}{entity\+Load\+All\+From\+File} (char $\ast$filename, \hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$map)
+\begin{DoxyCompactList}\small\item\em Loads all entities specified in a file. \end{DoxyCompactList}\item 
+\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$ \hyperlink{entity__s_8h_a0df866948a21dda71750d9acbeb66003}{entity\+Check\+Collision\+In\+All} (int mx, int my)
+\begin{DoxyCompactList}\small\item\em Checks to see if a specified point collides with any exisiting entity. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{entity__s_8h_a7c9bb489925d03b33aeec12cf9482d8b}{entity\+Get\+Instrument\+Name} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Gets a string representation of a given entity\textquotesingle{}s instrument. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8h_a845c235dca3b2732c5367c4b3c01dfd9}{entity\+Update\+Graph\+Position\+All} (\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$graph)
+\begin{DoxyCompactList}\small\item\em Updates the position of all entities on a graph. \end{DoxyCompactList}\item 
+void \hyperlink{entity__s_8h_a2f0f0cca903a4ff851d922e516597a15}{entity\+Update\+Position} (\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$self, \hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$map)
+\item 
+void \hyperlink{entity__s_8h_a2c2bcc1a627104c3db79ca364854d0a1}{entity\+Update\+Position\+All} (\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$map)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{entity__s_8h_a8adbf2b1e0569dded992fee665e86e70}\label{entity__s_8h_a8adbf2b1e0569dded992fee665e86e70}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!M\+A\+X\+\_\+\+C\+H\+A\+RS@{M\+A\+X\+\_\+\+C\+H\+A\+RS}}
+\index{M\+A\+X\+\_\+\+C\+H\+A\+RS@{M\+A\+X\+\_\+\+C\+H\+A\+RS}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+C\+H\+A\+RS}{MAX\_CHARS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+C\+H\+A\+RS~32}
+
+\mbox{\Hypertarget{entity__s_8h_ac0bfa0f6f2de4169dd0df48602b67146}\label{entity__s_8h_ac0bfa0f6f2de4169dd0df48602b67146}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!M\+A\+X\+\_\+\+F\+I\+L\+E\+P\+A\+T\+H\+\_\+\+C\+H\+A\+RS@{M\+A\+X\+\_\+\+F\+I\+L\+E\+P\+A\+T\+H\+\_\+\+C\+H\+A\+RS}}
+\index{M\+A\+X\+\_\+\+F\+I\+L\+E\+P\+A\+T\+H\+\_\+\+C\+H\+A\+RS@{M\+A\+X\+\_\+\+F\+I\+L\+E\+P\+A\+T\+H\+\_\+\+C\+H\+A\+RS}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+F\+I\+L\+E\+P\+A\+T\+H\+\_\+\+C\+H\+A\+RS}{MAX\_FILEPATH\_CHARS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+F\+I\+L\+E\+P\+A\+T\+H\+\_\+\+C\+H\+A\+RS~256}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{entity__s_8h_a603076735282b0b83df7e6ecd290f875}\label{entity__s_8h_a603076735282b0b83df7e6ecd290f875}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Entity@{Entity}}
+\index{Entity@{Entity}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{Entity}{Entity}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structentity__s}{entity\+\_\+s} \hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity}}
+
+
+
+\hyperlink{structentity__s}{entity\+\_\+s} Struct that represents a generic entity 
+
+\mbox{\Hypertarget{entity__s_8h_a7712b41d8b546c939974a1e653651aea}\label{entity__s_8h_a7712b41d8b546c939974a1e653651aea}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Entity\+State@{Entity\+State}}
+\index{Entity\+State@{Entity\+State}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{Entity\+State}{EntityState}}
+{\footnotesize\ttfamily typedef enum \hyperlink{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00}{entity\+States} \hyperlink{entity__s_8h_a7712b41d8b546c939974a1e653651aea}{Entity\+State}}
+
+\mbox{\Hypertarget{entity__s_8h_a498adc21b55fb917031c541073699945}\label{entity__s_8h_a498adc21b55fb917031c541073699945}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument@{Instrument}}
+\index{Instrument@{Instrument}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{Instrument}{Instrument}}
+{\footnotesize\ttfamily typedef enum \hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017}{instrument} \hyperlink{entity__s_8h_a498adc21b55fb917031c541073699945}{Instrument}}
+
+\mbox{\Hypertarget{entity__s_8h_a74c066b9a2662a48095c47acf5debac4}\label{entity__s_8h_a74c066b9a2662a48095c47acf5debac4}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Section@{Section}}
+\index{Section@{Section}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{Section}{Section}}
+{\footnotesize\ttfamily typedef enum \hyperlink{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aa}{section} \hyperlink{entity__s_8h_a74c066b9a2662a48095c47acf5debac4}{Section}}
+
+\mbox{\Hypertarget{entity__s_8h_a0d7bb91e8dc77eb36211e30983b47be4}\label{entity__s_8h_a0d7bb91e8dc77eb36211e30983b47be4}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Status\+Aliment@{Status\+Aliment}}
+\index{Status\+Aliment@{Status\+Aliment}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{Status\+Aliment}{StatusAliment}}
+{\footnotesize\ttfamily typedef enum \hyperlink{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53}{status\+Aliment} \hyperlink{entity__s_8h_a0d7bb91e8dc77eb36211e30983b47be4}{Status\+Aliment}}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00}\label{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+States@{entity\+States}}
+\index{entity\+States@{entity\+States}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+States}{entityStates}}
+{\footnotesize\ttfamily enum \hyperlink{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00}{entity\+States}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+S\+\_\+\+Idle@{E\+S\+\_\+\+Idle}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!E\+S\+\_\+\+Idle@{E\+S\+\_\+\+Idle}}}\mbox{\Hypertarget{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00a07f5ae433797f9e91676ef107cff83ad}\label{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00a07f5ae433797f9e91676ef107cff83ad}} 
+E\+S\+\_\+\+Idle&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+S\+\_\+\+Moving@{E\+S\+\_\+\+Moving}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!E\+S\+\_\+\+Moving@{E\+S\+\_\+\+Moving}}}\mbox{\Hypertarget{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00aa388a4d5c9b7e890bc9b4fc56acbd742}\label{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00aa388a4d5c9b7e890bc9b4fc56acbd742}} 
+E\+S\+\_\+\+Moving&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+S\+\_\+\+Music\+\_\+\+Time@{E\+S\+\_\+\+Music\+\_\+\+Time}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!E\+S\+\_\+\+Music\+\_\+\+Time@{E\+S\+\_\+\+Music\+\_\+\+Time}}}\mbox{\Hypertarget{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00a89c2e44b7ce3955d373040f213886102}\label{entity__s_8h_a5eb0ccecbb33a58ff42830460a52fa00a89c2e44b7ce3955d373040f213886102}} 
+E\+S\+\_\+\+Music\+\_\+\+Time&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!instrument@{instrument}}
+\index{instrument@{instrument}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{instrument}{instrument}}
+{\footnotesize\ttfamily enum \hyperlink{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017}{instrument}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Unassigned@{Instrument\+\_\+\+Unassigned}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Unassigned@{Instrument\+\_\+\+Unassigned}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a65c6e3092f1d6cc1b292751531a4e991}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a65c6e3092f1d6cc1b292751531a4e991}} 
+Instrument\+\_\+\+Unassigned&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Flute@{Instrument\+\_\+\+Flute}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Flute@{Instrument\+\_\+\+Flute}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a3cf42cfe10bc0cee039a87c127ac5d5a}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a3cf42cfe10bc0cee039a87c127ac5d5a}} 
+Instrument\+\_\+\+Flute&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Clarinet@{Instrument\+\_\+\+Clarinet}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Clarinet@{Instrument\+\_\+\+Clarinet}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a2b7845d0a395afb3a569acb52ef6be01}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a2b7845d0a395afb3a569acb52ef6be01}} 
+Instrument\+\_\+\+Clarinet&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Alto\+\_\+\+Saxophone@{Instrument\+\_\+\+Alto\+\_\+\+Saxophone}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Alto\+\_\+\+Saxophone@{Instrument\+\_\+\+Alto\+\_\+\+Saxophone}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a34ae9f6b3d21c0998bcc994d84bc09e5}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a34ae9f6b3d21c0998bcc994d84bc09e5}} 
+Instrument\+\_\+\+Alto\+\_\+\+Saxophone&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Tenor\+\_\+\+Saxophone@{Instrument\+\_\+\+Tenor\+\_\+\+Saxophone}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Tenor\+\_\+\+Saxophone@{Instrument\+\_\+\+Tenor\+\_\+\+Saxophone}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017ace8d4c896ea5d29fde72372e88112664}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017ace8d4c896ea5d29fde72372e88112664}} 
+Instrument\+\_\+\+Tenor\+\_\+\+Saxophone&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Trumpet@{Instrument\+\_\+\+Trumpet}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Trumpet@{Instrument\+\_\+\+Trumpet}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a705596c57aef241902860a6cdd057820}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a705596c57aef241902860a6cdd057820}} 
+Instrument\+\_\+\+Trumpet&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Baritone@{Instrument\+\_\+\+Baritone}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Baritone@{Instrument\+\_\+\+Baritone}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a6304ae051220509f2d97aadb4d4eebfd}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a6304ae051220509f2d97aadb4d4eebfd}} 
+Instrument\+\_\+\+Baritone&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Tuba@{Instrument\+\_\+\+Tuba}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Tuba@{Instrument\+\_\+\+Tuba}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017ad4ab6be5bb88f3b295322935ee39d78d}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017ad4ab6be5bb88f3b295322935ee39d78d}} 
+Instrument\+\_\+\+Tuba&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Snare\+\_\+\+Drum@{Instrument\+\_\+\+Snare\+\_\+\+Drum}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Snare\+\_\+\+Drum@{Instrument\+\_\+\+Snare\+\_\+\+Drum}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017ab268854117e1ff4cd8d87201b6e1d4d4}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017ab268854117e1ff4cd8d87201b6e1d4d4}} 
+Instrument\+\_\+\+Snare\+\_\+\+Drum&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Bass\+\_\+\+Drum@{Instrument\+\_\+\+Bass\+\_\+\+Drum}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Bass\+\_\+\+Drum@{Instrument\+\_\+\+Bass\+\_\+\+Drum}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017ad22cb8285e3adaa668c49afa531f551b}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017ad22cb8285e3adaa668c49afa531f551b}} 
+Instrument\+\_\+\+Bass\+\_\+\+Drum&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Pit\+\_\+\+Marimba@{Instrument\+\_\+\+Pit\+\_\+\+Marimba}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Pit\+\_\+\+Marimba@{Instrument\+\_\+\+Pit\+\_\+\+Marimba}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a60ea75a7b34e1326f52824414db79187}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a60ea75a7b34e1326f52824414db79187}} 
+Instrument\+\_\+\+Pit\+\_\+\+Marimba&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Pit\+\_\+\+Xylophone@{Instrument\+\_\+\+Pit\+\_\+\+Xylophone}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Pit\+\_\+\+Xylophone@{Instrument\+\_\+\+Pit\+\_\+\+Xylophone}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a0d30fe4a66eef7f8626c308aff79bf96}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a0d30fe4a66eef7f8626c308aff79bf96}} 
+Instrument\+\_\+\+Pit\+\_\+\+Xylophone&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Pit\+\_\+\+Guitar@{Instrument\+\_\+\+Pit\+\_\+\+Guitar}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Pit\+\_\+\+Guitar@{Instrument\+\_\+\+Pit\+\_\+\+Guitar}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a09ac25d686a08da3fbd835450a1c89fd}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a09ac25d686a08da3fbd835450a1c89fd}} 
+Instrument\+\_\+\+Pit\+\_\+\+Guitar&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Pit\+\_\+\+Synthesizer@{Instrument\+\_\+\+Pit\+\_\+\+Synthesizer}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Pit\+\_\+\+Synthesizer@{Instrument\+\_\+\+Pit\+\_\+\+Synthesizer}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017aa8f2ec1ef4dc7bac10a8c8eac322dc7b}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017aa8f2ec1ef4dc7bac10a8c8eac322dc7b}} 
+Instrument\+\_\+\+Pit\+\_\+\+Synthesizer&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Pit\+\_\+\+Gong@{Instrument\+\_\+\+Pit\+\_\+\+Gong}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Pit\+\_\+\+Gong@{Instrument\+\_\+\+Pit\+\_\+\+Gong}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017aa0acebe3817ee19597562d87c4f2aade}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017aa0acebe3817ee19597562d87c4f2aade}} 
+Instrument\+\_\+\+Pit\+\_\+\+Gong&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Colorguard\+\_\+\+Flag@{Instrument\+\_\+\+Colorguard\+\_\+\+Flag}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Colorguard\+\_\+\+Flag@{Instrument\+\_\+\+Colorguard\+\_\+\+Flag}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a2365c896afbe152f14bb977b8e05aac1}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017a2365c896afbe152f14bb977b8e05aac1}} 
+Instrument\+\_\+\+Colorguard\+\_\+\+Flag&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instrument\+\_\+\+Colorguard\+\_\+\+Rifle@{Instrument\+\_\+\+Colorguard\+\_\+\+Rifle}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Instrument\+\_\+\+Colorguard\+\_\+\+Rifle@{Instrument\+\_\+\+Colorguard\+\_\+\+Rifle}}}\mbox{\Hypertarget{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017aa64c4e37b5a78e39a2ef3b1da35c002e}\label{entity__s_8h_a5ecc67d6ad08ff53b53b485ee75d4017aa64c4e37b5a78e39a2ef3b1da35c002e}} 
+Instrument\+\_\+\+Colorguard\+\_\+\+Rifle&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aa}\label{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aa}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!section@{section}}
+\index{section@{section}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{section}{section}}
+{\footnotesize\ttfamily enum \hyperlink{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aa}{section}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Section\+\_\+\+Band@{Section\+\_\+\+Band}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Section\+\_\+\+Band@{Section\+\_\+\+Band}}}\mbox{\Hypertarget{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aaac3334147f057f83ba284e5f8ebaae2a9}\label{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aaac3334147f057f83ba284e5f8ebaae2a9}} 
+Section\+\_\+\+Band&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Section\+\_\+\+Drumline@{Section\+\_\+\+Drumline}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Section\+\_\+\+Drumline@{Section\+\_\+\+Drumline}}}\mbox{\Hypertarget{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aaade25aefdf2a770fde08beadabc337d68}\label{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aaade25aefdf2a770fde08beadabc337d68}} 
+Section\+\_\+\+Drumline&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Section\+\_\+\+Colorguard@{Section\+\_\+\+Colorguard}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Section\+\_\+\+Colorguard@{Section\+\_\+\+Colorguard}}}\mbox{\Hypertarget{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aaa55fc7045f53fa6f016b950ee5124d943}\label{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aaa55fc7045f53fa6f016b950ee5124d943}} 
+Section\+\_\+\+Colorguard&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Section\+\_\+\+Pit@{Section\+\_\+\+Pit}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Section\+\_\+\+Pit@{Section\+\_\+\+Pit}}}\mbox{\Hypertarget{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aaae60274a9d73fddd244cd30b6a69aa518}\label{entity__s_8h_a0d6a8caa030e68cb2965b577a922c0aaae60274a9d73fddd244cd30b6a69aa518}} 
+Section\+\_\+\+Pit&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53}\label{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!status\+Aliment@{status\+Aliment}}
+\index{status\+Aliment@{status\+Aliment}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{status\+Aliment}{statusAliment}}
+{\footnotesize\ttfamily enum \hyperlink{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53}{status\+Aliment}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+\_\+\+None@{Status\+\_\+\+None}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Status\+\_\+\+None@{Status\+\_\+\+None}}}\mbox{\Hypertarget{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a39fce02dd4146b9f0ba291aa8b076b1f}\label{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a39fce02dd4146b9f0ba291aa8b076b1f}} 
+Status\+\_\+\+None&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+\_\+\+Offstep@{Status\+\_\+\+Offstep}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Status\+\_\+\+Offstep@{Status\+\_\+\+Offstep}}}\mbox{\Hypertarget{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a03b7c1290c1d40015f417a4299277929}\label{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a03b7c1290c1d40015f417a4299277929}} 
+Status\+\_\+\+Offstep&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+\_\+\+Flat@{Status\+\_\+\+Flat}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Status\+\_\+\+Flat@{Status\+\_\+\+Flat}}}\mbox{\Hypertarget{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a64761eac94176d2166843ee9ca41e748}\label{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a64761eac94176d2166843ee9ca41e748}} 
+Status\+\_\+\+Flat&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+\_\+\+Sharp@{Status\+\_\+\+Sharp}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Status\+\_\+\+Sharp@{Status\+\_\+\+Sharp}}}\mbox{\Hypertarget{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a15cb4afc67c7565821ea75d3101973b0}\label{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a15cb4afc67c7565821ea75d3101973b0}} 
+Status\+\_\+\+Sharp&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+\_\+\+Exhausted@{Status\+\_\+\+Exhausted}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Status\+\_\+\+Exhausted@{Status\+\_\+\+Exhausted}}}\mbox{\Hypertarget{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53aec45fd4eddf59ae734b6b5b435c9dc0a}\label{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53aec45fd4eddf59ae734b6b5b435c9dc0a}} 
+Status\+\_\+\+Exhausted&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status\+\_\+\+Adrenaline\+\_\+\+Rush@{Status\+\_\+\+Adrenaline\+\_\+\+Rush}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!Status\+\_\+\+Adrenaline\+\_\+\+Rush@{Status\+\_\+\+Adrenaline\+\_\+\+Rush}}}\mbox{\Hypertarget{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a2736c02abe0ee5d008a8615b6c6b3768}\label{entity__s_8h_af0acfe06accd242391ebefc2f0c13a53a2736c02abe0ee5d008a8615b6c6b3768}} 
+Status\+\_\+\+Adrenaline\+\_\+\+Rush&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{entity__s_8h_a0df866948a21dda71750d9acbeb66003}\label{entity__s_8h_a0df866948a21dda71750d9acbeb66003}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Check\+Collision\+In\+All@{entity\+Check\+Collision\+In\+All}}
+\index{entity\+Check\+Collision\+In\+All@{entity\+Check\+Collision\+In\+All}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Check\+Collision\+In\+All()}{entityCheckCollisionInAll()}}
+{\footnotesize\ttfamily \hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity}$\ast$ entity\+Check\+Collision\+In\+All (\begin{DoxyParamCaption}\item[{int}]{mx,  }\item[{int}]{my }\end{DoxyParamCaption})}
+
+
+
+Checks to see if a specified point collides with any exisiting entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mx} & X position to check \\
+\hline
+{\em my} & Y position to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the entity inside of the point; N\+U\+LL if no collision 
+\end{DoxyReturn}
+\mbox{\Hypertarget{entity__s_8h_a37ec892288316b4d784771196e0b6328}\label{entity__s_8h_a37ec892288316b4d784771196e0b6328}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Delete@{entity\+Delete}}
+\index{entity\+Delete@{entity\+Delete}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Delete()}{entityDelete()}}
+{\footnotesize\ttfamily void entity\+Delete (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{thing\+That\+Dies }\end{DoxyParamCaption})}
+
+
+
+Deletes a specified Entity from memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thing\+That\+Dies} & Pointer to entity that will be deleted \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8h_ad67c193f03e965e7e0ba9592243dda35}\label{entity__s_8h_ad67c193f03e965e7e0ba9592243dda35}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Delete\+All@{entity\+Delete\+All}}
+\index{entity\+Delete\+All@{entity\+Delete\+All}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Delete\+All()}{entityDeleteAll()}}
+{\footnotesize\ttfamily void entity\+Delete\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Deletes all loaded enities from memory, but does not close the entity system. 
+
+\mbox{\Hypertarget{entity__s_8h_a1e89d25340441d9b7f509722e6a8b733}\label{entity__s_8h_a1e89d25340441d9b7f509722e6a8b733}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Draw@{entity\+Draw}}
+\index{entity\+Draw@{entity\+Draw}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Draw()}{entityDraw()}}
+{\footnotesize\ttfamily void entity\+Draw (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Draws the specified entity with it\textquotesingle{}s parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The entity to draw \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8h_a86b9697a9d4b9aa7e3355f66c5d6d79a}\label{entity__s_8h_a86b9697a9d4b9aa7e3355f66c5d6d79a}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Draw\+All@{entity\+Draw\+All}}
+\index{entity\+Draw\+All@{entity\+Draw\+All}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Draw\+All()}{entityDrawAll()}}
+{\footnotesize\ttfamily void entity\+Draw\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Draws every valid entity in the entity manager. 
+
+\mbox{\Hypertarget{entity__s_8h_a2464812d6154d2f26c493c7d5aa3bcec}\label{entity__s_8h_a2464812d6154d2f26c493c7d5aa3bcec}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Free@{entity\+Free}}
+\index{entity\+Free@{entity\+Free}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Free()}{entityFree()}}
+{\footnotesize\ttfamily void entity\+Free (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Clears an entity from the entity manager, opening the spot back up. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The entity to free \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8h_a7c9bb489925d03b33aeec12cf9482d8b}\label{entity__s_8h_a7c9bb489925d03b33aeec12cf9482d8b}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Get\+Instrument\+Name@{entity\+Get\+Instrument\+Name}}
+\index{entity\+Get\+Instrument\+Name@{entity\+Get\+Instrument\+Name}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Get\+Instrument\+Name()}{entityGetInstrumentName()}}
+{\footnotesize\ttfamily char$\ast$ entity\+Get\+Instrument\+Name (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Gets a string representation of a given entity\textquotesingle{}s instrument. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The entity to grab the instrument from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A character array of the entity\textquotesingle{}s instrument; joke answer if failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{entity__s_8h_a4552cffce1718f69ee9e0308dcaeae15}\label{entity__s_8h_a4552cffce1718f69ee9e0308dcaeae15}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Increment\+Current\+Frame@{entity\+Increment\+Current\+Frame}}
+\index{entity\+Increment\+Current\+Frame@{entity\+Increment\+Current\+Frame}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Increment\+Current\+Frame()}{entityIncrementCurrentFrame()}}
+{\footnotesize\ttfamily void entity\+Increment\+Current\+Frame (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Increments the frame of animation for the given entity, will loop once max frame is hit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & The entity to change the frame of \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8h_a04a7342215c86812a3f626e2adb71031}\label{entity__s_8h_a04a7342215c86812a3f626e2adb71031}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Increment\+Current\+Frame\+All@{entity\+Increment\+Current\+Frame\+All}}
+\index{entity\+Increment\+Current\+Frame\+All@{entity\+Increment\+Current\+Frame\+All}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Increment\+Current\+Frame\+All()}{entityIncrementCurrentFrameAll()}}
+{\footnotesize\ttfamily void entity\+Increment\+Current\+Frame\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Increments all entity\textquotesingle{}s frames. 
+
+\mbox{\Hypertarget{entity__s_8h_afe935e9d3c413b86dbf7352bbe149836}\label{entity__s_8h_afe935e9d3c413b86dbf7352bbe149836}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Load\+All\+From\+File@{entity\+Load\+All\+From\+File}}
+\index{entity\+Load\+All\+From\+File@{entity\+Load\+All\+From\+File}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Load\+All\+From\+File()}{entityLoadAllFromFile()}}
+{\footnotesize\ttfamily void entity\+Load\+All\+From\+File (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{map }\end{DoxyParamCaption})}
+
+
+
+Loads all entities specified in a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & File to read through  Tile\+Map to populate entities onto \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8h_a167a1c963a2d762b642a0a6a163e155a}\label{entity__s_8h_a167a1c963a2d762b642a0a6a163e155a}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Load\+From\+File@{entity\+Load\+From\+File}}
+\index{entity\+Load\+From\+File@{entity\+Load\+From\+File}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Load\+From\+File()}{entityLoadFromFile()}}
+{\footnotesize\ttfamily \hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity}$\ast$ entity\+Load\+From\+File (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{new\+\_\+entity }\end{DoxyParamCaption})}
+
+
+
+Inits an entity\textquotesingle{}s parameters from a specified file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & File to read through \\
+\hline
+{\em new\+\_\+entity} & Entity that will be inited \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Populates new\+\_\+entity parameter and returns it, N\+U\+LL if invalid file pointer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{entity__s_8h_a7fe0df272dfa361b836266e86459d264}\label{entity__s_8h_a7fe0df272dfa361b836266e86459d264}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+New@{entity\+New}}
+\index{entity\+New@{entity\+New}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+New()}{entityNew()}}
+{\footnotesize\ttfamily \hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity}$\ast$ entity\+New (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Finds a memory address in the Entity Manager that is not in use, and returns that address. 
+
+\begin{DoxyReturn}{Returns}
+An address in memory for the new entity if successful; N\+U\+LL if failed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{entity__s_8h_a71a9f08a84502bcb4edf7832fe87cbec}\label{entity__s_8h_a71a9f08a84502bcb4edf7832fe87cbec}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+System\+Init@{entity\+System\+Init}}
+\index{entity\+System\+Init@{entity\+System\+Init}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+System\+Init()}{entitySystemInit()}}
+{\footnotesize\ttfamily void entity\+System\+Init (\begin{DoxyParamCaption}\item[{Uint32}]{max }\end{DoxyParamCaption})}
+
+
+
+Initializes the Entity Manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max} & The maximum number of entities that can be handled at once \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8h_a89a8042a6fd913d84406c206e480ae86}\label{entity__s_8h_a89a8042a6fd913d84406c206e480ae86}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Update@{entity\+Update}}
+\index{entity\+Update@{entity\+Update}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Update()}{entityUpdate()}}
+{\footnotesize\ttfamily void entity\+Update (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Performs generic entity updates (velocity/position updating, collision box movement, etc.) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & Entity to update \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Early return if error 
+\end{DoxyReturn}
+\mbox{\Hypertarget{entity__s_8h_a8b0b5578f9c29c842cd883ec6d9afc15}\label{entity__s_8h_a8b0b5578f9c29c842cd883ec6d9afc15}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Update\+All@{entity\+Update\+All}}
+\index{entity\+Update\+All@{entity\+Update\+All}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Update\+All()}{entityUpdateAll()}}
+{\footnotesize\ttfamily void entity\+Update\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates every entity currently existing. 
+
+\mbox{\Hypertarget{entity__s_8h_a845c235dca3b2732c5367c4b3c01dfd9}\label{entity__s_8h_a845c235dca3b2732c5367c4b3c01dfd9}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Update\+Graph\+Position\+All@{entity\+Update\+Graph\+Position\+All}}
+\index{entity\+Update\+Graph\+Position\+All@{entity\+Update\+Graph\+Position\+All}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Update\+Graph\+Position\+All()}{entityUpdateGraphPositionAll()}}
+{\footnotesize\ttfamily void entity\+Update\+Graph\+Position\+All (\begin{DoxyParamCaption}\item[{\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$$\ast$}]{graph }\end{DoxyParamCaption})}
+
+
+
+Updates the position of all entities on a graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph to update \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{entity__s_8h_a2f0f0cca903a4ff851d922e516597a15}\label{entity__s_8h_a2f0f0cca903a4ff851d922e516597a15}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Update\+Position@{entity\+Update\+Position}}
+\index{entity\+Update\+Position@{entity\+Update\+Position}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Update\+Position()}{entityUpdatePosition()}}
+{\footnotesize\ttfamily void entity\+Update\+Position (\begin{DoxyParamCaption}\item[{\hyperlink{entity__s_8h_a603076735282b0b83df7e6ecd290f875}{Entity} $\ast$}]{self,  }\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{map }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{entity__s_8h_a2c2bcc1a627104c3db79ca364854d0a1}\label{entity__s_8h_a2c2bcc1a627104c3db79ca364854d0a1}} 
+\index{entity\+\_\+s.\+h@{entity\+\_\+s.\+h}!entity\+Update\+Position\+All@{entity\+Update\+Position\+All}}
+\index{entity\+Update\+Position\+All@{entity\+Update\+Position\+All}!entity\+\_\+s.\+h@{entity\+\_\+s.\+h}}
+\subsubsection{\texorpdfstring{entity\+Update\+Position\+All()}{entityUpdatePositionAll()}}
+{\footnotesize\ttfamily void entity\+Update\+Position\+All (\begin{DoxyParamCaption}\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{map }\end{DoxyParamCaption})}
+

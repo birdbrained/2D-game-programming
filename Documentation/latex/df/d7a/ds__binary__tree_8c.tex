@@ -1,0 +1,57 @@
+\hypertarget{ds__binary__tree_8c}{}\section{Fall2017\+\_\+2\+Dproject/src/ds\+\_\+binary\+\_\+tree.c File Reference}
+\label{ds__binary__tree_8c}\index{Fall2017\+\_\+2\+Dproject/src/ds\+\_\+binary\+\_\+tree.\+c@{Fall2017\+\_\+2\+Dproject/src/ds\+\_\+binary\+\_\+tree.\+c}}
+{\ttfamily \#include \char`\"{}ds\+\_\+binary\+\_\+tree.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$ \hyperlink{ds__binary__tree_8c_a4df033bc59e674e4b2b93712e253401f}{bt\+\_\+new\+\_\+node} (size\+\_\+t element\+Size)
+\item 
+int \hyperlink{ds__binary__tree_8c_a1639c13b4ff5cbe61a1268371bff9f71}{bt\+\_\+insert} (\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$$\ast$bt, void $\ast$data, size\+\_\+t element\+Size)
+\item 
+\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$ \hyperlink{ds__binary__tree_8c_a2ab3de55599d9dc37bfb0675b4f7873a}{bt\+\_\+find} (\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$bt, void $\ast$data)
+\item 
+\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$ \hyperlink{ds__binary__tree_8c_a3eaf8b7d06db1d267c7e84eb1d753091}{bt\+\_\+find\+\_\+min} (\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$bt)
+\item 
+\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$ \hyperlink{ds__binary__tree_8c_a2164edc037379b8bbe006ae2b14a5807}{bt\+\_\+find\+\_\+max} (\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$bt)
+\item 
+void \hyperlink{ds__binary__tree_8c_a305300e15e8ccd673b67e6b89e9f0c98}{bt\+\_\+inorder\+\_\+traversal} (\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$bt)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ds__binary__tree_8c_a2ab3de55599d9dc37bfb0675b4f7873a}\label{ds__binary__tree_8c_a2ab3de55599d9dc37bfb0675b4f7873a}} 
+\index{ds\+\_\+binary\+\_\+tree.\+c@{ds\+\_\+binary\+\_\+tree.\+c}!bt\+\_\+find@{bt\+\_\+find}}
+\index{bt\+\_\+find@{bt\+\_\+find}!ds\+\_\+binary\+\_\+tree.\+c@{ds\+\_\+binary\+\_\+tree.\+c}}
+\subsubsection{\texorpdfstring{bt\+\_\+find()}{bt\_find()}}
+{\footnotesize\ttfamily \hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node}$\ast$ bt\+\_\+find (\begin{DoxyParamCaption}\item[{\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$}]{bt,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ds__binary__tree_8c_a2164edc037379b8bbe006ae2b14a5807}\label{ds__binary__tree_8c_a2164edc037379b8bbe006ae2b14a5807}} 
+\index{ds\+\_\+binary\+\_\+tree.\+c@{ds\+\_\+binary\+\_\+tree.\+c}!bt\+\_\+find\+\_\+max@{bt\+\_\+find\+\_\+max}}
+\index{bt\+\_\+find\+\_\+max@{bt\+\_\+find\+\_\+max}!ds\+\_\+binary\+\_\+tree.\+c@{ds\+\_\+binary\+\_\+tree.\+c}}
+\subsubsection{\texorpdfstring{bt\+\_\+find\+\_\+max()}{bt\_find\_max()}}
+{\footnotesize\ttfamily \hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node}$\ast$ bt\+\_\+find\+\_\+max (\begin{DoxyParamCaption}\item[{\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$}]{bt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ds__binary__tree_8c_a3eaf8b7d06db1d267c7e84eb1d753091}\label{ds__binary__tree_8c_a3eaf8b7d06db1d267c7e84eb1d753091}} 
+\index{ds\+\_\+binary\+\_\+tree.\+c@{ds\+\_\+binary\+\_\+tree.\+c}!bt\+\_\+find\+\_\+min@{bt\+\_\+find\+\_\+min}}
+\index{bt\+\_\+find\+\_\+min@{bt\+\_\+find\+\_\+min}!ds\+\_\+binary\+\_\+tree.\+c@{ds\+\_\+binary\+\_\+tree.\+c}}
+\subsubsection{\texorpdfstring{bt\+\_\+find\+\_\+min()}{bt\_find\_min()}}
+{\footnotesize\ttfamily \hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node}$\ast$ bt\+\_\+find\+\_\+min (\begin{DoxyParamCaption}\item[{\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$}]{bt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ds__binary__tree_8c_a305300e15e8ccd673b67e6b89e9f0c98}\label{ds__binary__tree_8c_a305300e15e8ccd673b67e6b89e9f0c98}} 
+\index{ds\+\_\+binary\+\_\+tree.\+c@{ds\+\_\+binary\+\_\+tree.\+c}!bt\+\_\+inorder\+\_\+traversal@{bt\+\_\+inorder\+\_\+traversal}}
+\index{bt\+\_\+inorder\+\_\+traversal@{bt\+\_\+inorder\+\_\+traversal}!ds\+\_\+binary\+\_\+tree.\+c@{ds\+\_\+binary\+\_\+tree.\+c}}
+\subsubsection{\texorpdfstring{bt\+\_\+inorder\+\_\+traversal()}{bt\_inorder\_traversal()}}
+{\footnotesize\ttfamily void bt\+\_\+inorder\+\_\+traversal (\begin{DoxyParamCaption}\item[{\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$}]{bt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ds__binary__tree_8c_a1639c13b4ff5cbe61a1268371bff9f71}\label{ds__binary__tree_8c_a1639c13b4ff5cbe61a1268371bff9f71}} 
+\index{ds\+\_\+binary\+\_\+tree.\+c@{ds\+\_\+binary\+\_\+tree.\+c}!bt\+\_\+insert@{bt\+\_\+insert}}
+\index{bt\+\_\+insert@{bt\+\_\+insert}!ds\+\_\+binary\+\_\+tree.\+c@{ds\+\_\+binary\+\_\+tree.\+c}}
+\subsubsection{\texorpdfstring{bt\+\_\+insert()}{bt\_insert()}}
+{\footnotesize\ttfamily int bt\+\_\+insert (\begin{DoxyParamCaption}\item[{\hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node} $\ast$$\ast$}]{bt,  }\item[{void $\ast$}]{data,  }\item[{size\+\_\+t}]{element\+Size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ds__binary__tree_8c_a4df033bc59e674e4b2b93712e253401f}\label{ds__binary__tree_8c_a4df033bc59e674e4b2b93712e253401f}} 
+\index{ds\+\_\+binary\+\_\+tree.\+c@{ds\+\_\+binary\+\_\+tree.\+c}!bt\+\_\+new\+\_\+node@{bt\+\_\+new\+\_\+node}}
+\index{bt\+\_\+new\+\_\+node@{bt\+\_\+new\+\_\+node}!ds\+\_\+binary\+\_\+tree.\+c@{ds\+\_\+binary\+\_\+tree.\+c}}
+\subsubsection{\texorpdfstring{bt\+\_\+new\+\_\+node()}{bt\_new\_node()}}
+{\footnotesize\ttfamily \hyperlink{ds__binary__tree_8h_ae331688918b14610d4a7475307c5c11c}{Binary\+Tree\+Node}$\ast$ bt\+\_\+new\+\_\+node (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{element\+Size }\end{DoxyParamCaption})}
+

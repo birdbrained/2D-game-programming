@@ -1,0 +1,116 @@
+\hypertarget{gui_8c}{}\section{Fall2017\+\_\+2\+Dproject/src/gui.c File Reference}
+\label{gui_8c}\index{Fall2017\+\_\+2\+Dproject/src/gui.\+c@{Fall2017\+\_\+2\+Dproject/src/gui.\+c}}
+{\ttfamily \#include \char`\"{}gui.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structguimanager__s}{guimanager\+\_\+s}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structguimanager__s}{guimanager\+\_\+s} \hyperlink{gui_8c_a1d6e3fbb842833fd4fecdd8d3ee13295}{G\+U\+I\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{gui_8c_a2c8869b267c86e7682a3deae2a43349b}{gui\+\_\+system\+\_\+close} ()
+\item 
+void \hyperlink{gui_8c_a2ad1de7d554f0fcf9c06ac2154df6f12}{gui\+\_\+system\+\_\+init} (Uint32 max\+G\+U\+Is)
+\item 
+\hyperlink{gui_8h_a99b9d7cca33b027a6be098de1de11ddc}{G\+U\+I\+Window} $\ast$ \hyperlink{gui_8c_a86ba0b948d38fd9795c387587621edda}{gui\+\_\+new} ()
+\item 
+void \hyperlink{gui_8c_a6cb37cc66cf22a832fcc833f5f0d4995}{gui\+\_\+delete} (\hyperlink{gui_8h_a99b9d7cca33b027a6be098de1de11ddc}{G\+U\+I\+Window} $\ast$window)
+\item 
+void \hyperlink{gui_8c_a5a41cad9f77030b750992a326c974d7b}{gui\+\_\+free} (\hyperlink{gui_8h_a99b9d7cca33b027a6be098de1de11ddc}{G\+U\+I\+Window} $\ast$window)
+\item 
+void \hyperlink{gui_8c_a5f440ce0fd7ad57b03704da322775bd0}{gui\+\_\+delete\+\_\+all} ()
+\item 
+void \hyperlink{gui_8c_a7befd1199e12a4472aa4332e877e39db}{gui\+\_\+draw} (\hyperlink{gui_8h_a99b9d7cca33b027a6be098de1de11ddc}{G\+U\+I\+Window} $\ast$window)
+\item 
+void \hyperlink{gui_8c_a06fd6594e0129650133b416a2edefaa7}{gui\+\_\+draw\+\_\+all} ()
+\item 
+void \hyperlink{gui_8c_a4daacab4e4d31ec5ee5d7cc32cabbe9d}{gui\+\_\+update} (\hyperlink{gui_8h_a99b9d7cca33b027a6be098de1de11ddc}{G\+U\+I\+Window} $\ast$window)
+\item 
+void \hyperlink{gui_8c_ac92ad8565604cc7a36a1ede8af33bad8}{gui\+\_\+update\+\_\+all} ()
+\item 
+\hyperlink{gui_8h_a99b9d7cca33b027a6be098de1de11ddc}{G\+U\+I\+Window} $\ast$ \hyperlink{gui_8c_a9483d93c7fafd2910ba4400d858465be}{gui\+\_\+check\+\_\+collision\+\_\+in\+\_\+all} (int mx, int my)
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{gui_8c_a1d6e3fbb842833fd4fecdd8d3ee13295}\label{gui_8c_a1d6e3fbb842833fd4fecdd8d3ee13295}} 
+\index{gui.\+c@{gui.\+c}!G\+U\+I\+Manager@{G\+U\+I\+Manager}}
+\index{G\+U\+I\+Manager@{G\+U\+I\+Manager}!gui.\+c@{gui.\+c}}
+\subsubsection{\texorpdfstring{G\+U\+I\+Manager}{GUIManager}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structguimanager__s}{guimanager\+\_\+s} \hyperlink{gui_8c_a1d6e3fbb842833fd4fecdd8d3ee13295}{G\+U\+I\+Manager}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gui_8c_a9483d93c7fafd2910ba4400d858465be}\label{gui_8c_a9483d93c7fafd2910ba4400d858465be}} 
+\index{gui.\+c@{gui.\+c}!gui\+\_\+check\+\_\+collision\+\_\+in\+\_\+all@{gui\+\_\+check\+\_\+collision\+\_\+in\+\_\+all}}
+\index{gui\+\_\+check\+\_\+collision\+\_\+in\+\_\+all@{gui\+\_\+check\+\_\+collision\+\_\+in\+\_\+all}!gui.\+c@{gui.\+c}}
+\subsubsection{\texorpdfstring{gui\+\_\+check\+\_\+collision\+\_\+in\+\_\+all()}{gui\_check\_collision\_in\_all()}}
+{\footnotesize\ttfamily \hyperlink{gui_8h_a99b9d7cca33b027a6be098de1de11ddc}{G\+U\+I\+Window}$\ast$ gui\+\_\+check\+\_\+collision\+\_\+in\+\_\+all (\begin{DoxyParamCaption}\item[{int}]{mx,  }\item[{int}]{my }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gui_8c_a6cb37cc66cf22a832fcc833f5f0d4995}\label{gui_8c_a6cb37cc66cf22a832fcc833f5f0d4995}} 
+\index{gui.\+c@{gui.\+c}!gui\+\_\+delete@{gui\+\_\+delete}}
+\index{gui\+\_\+delete@{gui\+\_\+delete}!gui.\+c@{gui.\+c}}
+\subsubsection{\texorpdfstring{gui\+\_\+delete()}{gui\_delete()}}
+{\footnotesize\ttfamily void gui\+\_\+delete (\begin{DoxyParamCaption}\item[{\hyperlink{gui_8h_a99b9d7cca33b027a6be098de1de11ddc}{G\+U\+I\+Window} $\ast$}]{window }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gui_8c_a5f440ce0fd7ad57b03704da322775bd0}\label{gui_8c_a5f440ce0fd7ad57b03704da322775bd0}} 
+\index{gui.\+c@{gui.\+c}!gui\+\_\+delete\+\_\+all@{gui\+\_\+delete\+\_\+all}}
+\index{gui\+\_\+delete\+\_\+all@{gui\+\_\+delete\+\_\+all}!gui.\+c@{gui.\+c}}
+\subsubsection{\texorpdfstring{gui\+\_\+delete\+\_\+all()}{gui\_delete\_all()}}
+{\footnotesize\ttfamily void gui\+\_\+delete\+\_\+all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gui_8c_a7befd1199e12a4472aa4332e877e39db}\label{gui_8c_a7befd1199e12a4472aa4332e877e39db}} 
+\index{gui.\+c@{gui.\+c}!gui\+\_\+draw@{gui\+\_\+draw}}
+\index{gui\+\_\+draw@{gui\+\_\+draw}!gui.\+c@{gui.\+c}}
+\subsubsection{\texorpdfstring{gui\+\_\+draw()}{gui\_draw()}}
+{\footnotesize\ttfamily void gui\+\_\+draw (\begin{DoxyParamCaption}\item[{\hyperlink{gui_8h_a99b9d7cca33b027a6be098de1de11ddc}{G\+U\+I\+Window} $\ast$}]{window }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gui_8c_a06fd6594e0129650133b416a2edefaa7}\label{gui_8c_a06fd6594e0129650133b416a2edefaa7}} 
+\index{gui.\+c@{gui.\+c}!gui\+\_\+draw\+\_\+all@{gui\+\_\+draw\+\_\+all}}
+\index{gui\+\_\+draw\+\_\+all@{gui\+\_\+draw\+\_\+all}!gui.\+c@{gui.\+c}}
+\subsubsection{\texorpdfstring{gui\+\_\+draw\+\_\+all()}{gui\_draw\_all()}}
+{\footnotesize\ttfamily void gui\+\_\+draw\+\_\+all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gui_8c_a5a41cad9f77030b750992a326c974d7b}\label{gui_8c_a5a41cad9f77030b750992a326c974d7b}} 
+\index{gui.\+c@{gui.\+c}!gui\+\_\+free@{gui\+\_\+free}}
+\index{gui\+\_\+free@{gui\+\_\+free}!gui.\+c@{gui.\+c}}
+\subsubsection{\texorpdfstring{gui\+\_\+free()}{gui\_free()}}
+{\footnotesize\ttfamily void gui\+\_\+free (\begin{DoxyParamCaption}\item[{\hyperlink{gui_8h_a99b9d7cca33b027a6be098de1de11ddc}{G\+U\+I\+Window} $\ast$}]{window }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gui_8c_a86ba0b948d38fd9795c387587621edda}\label{gui_8c_a86ba0b948d38fd9795c387587621edda}} 
+\index{gui.\+c@{gui.\+c}!gui\+\_\+new@{gui\+\_\+new}}
+\index{gui\+\_\+new@{gui\+\_\+new}!gui.\+c@{gui.\+c}}
+\subsubsection{\texorpdfstring{gui\+\_\+new()}{gui\_new()}}
+{\footnotesize\ttfamily \hyperlink{gui_8h_a99b9d7cca33b027a6be098de1de11ddc}{G\+U\+I\+Window}$\ast$ gui\+\_\+new (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gui_8c_a2c8869b267c86e7682a3deae2a43349b}\label{gui_8c_a2c8869b267c86e7682a3deae2a43349b}} 
+\index{gui.\+c@{gui.\+c}!gui\+\_\+system\+\_\+close@{gui\+\_\+system\+\_\+close}}
+\index{gui\+\_\+system\+\_\+close@{gui\+\_\+system\+\_\+close}!gui.\+c@{gui.\+c}}
+\subsubsection{\texorpdfstring{gui\+\_\+system\+\_\+close()}{gui\_system\_close()}}
+{\footnotesize\ttfamily void gui\+\_\+system\+\_\+close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gui_8c_a2ad1de7d554f0fcf9c06ac2154df6f12}\label{gui_8c_a2ad1de7d554f0fcf9c06ac2154df6f12}} 
+\index{gui.\+c@{gui.\+c}!gui\+\_\+system\+\_\+init@{gui\+\_\+system\+\_\+init}}
+\index{gui\+\_\+system\+\_\+init@{gui\+\_\+system\+\_\+init}!gui.\+c@{gui.\+c}}
+\subsubsection{\texorpdfstring{gui\+\_\+system\+\_\+init()}{gui\_system\_init()}}
+{\footnotesize\ttfamily void gui\+\_\+system\+\_\+init (\begin{DoxyParamCaption}\item[{Uint32}]{max\+G\+U\+Is }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gui_8c_a4daacab4e4d31ec5ee5d7cc32cabbe9d}\label{gui_8c_a4daacab4e4d31ec5ee5d7cc32cabbe9d}} 
+\index{gui.\+c@{gui.\+c}!gui\+\_\+update@{gui\+\_\+update}}
+\index{gui\+\_\+update@{gui\+\_\+update}!gui.\+c@{gui.\+c}}
+\subsubsection{\texorpdfstring{gui\+\_\+update()}{gui\_update()}}
+{\footnotesize\ttfamily void gui\+\_\+update (\begin{DoxyParamCaption}\item[{\hyperlink{gui_8h_a99b9d7cca33b027a6be098de1de11ddc}{G\+U\+I\+Window} $\ast$}]{window }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gui_8c_ac92ad8565604cc7a36a1ede8af33bad8}\label{gui_8c_ac92ad8565604cc7a36a1ede8af33bad8}} 
+\index{gui.\+c@{gui.\+c}!gui\+\_\+update\+\_\+all@{gui\+\_\+update\+\_\+all}}
+\index{gui\+\_\+update\+\_\+all@{gui\+\_\+update\+\_\+all}!gui.\+c@{gui.\+c}}
+\subsubsection{\texorpdfstring{gui\+\_\+update\+\_\+all()}{gui\_update\_all()}}
+{\footnotesize\ttfamily void gui\+\_\+update\+\_\+all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

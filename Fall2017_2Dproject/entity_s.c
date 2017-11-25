@@ -224,6 +224,8 @@ void entityDraw(Entity * self)
 			NULL,
 			0
 		);
+
+		//slog("position x (%f) y (%f)", self->position.x, self->position.y);
 	}
 
 	if (self->nextPosition != self->currentPosition)
@@ -302,32 +304,56 @@ void entityIncrementCurrentFrameAll()
 	}
 }
 
-Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
+//Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
+Entity * entityLoadFromFile(char * filename, Entity * new_entity)
 {
+	//char buffer[512];
 	char buffer[512];
+	char * physBuffer = "";
 	char holder[512];
-	if (!file)
+	PHYSFS_File * file;
+	int n = 0;
+
+	if (!filename)
 	{
-		slog("Cannot open file");
+		slog("Error: Filename was null");
 		return NULL;
+	}
+	if (!PHYSFS_exists(filename))
+	{
+		slog("Error: could not find file with name (%s)", filename);
 	}
 	if (!new_entity)
 	{
 		slog("Error: new_entity was null");
 		return NULL;
 	}
-	rewind(file);
+	//rewind(file);
+
+	file = PHYSFS_openRead(filename);
+	physBuffer = (char *)malloc(PHYSFS_fileLength(file));
+	memset(physBuffer, 0, PHYSFS_fileLength(file));
+	PHYSFS_readBytes(file, physBuffer, PHYSFS_fileLength(file));
+	PHYSFS_close(file);
 	
 	/* Note to self!
 	   Order matters here. Please strcmp variables
 	   in the order they appear in the entity_s
 	   struct. Thanks Future Matt ~<3 Why don't
 	   you text me back anymore */
-	while (fscanf(file, "%s", buffer) != EOF)
+	//while (fscanf(file, "%s", buffer) != EOF)
+	while (sscanf(physBuffer, " %s\n%n", buffer, &n) == 1)
 	{
+		if (buffer[0] == '~')
+		{
+			break;
+		}
+		physBuffer += n;
 		if (strcmp(buffer, "name:") == 0)
 		{
-			fscanf(file, "%s", buffer);
+			//fscanf(file, "%s", buffer);
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
 			strncpy(new_entity->name, buffer, MAX_CHARS);
 			//fscanf(file, "%s", buffer);
 			slog("name is (%s)", new_entity->name);
@@ -336,7 +362,9 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 		}
 		if (strcmp(buffer, "fav_thing:") == 0)
 		{
-			fscanf(file, "%s", buffer);
+			//fscanf(file, "%s", buffer);
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
 			strncpy(new_entity->favoriteThing, buffer, MAX_CHARS);
 			//fscanf(file, "%s", buffer);
 			slog("favThing is (%s)", new_entity->favoriteThing);
@@ -344,13 +372,17 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 		}
 		if (strcmp(buffer, "sprite:") == 0)
 		{
-			fscanf(file, "%s", buffer);
+			//fscanf(file, "%s", buffer);
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
 			new_entity->mySprite = gf2d_sprite_load_all(buffer, 32, 32, 2);
 			continue;
 		}
 		if (strcmp(buffer, "Instrument:") == 0)
 		{
-			fscanf(file, "%s", holder);
+			//fscanf(file, "%s", holder);
+			sscanf(physBuffer, " %s\n%n", holder, &n);
+			physBuffer += n;
 			if (strcmp(holder, "flute") == 0)
 			{
 				new_entity->myInstrument = Instrument_Flute;
@@ -414,44 +446,56 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 		}
 		if (strcmp(buffer, "instrumentSprite:") == 0)
 		{
-			fscanf(file, "%s", buffer);
+			//fscanf(file, "%s", buffer);
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
 			strncpy(new_entity->instrumentSpriteFilePath, buffer, MAX_FILEPATH_CHARS);
 			slog("instrument sprite file (%s)", new_entity->instrumentSpriteFilePath);
 		}
 		if (strcmp(buffer, "statMarching:") == 0)
 		{
-			fscanf(file, "%i", &new_entity->statMarching);
+			//fscanf(file, "%i", &new_entity->statMarching);
+			sscanf(physBuffer, " %i\n%n", &new_entity->statMarching, &n);
+			physBuffer += n;
 			//fscanf(file, "%s", buffer);
 			slog("stat marching (%i)", new_entity->statMarching);
 			continue;
 		}
 		if (strcmp(buffer, "statMusic:") == 0)
 		{
-			fscanf(file, "%i", &new_entity->statMusic);
+			//fscanf(file, "%i", &new_entity->statMusic);
+			sscanf(physBuffer, " %i\n%n", &new_entity->statMusic, &n);
+			physBuffer += n;
 			slog("stat music (%i)", new_entity->statMusic);
 			continue;
 		}
 		if (strcmp(buffer, "statMorale:") == 0)
 		{
-			fscanf(file, "%i", &new_entity->statMorale);
+			//fscanf(file, "%i", &new_entity->statMorale);
+			sscanf(physBuffer, " %i\n%n", &new_entity->statMorale, &n);
+			physBuffer += n;
 			slog("stat morale (%i)", new_entity->statMorale);
 			continue;
 		}
 		if (strcmp(buffer, "statMotivation:") == 0)
 		{
-			fscanf(file, "%i", &new_entity->statMotivation);
+			//fscanf(file, "%i", &new_entity->statMotivation);
+			sscanf(physBuffer, " %i\n%n", &new_entity->statMotivation, &n);
+			physBuffer += n;
 			slog("stat motivation (%i)", new_entity->statMotivation);
 			continue;
 		}
 		if (strcmp(buffer, "sectionLeader:") == 0)
 		{
-			fscanf(file, "%i", &new_entity->isSectionLeader);
+			//fscanf(file, "%i", &new_entity->isSectionLeader);
+			sscanf(physBuffer, " %i\n%n", &new_entity->isSectionLeader, &n);
+			physBuffer += n;
 			slog("is section leader (%i)", new_entity->isSectionLeader);
 			continue;
 		}
 
 		//fscanf(file, "%s", buffer);
-		fgets(buffer, sizeof(buffer), file);
+		//fgets(buffer, sizeof(buffer), file);
 		//fscanf(file, "%s", holder);
 		//slog("%s, %s", buffer, holder);
 	}
@@ -463,31 +507,61 @@ Entity * entityLoadFromFile(FILE * file, Entity * new_entity)
 	return new_entity;
 }
 
-void entityLoadAllFromFile(FILE * file, TileMap * map/*, Graph ** graph*/)
+//void entityLoadAllFromFile(FILE * file, TileMap * map/*, Graph ** graph*/)
+void entityLoadAllFromFile(char * filename, TileMap * map)
 {
+	PHYSFS_File * file;
 	Entity * currNew = NULL;
 	char buffer[512];
-	FILE * entityFile = NULL;
-	int i = 0;
-	if (!file)
+	char * physBuffer;
+	char * entityBuffer;
+	//PHYSFS_File * entityFile = NULL;
+	int i = 0, n = 0;
+	if (!filename)
 	{
-		slog("could not open file");
+		slog("Error: filename was null");
+		return;
+	}
+	if (!PHYSFS_exists(filename))
+	{
+		slog("Error: could not find file with name (%s)", filename);
 		return;
 	}
 
-	while (fscanf(file, "%s", buffer) != EOF)
+	file = PHYSFS_openRead(filename);
+	physBuffer = (char *)malloc(PHYSFS_fileLength(file));
+	memset(physBuffer, 0, PHYSFS_fileLength(file));
+	PHYSFS_readBytes(file, physBuffer, PHYSFS_fileLength(file));
+	PHYSFS_close(file);
+
+	//while (fscanf(file, "%s", buffer) != EOF)
+	while (sscanf(physBuffer, " %s\n%n", buffer, &n) == 1)
 	{
-		entityFile = fopen(buffer, "r");
-		if (!entityFile)
+		//entityFile = fopen(buffer, "r");
+		//if (!entityFile)
+		physBuffer += n;
+		if (!PHYSFS_exists(buffer))
 		{
 			slog("bad filename (%s)", buffer);
 			//fclose(entityFile);
 		}
 		else
 		{
+			//entityFile = PHYSFS_openRead(buffer);
+			//entityBuffer = (char *)malloc(PHYSFS_fileLength(entityFile));
+			//memset(entityBuffer, 0, PHYSFS_fileLength(entityFile));
+			//PHYSFS_readBytes(entityFile, entityBuffer, PHYSFS_fileLength(entityFile));
+			//PHYSFS_close(file);
+			if (buffer[0] == '~')
+			{
+				break;
+			}
+
 			currNew = entityNew();
-			entityLoadFromFile(entityFile, currNew);
-			fclose(entityFile);
+			//entityLoadFromFile(entityFile, currNew);
+			entityLoadFromFile(buffer, currNew);
+			//fclose(entityFile);
+			currNew->inUse = 1;
 			currNew->instrumentSprite = gf2d_sprite_load_all(&currNew->instrumentSpriteFilePath, 32, 32, 1);
 			currNew->boundingBox = rect_new(currNew->position.x, currNew->position.y, 64, 64);
 			currNew->scale = vector2d(2, 2);
@@ -505,6 +579,7 @@ void entityLoadAllFromFile(FILE * file, TileMap * map/*, Graph ** graph*/)
 				currNew->currentPosition = i;
 				currNew->nextPosition = i;
 				currNew->position = vector2d((i % 18) * 64, (i / 18) * 64);
+				currNew->boundingBox = rect_new(currNew->position.x, currNew->position.y, 64, 64);
 				map->space[i] = 1;
 				/*if (graph != NULL)
 				{

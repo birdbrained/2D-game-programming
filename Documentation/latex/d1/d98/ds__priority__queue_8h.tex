@@ -1,0 +1,141 @@
+\hypertarget{ds__priority__queue_8h}{}\section{Fall2017\+\_\+2\+Dproject/include/ds\+\_\+priority\+\_\+queue.h File Reference}
+\label{ds__priority__queue_8h}\index{Fall2017\+\_\+2\+Dproject/include/ds\+\_\+priority\+\_\+queue.\+h@{Fall2017\+\_\+2\+Dproject/include/ds\+\_\+priority\+\_\+queue.\+h}}
+{\ttfamily \#include $<$S\+D\+L.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structpriorityqueue}{priorityqueue}
+\begin{DoxyCompactList}\small\item\em A priority queue data structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structpriorityqueue}{priorityqueue} \hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue}
+\begin{DoxyCompactList}\small\item\em A priority queue data structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$ \hyperlink{ds__priority__queue_8h_ad36b3c7e2dd532a04c31f5200a04b458}{pq\+\_\+new} (size\+\_\+t element\+Size)
+\begin{DoxyCompactList}\small\item\em Creates a new priority queue. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{ds__priority__queue_8h_a8e9b4e61e191358e46ffb9b8a747c3ad}{pq\+\_\+delete} (\hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$pq\+\_\+head, \hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$pq\+\_\+tail)
+\begin{DoxyCompactList}\small\item\em Dequeues the first (oldest) element in the pq. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{ds__priority__queue_8h_aa139aa78a1de7fb4799fc3fb6eaeff87}{pq\+\_\+delete\+\_\+max} (\hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$pq\+\_\+head, \hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$pq\+\_\+tail)
+\begin{DoxyCompactList}\small\item\em Dequeues the element in the pq with the highest priority. \end{DoxyCompactList}\item 
+int \hyperlink{ds__priority__queue_8h_ad94c1a756a80ec0363456a4a7d43f7a2}{pq\+\_\+insert} (\hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$pq\+\_\+head, \hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$pq\+\_\+tail, void $\ast$data, size\+\_\+t element\+Size, int priority)
+\begin{DoxyCompactList}\small\item\em Inserts a new node into the priority queue, tail points to first in, head points to most recently added. \end{DoxyCompactList}\item 
+int \hyperlink{ds__priority__queue_8h_a0b9a887af20d1ba12ae12d61b4ab604a}{pq\+\_\+length} (\hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$pq\+\_\+tail)
+\begin{DoxyCompactList}\small\item\em Gets the length of the Priority Queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}\label{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}} 
+\index{ds\+\_\+priority\+\_\+queue.\+h@{ds\+\_\+priority\+\_\+queue.\+h}!Priority\+Queue@{Priority\+Queue}}
+\index{Priority\+Queue@{Priority\+Queue}!ds\+\_\+priority\+\_\+queue.\+h@{ds\+\_\+priority\+\_\+queue.\+h}}
+\subsubsection{\texorpdfstring{Priority\+Queue}{PriorityQueue}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structpriorityqueue}{priorityqueue} \hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue}}
+
+
+
+A priority queue data structure. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ds__priority__queue_8h_a8e9b4e61e191358e46ffb9b8a747c3ad}\label{ds__priority__queue_8h_a8e9b4e61e191358e46ffb9b8a747c3ad}} 
+\index{ds\+\_\+priority\+\_\+queue.\+h@{ds\+\_\+priority\+\_\+queue.\+h}!pq\+\_\+delete@{pq\+\_\+delete}}
+\index{pq\+\_\+delete@{pq\+\_\+delete}!ds\+\_\+priority\+\_\+queue.\+h@{ds\+\_\+priority\+\_\+queue.\+h}}
+\subsubsection{\texorpdfstring{pq\+\_\+delete()}{pq\_delete()}}
+{\footnotesize\ttfamily void$\ast$ pq\+\_\+delete (\begin{DoxyParamCaption}\item[{\hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$}]{pq\+\_\+head,  }\item[{\hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$}]{pq\+\_\+tail }\end{DoxyParamCaption})}
+
+
+
+Dequeues the first (oldest) element in the pq. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pq\+\_\+head} & Head node of pq (most recent in) \\
+\hline
+{\em pq\+\_\+tail} & Tail node of pq (first in) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The data that the first-\/in node holds 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__priority__queue_8h_aa139aa78a1de7fb4799fc3fb6eaeff87}\label{ds__priority__queue_8h_aa139aa78a1de7fb4799fc3fb6eaeff87}} 
+\index{ds\+\_\+priority\+\_\+queue.\+h@{ds\+\_\+priority\+\_\+queue.\+h}!pq\+\_\+delete\+\_\+max@{pq\+\_\+delete\+\_\+max}}
+\index{pq\+\_\+delete\+\_\+max@{pq\+\_\+delete\+\_\+max}!ds\+\_\+priority\+\_\+queue.\+h@{ds\+\_\+priority\+\_\+queue.\+h}}
+\subsubsection{\texorpdfstring{pq\+\_\+delete\+\_\+max()}{pq\_delete\_max()}}
+{\footnotesize\ttfamily void$\ast$ pq\+\_\+delete\+\_\+max (\begin{DoxyParamCaption}\item[{\hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$}]{pq\+\_\+head,  }\item[{\hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$}]{pq\+\_\+tail }\end{DoxyParamCaption})}
+
+
+
+Dequeues the element in the pq with the highest priority. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pq\+\_\+head} & Head node of pq (most recent in) \\
+\hline
+{\em pq\+\_\+tail} & Tail node of pq (first in) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The data within the highest priority node 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__priority__queue_8h_ad94c1a756a80ec0363456a4a7d43f7a2}\label{ds__priority__queue_8h_ad94c1a756a80ec0363456a4a7d43f7a2}} 
+\index{ds\+\_\+priority\+\_\+queue.\+h@{ds\+\_\+priority\+\_\+queue.\+h}!pq\+\_\+insert@{pq\+\_\+insert}}
+\index{pq\+\_\+insert@{pq\+\_\+insert}!ds\+\_\+priority\+\_\+queue.\+h@{ds\+\_\+priority\+\_\+queue.\+h}}
+\subsubsection{\texorpdfstring{pq\+\_\+insert()}{pq\_insert()}}
+{\footnotesize\ttfamily int pq\+\_\+insert (\begin{DoxyParamCaption}\item[{\hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$}]{pq\+\_\+head,  }\item[{\hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$}]{pq\+\_\+tail,  }\item[{void $\ast$}]{data,  }\item[{size\+\_\+t}]{element\+Size,  }\item[{int}]{priority }\end{DoxyParamCaption})}
+
+
+
+Inserts a new node into the priority queue, tail points to first in, head points to most recently added. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pq\+\_\+head} & The head node that will have a node inserted into it \\
+\hline
+{\em pq\+\_\+tail} & The tail node, required if inserting first node \\
+\hline
+{\em data} & The data that will be inserted \\
+\hline
+{\em element\+Size} & Size of the data \\
+\hline
+{\em priority} & The data\textquotesingle{}s priority, larger numbers have greater priority \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, -\/1 if data could not be allocated 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__priority__queue_8h_a0b9a887af20d1ba12ae12d61b4ab604a}\label{ds__priority__queue_8h_a0b9a887af20d1ba12ae12d61b4ab604a}} 
+\index{ds\+\_\+priority\+\_\+queue.\+h@{ds\+\_\+priority\+\_\+queue.\+h}!pq\+\_\+length@{pq\+\_\+length}}
+\index{pq\+\_\+length@{pq\+\_\+length}!ds\+\_\+priority\+\_\+queue.\+h@{ds\+\_\+priority\+\_\+queue.\+h}}
+\subsubsection{\texorpdfstring{pq\+\_\+length()}{pq\_length()}}
+{\footnotesize\ttfamily int pq\+\_\+length (\begin{DoxyParamCaption}\item[{\hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue} $\ast$$\ast$}]{pq\+\_\+tail }\end{DoxyParamCaption})}
+
+
+
+Gets the length of the Priority Queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pq\+\_\+tail} & Pointer to the tail (first element added to pq) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Length of priority queue, 0 if no elements in queue 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__priority__queue_8h_ad36b3c7e2dd532a04c31f5200a04b458}\label{ds__priority__queue_8h_ad36b3c7e2dd532a04c31f5200a04b458}} 
+\index{ds\+\_\+priority\+\_\+queue.\+h@{ds\+\_\+priority\+\_\+queue.\+h}!pq\+\_\+new@{pq\+\_\+new}}
+\index{pq\+\_\+new@{pq\+\_\+new}!ds\+\_\+priority\+\_\+queue.\+h@{ds\+\_\+priority\+\_\+queue.\+h}}
+\subsubsection{\texorpdfstring{pq\+\_\+new()}{pq\_new()}}
+{\footnotesize\ttfamily \hyperlink{ds__priority__queue_8h_a2d06bb019393fb677b7f0dd26cab96c2}{Priority\+Queue}$\ast$ pq\+\_\+new (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{element\+Size }\end{DoxyParamCaption})}
+
+
+
+Creates a new priority queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em element\+Size} & The size of the data the pq will hold \\
+\hline
+\end{DoxyParams}

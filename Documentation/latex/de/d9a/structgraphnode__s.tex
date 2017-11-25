@@ -1,0 +1,113 @@
+\hypertarget{structgraphnode__s}{}\section{graphnode\+\_\+s Struct Reference}
+\label{structgraphnode__s}\index{graphnode\+\_\+s@{graphnode\+\_\+s}}
+
+
+A data structure that represents a single node in a graph.  
+
+
+
+
+{\ttfamily \#include $<$ds\+\_\+graph.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{structgraphnode__s_a735984d41155bc1032e09bece8f8d66d}{data}
+\begin{DoxyCompactList}\small\item\em The data this node will hold. \end{DoxyCompactList}\item 
+int \hyperlink{structgraphnode__s_a6150e0515f7202e2fb518f7206ed97dc}{x}
+\item 
+int \hyperlink{structgraphnode__s_a0a2f84ed7838f07779ae24c5a9086d33}{y}
+\begin{DoxyCompactList}\small\item\em The position in the graph of this node. \end{DoxyCompactList}\item 
+struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s} $\ast$ \hyperlink{structgraphnode__s_a7101dbac1154ba59495fffbdb030eba2}{up\+\_\+node}
+\begin{DoxyCompactList}\small\item\em Pointers to the surrounding nodes in the graph. \end{DoxyCompactList}\item 
+struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s} $\ast$ \hyperlink{structgraphnode__s_a54cefd6e7df653a0115bae821fd1599c}{right\+\_\+node}
+\item 
+struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s} $\ast$ \hyperlink{structgraphnode__s_ae504c9f7ceef062009506664d993c7db}{down\+\_\+node}
+\item 
+struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s} $\ast$ \hyperlink{structgraphnode__s_af65e2cb312f851ac682c732ce717418b}{left\+\_\+node}
+\item 
+size\+\_\+t \hyperlink{structgraphnode__s_af884332e6713af9425451adde09e0024}{element\+Size}
+\begin{DoxyCompactList}\small\item\em The size of the data held. \end{DoxyCompactList}\item 
+Uint8 \hyperlink{structgraphnode__s_a87f4c0982d29301b2438f3c7a3e2a493}{traversed}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A data structure that represents a single node in a graph. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structgraphnode__s_a735984d41155bc1032e09bece8f8d66d}\label{structgraphnode__s_a735984d41155bc1032e09bece8f8d66d}} 
+\index{graphnode\+\_\+s@{graphnode\+\_\+s}!data@{data}}
+\index{data@{data}!graphnode\+\_\+s@{graphnode\+\_\+s}}
+\subsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily void$\ast$ data}
+
+
+
+The data this node will hold. 
+
+\mbox{\Hypertarget{structgraphnode__s_ae504c9f7ceef062009506664d993c7db}\label{structgraphnode__s_ae504c9f7ceef062009506664d993c7db}} 
+\index{graphnode\+\_\+s@{graphnode\+\_\+s}!down\+\_\+node@{down\+\_\+node}}
+\index{down\+\_\+node@{down\+\_\+node}!graphnode\+\_\+s@{graphnode\+\_\+s}}
+\subsubsection{\texorpdfstring{down\+\_\+node}{down\_node}}
+{\footnotesize\ttfamily struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s}$\ast$ down\+\_\+node}
+
+\mbox{\Hypertarget{structgraphnode__s_af884332e6713af9425451adde09e0024}\label{structgraphnode__s_af884332e6713af9425451adde09e0024}} 
+\index{graphnode\+\_\+s@{graphnode\+\_\+s}!element\+Size@{element\+Size}}
+\index{element\+Size@{element\+Size}!graphnode\+\_\+s@{graphnode\+\_\+s}}
+\subsubsection{\texorpdfstring{element\+Size}{elementSize}}
+{\footnotesize\ttfamily size\+\_\+t element\+Size}
+
+
+
+The size of the data held. 
+
+\mbox{\Hypertarget{structgraphnode__s_af65e2cb312f851ac682c732ce717418b}\label{structgraphnode__s_af65e2cb312f851ac682c732ce717418b}} 
+\index{graphnode\+\_\+s@{graphnode\+\_\+s}!left\+\_\+node@{left\+\_\+node}}
+\index{left\+\_\+node@{left\+\_\+node}!graphnode\+\_\+s@{graphnode\+\_\+s}}
+\subsubsection{\texorpdfstring{left\+\_\+node}{left\_node}}
+{\footnotesize\ttfamily struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s}$\ast$ left\+\_\+node}
+
+\mbox{\Hypertarget{structgraphnode__s_a54cefd6e7df653a0115bae821fd1599c}\label{structgraphnode__s_a54cefd6e7df653a0115bae821fd1599c}} 
+\index{graphnode\+\_\+s@{graphnode\+\_\+s}!right\+\_\+node@{right\+\_\+node}}
+\index{right\+\_\+node@{right\+\_\+node}!graphnode\+\_\+s@{graphnode\+\_\+s}}
+\subsubsection{\texorpdfstring{right\+\_\+node}{right\_node}}
+{\footnotesize\ttfamily struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s}$\ast$ right\+\_\+node}
+
+\mbox{\Hypertarget{structgraphnode__s_a87f4c0982d29301b2438f3c7a3e2a493}\label{structgraphnode__s_a87f4c0982d29301b2438f3c7a3e2a493}} 
+\index{graphnode\+\_\+s@{graphnode\+\_\+s}!traversed@{traversed}}
+\index{traversed@{traversed}!graphnode\+\_\+s@{graphnode\+\_\+s}}
+\subsubsection{\texorpdfstring{traversed}{traversed}}
+{\footnotesize\ttfamily Uint8 traversed}
+
+\mbox{\Hypertarget{structgraphnode__s_a7101dbac1154ba59495fffbdb030eba2}\label{structgraphnode__s_a7101dbac1154ba59495fffbdb030eba2}} 
+\index{graphnode\+\_\+s@{graphnode\+\_\+s}!up\+\_\+node@{up\+\_\+node}}
+\index{up\+\_\+node@{up\+\_\+node}!graphnode\+\_\+s@{graphnode\+\_\+s}}
+\subsubsection{\texorpdfstring{up\+\_\+node}{up\_node}}
+{\footnotesize\ttfamily struct \hyperlink{structgraphnode__s}{graphnode\+\_\+s}$\ast$ up\+\_\+node}
+
+
+
+Pointers to the surrounding nodes in the graph. 
+
+\mbox{\Hypertarget{structgraphnode__s_a6150e0515f7202e2fb518f7206ed97dc}\label{structgraphnode__s_a6150e0515f7202e2fb518f7206ed97dc}} 
+\index{graphnode\+\_\+s@{graphnode\+\_\+s}!x@{x}}
+\index{x@{x}!graphnode\+\_\+s@{graphnode\+\_\+s}}
+\subsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily int x}
+
+\mbox{\Hypertarget{structgraphnode__s_a0a2f84ed7838f07779ae24c5a9086d33}\label{structgraphnode__s_a0a2f84ed7838f07779ae24c5a9086d33}} 
+\index{graphnode\+\_\+s@{graphnode\+\_\+s}!y@{y}}
+\index{y@{y}!graphnode\+\_\+s@{graphnode\+\_\+s}}
+\subsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily int y}
+
+
+
+The position in the graph of this node. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Fall2017\+\_\+2\+Dproject/include/\hyperlink{ds__graph_8h}{ds\+\_\+graph.\+h}\end{DoxyCompactItemize}

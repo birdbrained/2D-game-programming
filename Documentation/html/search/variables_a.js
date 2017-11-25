@@ -1,4 +1,19 @@
 var searchData=
 [
-  ['rotation',['rotation',['../structentity__s.html#ac4e0ffa54c436c5dad6ca9481266f9ed',1,'entity_s']]]
+  ['main_5fwindow',['main_window',['../d8/d8b/struct_graphics.html#a6d874aedde3f9bbb27b10879f2136510',1,'Graphics']]],
+  ['marchingstat',['marchingStat',['../d0/d71/struct_student.html#a1ffd9807649f3fadb5087c20438e9029',1,'Student']]],
+  ['max_5fsprites',['max_sprites',['../d9/d1f/struct_sprite_manager.html#a5ea83f217d51ae6c72599a9e46e1d947',1,'SpriteManager']]],
+  ['maxentities',['maxEntities',['../d5/d86/struct_entity_manager.html#a8c3b6b23ab8d7bd613ded00f7bd3ca9c',1,'EntityManager']]],
+  ['maxframe',['maxFrame',['../de/d0b/structentity__s.html#a0fe584f9e9339b6558acfff9faafe187',1,'entity_s']]],
+  ['maxguis',['maxGUIs',['../d3/db7/structguimanager__s.html#a74f8a2d00fbe7d37b7561bafc55e54c2',1,'guimanager_s']]],
+  ['maxsounds',['maxSounds',['../d1/d5a/structaudio__manager.html#ab75ce519cd6dd16c6d1307703b09a7cd',1,'audio_manager']]],
+  ['maxtextdisplays',['maxTextDisplays',['../d4/db0/structtextmanager__s.html#aad759ca5b5ca2719b916d629df38aafb',1,'textmanager_s']]],
+  ['minframe',['minFrame',['../de/d0b/structentity__s.html#a01ee90dc9c4db69ef58c8c6d8ba67f28',1,'entity_s']]],
+  ['morale',['morale',['../d0/d71/struct_student.html#a41618f2cce097ee241597cae9276e1ec',1,'Student']]],
+  ['musicstat',['musicStat',['../d0/d71/struct_student.html#a537b274a8e0eb482207a27efdbcdbee5',1,'Student']]],
+  ['my_5fthink_5ffunction',['my_think_function',['../da/d09/structthink__function.html#a7bbc48756692dbd8c333f59227442834',1,'think_function']]],
+  ['myband',['myBand',['../db/d57/structband__s.html#a4fe5b3acf1bffd136d6e49c9ad1c620d',1,'band_s']]],
+  ['myinstrument',['myInstrument',['../de/d0b/structentity__s.html#ab2c76805fde47894da8bf16f81963db7',1,'entity_s']]],
+  ['mysection',['mySection',['../de/d0b/structentity__s.html#ad81be2aae4b919dfe48fcee74129eb10',1,'entity_s']]],
+  ['mysprite',['mySprite',['../de/d0b/structentity__s.html#a09530f21303b5dbd659855de69a51e0c',1,'entity_s']]]
 ];

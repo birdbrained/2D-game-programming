@@ -1,0 +1,135 @@
+\hypertarget{ds__linked__list_8h}{}\section{Fall2017\+\_\+2\+Dproject/include/ds\+\_\+linked\+\_\+list.h File Reference}
+\label{ds__linked__list_8h}\index{Fall2017\+\_\+2\+Dproject/include/ds\+\_\+linked\+\_\+list.\+h@{Fall2017\+\_\+2\+Dproject/include/ds\+\_\+linked\+\_\+list.\+h}}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_node___s}{Node\+\_\+S}
+\begin{DoxyCompactList}\small\item\em \hyperlink{struct_node___s}{Node\+\_\+S} L\+L\+\_\+\+Node a node of a linked list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_node___s}{Node\+\_\+S} \hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node}
+\begin{DoxyCompactList}\small\item\em \hyperlink{struct_node___s}{Node\+\_\+S} L\+L\+\_\+\+Node a node of a linked list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node} $\ast$ \hyperlink{ds__linked__list_8h_a919010461fbd3c2e5a17d88c4f7b2e0f}{linkedlist\+\_\+new\+\_\+node} ()
+\begin{DoxyCompactList}\small\item\em Allocates memory for a new node. \end{DoxyCompactList}\item 
+int \hyperlink{ds__linked__list_8h_a28c58a5a4d1cec97ca1d84e8422a3da8}{linkedlist\+\_\+insert} (\hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node} $\ast$$\ast$head, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Pushes a new element onto the linked list. \end{DoxyCompactList}\item 
+\hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node} $\ast$ \hyperlink{ds__linked__list_8h_a49d320c36eeea8fae03948e12fed26bf}{linkedlist\+\_\+remove\+\_\+front} (\hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Removes a node from the front of the linked list (most recent added), O(1) \end{DoxyCompactList}\item 
+\hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node} $\ast$ \hyperlink{ds__linked__list_8h_abb2f8a16cd990b87a3459ab8995d9839}{linkedlist\+\_\+remove\+\_\+back} (\hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Removes a node from the back of the linked list (first added), O(n) \end{DoxyCompactList}\item 
+int \hyperlink{ds__linked__list_8h_a014ced93d3bdad30eb6298da1bdcdd9a}{linkedlist\+\_\+free\+\_\+node} (\hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Frees a null node from memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}\label{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}} 
+\index{ds\+\_\+linked\+\_\+list.\+h@{ds\+\_\+linked\+\_\+list.\+h}!L\+L\+\_\+\+Node@{L\+L\+\_\+\+Node}}
+\index{L\+L\+\_\+\+Node@{L\+L\+\_\+\+Node}!ds\+\_\+linked\+\_\+list.\+h@{ds\+\_\+linked\+\_\+list.\+h}}
+\subsubsection{\texorpdfstring{L\+L\+\_\+\+Node}{LL\_Node}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct_node___s}{Node\+\_\+S} \hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node}}
+
+
+
+\hyperlink{struct_node___s}{Node\+\_\+S} L\+L\+\_\+\+Node a node of a linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Void pointer to data the node will hold \\
+\hline
+{\em next} & Pointer to next node in linked list, N\+U\+LL if end of linked list \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ds__linked__list_8h_a014ced93d3bdad30eb6298da1bdcdd9a}\label{ds__linked__list_8h_a014ced93d3bdad30eb6298da1bdcdd9a}} 
+\index{ds\+\_\+linked\+\_\+list.\+h@{ds\+\_\+linked\+\_\+list.\+h}!linkedlist\+\_\+free\+\_\+node@{linkedlist\+\_\+free\+\_\+node}}
+\index{linkedlist\+\_\+free\+\_\+node@{linkedlist\+\_\+free\+\_\+node}!ds\+\_\+linked\+\_\+list.\+h@{ds\+\_\+linked\+\_\+list.\+h}}
+\subsubsection{\texorpdfstring{linkedlist\+\_\+free\+\_\+node()}{linkedlist\_free\_node()}}
+{\footnotesize\ttfamily int linkedlist\+\_\+free\+\_\+node (\begin{DoxyParamCaption}\item[{\hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Frees a null node from memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The node to free \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, -\/1 if node still has data, -\/2 if node is already null 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__linked__list_8h_a28c58a5a4d1cec97ca1d84e8422a3da8}\label{ds__linked__list_8h_a28c58a5a4d1cec97ca1d84e8422a3da8}} 
+\index{ds\+\_\+linked\+\_\+list.\+h@{ds\+\_\+linked\+\_\+list.\+h}!linkedlist\+\_\+insert@{linkedlist\+\_\+insert}}
+\index{linkedlist\+\_\+insert@{linkedlist\+\_\+insert}!ds\+\_\+linked\+\_\+list.\+h@{ds\+\_\+linked\+\_\+list.\+h}}
+\subsubsection{\texorpdfstring{linkedlist\+\_\+insert()}{linkedlist\_insert()}}
+{\footnotesize\ttfamily int linkedlist\+\_\+insert (\begin{DoxyParamCaption}\item[{\hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node} $\ast$$\ast$}]{head,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Pushes a new element onto the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & The current head node \\
+\hline
+{\em void} & pointer to data the node will hold \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, -\/1 if memory could not be allocated 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__linked__list_8h_a919010461fbd3c2e5a17d88c4f7b2e0f}\label{ds__linked__list_8h_a919010461fbd3c2e5a17d88c4f7b2e0f}} 
+\index{ds\+\_\+linked\+\_\+list.\+h@{ds\+\_\+linked\+\_\+list.\+h}!linkedlist\+\_\+new\+\_\+node@{linkedlist\+\_\+new\+\_\+node}}
+\index{linkedlist\+\_\+new\+\_\+node@{linkedlist\+\_\+new\+\_\+node}!ds\+\_\+linked\+\_\+list.\+h@{ds\+\_\+linked\+\_\+list.\+h}}
+\subsubsection{\texorpdfstring{linkedlist\+\_\+new\+\_\+node()}{linkedlist\_new\_node()}}
+{\footnotesize\ttfamily \hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node}$\ast$ linkedlist\+\_\+new\+\_\+node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Allocates memory for a new node. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created node, N\+U\+LL if not enough memory 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__linked__list_8h_abb2f8a16cd990b87a3459ab8995d9839}\label{ds__linked__list_8h_abb2f8a16cd990b87a3459ab8995d9839}} 
+\index{ds\+\_\+linked\+\_\+list.\+h@{ds\+\_\+linked\+\_\+list.\+h}!linkedlist\+\_\+remove\+\_\+back@{linkedlist\+\_\+remove\+\_\+back}}
+\index{linkedlist\+\_\+remove\+\_\+back@{linkedlist\+\_\+remove\+\_\+back}!ds\+\_\+linked\+\_\+list.\+h@{ds\+\_\+linked\+\_\+list.\+h}}
+\subsubsection{\texorpdfstring{linkedlist\+\_\+remove\+\_\+back()}{linkedlist\_remove\_back()}}
+{\footnotesize\ttfamily \hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node}$\ast$ linkedlist\+\_\+remove\+\_\+back (\begin{DoxyParamCaption}\item[{\hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Removes a node from the back of the linked list (first added), O(n) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & The current head node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the removed node 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ds__linked__list_8h_a49d320c36eeea8fae03948e12fed26bf}\label{ds__linked__list_8h_a49d320c36eeea8fae03948e12fed26bf}} 
+\index{ds\+\_\+linked\+\_\+list.\+h@{ds\+\_\+linked\+\_\+list.\+h}!linkedlist\+\_\+remove\+\_\+front@{linkedlist\+\_\+remove\+\_\+front}}
+\index{linkedlist\+\_\+remove\+\_\+front@{linkedlist\+\_\+remove\+\_\+front}!ds\+\_\+linked\+\_\+list.\+h@{ds\+\_\+linked\+\_\+list.\+h}}
+\subsubsection{\texorpdfstring{linkedlist\+\_\+remove\+\_\+front()}{linkedlist\_remove\_front()}}
+{\footnotesize\ttfamily \hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node}$\ast$ linkedlist\+\_\+remove\+\_\+front (\begin{DoxyParamCaption}\item[{\hyperlink{ds__linked__list_8h_a725fc353085154a236042cf6c00977f2}{L\+L\+\_\+\+Node} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Removes a node from the front of the linked list (most recent added), O(1) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & The current head node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the removed node 
+\end{DoxyReturn}

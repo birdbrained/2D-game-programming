@@ -1,0 +1,269 @@
+\hypertarget{shape_8h}{}\section{Fall2017\+\_\+2\+Dproject/include/shape.h File Reference}
+\label{shape_8h}\index{Fall2017\+\_\+2\+Dproject/include/shape.\+h@{Fall2017\+\_\+2\+Dproject/include/shape.\+h}}
+{\ttfamily \#include \char`\"{}gf2d\+\_\+vector.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+graphics.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structrect__s}{rect\+\_\+s}
+\item 
+struct \hyperlink{structcircle__s}{circle\+\_\+s}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{shape_8h_a4a87cda90141a2c984921221701de0ab}{C\+O\+L\+O\+R\+\_\+\+N\+O\+NE}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(0, 0, 0, 0)
+\item 
+\#define \hyperlink{shape_8h_a7836ebd1d17ff9b43127d69473f7c402}{C\+O\+L\+O\+R\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(0, 0, 0, 122)
+\item 
+\#define \hyperlink{shape_8h_a9b44987ffdc2af19b635206b94334b69}{C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+TE}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(255, 255, 255, 255)
+\item 
+\#define \hyperlink{shape_8h_aba2a7fe77a7501e5844370eec0185207}{C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+CK}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(0, 0, 0, 255)
+\item 
+\#define \hyperlink{shape_8h_ad86358bf19927183dd7b4ae215a29731}{C\+O\+L\+O\+R\+\_\+\+R\+ED}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(255, 0, 0, 255)
+\item 
+\#define \hyperlink{shape_8h_afc9149f5de51bd9ac4f5ebbfa153f018}{C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+EN}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(0, 255, 0, 255)
+\item 
+\#define \hyperlink{shape_8h_a23c70d699a5a775bc2e1ebeb8603f630}{C\+O\+L\+O\+R\+\_\+\+B\+L\+UE}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(0, 0, 255, 255)
+\item 
+\#define \hyperlink{shape_8h_a4534b577b74a58b0f4b7be027af664e0}{C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+OW}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(255, 255, 0, 255)
+\item 
+\#define \hyperlink{shape_8h_aef75f616b9a3fdb10d38395dfb996873}{C\+O\+L\+O\+R\+\_\+\+O\+R\+A\+N\+GE}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(255, 155, 0, 255)
+\item 
+\#define \hyperlink{shape_8h_adc400e6efc54843fb9400270bbc61368}{C\+O\+L\+O\+R\+\_\+\+P\+I\+NK}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(255, 155, 255, 255)
+\item 
+\#define \hyperlink{shape_8h_a361bd41194ac13caf9169f3f689dc179}{C\+O\+L\+O\+R\+\_\+\+P\+U\+R\+P\+LE}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(102, 0, 255, 255)
+\item 
+\#define \hyperlink{shape_8h_abaaa916233df66b63c4c4800890f2209}{C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E\+\_\+\+L\+I\+G\+HT}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(0, 201, 255, 255)
+\item 
+\#define \hyperlink{shape_8h_a2b7075d8a72b2b1515f2e247c920f6c7}{C\+O\+L\+O\+R\+\_\+\+R\+E\+D\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT}~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(255, 0, 0, 122)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structrect__s}{rect\+\_\+s} \hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect}
+\item 
+typedef struct \hyperlink{structcircle__s}{circle\+\_\+s} \hyperlink{shape_8h_aba3c0317200e0faecd7281d47803e929}{Circle}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$ \hyperlink{shape_8h_a9a396a18db71799f9456417736c94734}{rect\+\_\+new} (float x, float y, float width, float height)
+\begin{DoxyCompactList}\small\item\em Creates a rectangle structure. \end{DoxyCompactList}\item 
+int \hyperlink{shape_8h_a533f78d1d795edd8923543d3d3dc7bf0}{point\+\_\+in\+\_\+rect} (float x, float y, \hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$rect)
+\begin{DoxyCompactList}\small\item\em Checks to see if a point is in a Rect. \end{DoxyCompactList}\item 
+int \hyperlink{shape_8h_ae2e961d007b9053cee090c91253c78a5}{rect\+\_\+in\+\_\+rect} (\hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$a, \hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$b)
+\begin{DoxyCompactList}\small\item\em Checks to see if two rects are colliding. \end{DoxyCompactList}\item 
+\hyperlink{shape_8h_aba3c0317200e0faecd7281d47803e929}{Circle} $\ast$ \hyperlink{shape_8h_aa29cffe7a8028bf8b7411aa46d30f289}{circle\+\_\+new} (float x, float y, float radius)
+\item 
+int \hyperlink{shape_8h_a8f2ed700d59b000bc67d1144422e8dbb}{point\+\_\+in\+\_\+circle} (float x, float y, \hyperlink{shape_8h_aba3c0317200e0faecd7281d47803e929}{Circle} $\ast$c)
+\begin{DoxyCompactList}\small\item\em Checks to see if a point is in a circle. \end{DoxyCompactList}\item 
+void \hyperlink{shape_8h_ae65f63fa483822826c574476045fc2a5}{draw\+\_\+line} (\hyperlink{struct_vector2_d}{Vector2D} pointA, \hyperlink{struct_vector2_d}{Vector2D} pointB, \hyperlink{struct_vector4_d}{Vector4D} color)
+\item 
+int \hyperlink{shape_8h_ad7954e6a1b9ea073c7bc894dc5af85a9}{random\+\_\+int} (int min, int max)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{shape_8h_aba2a7fe77a7501e5844370eec0185207}\label{shape_8h_aba2a7fe77a7501e5844370eec0185207}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+CK@{C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+CK}}
+\index{C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+CK@{C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+CK}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+CK}{COLOR\_BLACK}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+B\+L\+A\+CK~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(0, 0, 0, 255)}
+
+\mbox{\Hypertarget{shape_8h_a23c70d699a5a775bc2e1ebeb8603f630}\label{shape_8h_a23c70d699a5a775bc2e1ebeb8603f630}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+B\+L\+UE@{C\+O\+L\+O\+R\+\_\+\+B\+L\+UE}}
+\index{C\+O\+L\+O\+R\+\_\+\+B\+L\+UE@{C\+O\+L\+O\+R\+\_\+\+B\+L\+UE}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+B\+L\+UE}{COLOR\_BLUE}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+B\+L\+UE~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(0, 0, 255, 255)}
+
+\mbox{\Hypertarget{shape_8h_abaaa916233df66b63c4c4800890f2209}\label{shape_8h_abaaa916233df66b63c4c4800890f2209}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E\+\_\+\+L\+I\+G\+HT@{C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E\+\_\+\+L\+I\+G\+HT}}
+\index{C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E\+\_\+\+L\+I\+G\+HT@{C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E\+\_\+\+L\+I\+G\+HT}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E\+\_\+\+L\+I\+G\+HT}{COLOR\_BLUE\_LIGHT}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+B\+L\+U\+E\+\_\+\+L\+I\+G\+HT~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(0, 201, 255, 255)}
+
+\mbox{\Hypertarget{shape_8h_afc9149f5de51bd9ac4f5ebbfa153f018}\label{shape_8h_afc9149f5de51bd9ac4f5ebbfa153f018}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+EN@{C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+EN}}
+\index{C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+EN@{C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+EN}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+EN}{COLOR\_GREEN}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+G\+R\+E\+EN~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(0, 255, 0, 255)}
+
+\mbox{\Hypertarget{shape_8h_a4a87cda90141a2c984921221701de0ab}\label{shape_8h_a4a87cda90141a2c984921221701de0ab}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+N\+O\+NE@{C\+O\+L\+O\+R\+\_\+\+N\+O\+NE}}
+\index{C\+O\+L\+O\+R\+\_\+\+N\+O\+NE@{C\+O\+L\+O\+R\+\_\+\+N\+O\+NE}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+N\+O\+NE}{COLOR\_NONE}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+N\+O\+NE~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(0, 0, 0, 0)}
+
+\mbox{\Hypertarget{shape_8h_aef75f616b9a3fdb10d38395dfb996873}\label{shape_8h_aef75f616b9a3fdb10d38395dfb996873}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+O\+R\+A\+N\+GE@{C\+O\+L\+O\+R\+\_\+\+O\+R\+A\+N\+GE}}
+\index{C\+O\+L\+O\+R\+\_\+\+O\+R\+A\+N\+GE@{C\+O\+L\+O\+R\+\_\+\+O\+R\+A\+N\+GE}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+O\+R\+A\+N\+GE}{COLOR\_ORANGE}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+O\+R\+A\+N\+GE~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(255, 155, 0, 255)}
+
+\mbox{\Hypertarget{shape_8h_adc400e6efc54843fb9400270bbc61368}\label{shape_8h_adc400e6efc54843fb9400270bbc61368}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+P\+I\+NK@{C\+O\+L\+O\+R\+\_\+\+P\+I\+NK}}
+\index{C\+O\+L\+O\+R\+\_\+\+P\+I\+NK@{C\+O\+L\+O\+R\+\_\+\+P\+I\+NK}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+P\+I\+NK}{COLOR\_PINK}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+P\+I\+NK~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(255, 155, 255, 255)}
+
+\mbox{\Hypertarget{shape_8h_a361bd41194ac13caf9169f3f689dc179}\label{shape_8h_a361bd41194ac13caf9169f3f689dc179}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+P\+U\+R\+P\+LE@{C\+O\+L\+O\+R\+\_\+\+P\+U\+R\+P\+LE}}
+\index{C\+O\+L\+O\+R\+\_\+\+P\+U\+R\+P\+LE@{C\+O\+L\+O\+R\+\_\+\+P\+U\+R\+P\+LE}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+P\+U\+R\+P\+LE}{COLOR\_PURPLE}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+P\+U\+R\+P\+LE~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(102, 0, 255, 255)}
+
+\mbox{\Hypertarget{shape_8h_ad86358bf19927183dd7b4ae215a29731}\label{shape_8h_ad86358bf19927183dd7b4ae215a29731}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+R\+ED@{C\+O\+L\+O\+R\+\_\+\+R\+ED}}
+\index{C\+O\+L\+O\+R\+\_\+\+R\+ED@{C\+O\+L\+O\+R\+\_\+\+R\+ED}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+R\+ED}{COLOR\_RED}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+R\+ED~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(255, 0, 0, 255)}
+
+\mbox{\Hypertarget{shape_8h_a2b7075d8a72b2b1515f2e247c920f6c7}\label{shape_8h_a2b7075d8a72b2b1515f2e247c920f6c7}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+R\+E\+D\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT@{C\+O\+L\+O\+R\+\_\+\+R\+E\+D\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT}}
+\index{C\+O\+L\+O\+R\+\_\+\+R\+E\+D\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT@{C\+O\+L\+O\+R\+\_\+\+R\+E\+D\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+R\+E\+D\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT}{COLOR\_RED\_TRANSPARENT}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+R\+E\+D\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(255, 0, 0, 122)}
+
+\mbox{\Hypertarget{shape_8h_a7836ebd1d17ff9b43127d69473f7c402}\label{shape_8h_a7836ebd1d17ff9b43127d69473f7c402}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT@{C\+O\+L\+O\+R\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT}}
+\index{C\+O\+L\+O\+R\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT@{C\+O\+L\+O\+R\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT}{COLOR\_TRANSPARENT}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+T\+R\+A\+N\+S\+P\+A\+R\+E\+NT~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(0, 0, 0, 122)}
+
+\mbox{\Hypertarget{shape_8h_a9b44987ffdc2af19b635206b94334b69}\label{shape_8h_a9b44987ffdc2af19b635206b94334b69}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+TE@{C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+TE}}
+\index{C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+TE@{C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+TE}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+TE}{COLOR\_WHITE}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+W\+H\+I\+TE~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(255, 255, 255, 255)}
+
+\mbox{\Hypertarget{shape_8h_a4534b577b74a58b0f4b7be027af664e0}\label{shape_8h_a4534b577b74a58b0f4b7be027af664e0}} 
+\index{shape.\+h@{shape.\+h}!C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+OW@{C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+OW}}
+\index{C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+OW@{C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+OW}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+OW}{COLOR\_YELLOW}}
+{\footnotesize\ttfamily \#define C\+O\+L\+O\+R\+\_\+\+Y\+E\+L\+L\+OW~\hyperlink{gf2d__vector_8c_abd78ea8b2d1ee4c530e66c52112aa02f}{vector4d}(255, 255, 0, 255)}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{shape_8h_aba3c0317200e0faecd7281d47803e929}\label{shape_8h_aba3c0317200e0faecd7281d47803e929}} 
+\index{shape.\+h@{shape.\+h}!Circle@{Circle}}
+\index{Circle@{Circle}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{Circle}{Circle}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structcircle__s}{circle\+\_\+s} \hyperlink{shape_8h_aba3c0317200e0faecd7281d47803e929}{Circle}}
+
+\mbox{\Hypertarget{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}\label{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}} 
+\index{shape.\+h@{shape.\+h}!Rect@{Rect}}
+\index{Rect@{Rect}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{Rect}{Rect}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structrect__s}{rect\+\_\+s} \hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{shape_8h_aa29cffe7a8028bf8b7411aa46d30f289}\label{shape_8h_aa29cffe7a8028bf8b7411aa46d30f289}} 
+\index{shape.\+h@{shape.\+h}!circle\+\_\+new@{circle\+\_\+new}}
+\index{circle\+\_\+new@{circle\+\_\+new}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{circle\+\_\+new()}{circle\_new()}}
+{\footnotesize\ttfamily \hyperlink{shape_8h_aba3c0317200e0faecd7281d47803e929}{Circle}$\ast$ circle\+\_\+new (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{shape_8h_ae65f63fa483822826c574476045fc2a5}\label{shape_8h_ae65f63fa483822826c574476045fc2a5}} 
+\index{shape.\+h@{shape.\+h}!draw\+\_\+line@{draw\+\_\+line}}
+\index{draw\+\_\+line@{draw\+\_\+line}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{draw\+\_\+line()}{draw\_line()}}
+{\footnotesize\ttfamily void draw\+\_\+line (\begin{DoxyParamCaption}\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{pointA,  }\item[{\hyperlink{struct_vector2_d}{Vector2D}}]{pointB,  }\item[{\hyperlink{struct_vector4_d}{Vector4D}}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{shape_8h_a8f2ed700d59b000bc67d1144422e8dbb}\label{shape_8h_a8f2ed700d59b000bc67d1144422e8dbb}} 
+\index{shape.\+h@{shape.\+h}!point\+\_\+in\+\_\+circle@{point\+\_\+in\+\_\+circle}}
+\index{point\+\_\+in\+\_\+circle@{point\+\_\+in\+\_\+circle}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{point\+\_\+in\+\_\+circle()}{point\_in\_circle()}}
+{\footnotesize\ttfamily int point\+\_\+in\+\_\+circle (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{\hyperlink{shape_8h_aba3c0317200e0faecd7281d47803e929}{Circle} $\ast$}]{c }\end{DoxyParamCaption})}
+
+
+
+Checks to see if a point is in a circle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x pos of the point \\
+\hline
+{\em y} & The y pos of the point \\
+\hline
+{\em c} & The circle to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if point in circle; 0 if it is not or if c was null 
+\end{DoxyReturn}
+\mbox{\Hypertarget{shape_8h_a533f78d1d795edd8923543d3d3dc7bf0}\label{shape_8h_a533f78d1d795edd8923543d3d3dc7bf0}} 
+\index{shape.\+h@{shape.\+h}!point\+\_\+in\+\_\+rect@{point\+\_\+in\+\_\+rect}}
+\index{point\+\_\+in\+\_\+rect@{point\+\_\+in\+\_\+rect}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{point\+\_\+in\+\_\+rect()}{point\_in\_rect()}}
+{\footnotesize\ttfamily int point\+\_\+in\+\_\+rect (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{\hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$}]{rect }\end{DoxyParamCaption})}
+
+
+
+Checks to see if a point is in a Rect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X point \\
+\hline
+{\em y} & Y point \\
+\hline
+{\em rect} & The Rect to compare against \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if point is in Rect; 0 if it\textquotesingle{}s not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{shape_8h_ad7954e6a1b9ea073c7bc894dc5af85a9}\label{shape_8h_ad7954e6a1b9ea073c7bc894dc5af85a9}} 
+\index{shape.\+h@{shape.\+h}!random\+\_\+int@{random\+\_\+int}}
+\index{random\+\_\+int@{random\+\_\+int}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{random\+\_\+int()}{random\_int()}}
+{\footnotesize\ttfamily int random\+\_\+int (\begin{DoxyParamCaption}\item[{int}]{min,  }\item[{int}]{max }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{shape_8h_ae2e961d007b9053cee090c91253c78a5}\label{shape_8h_ae2e961d007b9053cee090c91253c78a5}} 
+\index{shape.\+h@{shape.\+h}!rect\+\_\+in\+\_\+rect@{rect\+\_\+in\+\_\+rect}}
+\index{rect\+\_\+in\+\_\+rect@{rect\+\_\+in\+\_\+rect}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{rect\+\_\+in\+\_\+rect()}{rect\_in\_rect()}}
+{\footnotesize\ttfamily int rect\+\_\+in\+\_\+rect (\begin{DoxyParamCaption}\item[{\hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$}]{a,  }\item[{\hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect} $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Checks to see if two rects are colliding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first rect \\
+\hline
+{\em b} & The second rect \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if rects are colliding; 0 if they are not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{shape_8h_a9a396a18db71799f9456417736c94734}\label{shape_8h_a9a396a18db71799f9456417736c94734}} 
+\index{shape.\+h@{shape.\+h}!rect\+\_\+new@{rect\+\_\+new}}
+\index{rect\+\_\+new@{rect\+\_\+new}!shape.\+h@{shape.\+h}}
+\subsubsection{\texorpdfstring{rect\+\_\+new()}{rect\_new()}}
+{\footnotesize\ttfamily \hyperlink{shape_8h_a44e2d24ab2a21b90d03880cab9cc6d16}{Rect}$\ast$ rect\+\_\+new (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{width,  }\item[{float}]{height }\end{DoxyParamCaption})}
+
+
+
+Creates a rectangle structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X position of rect (leftmost) \\
+\hline
+{\em y} & Y position of rect (topmost) \\
+\hline
+{\em width} & Width of rectangle \\
+\hline
+{\em height} & Height of rectangle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Rect pointer to new Rect; N\+U\+LL if no memory can be allocated 
+\end{DoxyReturn}

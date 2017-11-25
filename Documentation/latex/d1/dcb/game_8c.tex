@@ -1,0 +1,61 @@
+\hypertarget{game_8c}{}\section{Fall2017\+\_\+2\+Dproject/src/game.c File Reference}
+\label{game_8c}\index{Fall2017\+\_\+2\+Dproject/src/game.\+c@{Fall2017\+\_\+2\+Dproject/src/game.\+c}}
+{\ttfamily \#include $<$S\+D\+L.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L\+\_\+mixer.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$fmod.\+h$>$}\newline
+{\ttfamily \#include $<$physfs.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+graphics.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+sprite.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}simple\+\_\+logger.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ds\+\_\+linked\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ds\+\_\+priority\+\_\+queue.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ds\+\_\+graph.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tilemap.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}student.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}entity\+\_\+s.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}formation.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}audio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}text\+\_\+s.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gui.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}think\+\_\+functions.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{game_8c_a72f895ac17bd4ea7f09f0f6b40eff4e2}{close\+\_\+level} (\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$tile\+\_\+map, \hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$field\+Graph)
+\item 
+\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$ \hyperlink{game_8c_af0254bf399b2911863fad19867043d39}{load\+\_\+level} (char $\ast$level\+Filename, \hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$tile\+\_\+map, \hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$field\+Graph, Uint8 close\+Prev\+Level)
+\item 
+void \hyperlink{game_8c_a5a4c9bcb0cd120780d9cf07d28dda6b9}{input\+\_\+init} ()
+\item 
+int \hyperlink{game_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{game_8c_a72f895ac17bd4ea7f09f0f6b40eff4e2}\label{game_8c_a72f895ac17bd4ea7f09f0f6b40eff4e2}} 
+\index{game.\+c@{game.\+c}!close\+\_\+level@{close\+\_\+level}}
+\index{close\+\_\+level@{close\+\_\+level}!game.\+c@{game.\+c}}
+\subsubsection{\texorpdfstring{close\+\_\+level()}{close\_level()}}
+{\footnotesize\ttfamily void close\+\_\+level (\begin{DoxyParamCaption}\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{tile\+\_\+map,  }\item[{\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$}]{field\+Graph }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{game_8c_a5a4c9bcb0cd120780d9cf07d28dda6b9}\label{game_8c_a5a4c9bcb0cd120780d9cf07d28dda6b9}} 
+\index{game.\+c@{game.\+c}!input\+\_\+init@{input\+\_\+init}}
+\index{input\+\_\+init@{input\+\_\+init}!game.\+c@{game.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+init()}{input\_init()}}
+{\footnotesize\ttfamily void input\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{game_8c_af0254bf399b2911863fad19867043d39}\label{game_8c_af0254bf399b2911863fad19867043d39}} 
+\index{game.\+c@{game.\+c}!load\+\_\+level@{load\+\_\+level}}
+\index{load\+\_\+level@{load\+\_\+level}!game.\+c@{game.\+c}}
+\subsubsection{\texorpdfstring{load\+\_\+level()}{load\_level()}}
+{\footnotesize\ttfamily \hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph}$\ast$ load\+\_\+level (\begin{DoxyParamCaption}\item[{char $\ast$}]{level\+Filename,  }\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{tile\+\_\+map,  }\item[{\hyperlink{ds__graph_8h_a81b00de881c5ec2a3d3d5e95a4837b61}{Graph} $\ast$}]{field\+Graph,  }\item[{Uint8}]{close\+Prev\+Level }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{game_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{game_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{game.\+c@{game.\+c}!main@{main}}
+\index{main@{main}!game.\+c@{game.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+

@@ -1,0 +1,178 @@
+\hypertarget{tilemap_8h}{}\section{Fall2017\+\_\+2\+Dproject/include/tilemap.h File Reference}
+\label{tilemap_8h}\index{Fall2017\+\_\+2\+Dproject/include/tilemap.\+h@{Fall2017\+\_\+2\+Dproject/include/tilemap.\+h}}
+{\ttfamily \#include $<$S\+D\+L.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+graphics.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2d\+\_\+sprite.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}simple\+\_\+logger.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ds\+\_\+priority\+\_\+queue.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}shape.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtile__s}{tile\+\_\+s}
+\item 
+struct \hyperlink{structtilemap__s}{tilemap\+\_\+s}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structtile__s}{tile\+\_\+s} \hyperlink{tilemap_8h_a3ddb729229cae400779489e2f8e43fef}{Tile}
+\item 
+typedef struct \hyperlink{structtilemap__s}{tilemap\+\_\+s} \hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$ \hyperlink{tilemap_8h_a67b4a855504d6dc5729e32eb12d25283}{tilemap\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Creates a tilemap struct. \end{DoxyCompactList}\item 
+void \hyperlink{tilemap_8h_a28ccf7631b7cf625ea840931c3662333}{tilemap\+\_\+load\+\_\+from\+\_\+file} (F\+I\+LE $\ast$file, \hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$new\+\_\+tilemap)
+\begin{DoxyCompactList}\small\item\em Inits a tilemap from a file. \end{DoxyCompactList}\item 
+int \hyperlink{tilemap_8h_a27e934f06fd150f3742aa3199086d3cc}{tilemap\+\_\+draw} (\hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite} $\ast$tilemap, const int $\ast$tiles, unsigned int width, unsigned int height, int x\+Pos, int y\+Pos)
+\begin{DoxyCompactList}\small\item\em Draws a tile map to the screen. \end{DoxyCompactList}\item 
+int \hyperlink{tilemap_8h_aec4fa3bef5f994cca41427fff276fdfc}{tilemap\+\_\+draw\+\_\+from\+\_\+data} (\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$tilemap)
+\begin{DoxyCompactList}\small\item\em Draws a tile map from the data in a tilemap struct. \end{DoxyCompactList}\item 
+int \hyperlink{tilemap_8h_ababbcca2900276cfaf1db0f6c8494892}{tilemap\+\_\+find\+\_\+tile} (int mx, int my, \hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$map)
+\begin{DoxyCompactList}\small\item\em Find the index of a tile that a given x and y position is in. \end{DoxyCompactList}\item 
+void \hyperlink{tilemap_8h_a2e1134e5dcd690633752015880681c9f}{tilemap\+\_\+clear} (\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$map)
+\begin{DoxyCompactList}\small\item\em Clears all data associated with a tile map. \end{DoxyCompactList}\item 
+void \hyperlink{tilemap_8h_ac362dbf1d19e452c0c3f923b504d7c8c}{tilemap\+\_\+clear\+\_\+space} (\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$$\ast$map)
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{tilemap_8h_a3ddb729229cae400779489e2f8e43fef}\label{tilemap_8h_a3ddb729229cae400779489e2f8e43fef}} 
+\index{tilemap.\+h@{tilemap.\+h}!Tile@{Tile}}
+\index{Tile@{Tile}!tilemap.\+h@{tilemap.\+h}}
+\subsubsection{\texorpdfstring{Tile}{Tile}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structtile__s}{tile\+\_\+s} \hyperlink{tilemap_8h_a3ddb729229cae400779489e2f8e43fef}{Tile}}
+
+\mbox{\Hypertarget{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}\label{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}} 
+\index{tilemap.\+h@{tilemap.\+h}!Tile\+Map@{Tile\+Map}}
+\index{Tile\+Map@{Tile\+Map}!tilemap.\+h@{tilemap.\+h}}
+\subsubsection{\texorpdfstring{Tile\+Map}{TileMap}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structtilemap__s}{tilemap\+\_\+s} \hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tilemap_8h_a2e1134e5dcd690633752015880681c9f}\label{tilemap_8h_a2e1134e5dcd690633752015880681c9f}} 
+\index{tilemap.\+h@{tilemap.\+h}!tilemap\+\_\+clear@{tilemap\+\_\+clear}}
+\index{tilemap\+\_\+clear@{tilemap\+\_\+clear}!tilemap.\+h@{tilemap.\+h}}
+\subsubsection{\texorpdfstring{tilemap\+\_\+clear()}{tilemap\_clear()}}
+{\footnotesize\ttfamily void tilemap\+\_\+clear (\begin{DoxyParamCaption}\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{map }\end{DoxyParamCaption})}
+
+
+
+Clears all data associated with a tile map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & The tile map to clear \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tilemap_8h_ac362dbf1d19e452c0c3f923b504d7c8c}\label{tilemap_8h_ac362dbf1d19e452c0c3f923b504d7c8c}} 
+\index{tilemap.\+h@{tilemap.\+h}!tilemap\+\_\+clear\+\_\+space@{tilemap\+\_\+clear\+\_\+space}}
+\index{tilemap\+\_\+clear\+\_\+space@{tilemap\+\_\+clear\+\_\+space}!tilemap.\+h@{tilemap.\+h}}
+\subsubsection{\texorpdfstring{tilemap\+\_\+clear\+\_\+space()}{tilemap\_clear\_space()}}
+{\footnotesize\ttfamily void tilemap\+\_\+clear\+\_\+space (\begin{DoxyParamCaption}\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$$\ast$}]{map }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tilemap_8h_a27e934f06fd150f3742aa3199086d3cc}\label{tilemap_8h_a27e934f06fd150f3742aa3199086d3cc}} 
+\index{tilemap.\+h@{tilemap.\+h}!tilemap\+\_\+draw@{tilemap\+\_\+draw}}
+\index{tilemap\+\_\+draw@{tilemap\+\_\+draw}!tilemap.\+h@{tilemap.\+h}}
+\subsubsection{\texorpdfstring{tilemap\+\_\+draw()}{tilemap\_draw()}}
+{\footnotesize\ttfamily int tilemap\+\_\+draw (\begin{DoxyParamCaption}\item[{\hyperlink{gf2d__sprite_8h_a85b5a622f08c587d1f33fd504a24416e}{Sprite} $\ast$}]{tilemap,  }\item[{const int $\ast$}]{tiles,  }\item[{unsigned int}]{width,  }\item[{unsigned int}]{height,  }\item[{int}]{x\+Pos,  }\item[{int}]{y\+Pos }\end{DoxyParamCaption})}
+
+
+
+Draws a tile map to the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tilemap} & The sprite containing the tilemap information \\
+\hline
+{\em tiles} & Int array signifying which tile to load on which spot \\
+\hline
+{\em width} & The number of tiles to draw in a line \\
+\hline
+{\em height} & The number of lines of tiles to draw \\
+\hline
+{\em x\+Pos} & Where to starting drawing the tilemap \\
+\hline
+{\em y\+Pos} & Where to starting drawing the tilemap \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tilemap_8h_aec4fa3bef5f994cca41427fff276fdfc}\label{tilemap_8h_aec4fa3bef5f994cca41427fff276fdfc}} 
+\index{tilemap.\+h@{tilemap.\+h}!tilemap\+\_\+draw\+\_\+from\+\_\+data@{tilemap\+\_\+draw\+\_\+from\+\_\+data}}
+\index{tilemap\+\_\+draw\+\_\+from\+\_\+data@{tilemap\+\_\+draw\+\_\+from\+\_\+data}!tilemap.\+h@{tilemap.\+h}}
+\subsubsection{\texorpdfstring{tilemap\+\_\+draw\+\_\+from\+\_\+data()}{tilemap\_draw\_from\_data()}}
+{\footnotesize\ttfamily int tilemap\+\_\+draw\+\_\+from\+\_\+data (\begin{DoxyParamCaption}\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{tilemap }\end{DoxyParamCaption})}
+
+
+
+Draws a tile map from the data in a tilemap struct. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tilemap} & Struct to draw from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, -\/1 if tilemap is N\+U\+LL 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tilemap_8h_ababbcca2900276cfaf1db0f6c8494892}\label{tilemap_8h_ababbcca2900276cfaf1db0f6c8494892}} 
+\index{tilemap.\+h@{tilemap.\+h}!tilemap\+\_\+find\+\_\+tile@{tilemap\+\_\+find\+\_\+tile}}
+\index{tilemap\+\_\+find\+\_\+tile@{tilemap\+\_\+find\+\_\+tile}!tilemap.\+h@{tilemap.\+h}}
+\subsubsection{\texorpdfstring{tilemap\+\_\+find\+\_\+tile()}{tilemap\_find\_tile()}}
+{\footnotesize\ttfamily int tilemap\+\_\+find\+\_\+tile (\begin{DoxyParamCaption}\item[{int}]{mx,  }\item[{int}]{my,  }\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{map }\end{DoxyParamCaption})}
+
+
+
+Find the index of a tile that a given x and y position is in. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mx} & X position of point to check \\
+\hline
+{\em my} & Y position of point to check \\
+\hline
+{\em map} & The map to check if the point is inside of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the tile the point is inside of; -\/1 if point not inside map 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tilemap_8h_a67b4a855504d6dc5729e32eb12d25283}\label{tilemap_8h_a67b4a855504d6dc5729e32eb12d25283}} 
+\index{tilemap.\+h@{tilemap.\+h}!tilemap\+\_\+init@{tilemap\+\_\+init}}
+\index{tilemap\+\_\+init@{tilemap\+\_\+init}!tilemap.\+h@{tilemap.\+h}}
+\subsubsection{\texorpdfstring{tilemap\+\_\+init()}{tilemap\_init()}}
+{\footnotesize\ttfamily \hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map}$\ast$ tilemap\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates a tilemap struct. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to a new tilemap 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tilemap_8h_a28ccf7631b7cf625ea840931c3662333}\label{tilemap_8h_a28ccf7631b7cf625ea840931c3662333}} 
+\index{tilemap.\+h@{tilemap.\+h}!tilemap\+\_\+load\+\_\+from\+\_\+file@{tilemap\+\_\+load\+\_\+from\+\_\+file}}
+\index{tilemap\+\_\+load\+\_\+from\+\_\+file@{tilemap\+\_\+load\+\_\+from\+\_\+file}!tilemap.\+h@{tilemap.\+h}}
+\subsubsection{\texorpdfstring{tilemap\+\_\+load\+\_\+from\+\_\+file()}{tilemap\_load\_from\_file()}}
+{\footnotesize\ttfamily void tilemap\+\_\+load\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{file,  }\item[{\hyperlink{tilemap_8h_abb6b1eea9196e8eff80c82c5ec8bdc4a}{Tile\+Map} $\ast$}]{new\+\_\+tilemap }\end{DoxyParamCaption})}
+
+
+
+Inits a tilemap from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The file to read from \\
+\hline
+{\em ne\+W\+\_\+tilemap} & The Tile\+Map that will be inited \\
+\hline
+\end{DoxyParams}
