@@ -97,6 +97,30 @@ static SDL_Color colorWhite = { 255, 255, 255, 255 };
 static SDL_Color colorRed = { 255, 0, 0, 255 };
 static int cursor = 0;
 
+//game state
+static int currentSet = 0;
+static int maxSets = 0;
+
+char * format_set_text(char text[32], int currentSet, int maxSets)
+{
+	char buffer[5];
+
+	if (!text)
+	{
+		slog("Error: cannot format a text that is null");
+		return NULL;
+	}
+
+	strncpy(text, "Set: ", 32);
+	snprintf(buffer, 5, "%d", currentSet);
+	strcat(text, buffer);
+	strcat(text, "/");
+	snprintf(buffer, 5, "%d", maxSets);
+	strcat(text, buffer);
+
+	return text;
+}
+
 void close_level(TileMap * tile_map, Graph * fieldGraph)
 {
 	if (pickedUp)
@@ -235,6 +259,12 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 			mouseSprite = gf2d_sprite_load_all(buffer, 32, 32, 16);
 			mouse = mouseSprite;
 		}
+		if (strcmp(buffer, "sets:") == 0)
+		{
+			sscanf(physBuffer, " %i\n%n", &maxSets, &n);
+			physBuffer += n;
+			slog("MAX SETS: (%i)", maxSets);
+		}
 		if (strcmp(buffer, "extraSprites:") == 0)
 		{
 			while (1)
@@ -290,6 +320,7 @@ int main(int argc, char * argv[])
 	Sprite *thing;
 	Sprite *thing2;
 	Sprite *guyx;
+	//Sprite *wups;
 	Sprite *galSprite;
 	Sprite *mehSprite;
 	Sprite *closeButton;
@@ -304,6 +335,8 @@ int main(int argc, char * argv[])
 	Vector2D scaleDown = { 0.5, 0.5 };
 	Vector2D scaleUp = { 2, 2 };
 	Vector2D scaleHalfUp = { 1.5, 1.5 };
+	Vector3D rotate = { 16, 16, 0 };
+	float SPEEEEEED = 0.1f;
 
 	SDL_Event e;
 	SDL_Surface *icon = SDL_LoadBMP("images/sprites/guy16x.bmp");
@@ -360,6 +393,12 @@ int main(int argc, char * argv[])
 	SDL_Texture *consoleTexture;
 	int consoleX = 0, consoleY = 0;
 	SDL_Rect consoleRectie = { 50, 100, 0, 0 };
+
+	SDL_Surface *setSurface;
+	SDL_Texture *setTexture;
+	int setW = 0, setH = 0;
+	SDL_Rect setRect = { 620, 680, 0, 0 };
+	char setText[32];
 
 	Uint8 playButtonPressed = 0;
 
@@ -440,6 +479,7 @@ int main(int argc, char * argv[])
 	//galSprite = gf2d_sprite_load_all("images/sprites/gal32x.png", 32, 32, 2);
 	//mehSprite = gf2d_sprite_load_all("images/sprites/meh32x.png", 32, 32, 2);
 	//musicSheet = gf2d_sprite_load_image("images/gui/music_sheet.png");
+	//wups = gf2d_sprite_load_all("images/sprites/wups.png", 32, 32, 2);
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
 	closeButton = gf2d_sprite_load_all("images/gui/close.png", 25, 25, 1);
 
@@ -471,7 +511,7 @@ int main(int argc, char * argv[])
 	FMOD_System_Create(&system);
 	FMOD_System_Init(system, 100, FMOD_INIT_NORMAL, 0);
 	FMOD_System_CreateSound(system, "music/bg/NJIT.ogg", FMOD_DEFAULT, 0, &fsound);
-	FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
+	//FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
 	//test_fsound = fsound_load(system, "music/bg/NJIT.ogg", FMOD_DEFAULT, 0, Instrument_Unassigned);
 	//fsound_play(system, test_fsound);
 
@@ -520,6 +560,13 @@ int main(int argc, char * argv[])
 	consoleRectie.w = consoleX;
 	consoleRectie.h = consoleY;
 
+	strncpy(setText, format_set_text(setText, currentSet, maxSets), 32);
+	setSurface = TTF_RenderText_Solid(PencilFont, setText, colorBlack);
+	setTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), setSurface);
+	SDL_QueryTexture(setTexture, NULL, NULL, &setW, &setH);
+	setRect.w = setW;
+	setRect.h = setH;
+
 	cd = entityNew();
 	cd->mySprite = gf2d_sprite_load_all("images/gui/cd.png", 128, 128, 1);
 	cd->position = vector2d(0, 0);
@@ -545,6 +592,7 @@ int main(int argc, char * argv[])
 	guii->windowColor.w = 100;
 	guii->position.x = 200;
 	guii->position.y = 300;
+	guii->padding = 0;
 	//strncpy(guii->text, "Hello this is text", GUI_MAX_TEXT_LENGTH);
 	guii->font = PencilFont;
 	gui_change_text(guii, "Hello this is text\tThis is more text", 300);
@@ -560,6 +608,7 @@ int main(int argc, char * argv[])
 		//FMOD_System_Update(system);
         /*update things here*/
         SDL_GetMouseState(&mx,&my);
+		//e = 0;
 		SDL_PollEvent(&e);
         mf+=0.1;
         if (mf >= 16.0)mf = 0;        
@@ -666,6 +715,7 @@ int main(int argc, char * argv[])
 					}
 				}
 			}
+			e.button.button = 0;
 			break;
 		case SDL_MOUSEBUTTONUP:
 			if (e.button.button == SDL_BUTTON_LEFT)
@@ -727,7 +777,14 @@ int main(int argc, char * argv[])
 			if (SDL_IsTextInputActive() == SDL_TRUE)
 			{
 				slog("key name (%s)", SDL_GetKeyName(e.key.keysym.sym));
-				strncat(consoleText, SDL_GetKeyName(e.key.keysym.sym), sizeof(consoleText));
+				if (strcmp(SDL_GetKeyName(e.key.keysym.sym), "Space") == 0)
+				{
+					strncat(consoleText, " ", sizeof(consoleText));
+				}
+				else
+				{
+					strncat(consoleText, SDL_GetKeyName(e.key.keysym.sym), sizeof(consoleText));
+				}
 				consoleSurface = TTF_RenderText_Solid(PencilFont, consoleText, colorBlack);
 				consoleTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), consoleSurface);
 				SDL_QueryTexture(consoleTexture, NULL, NULL, &consoleX, &consoleY);
@@ -750,6 +807,18 @@ int main(int argc, char * argv[])
 				SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreX, &scoreY);
 				scoreRect.w = scoreX;
 				scoreRect.h = scoreY;
+
+				//update current set
+				currentSet++;
+				strncpy(setText, format_set_text(setText, currentSet, maxSets), 32);
+				setSurface = TTF_RenderText_Solid(PencilFont, setText, colorBlack);
+				setTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), setSurface);
+				SDL_QueryTexture(setTexture, NULL, NULL, &setW, &setH);
+				setRect.w = setW;
+				setRect.h = setH;
+
+				//e.key.keysym.sym = SDLK_UNKNOWN;
+
 				break;
 			case SDLK_BACKQUOTE:
 				slog("backtick pressed");
@@ -774,6 +843,7 @@ int main(int argc, char * argv[])
 				}
 				break;
 			}
+			e.key.keysym.sym = SDLK_UNKNOWN;
 			break;
 		/*case SDL_TEXTINPUT:
 			if (SDL_IsTextInputActive() == SDL_TRUE)
@@ -858,6 +928,10 @@ int main(int argc, char * argv[])
 		{
 			SDL_RenderCopy(gf2d_graphics_get_renderer(), statMarchingTexture, NULL, &statMarchingRect);
 		}
+		if (setTexture && maxSets > 0)
+		{
+			SDL_RenderCopy(gf2d_graphics_get_renderer(), setTexture, NULL, &setRect);
+		}
 		//SDL_RenderPresent(renderer);
 		//gf2d_sprite_draw_image(textBox, vector2d(50, 50));
 		if (controllerConnected && controllerIcon)
@@ -865,6 +939,10 @@ int main(int argc, char * argv[])
 
 		if (consoleTexture)
 			SDL_RenderCopy(gf2d_graphics_get_renderer(), consoleTexture, NULL, &consoleRectie);
+
+		//gf2d_sprite_draw(wups, vector2d(200, 200), &scaleUp, NULL, &rotate, NULL, NULL, 0);
+		//rotate.z += SPEEEEEED;
+		//SPEEEEEED *= 1.005;
 
 		gui_draw_all();
 		if (guii->inUse)

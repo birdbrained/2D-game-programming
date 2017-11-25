@@ -33,6 +33,7 @@ typedef struct guiwindow_s
 	SDL_Surface * surface;
 	SDL_Texture * texture;
 	int rectW, rectH;
+	int padding;
 }GUIWindow;
 
 /**

@@ -2,6 +2,7 @@ background:	images/backgrounds/bg_flat.png
 tilemap:	def/level/field_0.tilemap
 band:		mnt/_myBand.band
 mouse:		images/pointer.png
+sets:		20
 extraSprites:
 END
 musicSheet
