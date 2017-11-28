@@ -286,6 +286,7 @@ int graph_zero_all(Graph ** graph)
 		{
 			hor_iter->data = 0;
 			hor_iter->traversed = 0;
+			hor_iter->hasEvent = 0;
 			hor_iter = hor_iter->right_node;
 		}
 		ver_iter = ver_iter->down_node;

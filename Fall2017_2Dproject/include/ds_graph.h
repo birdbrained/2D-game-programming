@@ -18,7 +18,8 @@ typedef struct graphnode_s
 	struct graphnode_s * down_node;
 	struct graphnode_s * left_node;
 	size_t elementSize;					/**<The size of the data held*/
-	Uint8 traversed;
+	Uint8 traversed;					/**<Used for graph traversal. Don't touch!*/
+	Uint8 hasEvent;						/**<1 if event will occur on a space; 0 if not*/
 }GraphNode;
 
 /**

@@ -228,6 +228,17 @@ void entityDraw(Entity * self)
 		//slog("position x (%f) y (%f)", self->position.x, self->position.y);
 	}
 
+	//health bar; only draws when not at max health
+	if (self->currMorale < self->statMorale)
+	{
+		self->healthBar.x = self->position.x;
+		self->healthBar.y = (self->position.y + self->mySprite->frame_h * self->scale.y) - (self->mySprite->frame_h * self->scale.y / 4);
+		self->healthBar.w = (self->currMorale * self->mySprite->frame_w * self->scale.x) / self->statMorale;
+		self->healthBar.h = self->mySprite->frame_h / 4 * self->scale.y;
+		draw_filled_rect(self->healthBar, COLOR_RED);
+	}
+
+	//drawing the transparent next selected position
 	if (self->nextPosition != self->currentPosition)
 	{
 		gf2d_sprite_draw(
@@ -474,6 +485,7 @@ Entity * entityLoadFromFile(char * filename, Entity * new_entity)
 			//fscanf(file, "%i", &new_entity->statMorale);
 			sscanf(physBuffer, " %i\n%n", &new_entity->statMorale, &n);
 			physBuffer += n;
+			new_entity->currMorale = new_entity->statMorale - 5;
 			slog("stat morale (%i)", new_entity->statMorale);
 			continue;
 		}

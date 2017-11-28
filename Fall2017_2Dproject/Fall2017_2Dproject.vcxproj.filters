@@ -78,6 +78,9 @@
     <ClCompile Include="src\audio_with_fmod.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\events.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Makefile" />
@@ -147,6 +150,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\audio_with_fmod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\events.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

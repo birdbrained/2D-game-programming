@@ -95,7 +95,7 @@ typedef struct entity_s
 	void(*die)(struct entity_s *self);
 
 	//game specific data
-	StatusAliment currentStatus;
+	StatusAliment currentStatus;			
 	EntityState currentState;
 	Instrument myInstrument;
 	Section mySection;
@@ -103,12 +103,14 @@ typedef struct entity_s
 	int statMarching;
 	int statMusic;
 	int statMorale;
+	int currMorale;
 	int statMotivation;
-	short unsigned int isSectionLeader;
-	int currentPosition;
-	int nextPosition;
+	short unsigned int isSectionLeader;		/**<Check if the member is a section leader*/
+	int currentPosition;					/**<Current position on the grid*/
+	int nextPosition;						/**<Position to move to on next set*/
 	Vector2D pathToDraw;
 	Vector4D pathColor;
+	SDL_Rect healthBar;
 }Entity;
 
 /**
@@ -221,9 +223,18 @@ char * entityGetInstrumentName(Entity * e);
  */
 void entityUpdateGraphPositionAll(Graph ** graph);
 
+/**
+ * @brief Updates an entity's position on the tilemap
+ * @param self The entity to update
+ * @param map The tilemap to update entities on
+ */
 void entityUpdatePosition(Entity * self, TileMap * map);
-void entityUpdatePositionAll(TileMap * map);
 
+/**
+ * @brief Updates every valid entities' position on the tilemap
+ * @param map The tilemap to update entities on
+ */
+void entityUpdatePositionAll(TileMap * map);
 
 
 #endif // ! __ENTITY_S__

@@ -19,6 +19,7 @@
 //#include "audio_with_fmod.h"
 #include "text_s.h"
 #include "gui.h"
+#include "events.h"
 #include "think_functions.h"
 
 
@@ -79,6 +80,7 @@ static Sprite *mouseSprite;
 static Sprite *musicSheet;
 static Sprite *controllerIcon;
 static Sprite *gui;
+static Sprite *eventSprite;
 //TileMap *tile_map;
 static Entity *pickedUp = NULL;
 static Entity *collision = NULL;
@@ -242,6 +244,7 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 			graph_zero_all(&fieldGraph);
 			entityUpdateGraphPositionAll(&fieldGraph);
 			score = formation_detect(&fieldGraph);
+			event_assign_tiles(&fieldGraph, event_decide(), tile_map->height);
 			//graph_print(fieldGraph);
 			slog("snares (%i) flutes (%i) trumpets (%i) alto saxes (%i) baritones (%i) others (%i)",
 				fieldGraph->numSnareDrums,
@@ -287,6 +290,7 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 	}
 
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
+	eventSprite = gf2d_sprite_load_all("images/gui/stahp.png", 32, 32, 1);
 	//soundAdjustVolumeAll(0);
 
 	//fclose(file);
@@ -482,6 +486,7 @@ int main(int argc, char * argv[])
 	//wups = gf2d_sprite_load_all("images/sprites/wups.png", 32, 32, 2);
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
 	closeButton = gf2d_sprite_load_all("images/gui/close.png", 25, 25, 1);
+	eventSprite = gf2d_sprite_load_all("images/gui/stahp.png", 32, 32, 1);
 
 	tile_map = tilemap_init();
 	fieldGraph = graph_init(18, sizeof(Entity));
@@ -510,15 +515,12 @@ int main(int argc, char * argv[])
 
 	FMOD_System_Create(&system);
 	FMOD_System_Init(system, 100, FMOD_INIT_NORMAL, 0);
-<<<<<<< HEAD
 	FMOD_System_CreateSound(system, "mnt/bg/NJIT.ogg", FMOD_DEFAULT, 0, &fsound);
 	//FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
-=======
 	FMOD_System_CreateSound(system, "music/bg/NJIT.ogg", FMOD_DEFAULT, 0, &fsound);
 	//FMOD_System_PlaySound(system, fsound, NULL, 0, 0);
 	//test_fsound = fsound_load(system, "music/bg/NJIT.ogg", FMOD_DEFAULT, 0, Instrument_Unassigned);
 	//fsound_play(system, test_fsound);
->>>>>>> physfs
 
 	//soundPlay(snareDrum, -1, 1, snareDrum->defaultChannel, 0);
 	//soundPlay(flute, -1, 1, flute->defaultChannel, 0);
@@ -806,6 +808,7 @@ int main(int argc, char * argv[])
 				entityUpdateGraphPositionAll(&fieldGraph);
 				soundAdjustVolumeAll(0);
 				score = formation_detect(&fieldGraph);
+				event_assign_tiles(&fieldGraph, event_decide(), tile_map->height);
 				snprintf(scoreText, 32, "%d", score);
 				scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
 				scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
@@ -894,6 +897,12 @@ int main(int argc, char * argv[])
 			if (point_in_rect(1000, 10, cd->boundingBox))
 			{
 				fieldGraph = load_level("mnt/level/myLevel.txt", tile_map, fieldGraph, 1);
+				strncpy(setText, format_set_text(setText, currentSet, maxSets), 32);
+				setSurface = TTF_RenderText_Solid(PencilFont, setText, colorBlack);
+				setTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), setSurface);
+				SDL_QueryTexture(setTexture, NULL, NULL, &setW, &setH);
+				setRect.w = setW;
+				setRect.h = setH;
 				if (musicPlaying > 0)
 				{
 					//Mix_RewindMusic();
@@ -955,6 +964,7 @@ int main(int argc, char * argv[])
 			//slog("aaa");
 			gui_draw(guii);
 		}
+		event_draw_from_graph(fieldGraph, eventSprite, tile_map->tileWidth, tile_map->tileHeight, tile_map->xPos, tile_map->yPos);
 
 		if (pickedUp == NULL)
 		{
@@ -986,6 +996,12 @@ int main(int argc, char * argv[])
 		{
 			//close_level(tile_map);
 			fieldGraph = load_level("mnt/level/myLevel.txt", tile_map, fieldGraph, 1);
+			strncpy(setText, format_set_text(setText, currentSet, maxSets), 32);
+			setSurface = TTF_RenderText_Solid(PencilFont, setText, colorBlack);
+			setTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), setSurface);
+			SDL_QueryTexture(setTexture, NULL, NULL, &setW, &setH);
+			setRect.w = setW;
+			setRect.h = setH;
 			if (musicPlaying > 0)
 			{
 				//Mix_RewindMusic();

@@ -140,6 +140,7 @@
     <ClCompile Include="src\band.c" />
     <ClCompile Include="src\ds_binary_tree.c" />
     <ClCompile Include="src\ds_graph.c" />
+    <ClCompile Include="src\events.c" />
     <ClCompile Include="src\formation.c" />
     <ClCompile Include="src\game.c" />
     <ClCompile Include="src\gf2d_draw.c" />
@@ -169,6 +170,7 @@
     </ClInclude>
     <ClInclude Include="include\ds_priority_queue.h" />
     <ClInclude Include="include\entity_s.h" />
+    <ClInclude Include="include\events.h" />
     <ClInclude Include="include\formation.h" />
     <ClInclude Include="include\gf2d_draw.h" />
     <ClInclude Include="include\gf2d_graphics.h" />
