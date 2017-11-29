@@ -485,7 +485,7 @@ Entity * entityLoadFromFile(char * filename, Entity * new_entity)
 			//fscanf(file, "%i", &new_entity->statMorale);
 			sscanf(physBuffer, " %i\n%n", &new_entity->statMorale, &n);
 			physBuffer += n;
-			new_entity->currMorale = new_entity->statMorale - 5;
+			new_entity->currMorale = new_entity->statMorale;
 			slog("stat morale (%i)", new_entity->statMorale);
 			continue;
 		}
@@ -686,6 +686,29 @@ char * entityGetInstrumentName(Entity * e)
 	}
 
 	return buffer;
+}
+
+int entityDamage(Entity * self, int damage)
+{
+	if (!self)
+	{
+		slog("Error: cannot damage a null entity");
+		return -1;
+	}
+
+	self->currMorale -= damage;
+	if (self->currMorale <= 0)
+	{
+		//killing blow!
+		self->currMorale = 0;
+		self->currentState = ES_Dead;
+		self->currentFrame = 2;
+		self->minFrame = 2;
+		self->maxFrame = 2;
+		return 1;
+	}
+	//damaged, but not a kill
+	return 0;
 }
 
 void entityUpdateGraphPositionAll(Graph ** graph)

@@ -28,7 +28,8 @@ typedef enum entityStates
 {
 	ES_Idle,
 	ES_Moving,
-	ES_Music_Time
+	ES_Music_Time,
+	ES_Dead
 }EntityState;
 
 typedef enum instrument
@@ -216,6 +217,14 @@ Entity * entityCheckCollisionInAll(int mx, int my);
  * @returns A character array of the entity's instrument; joke answer if failure
  */
 char * entityGetInstrumentName(Entity * e);
+
+/**
+ * @brief Damages an entity by a set amount
+ * @param self The entity to damage
+ * @param damage The damage to deal
+ * @returns -1 if self was NULL; 1 if entity has no more health left; 0 if successful normal damage dealing
+ */
+int entityDamage(Entity * self, int damage);
 
 /**
  * @brief Updates the position of all entities on a graph

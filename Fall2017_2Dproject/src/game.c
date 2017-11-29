@@ -102,6 +102,7 @@ static int cursor = 0;
 //game state
 static int currentSet = 0;
 static int maxSets = 0;
+static Event currEvent = 0;
 
 char * format_set_text(char text[32], int currentSet, int maxSets)
 {
@@ -240,11 +241,13 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 			//entityLoadAllFromFile(file_temp, tile_map/*, &fieldGraph*/);
 			entityLoadAllFromFile(buffer, tile_map);
 			//fclose(file_temp);
+			event_execute(currEvent, fieldGraph);
 			tilemap_clear_space(&tile_map);
 			graph_zero_all(&fieldGraph);
 			entityUpdateGraphPositionAll(&fieldGraph);
 			score = formation_detect(&fieldGraph);
-			event_assign_tiles(&fieldGraph, event_decide(), tile_map->height);
+			currEvent = event_decide();
+			event_assign_tiles(&fieldGraph, currEvent, tile_map->height);
 			//graph_print(fieldGraph);
 			slog("snares (%i) flutes (%i) trumpets (%i) alto saxes (%i) baritones (%i) others (%i)",
 				fieldGraph->numSnareDrums,
@@ -731,7 +734,7 @@ int main(int argc, char * argv[])
 				if (collision != NULL && collision->myInstrument != Instrument_Unassigned)
 				{
 					slog("collision with guy (%s)", &collision->name);
-					if (pickedUp == NULL)
+					if (pickedUp == NULL && collision->currentState != ES_Dead)
 					{
 						pickedUp = collision;
 						mouse = collision->mySprite;
@@ -802,13 +805,15 @@ int main(int argc, char * argv[])
 			{
 			case SDLK_RETURN:
 				//slog("pressed enter");
+				event_execute(currEvent, fieldGraph);
 				graph_zero_all(&fieldGraph);
 				tilemap_clear_space(&tile_map);
 				entityUpdatePositionAll(tile_map);
 				entityUpdateGraphPositionAll(&fieldGraph);
 				soundAdjustVolumeAll(0);
 				score = formation_detect(&fieldGraph);
-				event_assign_tiles(&fieldGraph, event_decide(), tile_map->height);
+				currEvent = event_decide();
+				event_assign_tiles(&fieldGraph, currEvent, tile_map->height);
 				snprintf(scoreText, 32, "%d", score);
 				scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
 				scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
