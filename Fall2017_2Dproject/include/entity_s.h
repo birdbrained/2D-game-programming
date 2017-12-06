@@ -84,7 +84,7 @@ typedef struct entity_s
 	Sprite *mySprite;				/**<The entity's sprite, might get changed later*/
 	Vector2D scale;					/**<Scale to draw the sprite at, will default to 1,1*/
 	Vector2D scaleCenter;			/**<Center of sprite to scale at*/
-	Vector2D rotation;				/**<Rotation*/
+	Vector3D rotation;				/**<Rotation*/
 	Vector2D flip;					/**<Flip horizontal or vertical*/
 	float currentFrame;				/**<Current frame of animation*/
 	float minFrame;
@@ -225,6 +225,12 @@ char * entityGetInstrumentName(Entity * e);
  * @returns -1 if self was NULL; 1 if entity has no more health left; 0 if successful normal damage dealing
  */
 int entityDamage(Entity * self, int damage);
+
+/**
+ * @brief Damages all entities
+ * @param damage the damage to deal
+ */
+void entityDamageAll(int damage);
 
 /**
  * @brief Updates the position of all entities on a graph

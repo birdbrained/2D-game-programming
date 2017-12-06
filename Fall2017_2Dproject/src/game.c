@@ -74,6 +74,8 @@ void load_player_data(playerSave *ps, char *filename)
 	fclose(file);
 }*/
 
+#define MAX_TEXT_LENGTH 512
+
 static Sprite *backgroundSprite;
 static Sprite *mouse;
 static Sprite *mouseSprite;
@@ -90,8 +92,8 @@ static Entity *playButton;
 static Sprite *guiMarchingStat;
 //Graph *fieldGraph;
 static int score;
-static char consoleText[512] = "";
-static char consoleMarkedText[512] = "";
+static char consoleText[MAX_TEXT_LENGTH] = "";
+static char consoleMarkedText[MAX_TEXT_LENGTH] = "";
 static SDL_Rect consoleRect, markedRect;
 static TTF_Font *PencilFont;
 static SDL_Color colorBlack = { 0, 0, 0, 255 };
@@ -100,9 +102,41 @@ static SDL_Color colorRed = { 255, 0, 0, 255 };
 static int cursor = 0;
 
 //game state
+int done = 0;
 static int currentSet = 0;
 static int maxSets = 0;
 static Event currEvent = 0;
+
+//other random stuff
+int reload = 0;
+
+void cheat_code(char * text)
+{
+	char buffer[512];
+	int n = 0;
+
+	if (!text)
+	{
+		return;
+	}
+
+	if (strncmp(text, "DIE", MAX_TEXT_LENGTH) == 0)
+	{
+		entityDamageAll(200);
+	}
+	else if (strncmp(text, "RELOAD", MAX_TEXT_LENGTH) == 0)
+	{
+		reload = 1;
+	}
+	else if (strncmp(text, "QUIT", MAX_TEXT_LENGTH) == 0)
+	{
+		done = 1;
+	}
+	else if (strncmp(text, "TIME TO SIN", MAX_TEXT_LENGTH) == 0)
+	{
+
+	}
+}
 
 char * format_set_text(char text[32], int currentSet, int maxSets)
 {
@@ -318,7 +352,6 @@ int main(int argc, char * argv[])
 {
     /*variable declarations,
 	remember, all v. decls. are at the beginning of each function in C*/
-    int done = 0;
     const Uint8 * keys;
     
     int mx,my;
@@ -786,10 +819,14 @@ int main(int argc, char * argv[])
 		case SDL_KEYUP:
 			if (SDL_IsTextInputActive() == SDL_TRUE)
 			{
-				slog("key name (%s)", SDL_GetKeyName(e.key.keysym.sym));
+				//slog("key name (%s)", SDL_GetKeyName(e.key.keysym.sym));
 				if (strcmp(SDL_GetKeyName(e.key.keysym.sym), "Space") == 0)
 				{
 					strncat(consoleText, " ", sizeof(consoleText));
+				}
+				else if (strcmp(SDL_GetKeyName(e.key.keysym.sym), "=") == 0)
+				{
+					//do nothing!
 				}
 				else
 				{
@@ -834,7 +871,7 @@ int main(int argc, char * argv[])
 
 				break;
 			case SDLK_BACKQUOTE:
-				slog("backtick pressed");
+				//slog("backtick pressed");
 				if (SDL_IsTextInputActive() == SDL_FALSE)
 				{
 					//SDL_StartTextInput();
@@ -846,13 +883,15 @@ int main(int argc, char * argv[])
 				if (SDL_IsTextInputActive() == SDL_TRUE)
 				{
 					SDL_StopTextInput();
-					slog("entered text: %s", consoleText);
+					//slog("entered text: %s", consoleText);
 					consoleSurface = TTF_RenderText_Solid(PencilFont, "", colorBlack);
 					consoleTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), consoleSurface);
 					SDL_QueryTexture(consoleTexture, NULL, NULL, &consoleX, &consoleY);
 					consoleRectie.w = consoleX;
 					consoleRectie.h = consoleY;
 					//handle_console(gf2d_graphics_get_renderer());
+
+					cheat_code(consoleText);
 				}
 				break;
 			}
@@ -997,7 +1036,8 @@ int main(int argc, char * argv[])
 		}
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
         
-		if (keys[SDL_SCANCODE_Q])
+		//if (keys[SDL_SCANCODE_Q])
+		if (reload)
 		{
 			//close_level(tile_map);
 			fieldGraph = load_level("mnt/level/myLevel.txt", tile_map, fieldGraph, 1);
@@ -1019,6 +1059,7 @@ int main(int argc, char * argv[])
 			soundPlay(baritone, -1, MIX_MAX_VOLUME / 4, baritone->defaultChannel, 0);
 			soundAdjustVolumeAll(0);
 			musicPlaying = 1;
+			reload = 0;
 		}
 
         if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition

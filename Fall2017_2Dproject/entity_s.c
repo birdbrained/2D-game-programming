@@ -170,6 +170,20 @@ void entityUpdate(Entity * self)
 	{
 		(self)->update((self));
 	}
+
+	switch (self->currentState)
+	{
+	case ES_Dead:
+		self->position.y++;
+		self->rotation.z += 10;
+		if (self->position.y > 600)
+		{
+			entityDelete(self);
+		}
+		break;
+	default:
+		break;
+	}
 }
 
 void entityUpdateAll()
@@ -218,9 +232,9 @@ void entityDraw(Entity * self)
 			self->instrumentSprite,
 			self->position,
 			&self->scale,
-			NULL,
-			NULL,
-			NULL,
+			&self->scaleCenter,
+			&self->rotation,
+			&self->flip,
 			NULL,
 			0
 		);
@@ -387,6 +401,8 @@ Entity * entityLoadFromFile(char * filename, Entity * new_entity)
 			sscanf(physBuffer, " %s\n%n", buffer, &n);
 			physBuffer += n;
 			new_entity->mySprite = gf2d_sprite_load_all(buffer, 32, 32, 2);
+			new_entity->rotation.x = new_entity->mySprite->frame_w / 2;
+			new_entity->rotation.y = new_entity->mySprite->frame_h / 2;
 			continue;
 		}
 		if (strcmp(buffer, "Instrument:") == 0)
@@ -711,6 +727,19 @@ int entityDamage(Entity * self, int damage)
 	return 0;
 }
 
+void entityDamageAll(int damage)
+{
+	int i = 0;
+
+	for (i = 0; i < entityManager.maxEntities; i++)
+	{
+		if (entityManager.entityList[i].inUse > 0)
+		{
+			entityDamage(&entityManager.entityList[i], damage);
+		}
+	}
+}
+
 void entityUpdateGraphPositionAll(Graph ** graph)
 {
 	int i = 0;
@@ -751,6 +780,10 @@ void entityUpdateGraphPositionAll(Graph ** graph)
 void entityUpdatePosition(Entity * self, TileMap * map)
 {
 	if (!self)
+	{
+		return;
+	}
+	if (self->currentState == ES_Dead)
 	{
 		return;
 	}
