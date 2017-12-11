@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:12
+-keep class com.SDL2_Application.SDL2_Application { <init>(...); }
+

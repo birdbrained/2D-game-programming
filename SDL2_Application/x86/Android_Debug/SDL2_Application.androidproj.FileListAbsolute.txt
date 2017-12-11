@@ -1,0 +1,17 @@
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\SDL2_Application.apk.recipe
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\SDL2_Application.apk.recipe.merged
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\Package\libs\x86\gdbserver
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\Package\libs\x86\libSDL2.so
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\Package\libs\x86\libgnustl_static.a
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\Package\res\values\strings.xml
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\Package\src\com\SDL2_Application\SDL2_Application.java
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\Package\src\org\libsdl\app\SDL.java
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\Package\src\org\libsdl\app\SDLActivity.java
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\Package\src\org\libsdl\app\SDLAudioManager.java
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\Package\src\org\libsdl\app\SDLControllerManager.java
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\Package\AndroidManifest.xml
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\Package\project.properties
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\Package\build.xml
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\FileStringReplace.incremental
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\SDL2_Application.apk
+C:\Users\mattk\source\repos\SDL2_Application\SDL2_Application\x86\Android_Debug\SDL2_Application.lastsuccessfuldeploy
