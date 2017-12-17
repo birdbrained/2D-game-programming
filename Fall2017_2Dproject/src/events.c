@@ -19,6 +19,11 @@ int event_assign_tiles(Graph ** graph, Event e, int height)
 	int y = 0;
 	GraphNode * node = NULL;
 
+	if (!graph || !(*graph))
+	{
+		return -1;
+	}
+
 	switch (e)
 	{
 	case Event_Football:
@@ -76,6 +81,11 @@ void event_damage_entities(int damage, Graph * graph)
 
 int event_execute(Event e, Graph * graph)
 {
+	if (!graph)
+	{
+		return -1;
+	}
+
 	switch (e)
 	{
 	case Event_Football:
@@ -121,4 +131,6 @@ int event_draw_from_graph(Graph * graph, Sprite * sprite, int tileWidth, int til
 		ver_iter = ver_iter->down_node;
 		hor_iter = ver_iter;
 	}
+
+	return 0;
 }

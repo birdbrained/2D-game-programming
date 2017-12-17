@@ -20,6 +20,7 @@ typedef enum guitype_e
 	GUIType_Button_Options,
 	GUIType_Button_Controls,
 	GUIType_Button_Controls_Close,
+	GUIType_Button_CC,
 	GUIType_Button_Quit
 }GUIType;
 

@@ -104,15 +104,19 @@ static int cursor = 0;
 GUIWindow * quit_game;
 GUIWindow * options;
 GUIWindow * controls;
+GUIWindow * character_creator;
 
 //game state
 int done = 0;
 static int currentSet = 0;
 static int maxSets = 0;
 static Event currEvent = 0;
+static float masterVolume = 1.0f;
 
 //other random stuff
 int reload = 0;
+char reloadLevelFilepath[MAX_TEXT_LENGTH] = "mnt/level/myLevel.txt";
+int gameHasGraph = 0;
 
 void cheat_code(char * text)
 {
@@ -136,9 +140,20 @@ void cheat_code(char * text)
 	{
 		done = 1;
 	}
-	else if (strncmp(text, "TIME TO SIN", MAX_TEXT_LENGTH) == 0)
+	else if (strncmp(text, "LOAD 1", MAX_TEXT_LENGTH) == 0)
 	{
-
+		strncpy(reloadLevelFilepath, "mnt/level/myLevel.txt", MAX_TEXT_LENGTH);
+		reload = 1;
+	}
+	else if (strncmp(text, "LOAD 2", MAX_TEXT_LENGTH) == 0)
+	{
+		strncpy(reloadLevelFilepath, "mnt/level/level_2.txt", MAX_TEXT_LENGTH);
+		reload = 1;
+	}
+	else if (strncmp(text, "CC", MAX_TEXT_LENGTH) == 0)
+	{
+		strncpy(reloadLevelFilepath, "mnt/level/cc.txt", MAX_TEXT_LENGTH);
+		reload = 1;
 	}
 }
 
@@ -184,7 +199,8 @@ void close_level(TileMap * tile_map, Graph * fieldGraph)
 	{
 		cd = NULL;
 	}
-	graph_clear(&fieldGraph);
+	if (gameHasGraph > 0)
+		graph_clear(&fieldGraph);
 	entityDeleteAll();
 	tilemap_clear(tile_map);
 	gf2d_sprite_clear_all();
@@ -277,24 +293,34 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 				//fclose(file_temp);
 				continue;
 			}*/
-			//entityLoadAllFromFile(file_temp, tile_map/*, &fieldGraph*/);
-			entityLoadAllFromFile(buffer, tile_map);
-			//fclose(file_temp);
-			event_execute(currEvent, fieldGraph);
-			tilemap_clear_space(&tile_map);
-			graph_zero_all(&fieldGraph);
-			entityUpdateGraphPositionAll(&fieldGraph);
-			score = formation_detect(&fieldGraph);
-			currEvent = event_decide();
-			event_assign_tiles(&fieldGraph, currEvent, tile_map->height);
-			//graph_print(fieldGraph);
-			slog("snares (%i) flutes (%i) trumpets (%i) alto saxes (%i) baritones (%i) others (%i)",
-				fieldGraph->numSnareDrums,
-				fieldGraph->numFlutes,
-				fieldGraph->numTrumpets,
-				fieldGraph->numAltoSaxes,
-				fieldGraph->numBaritones,
-				fieldGraph->numOtherInstruments);
+			if (strncmp("no", buffer, 3) == 0)
+			{
+				graph_zero_all(&fieldGraph);
+				tilemap_clear_space(&tile_map);
+				gameHasGraph = 0;
+			}
+			else
+			{
+				gameHasGraph = 1;
+				//entityLoadAllFromFile(file_temp, tile_map/*, &fieldGraph*/);
+				entityLoadAllFromFile(buffer, tile_map);
+				//fclose(file_temp);
+				event_execute(currEvent, fieldGraph);
+				tilemap_clear_space(&tile_map);
+				graph_zero_all(&fieldGraph);
+				entityUpdateGraphPositionAll(&fieldGraph);
+				score = formation_detect(&fieldGraph);
+				currEvent = event_decide();
+				event_assign_tiles(&fieldGraph, currEvent, tile_map->height);
+				//graph_print(fieldGraph);
+				slog("snares (%i) flutes (%i) trumpets (%i) alto saxes (%i) baritones (%i) others (%i)",
+					fieldGraph->numSnareDrums,
+					fieldGraph->numFlutes,
+					fieldGraph->numTrumpets,
+					fieldGraph->numAltoSaxes,
+					fieldGraph->numBaritones,
+					fieldGraph->numOtherInstruments);
+			}
 		}
 		if (strcmp(buffer, "mouse:") == 0)
 		{
@@ -628,7 +654,7 @@ int main(int argc, char * argv[])
 	strncpy(playButton->name, "playButton", MAX_CHARS);
 	playButton->boundingBox = rect_new(playButton->position.x, playButton->position.y, playButton->mySprite->frame_w, playButton->mySprite->frame_h);
 	
-	guii = gui_new();
+	/*guii = gui_new();
 	//guii->sprite = controllerIcon;
 	guii->closeButton = closeButton;
 	//guii->window.x = 10;
@@ -645,7 +671,7 @@ int main(int argc, char * argv[])
 	//strncpy(guii->text, "Hello this is text", GUI_MAX_TEXT_LENGTH);
 	guii->font = PencilFont;
 	gui_change_text(guii, "Hello this is text\tThis is more text", 300);
-	gui_set_closeability(guii, 1);
+	gui_set_closeability(guii, 1);*/
 
 	quit_game = gui_new();
 	quit_game->position.x = 50;
@@ -677,6 +703,15 @@ int main(int argc, char * argv[])
 	controls->guiType = GUIType_Button_Controls;
 	controls->on_click = gui_press_create;
 	gui_set_closeability(controls, 0);
+
+	character_creator = gui_new();
+	character_creator->position = vector2d(50, 480);
+	character_creator->windowColor = COLOR_GREEN;
+	character_creator->font = PencilFont;
+	character_creator->guiType = GUIType_Button_CC;
+	character_creator->on_click = gui_press_create;
+	gui_change_text(character_creator, "Character Creator", 400);
+	gui_set_closeability(character_creator, 0);
 
 	//Input for the console
 	//input_init();
@@ -849,6 +884,11 @@ int main(int argc, char * argv[])
 						if ((int)guiExtraData == -1)
 						{
 							done = 1;
+						}
+						else if ((int)guiExtraData == 1)
+						{
+							strncpy(reloadLevelFilepath, "mnt/level/cc.txt", MAX_TEXT_LENGTH);
+							reload = 1;
 						}
 					}
 					if (collisionGUI->closeable)
@@ -1053,12 +1093,13 @@ int main(int argc, char * argv[])
 		//SPEEEEEED *= 1.005;
 
 		gui_draw_all();
-		if (guii->inUse)
+		/*if (guii->inUse)
 		{
 			//slog("aaa");
 			gui_draw(guii);
-		}
-		event_draw_from_graph(fieldGraph, eventSprite, tile_map->tileWidth, tile_map->tileHeight, tile_map->xPos, tile_map->yPos);
+		}*/
+		if (fieldGraph != NULL && gameHasGraph > 0)
+			event_draw_from_graph(fieldGraph, eventSprite, tile_map->tileWidth, tile_map->tileHeight, tile_map->xPos, tile_map->yPos);
 
 		if (pickedUp == NULL)
 		{
@@ -1090,7 +1131,7 @@ int main(int argc, char * argv[])
 		if (reload)
 		{
 			//close_level(tile_map);
-			fieldGraph = load_level("mnt/level/myLevel.txt", tile_map, fieldGraph, 1);
+			fieldGraph = load_level(reloadLevelFilepath, tile_map, fieldGraph, 1);
 			strncpy(setText, format_set_text(setText, currentSet, maxSets), 32);
 			setSurface = TTF_RenderText_Solid(PencilFont, setText, colorBlack);
 			setTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), setSurface);

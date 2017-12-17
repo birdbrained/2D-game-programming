@@ -84,5 +84,9 @@ void * gui_press_create(GUIWindow * self/*GUIType type, void * extraData, Uint8 
 		//self->on_click(GUIType_Button_Controls, 0);
 		gui_find_and_set_pressed_state(GUIType_Button_Controls, 0);
 		break;
+	case GUIType_Button_CC:
+		gui_free(new_gui);
+		return 1;
+		break;
 	}
 }

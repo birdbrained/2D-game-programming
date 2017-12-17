@@ -1,0 +1,8 @@
+background:	images/backgrounds/bg_flat.png
+tilemap:	def/level/field_2.tilemap
+band:		mnt/_myBand.band
+mouse:		images/pointer.png
+sets:		10
+extraSprites:
+END
+musicSheet
