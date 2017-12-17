@@ -101,6 +101,10 @@ static SDL_Color colorWhite = { 255, 255, 255, 255 };
 static SDL_Color colorRed = { 255, 0, 0, 255 };
 static int cursor = 0;
 
+GUIWindow * quit_game;
+GUIWindow * options;
+GUIWindow * controls;
+
 //game state
 int done = 0;
 static int currentSet = 0;
@@ -444,8 +448,6 @@ int main(int argc, char * argv[])
 	Uint8 playButtonPressed = 0;
 
 	GUIWindow * guii;
-	GUIWindow * quit_game;
-	GUIWindow * options;
 	void * guiExtraData = NULL;
 	PHYSFS_File * physFile = NULL;
 	char * physBuffer= "";
@@ -505,7 +507,7 @@ int main(int argc, char * argv[])
 	audioSystemInit(50, 16, 2, 0, 0, 0);
 	soundSystemInit(25);
 	text_system_init(50);
-	gui_system_init(15);
+	gui_system_init(128);
 	//fsound_system_init(20, 100, FMOD_INIT_NORMAL, 0);
 	score = 0;
     SDL_ShowCursor(SDL_DISABLE);
@@ -648,7 +650,7 @@ int main(int argc, char * argv[])
 	quit_game = gui_new();
 	quit_game->position.x = 50;
 	quit_game->position.y = 600;
-	quit_game->windowColor = COLOR_RED_TRANSPARENT;
+	quit_game->windowColor = COLOR_RED;
 	quit_game->font = PencilFont;
 	gui_change_text(quit_game, "Quit Game", 200);
 	quit_game->guiType = GUIType_Button_Quit;
@@ -659,12 +661,22 @@ int main(int argc, char * argv[])
 	options->position.x = 50;
 	options->position.y = 560;
 	options->windowColor = COLOR_ORANGE;
-	options->windowColor.w = 100;
 	options->font = PencilFont;
 	gui_change_text(options, "Options", 200);
 	options->guiType = GUIType_Button_Options;
 	options->on_click = gui_press_create;
 	gui_set_closeability(options, 0);
+
+	controls = gui_new();
+	controls->position.x = 50;
+	controls->position.y = 520;
+	controls->windowColor = COLOR_PURPLE;
+	controls->font = PencilFont;
+	controls->extraData = closeButton;
+	gui_change_text(controls, "Controls", 200);
+	controls->guiType = GUIType_Button_Controls;
+	controls->on_click = gui_press_create;
+	gui_set_closeability(controls, 0);
 
 	//Input for the console
 	//input_init();
@@ -832,7 +844,7 @@ int main(int argc, char * argv[])
 				{
 					if (collisionGUI->on_click != NULL)
 					{
-						guiExtraData = (collisionGUI->on_click)(collisionGUI->guiType, collisionGUI->extraData, collisionGUI->pressed);
+						guiExtraData = (collisionGUI->on_click)(collisionGUI/*collisionGUI->guiType, collisionGUI->extraData, collisionGUI->pressed*/);
 						collisionGUI->pressed = 1;
 						if ((int)guiExtraData == -1)
 						{

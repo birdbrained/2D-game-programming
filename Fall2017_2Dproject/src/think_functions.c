@@ -43,11 +43,15 @@ int mousePress(SDL_MouseButtonEvent *b)
 	return 0;
 }
 
-void * gui_press_create(GUIType type, void * extraData, Uint8 pressed)
+void * gui_press_create(GUIWindow * self/*GUIType type, void * extraData, Uint8 pressed*/)
 {
 	GUIWindow * new_gui = NULL;
 
-	if (pressed)
+	if (!self)
+	{
+		return;
+	}
+	if (self->pressed)
 	{
 		return 0;
 	}
@@ -58,10 +62,27 @@ void * gui_press_create(GUIType type, void * extraData, Uint8 pressed)
 		return NULL;
 	}
 
-	switch (type)
+	switch (self->guiType)
 	{
 	case GUIType_Button_Quit:
+		gui_free(new_gui);
 		return -1;
+		break;
+	case GUIType_Button_Controls:
+		new_gui->position = vector2d(300, 50);
+		new_gui->windowColor = COLOR_PURPLE;
+		new_gui->font = self->font;
+		new_gui->padding = 5;
+		new_gui->closeButton = (Sprite *)self->extraData;
+		new_gui->guiType = GUIType_Button_Controls_Close;
+		gui_change_text(new_gui, "Use the mouse to move the cursor. Select a band member to control with the Left Mouse Button. Place a band member with the Right Mouse Button. Move to the next set with Enter.", 600);
+		gui_set_closeability(new_gui, 1);
+		new_gui->on_click = gui_press_create;
+		break;
+	case GUIType_Button_Controls_Close:
+		gui_free(new_gui);
+		//self->on_click(GUIType_Button_Controls, 0);
+		gui_find_and_set_pressed_state(GUIType_Button_Controls, 0);
 		break;
 	}
 }

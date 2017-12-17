@@ -22,4 +22,4 @@ int mousePress(SDL_MouseButtonEvent *b);
 /**
  * @brief When a GUI is pressed, create a GUI based on which GUI was pressed
  */
-void * gui_press_create(GUIType type, void * extraData, Uint8 pressed);
+void * gui_press_create(GUIWindow * self/*GUIType type, void * extraData, Uint8 pressed*/);

@@ -18,6 +18,8 @@ typedef enum guitype_e
 	GUIType_Button_Play,
 	GUIType_Button_Level,
 	GUIType_Button_Options,
+	GUIType_Button_Controls,
+	GUIType_Button_Controls_Close,
 	GUIType_Button_Quit
 }GUIType;
 
@@ -38,7 +40,7 @@ typedef struct guiwindow_s
 	Vector2D position, scale, scaleCenter, rotation, flip;	/**<Information about the gui's position, scale, center of scale, etc.*/
 	float currentFrame;		/**<Currecnt frame of the image to draw at*/
 
-	void * (*on_click)(GUIType type, void * extraData, Uint8 pressed); /**<If the GUI window needs to perform something when it is clicked*/
+	void * (*on_click)(struct guiwindow_s * self/*GUIType type, void * extraData, Uint8 pressed*/); /**<If the GUI window needs to perform something when it is clicked*/
 	void * extraData;		/**<Any extra data required to be held*/
 	Uint8 pressed;
 
@@ -81,6 +83,9 @@ void gui_free(GUIWindow * window);
  */
 void gui_delete_all();
 
+/**
+ * @brief Marks all guis as free without deleting them from memory
+ */
 void gui_free_all();
 
 /**
@@ -120,6 +125,20 @@ void gui_change_text(GUIWindow * window, char * text, Uint32 wrapLength);
  *                  Set to non-zero if user should be able to manually close a window
  */
 void gui_set_closeability(GUIWindow * window, Uint8 closeable);
+
+/**
+ * @brief Sets the pressed state of a GUI window
+ * @param window The window to set
+ * @param pressed 0 if not pressed, non-zero if pressed
+ */
+void gui_set_pressed_state(GUIWindow * window, Uint8 pressed);
+
+/**
+ * @brief Find and set the pressed status of all guis of a certain type
+ * @param type The type of GUI to set
+ * @param pressed The pressed state to set
+ */
+void gui_find_and_set_pressed_state(GUIType type, Uint8 pressed);
 
 /**
  * @brief Checks for a collision with the specified x and y value and all of the GUIs currently in use

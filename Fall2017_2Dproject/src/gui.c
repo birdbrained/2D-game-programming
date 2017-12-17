@@ -233,6 +233,33 @@ void gui_set_closeability(GUIWindow * window, Uint8 closeable)
 	window->closeable = closeable;
 }
 
+void gui_set_pressed_state(GUIWindow * window, Uint8 pressed)
+{
+	if (!window)
+	{
+		slog("Error: cannot change pressed state of a null window");
+		return;
+	}
+
+	window->pressed = pressed;
+}
+
+void gui_find_and_set_pressed_state(GUIType type, Uint8 pressed)
+{
+	int i = 0;
+
+	for (i = 0; i < guiManager.maxGUIs; i++)
+	{
+		if (guiManager.guiList[i].inUse > 0)
+		{
+			if (guiManager.guiList[i].guiType == type)
+			{
+				gui_set_pressed_state(&guiManager.guiList[i], pressed);
+			}
+		}
+	}
+}
+
 GUIWindow * gui_check_collision_in_all(int mx, int my)
 {
 	int i = 0;
