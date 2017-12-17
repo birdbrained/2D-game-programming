@@ -1,5 +1,6 @@
 #include "entity_s.h"
 #include "simple_logger.h"
+#include "gui.h"
 
 /**
  * @brief Crappy little function that just moves an entity
@@ -17,3 +18,8 @@ void die_after_time(Entity * e);
  */
 int mousePress(SDL_MouseButtonEvent *b);
 //^^^Maybe implement right and middle mouse clicks?
+
+/**
+ * @brief When a GUI is pressed, create a GUI based on which GUI was pressed
+ */
+void * gui_press_create(GUIType type, void * extraData, Uint8 pressed);

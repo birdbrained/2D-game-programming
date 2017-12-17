@@ -18,11 +18,17 @@
 #define COLOR_BLUE_LIGHT vector4d(0, 201, 255, 255)
 #define COLOR_RED_TRANSPARENT vector4d(255, 0, 0, 122)
 
+/**
+ * @brief A rectangle object
+ */
 typedef struct rect_s
 {
 	float x, y, w, h;
 }Rect;
 
+/**
+ * @brief A circle object
+ */
 typedef struct circle_s
 {
 	float x, y, r;

@@ -11,6 +11,16 @@
 
 #define GUI_MAX_TEXT_LENGTH 512
 
+typedef enum guitype_e
+{
+	GUIType_Default,
+	GUIType_Button,
+	GUIType_Button_Play,
+	GUIType_Button_Level,
+	GUIType_Button_Options,
+	GUIType_Button_Quit
+}GUIType;
+
 /**
  * @brief A struct that represents a GUI window
  */
@@ -18,22 +28,27 @@ typedef struct guiwindow_s
 {
 	Uint8 inUse;			/**<Don't touch this!*/
 	Uint64 id;				/**<ID of the gui. Probably shouldn't touch this.*/
+	GUIType guiType;		/**<Enum determining the type of the GUI*/
 	Sprite * sprite;		/**<Optional. Changes background from a plain rectangle to a sprite.*/
 	Sprite * closeButton;	/**<Optional, but really should include. 25x25 sprite for a close button.*/
 	Uint8 closeable;		/**<Non-zero if GUI will have a close icon; 0 if not*/
 	SDL_Rect window;		/**<The size of the rectangle gui.*/
 	Vector4D windowColor;	/**<The background color of a gui window. Applies to sprites and standard windows.*/
 	Rect * boundingBox;		/**<Refers to bounding box of the close button.*/
-	Vector2D position, scale, scaleCenter, rotation, flip;
-	float currentFrame;
+	Vector2D position, scale, scaleCenter, rotation, flip;	/**<Information about the gui's position, scale, center of scale, etc.*/
+	float currentFrame;		/**<Currecnt frame of the image to draw at*/
+
+	void * (*on_click)(GUIType type, void * extraData, Uint8 pressed); /**<If the GUI window needs to perform something when it is clicked*/
+	void * extraData;		/**<Any extra data required to be held*/
+	Uint8 pressed;
 
 	char text[GUI_MAX_TEXT_LENGTH];		/**<Text that will be included in a gui. TODO*/
-	TTF_Font * font;
-	SDL_Color textColor;
-	SDL_Surface * surface;
-	SDL_Texture * texture;
-	int rectW, rectH;
-	int padding;
+	TTF_Font * font;		/**<Type of font used for the GUI*/
+	SDL_Color textColor;	/**<Color of the GUI's font*/
+	SDL_Surface * surface;	/**<Surface for the text image*/
+	SDL_Texture * texture;	/**<Texture for the text image*/
+	int rectW, rectH;		/**<Width and height values for text image rectangle*/
+	int padding;			/**<If you want any margins around the text*/
 }GUIWindow;
 
 /**
@@ -65,6 +80,8 @@ void gui_free(GUIWindow * window);
  * in gui.c that automatically gets called on shut-down)
  */
 void gui_delete_all();
+
+void gui_free_all();
 
 /**
  * @brief Draws a GUI onto the screen

@@ -184,6 +184,7 @@ void close_level(TileMap * tile_map, Graph * fieldGraph)
 	entityDeleteAll();
 	tilemap_clear(tile_map);
 	gf2d_sprite_clear_all();
+	gui_free_all();
 	//soundDeleteAll();
 }
 
@@ -443,6 +444,9 @@ int main(int argc, char * argv[])
 	Uint8 playButtonPressed = 0;
 
 	GUIWindow * guii;
+	GUIWindow * quit_game;
+	GUIWindow * options;
+	void * guiExtraData = NULL;
 	PHYSFS_File * physFile = NULL;
 	char * physBuffer= "";
 	char token[512] = "";
@@ -640,6 +644,28 @@ int main(int argc, char * argv[])
 	guii->font = PencilFont;
 	gui_change_text(guii, "Hello this is text\tThis is more text", 300);
 	gui_set_closeability(guii, 1);
+
+	quit_game = gui_new();
+	quit_game->position.x = 50;
+	quit_game->position.y = 600;
+	quit_game->windowColor = COLOR_RED_TRANSPARENT;
+	quit_game->font = PencilFont;
+	gui_change_text(quit_game, "Quit Game", 200);
+	quit_game->guiType = GUIType_Button_Quit;
+	quit_game->on_click = gui_press_create;
+	gui_set_closeability(quit_game, 0);
+
+	options = gui_new();
+	options->position.x = 50;
+	options->position.y = 560;
+	options->windowColor = COLOR_ORANGE;
+	options->windowColor.w = 100;
+	options->font = PencilFont;
+	gui_change_text(options, "Options", 200);
+	options->guiType = GUIType_Button_Options;
+	options->on_click = gui_press_create;
+	gui_set_closeability(options, 0);
+
 	//Input for the console
 	//input_init();
 
@@ -804,7 +830,19 @@ int main(int argc, char * argv[])
 				collisionGUI = gui_check_collision_in_all(mx, my);
 				if (collisionGUI != NULL)
 				{
-					gui_delete(collisionGUI);
+					if (collisionGUI->on_click != NULL)
+					{
+						guiExtraData = (collisionGUI->on_click)(collisionGUI->guiType, collisionGUI->extraData, collisionGUI->pressed);
+						collisionGUI->pressed = 1;
+						if ((int)guiExtraData == -1)
+						{
+							done = 1;
+						}
+					}
+					if (collisionGUI->closeable)
+					{
+						gui_delete(collisionGUI);
+					}
 				}
 			}
 			break;

@@ -87,8 +87,8 @@ typedef struct entity_s
 	Vector3D rotation;				/**<Rotation*/
 	Vector2D flip;					/**<Flip horizontal or vertical*/
 	float currentFrame;				/**<Current frame of animation*/
-	float minFrame;
-	float maxFrame;
+	float minFrame;					/**<If looping animation, the start frame of the loop*/
+	float maxFrame;					/**<If looping animation, the end frame of the loop*/
 	
 	//draw, think, update, touch, damage, die, free
 	void(*update)(struct entity_s *self);	/**<Pointer to an update function that will get called every frame*/
@@ -96,22 +96,22 @@ typedef struct entity_s
 	void(*die)(struct entity_s *self);
 
 	//game specific data
-	StatusAliment currentStatus;			
-	EntityState currentState;
-	Instrument myInstrument;
-	Section mySection;
-	Sprite *instrumentSprite;
-	int statMarching;
-	int statMusic;
-	int statMorale;
-	int currMorale;
-	int statMotivation;
+	StatusAliment currentStatus;			/**<If the entity currently has a status aliment*/
+	EntityState currentState;				/**<Current status of the entity*/
+	Instrument myInstrument;				/**<Current instrument the entity has*/
+	Section mySection;						/**<Unused*/
+	Sprite *instrumentSprite;				/**<The sprite of the instrument to draw on top of the entity*/
+	int statMarching;						/**<The base marching stat*/
+	int statMusic;							/**<The base music stat*/
+	int statMorale;							/**<The base morale stat*/
+	int currMorale;							/**<Current morale compared to the base, like a health bar*/
+	int statMotivation;						/**<The base motivation stat*/
 	short unsigned int isSectionLeader;		/**<Check if the member is a section leader*/
 	int currentPosition;					/**<Current position on the grid*/
 	int nextPosition;						/**<Position to move to on next set*/
-	Vector2D pathToDraw;
-	Vector4D pathColor;
-	SDL_Rect healthBar;
+	Vector2D pathToDraw;					/**<Path to draw from current position to the next position*/
+	Vector4D pathColor;						/**<Color of the path to draw*/
+	SDL_Rect healthBar;						/**<Where the entity's health bar should be drawn*/
 }Entity;
 
 /**

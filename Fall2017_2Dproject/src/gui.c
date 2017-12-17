@@ -34,6 +34,7 @@ void gui_system_init(Uint32 maxGUIs)
 		return;
 	}
 	memset(&guiManager, 0, sizeof(GUIManager));
+	guiManager.maxGUIs = maxGUIs;
 
 	guiManager.guiList = (GUIWindow *)malloc(sizeof(GUIWindow) * maxGUIs);
 	if (!guiManager.guiList)
@@ -77,6 +78,11 @@ void gui_delete(GUIWindow * window)
 		return;
 	}
 
+	if (window->closeable == 0)
+	{
+		return;
+	}
+
 	if (window->inUse)
 	{
 		window->inUse = 0;
@@ -103,6 +109,16 @@ void gui_delete_all()
 	for (i = 0; i < guiManager.guiList; i++)
 	{
 		gui_delete(&guiManager.guiList[i]);
+	}
+}
+
+void gui_free_all()
+{
+	int i = 0;
+
+	for (i = 0; i < guiManager.maxGUIs; i++)
+	{
+		gui_free(&guiManager.guiList[i]);
 	}
 }
 
@@ -178,7 +194,7 @@ void gui_update(GUIWindow * window)
 	}
 	else
 	{
-		window->boundingBox = rect_new(0, 0, 0, 0);
+		window->boundingBox = rect_new(window->position.x, window->position.y, window->window.w, window->window.h);
 	}
 }
 

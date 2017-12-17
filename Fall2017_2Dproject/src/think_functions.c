@@ -42,3 +42,26 @@ int mousePress(SDL_MouseButtonEvent *b)
 	}
 	return 0;
 }
+
+void * gui_press_create(GUIType type, void * extraData, Uint8 pressed)
+{
+	GUIWindow * new_gui = NULL;
+
+	if (pressed)
+	{
+		return 0;
+	}
+
+	new_gui = gui_new();
+	if (!new_gui)
+	{
+		return NULL;
+	}
+
+	switch (type)
+	{
+	case GUIType_Button_Quit:
+		return -1;
+		break;
+	}
+}
