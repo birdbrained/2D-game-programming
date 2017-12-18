@@ -27,5 +27,6 @@ int mousePress(SDL_MouseButtonEvent *b);
 	-1 If the quit game button was pressed
 	 1 If the character creator will be loaded
 	 2 If save button was pressed
+	 3 If button to return to main menu was pressed
  */
 void * gui_press_create(GUIWindow * self/*GUIType type, void * extraData, Uint8 pressed*/);

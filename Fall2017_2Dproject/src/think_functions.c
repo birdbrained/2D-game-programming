@@ -108,6 +108,10 @@ void * gui_press_create(GUIWindow * self/*GUIType type, void * extraData, Uint8 
 		gui_free(new_gui);
 		return 2;
 		break;
+	case GUIType_Button_MM:
+		gui_free(new_gui);
+		return 3;
+		break;
 	default:
 		gui_free(new_gui);
 		break;

@@ -120,6 +120,7 @@ static Sprite * cc_instr_sprite;
 GUIWindow * cc_save_button;
 int timeToSave = 0;
 int customBand = 0;
+GUIWindow * cc_mm;
 
 //game state
 int done = 0;
@@ -390,6 +391,71 @@ void setup_cc_guis(TTF_Font * font)
 	gui_set_closeability(cc_save_button, 0);
 	cc_save_button->on_click = gui_press_create;
 	cc_save_button->guiType = GUIType_Button_CC_Save;
+
+	//back to main menu button
+	cc_mm = gui_new();
+	cc_mm->position = vector2d(100, 550);
+	cc_mm->windowColor = COLOR_GREEN;
+	cc_mm->font = font;
+	gui_change_text(cc_mm, "Back to main menu", 700);
+	gui_set_closeability(cc_mm, 0);
+	cc_mm->guiType = GUIType_Button_MM;
+	cc_mm->on_click = gui_press_create;
+}
+
+void setup_mm_guis(Sprite * closeButton)
+{
+	cd = entityNew();
+	cd->mySprite = gf2d_sprite_load_all("images/gui/cd.png", 128, 128, 1);
+	cd->position = vector2d(0, 0);
+	cd->scale = vector2d(2, 2);
+	cd->boundingBox = rect_new(cd->position.x, cd->position.y, 128, 128);
+
+	playButton = entityNew();
+	playButton->mySprite = gf2d_sprite_load_image("images/gui/play.png");
+	playButton->position = vector2d(64, 256);
+	strncpy(playButton->name, "playButton", MAX_CHARS);
+	playButton->boundingBox = rect_new(playButton->position.x, playButton->position.y, playButton->mySprite->frame_w, playButton->mySprite->frame_h);
+
+	quit_game = gui_new();
+	quit_game->position.x = 50;
+	quit_game->position.y = 600;
+	quit_game->windowColor = COLOR_RED;
+	quit_game->font = PencilFont;
+	gui_change_text(quit_game, "Quit Game", 200);
+	quit_game->guiType = GUIType_Button_Quit;
+	quit_game->on_click = gui_press_create;
+	gui_set_closeability(quit_game, 0);
+
+	options = gui_new();
+	options->position.x = 50;
+	options->position.y = 560;
+	options->windowColor = COLOR_ORANGE;
+	options->font = PencilFont;
+	gui_change_text(options, "Options", 200);
+	options->guiType = GUIType_Button_Options;
+	options->on_click = gui_press_create;
+	gui_set_closeability(options, 0);
+
+	controls = gui_new();
+	controls->position.x = 50;
+	controls->position.y = 520;
+	controls->windowColor = COLOR_PURPLE;
+	controls->font = PencilFont;
+	controls->extraData = closeButton;
+	gui_change_text(controls, "Controls", 200);
+	controls->guiType = GUIType_Button_Controls;
+	controls->on_click = gui_press_create;
+	gui_set_closeability(controls, 0);
+
+	character_creator = gui_new();
+	character_creator->position = vector2d(50, 480);
+	character_creator->windowColor = COLOR_GREEN;
+	character_creator->font = PencilFont;
+	character_creator->guiType = GUIType_Button_CC;
+	character_creator->on_click = gui_press_create;
+	gui_change_text(character_creator, "Character Creator", 400);
+	gui_set_closeability(character_creator, 0);
 }
 
 char * format_set_text(char text[32], int currentSet, int maxSets)
@@ -595,6 +661,7 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 					break;
 				}
 				gui = gf2d_sprite_load_image(buffer);
+				setup_mm_guis(NULL);
 			}
 		}
 		if (strcmp(buffer, "musicSheet") == 0)
@@ -622,8 +689,8 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 
 void input_init()
 {
-	consoleRect.x = 100;
-	consoleRect.y = 100;
+	consoleRect.x = 50;
+	consoleRect.y = 50;
 	consoleRect.w = 1000;
 	consoleRect.h = 50;
 
@@ -720,7 +787,7 @@ int main(int argc, char * argv[])
 	SDL_Surface *consoleSurface;
 	SDL_Texture *consoleTexture;
 	int consoleX = 0, consoleY = 0;
-	SDL_Rect consoleRectie = { 50, 100, 0, 0 };
+	SDL_Rect consoleRectie = { 50, 50, 0, 0 };
 
 	SDL_Surface *setSurface;
 	SDL_Texture *setTexture;
@@ -747,12 +814,14 @@ int main(int argc, char * argv[])
 	PHYSFS_mount("zip/def.zip", "mnt", 1);
 	PHYSFS_mount("def/cc/", "mnt2", 1);
 	PHYSFS_mount("zip/music.zip", "mnt", 1);
-	if (PHYSFS_exists("mnt/test_tiles.png"))
+	/*if (PHYSFS_exists("mnt/test_tiles.png"))
 	{
 		slog("file exists");
 	}
 	else
+	{
 		slog("file does not exist");
+	}*/
 	
 
 	physFile = PHYSFS_openRead("mnt/_myBand.band");
@@ -796,6 +865,11 @@ int main(int argc, char * argv[])
 	score = 0;
     SDL_ShowCursor(SDL_DISABLE);
 	TTF_Init();
+	PencilFont = TTF_OpenFont("fonts/Halogen.ttf", 36);
+	if (!PencilFont)
+	{
+		slog("Error loading font");
+	}
 	//fileLoadedDude = entityNew();
 
     /*demo setup*/
@@ -855,11 +929,6 @@ int main(int argc, char * argv[])
 	//soundPlay(baritone, -1, 1, baritone->defaultChannel, 0);
 
 	//text testing stuff
-	PencilFont = TTF_OpenFont("fonts/Halogen.ttf", 36);
-	if (!PencilFont)
-	{
-		slog("Error loading font");
-	}
 	surfaceMessage = TTF_RenderText_Solid(PencilFont, "None selected", colorBlack);
 	message = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), surfaceMessage);
 	SDL_QueryTexture(message, NULL, NULL, &texW, &texH);
@@ -899,18 +968,6 @@ int main(int argc, char * argv[])
 	SDL_QueryTexture(setTexture, NULL, NULL, &setW, &setH);
 	setRect.w = setW;
 	setRect.h = setH;
-
-	cd = entityNew();
-	cd->mySprite = gf2d_sprite_load_all("images/gui/cd.png", 128, 128, 1);
-	cd->position = vector2d(0, 0);
-	cd->scale = vector2d(2, 2);
-	cd->boundingBox = rect_new(cd->position.x, cd->position.y, 128, 128);
-
-	playButton = entityNew();
-	playButton->mySprite = gf2d_sprite_load_image("images/gui/play.png");
-	playButton->position = vector2d(64, 256);
-	strncpy(playButton->name, "playButton", MAX_CHARS);
-	playButton->boundingBox = rect_new(playButton->position.x, playButton->position.y, playButton->mySprite->frame_w, playButton->mySprite->frame_h);
 	
 	/*guii = gui_new();
 	//guii->sprite = controllerIcon;
@@ -930,46 +987,6 @@ int main(int argc, char * argv[])
 	guii->font = PencilFont;
 	gui_change_text(guii, "Hello this is text\tThis is more text", 300);
 	gui_set_closeability(guii, 1);*/
-
-	quit_game = gui_new();
-	quit_game->position.x = 50;
-	quit_game->position.y = 600;
-	quit_game->windowColor = COLOR_RED;
-	quit_game->font = PencilFont;
-	gui_change_text(quit_game, "Quit Game", 200);
-	quit_game->guiType = GUIType_Button_Quit;
-	quit_game->on_click = gui_press_create;
-	gui_set_closeability(quit_game, 0);
-
-	options = gui_new();
-	options->position.x = 50;
-	options->position.y = 560;
-	options->windowColor = COLOR_ORANGE;
-	options->font = PencilFont;
-	gui_change_text(options, "Options", 200);
-	options->guiType = GUIType_Button_Options;
-	options->on_click = gui_press_create;
-	gui_set_closeability(options, 0);
-
-	controls = gui_new();
-	controls->position.x = 50;
-	controls->position.y = 520;
-	controls->windowColor = COLOR_PURPLE;
-	controls->font = PencilFont;
-	controls->extraData = closeButton;
-	gui_change_text(controls, "Controls", 200);
-	controls->guiType = GUIType_Button_Controls;
-	controls->on_click = gui_press_create;
-	gui_set_closeability(controls, 0);
-
-	character_creator = gui_new();
-	character_creator->position = vector2d(50, 480);
-	character_creator->windowColor = COLOR_GREEN;
-	character_creator->font = PencilFont;
-	character_creator->guiType = GUIType_Button_CC;
-	character_creator->on_click = gui_press_create;
-	gui_change_text(character_creator, "Character Creator", 400);
-	gui_set_closeability(character_creator, 0);
 
 	//Input for the console
 	//input_init();
@@ -1152,6 +1169,11 @@ int main(int argc, char * argv[])
 						else if ((int)guiExtraData == 2)
 						{
 							timeToSave = 1;
+						}
+						else if ((int)guiExtraData == 3)
+						{
+							strncpy(reloadLevelFilepath, "mnt/level/mainMenu.txt", MAX_TEXT_LENGTH);
+							reload = 1;
 						}
 					}
 					if (collisionGUI->guiType == GUIType_Button_CC_Sprite || 

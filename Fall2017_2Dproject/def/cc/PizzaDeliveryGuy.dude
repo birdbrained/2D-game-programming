@@ -1,0 +1,12 @@
+name: PizzaDeliveryGuy
+fav_thing: DefinatelyNotPizza
+sprite: images/sprites/guy32x.png
+Instrument: bassdrum
+instrumentSprite: images/sprites/instrument_bass_drum.png
+statMarching: 60
+statMusic: 60
+statMorale: 100
+statMotivation: 53
+sectionLeader: 0
+
+~
