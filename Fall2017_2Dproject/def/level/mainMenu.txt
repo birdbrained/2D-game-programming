@@ -5,3 +5,4 @@ mouse:		images/pointer.png
 extraSprites:
 images/gui/cdcase.png
 END
+~

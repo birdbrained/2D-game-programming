@@ -82,5 +82,6 @@ void draw_line(Vector2D pointA, Vector2D pointB, Vector4D color)
 
 int random_int(int min, int max)
 {
+	if (min == max) return min;
 	return min + rand() % (max - min);
 }

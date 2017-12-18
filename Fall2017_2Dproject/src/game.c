@@ -101,10 +101,18 @@ static SDL_Color colorWhite = { 255, 255, 255, 255 };
 static SDL_Color colorRed = { 255, 0, 0, 255 };
 static int cursor = 0;
 
+//main menu guis
 GUIWindow * quit_game;
 GUIWindow * options;
 GUIWindow * controls;
 GUIWindow * character_creator;
+
+//character editor stuff
+static Sprite * customCharacter;
+GUIWindow * cc_name_gui;
+char cc_name[MAX_TEXT_LENGTH];
+GUIWindow * cc_fav_thing_gui;
+char cc_fav_thing[MAX_TEXT_LENGTH];
 
 //game state
 int done = 0;
@@ -155,6 +163,49 @@ void cheat_code(char * text)
 		strncpy(reloadLevelFilepath, "mnt/level/cc.txt", MAX_TEXT_LENGTH);
 		reload = 1;
 	}
+	else if (strncmp(text, "NAME", MAX_TEXT_LENGTH) == 0 && customCharacter != NULL)
+	{
+		scanf("%s", buffer);
+		strncpy(cc_name, buffer, MAX_TEXT_LENGTH);
+		if (cc_name_gui != NULL)
+		{
+			if (cc_name_gui->inUse)
+			{
+				gui_change_text(cc_name_gui, buffer, 500);
+			}
+		}
+	}
+	else if (strncmp(text, "FAV THING", MAX_TEXT_LENGTH) == 0 && customCharacter != NULL)
+	{
+		scanf("%s", buffer);
+		strncpy(cc_fav_thing, buffer, MAX_TEXT_LENGTH);
+		if (cc_fav_thing_gui != NULL)
+		{
+			if (cc_fav_thing_gui->inUse)
+			{
+				gui_change_text(cc_fav_thing_gui, buffer, 500);
+			}
+		}
+	}
+}
+
+void setup_cc_guis(TTF_Font * font)
+{
+	//name
+	cc_name_gui = gui_new();
+	cc_name_gui->position = vector2d(100, 100);
+	cc_name_gui->windowColor = COLOR_PINK;
+	cc_name_gui->font = font;
+	gui_change_text(cc_name_gui, "Name:", 200);
+	gui_set_closeability(cc_name_gui, 0);
+
+	//favorite thing
+	cc_fav_thing_gui = gui_new();
+	cc_fav_thing_gui->position = vector2d(100, 150);
+	cc_fav_thing_gui->windowColor = COLOR_RED;
+	cc_fav_thing_gui->font = font;
+	gui_change_text(cc_fav_thing_gui, "Favorite thing:", 400);
+	gui_set_closeability(cc_fav_thing_gui, 0);
 }
 
 char * format_set_text(char text[32], int currentSet, int maxSets)
@@ -198,6 +249,10 @@ void close_level(TileMap * tile_map, Graph * fieldGraph)
 	if (cd)
 	{
 		cd = NULL;
+	}
+	if (customCharacter)
+	{
+		customCharacter = NULL;
 	}
 	if (gameHasGraph > 0)
 		graph_clear(&fieldGraph);
@@ -355,6 +410,14 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 			musicSheet = gf2d_sprite_load_image("images/gui/music_sheet.png");
 			guiMarchingStat = gf2d_sprite_load_image("images/gui/boot.png");
 		}
+		if (buffer[0] == 'c')
+		{
+			if (buffer[1] == 'u')
+			{
+				customCharacter = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 2);
+				setup_cc_guis(PencilFont);
+			}
+		}
 	}
 
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
@@ -405,6 +468,7 @@ int main(int argc, char * argv[])
 	Vector2D flipVert = { 0, 1 };
 	Vector2D scaleDown = { 0.5, 0.5 };
 	Vector2D scaleUp = { 2, 2 };
+	Vector2D scaleWayUp = { 12, 12 };
 	Vector2D scaleHalfUp = { 1.5, 1.5 };
 	Vector3D rotate = { 16, 16, 0 };
 	float SPEEEEEED = 0.1f;
@@ -1084,6 +1148,11 @@ int main(int argc, char * argv[])
 		//gf2d_sprite_draw_image(textBox, vector2d(50, 50));
 		if (controllerConnected && controllerIcon)
 			gf2d_sprite_draw(controllerIcon, vector2d(700, 600), &scaleUp, NULL, NULL, NULL, NULL, 0);
+
+		if (customCharacter)
+		{
+			gf2d_sprite_draw(customCharacter, vector2d(700, 200), &scaleWayUp, NULL, NULL, NULL, NULL, 0);
+		}
 
 		if (consoleTexture)
 			SDL_RenderCopy(gf2d_graphics_get_renderer(), consoleTexture, NULL, &consoleRectie);

@@ -3,3 +3,5 @@ tilemap:
 band:		no
 mouse:		images/pointer.png
 END
+customCharacter
+~
