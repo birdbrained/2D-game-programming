@@ -23,7 +23,9 @@ int mousePress(SDL_MouseButtonEvent *b);
  * @brief When a GUI is pressed, create a GUI based on which GUI was pressed
  * @param self A reference to the GUI that was pressed
  * @returns Can potentially return many different states:
+	 0 If nothing happens
 	-1 If the quit game button was pressed
 	 1 If the character creator will be loaded
+	 2 If save button was pressed
  */
 void * gui_press_create(GUIWindow * self/*GUIType type, void * extraData, Uint8 pressed*/);

@@ -117,6 +117,9 @@ char cc_fav_thing[MAX_TEXT_LENGTH];
 GUIWindow * cc_sprite;
 GUIWindow * cc_instr;
 static Sprite * cc_instr_sprite;
+GUIWindow * cc_save_button;
+int timeToSave = 0;
+int customBand = 0;
 
 //game state
 int done = 0;
@@ -191,6 +194,148 @@ void cheat_code(char * text)
 			}
 		}
 	}
+	else if (strncmp(text, "CUSTOM", MAX_TEXT_LENGTH) == 0)
+	{
+		customBand = 1;
+	}
+	else if (strncmp(text, "NO CUSTOM", MAX_TEXT_LENGTH) == 0)
+	{
+		customBand = 0;
+	}
+}
+
+/**
+ * @brief Saves a character to a file
+ */
+void save_character()
+{
+	char filename[512] = "";
+	char buffer[512] = "mnt2/";
+	PHYSFS_File * file = NULL;
+	int i = 0;
+
+	strncat(filename, cc_name, MAX_TEXT_LENGTH);
+	strncat(filename, ".dude", MAX_TEXT_LENGTH);
+	slog("guy to save: (%s)", filename);
+	if (cc_name[0] == '\0')
+	{
+		slog("Error: cannot save a character with no name!");
+		timeToSave = 0;
+		return;
+	}
+
+	slog("write dir: (%s)", PHYSFS_getWriteDir());
+	PHYSFS_setWriteDir("def/cc/");
+	slog("write dir: (%s)", PHYSFS_getWriteDir());
+	file = PHYSFS_openWrite(filename);
+	if (!file)
+	{
+		slog("Error: could not open file for writing! (%d)", PHYSFS_getLastErrorCode());
+		
+		timeToSave = 0;
+		return;
+	}
+
+	//actually write stuff now
+	//PHYSFS_writeBytes(file, "Test", sizeof("Test"));
+	PHYSFS_writeBytes(file, "name: ", 6);
+	//PHYSFS_writeBytes(file, cc_name, sizeof(cc_name));
+	while (cc_name[i] != '\0')
+	{
+		//slog("cc_name[%i] = %c", i, cc_name[i]);
+		PHYSFS_writeBytes(file, &cc_name[i], sizeof(char));
+		i++;
+	}
+	PHYSFS_writeBytes(file, "\nfav_thing: ", 12);
+	i = 0;
+	if (cc_fav_thing[0] == '\0')
+	{
+		strncpy(cc_fav_thing, "Nothing...", MAX_TEXT_LENGTH);
+	}
+	while (cc_fav_thing[i] != '\0')
+	{
+		PHYSFS_writeBytes(file, &cc_fav_thing[i], sizeof(char));
+		i++;
+	}
+	PHYSFS_writeBytes(file, "\nsprite: ", 9);
+	switch ((int)cc_sprite->extraData)
+	{
+	case 1:
+		PHYSFS_writeBytes(file, "images/sprites/gal32x.png", 25);
+		break;
+	case 2:
+		PHYSFS_writeBytes(file, "images/sprites/green32x.png", 27);
+		break;
+	case 3:
+		PHYSFS_writeBytes(file, "images/sprites/cool32x.png", 26);
+		break;
+	case 4:
+		PHYSFS_writeBytes(file, "images/sprites/yellow32x.png", 28);
+		break;
+	default:
+		PHYSFS_writeBytes(file, "images/sprites/guy32x.png", 25);
+		break;
+	}
+
+	switch ((int)cc_instr->extraData)
+	{
+	case 1:
+		PHYSFS_writeBytes(file, "\nInstrument: clarinet\ninstrumentSprite: images/sprites/instrument_clarinet.png", 78);
+		break;
+	case 2:
+		PHYSFS_writeBytes(file, "\nInstrument: altosax\ninstrumentSprite: images/sprites/instrument_alto_sax.png", 77);
+		break;
+	case 3:
+		PHYSFS_writeBytes(file, "\nInstrument: tenorsax\ninstrumentSprite: images/sprites/instrument_tenor_sax.png", 79);
+		break;
+	case 4:
+		PHYSFS_writeBytes(file, "\nInstrument: trumpet\ninstrumentSprite: images/sprites/instrument_trumpet.png", 76);
+		break;
+	case 5:
+		PHYSFS_writeBytes(file, "\nInstrument: baritone\ninstrumentSprite: images/sprites/instrument_baritone.png", 78);
+		break;
+	case 6:
+		PHYSFS_writeBytes(file, "\nInstrument: tuba\ninstrumentSprite: images/sprites/instrument_tuba.png", 77);
+		break;
+	case 7:
+		PHYSFS_writeBytes(file, "\nInstrument: snaredrum\ninstrumentSprite: images/sprites/instrument_snare_drum.png", 81);
+		break;
+	case 8:
+		PHYSFS_writeBytes(file, "\nInstrument: bassdrum\ninstrumentSprite: images/sprites/instrument_bass_drum.png", 79);
+		break;
+	case 9:
+		PHYSFS_writeBytes(file, "\nInstrument: cgflag\ninstrumentSprite: images/sprites/instrument_colorguard_flag.png", 83);
+		break;
+	case 10:
+		PHYSFS_writeBytes(file, "\nInstrument: cgrifle\ninstrumentSprite: images/sprites/instrument_colorguard_rifle.png", 85);
+		break;
+	default:
+		PHYSFS_writeBytes(file, "\nInstrument: flute\ninstrumentSprite: images/sprites/instrument_flute.png", 72);
+		break;
+	}
+	PHYSFS_writeBytes(file, "\nstatMarching: 60\nstatMusic: 60\nstatMorale: 100\nstatMotivation: 53\nsectionLeader: 0\n\n~", 86);
+
+	PHYSFS_close(file);
+
+	file = PHYSFS_openAppend("_customBand.band");
+	if (!file)
+	{
+		slog("Error: could not open file for appending!! (%d)", PHYSFS_getLastErrorCode());
+
+		timeToSave = 0;
+		return;
+	}
+	strncat(buffer, filename, MAX_TEXT_LENGTH);
+	i = 0;
+	while (buffer[i] != '\0')
+	{
+		PHYSFS_writeBytes(file, &buffer[i], sizeof(char));
+		i++;
+	}
+	PHYSFS_writeBytes(file, "\n", sizeof(char));
+	PHYSFS_close(file);
+
+	timeToSave = 0;
 }
 
 void setup_cc_guis(TTF_Font * font)
@@ -202,6 +347,7 @@ void setup_cc_guis(TTF_Font * font)
 	cc_name_gui->font = font;
 	gui_change_text(cc_name_gui, "Name:", 200);
 	gui_set_closeability(cc_name_gui, 0);
+	strncpy(cc_name, "", MAX_TEXT_LENGTH);
 
 	//favorite thing
 	cc_fav_thing_gui = gui_new();
@@ -210,6 +356,7 @@ void setup_cc_guis(TTF_Font * font)
 	cc_fav_thing_gui->font = font;
 	gui_change_text(cc_fav_thing_gui, "Favorite thing:", 400);
 	gui_set_closeability(cc_fav_thing_gui, 0);
+	strncpy(cc_fav_thing, "", MAX_TEXT_LENGTH);
 
 	//sprite picker
 	cc_sprite = gui_new();
@@ -218,7 +365,7 @@ void setup_cc_guis(TTF_Font * font)
 	cc_sprite->font = font;
 	gui_change_text(cc_sprite, "Change sprite", 400);
 	gui_set_closeability(cc_sprite, 0);
-	//cc_sprite->on_click = gui_press_create;
+	cc_sprite->on_click = gui_press_create;
 	cc_sprite->extraData = 0;
 	cc_sprite->guiType = GUIType_Button_CC_Sprite;
 
@@ -229,9 +376,20 @@ void setup_cc_guis(TTF_Font * font)
 	cc_instr->font = font;
 	gui_change_text(cc_instr, "Change instrument", 700);
 	gui_set_closeability(cc_instr, 0);
+	cc_instr->on_click = gui_press_create;
 	cc_instr->extraData = 0;
 	cc_instr->guiType = GUIType_Button_CC_Instr;
 	cc_instr_sprite = gf2d_sprite_load_all("images/gui/instruments.png", 32, 32, 4);
+
+	//save button
+	cc_save_button = gui_new();
+	cc_save_button->position = vector2d(100, 500);
+	cc_save_button->windowColor = COLOR_PURPLE;
+	cc_save_button->font = font;
+	gui_change_text(cc_save_button, "Save character", 700);
+	gui_set_closeability(cc_save_button, 0);
+	cc_save_button->on_click = gui_press_create;
+	cc_save_button->guiType = GUIType_Button_CC_Save;
 }
 
 char * format_set_text(char text[32], int currentSet, int maxSets)
@@ -389,6 +547,10 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 				gameHasGraph = 1;
 				//entityLoadAllFromFile(file_temp, tile_map/*, &fieldGraph*/);
 				entityLoadAllFromFile(buffer, tile_map);
+				if (customBand > 0)
+				{
+					entityLoadAllFromFile("mnt2/_customBand.band", tile_map);
+				}
 				//fclose(file_temp);
 				event_execute(currEvent, fieldGraph);
 				tilemap_clear_space(&tile_map);
@@ -583,6 +745,7 @@ int main(int argc, char * argv[])
     slog("---==== BEGIN ====---");
 	PHYSFS_init(NULL);
 	PHYSFS_mount("zip/def.zip", "mnt", 1);
+	PHYSFS_mount("def/cc/", "mnt2", 1);
 	PHYSFS_mount("zip/music.zip", "mnt", 1);
 	if (PHYSFS_exists("mnt/test_tiles.png"))
 	{
@@ -926,6 +1089,7 @@ int main(int argc, char * argv[])
 					}
 				}
 			}
+			e.type = SDL_USEREVENT;
 			e.button.button = 0;
 			break;
 		case SDL_MOUSEBUTTONUP:
@@ -985,8 +1149,14 @@ int main(int argc, char * argv[])
 							strncpy(reloadLevelFilepath, "mnt/level/cc.txt", MAX_TEXT_LENGTH);
 							reload = 1;
 						}
+						else if ((int)guiExtraData == 2)
+						{
+							timeToSave = 1;
+						}
 					}
-					if (collisionGUI->guiType == GUIType_Button_CC_Sprite || collisionGUI->guiType == GUIType_Button_CC_Instr)
+					if (collisionGUI->guiType == GUIType_Button_CC_Sprite || 
+						collisionGUI->guiType == GUIType_Button_CC_Instr ||
+						collisionGUI->guiType == GUIType_Button_CC_Save)
 					{
 						collisionGUI->pressed = 0;
 					}
@@ -996,6 +1166,7 @@ int main(int argc, char * argv[])
 					}
 				}
 			}
+			e.type = SDL_USEREVENT;
 			break;
 		case SDL_CONTROLLERDEVICEADDED:
 			slog("Connected a controller");
@@ -1083,26 +1254,6 @@ int main(int argc, char * argv[])
 					cheat_code(consoleText);
 				}
 				break;
-			case SDLK_SPACE:
-				if (customCharacter != NULL)
-				{
-					(int)cc_sprite->extraData += 1;
-					if ((int)cc_sprite->extraData > 4)
-					{
-						cc_sprite->extraData = 0;
-					}
-				}
-				break;
-			case SDLK_RSHIFT:
-				if (customCharacter != NULL)
-				{
-					(int)cc_instr->extraData += 1;
-					if ((int)cc_instr->extraData > 10)
-					{
-						cc_instr->extraData = 0;
-					}
-				}
-				break;
 			}
 			e.key.keysym.sym = SDLK_UNKNOWN;
 			break;
@@ -1175,6 +1326,10 @@ int main(int argc, char * argv[])
 			}
 		}
 		//slog("ds %i %i %i %i", cd->boundingBox->x, cd->boundingBox->y, cd->boundingBox->w, cd->boundingBox->h);
+		if (timeToSave)
+		{
+			save_character();
+		}
 
 		//UI elements last
 		if (musicSheet)

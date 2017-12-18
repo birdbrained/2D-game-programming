@@ -451,11 +451,20 @@ Entity * entityLoadFromFile(char * filename, Entity * new_entity)
 				new_entity->pathColor = COLOR_BLACK;
 			}
 			else if (strcmp(holder, "bassdrum") == 0)
+			{
 				new_entity->myInstrument = Instrument_Bass_Drum;
+				new_entity->pathColor = COLOR_BLACK;
+			}
 			else if (strcmp(holder, "cgflag") == 0)
+			{
 				new_entity->myInstrument = Instrument_Colorguard_Flag;
+				new_entity->pathColor = COLOR_PURPLE;
+			}
 			else if (strcmp(holder, "cgrifle") == 0)
+			{
 				new_entity->myInstrument = Instrument_Colorguard_Rifle;
+				new_entity->pathColor = COLOR_PINK;
+			}
 			else if (strcmp(holder, "pmarimba") == 0)
 				new_entity->myInstrument = Instrument_Pit_Marimba;
 			else if (strcmp(holder, "pxylophone") == 0)

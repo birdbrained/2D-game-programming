@@ -1,0 +1,12 @@
+name: Fucko
+fav_thing: Meh?
+sprite: images/sprites/cool32x.png
+Instrument: cgrifle
+instrumentSprite: images/sprites/instrument_colorguard_rifle.png
+statMarching: 60
+statMusic: 60
+statMorale: 100
+statMotivation: 53
+sectionLeader: 0
+
+~

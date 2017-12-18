@@ -96,7 +96,22 @@ void * gui_press_create(GUIWindow * self/*GUIType type, void * extraData, Uint8 
 			self->extraData = 0;
 		}
 		break;
+	case GUIType_Button_CC_Instr:
+		gui_free(new_gui);
+		(int)self->extraData += 1;
+		if ((int)self->extraData > 10)
+		{
+			self->extraData = 0;
+		}
+		break;
+	case GUIType_Button_CC_Save:
+		gui_free(new_gui);
+		return 2;
+		break;
+	default:
+		gui_free(new_gui);
+		break;
 	}
+
+	return 0;
 }
-
-
