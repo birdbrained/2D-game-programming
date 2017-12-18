@@ -113,6 +113,10 @@ GUIWindow * cc_name_gui;
 char cc_name[MAX_TEXT_LENGTH];
 GUIWindow * cc_fav_thing_gui;
 char cc_fav_thing[MAX_TEXT_LENGTH];
+//static int cc_frame = 0;
+GUIWindow * cc_sprite;
+GUIWindow * cc_instr;
+static Sprite * cc_instr_sprite;
 
 //game state
 int done = 0;
@@ -175,7 +179,7 @@ void cheat_code(char * text)
 			}
 		}
 	}
-	else if (strncmp(text, "FAV THING", MAX_TEXT_LENGTH) == 0 && customCharacter != NULL)
+	else if (strncmp(text, "FAV", MAX_TEXT_LENGTH) == 0 && customCharacter != NULL)
 	{
 		scanf("%s", buffer);
 		strncpy(cc_fav_thing, buffer, MAX_TEXT_LENGTH);
@@ -206,6 +210,28 @@ void setup_cc_guis(TTF_Font * font)
 	cc_fav_thing_gui->font = font;
 	gui_change_text(cc_fav_thing_gui, "Favorite thing:", 400);
 	gui_set_closeability(cc_fav_thing_gui, 0);
+
+	//sprite picker
+	cc_sprite = gui_new();
+	cc_sprite->position = vector2d(100, 200);
+	cc_sprite->windowColor = COLOR_ORANGE;
+	cc_sprite->font = font;
+	gui_change_text(cc_sprite, "Change sprite", 400);
+	gui_set_closeability(cc_sprite, 0);
+	//cc_sprite->on_click = gui_press_create;
+	cc_sprite->extraData = 0;
+	cc_sprite->guiType = GUIType_Button_CC_Sprite;
+
+	//instrument picker
+	cc_instr = gui_new();
+	cc_instr->position = vector2d(100, 250);
+	cc_instr->windowColor = COLOR_YELLOW;
+	cc_instr->font = font;
+	gui_change_text(cc_instr, "Change instrument", 700);
+	gui_set_closeability(cc_instr, 0);
+	cc_instr->extraData = 0;
+	cc_instr->guiType = GUIType_Button_CC_Instr;
+	cc_instr_sprite = gf2d_sprite_load_all("images/gui/instruments.png", 32, 32, 4);
 }
 
 char * format_set_text(char text[32], int currentSet, int maxSets)
@@ -253,6 +279,10 @@ void close_level(TileMap * tile_map, Graph * fieldGraph)
 	if (customCharacter)
 	{
 		customCharacter = NULL;
+	}
+	if (cc_instr_sprite)
+	{
+		cc_instr_sprite = NULL;
 	}
 	if (gameHasGraph > 0)
 		graph_clear(&fieldGraph);
@@ -414,7 +444,7 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 		{
 			if (buffer[1] == 'u')
 			{
-				customCharacter = gf2d_sprite_load_all("images/sprites/guy32x.png", 32, 32, 2);
+				customCharacter = gf2d_sprite_load_all("images/gui/characterSelect.png", 32, 32, 2);
 				setup_cc_guis(PencilFont);
 			}
 		}
@@ -468,6 +498,7 @@ int main(int argc, char * argv[])
 	Vector2D flipVert = { 0, 1 };
 	Vector2D scaleDown = { 0.5, 0.5 };
 	Vector2D scaleUp = { 2, 2 };
+	Vector2D scaleUp6 = { 6, 6 };
 	Vector2D scaleWayUp = { 12, 12 };
 	Vector2D scaleHalfUp = { 1.5, 1.5 };
 	Vector3D rotate = { 16, 16, 0 };
@@ -955,6 +986,10 @@ int main(int argc, char * argv[])
 							reload = 1;
 						}
 					}
+					if (collisionGUI->guiType == GUIType_Button_CC_Sprite || collisionGUI->guiType == GUIType_Button_CC_Instr)
+					{
+						collisionGUI->pressed = 0;
+					}
 					if (collisionGUI->closeable)
 					{
 						gui_delete(collisionGUI);
@@ -1046,6 +1081,26 @@ int main(int argc, char * argv[])
 					//handle_console(gf2d_graphics_get_renderer());
 
 					cheat_code(consoleText);
+				}
+				break;
+			case SDLK_SPACE:
+				if (customCharacter != NULL)
+				{
+					(int)cc_sprite->extraData += 1;
+					if ((int)cc_sprite->extraData > 4)
+					{
+						cc_sprite->extraData = 0;
+					}
+				}
+				break;
+			case SDLK_RSHIFT:
+				if (customCharacter != NULL)
+				{
+					(int)cc_instr->extraData += 1;
+					if ((int)cc_instr->extraData > 10)
+					{
+						cc_instr->extraData = 0;
+					}
 				}
 				break;
 			}
@@ -1151,7 +1206,11 @@ int main(int argc, char * argv[])
 
 		if (customCharacter)
 		{
-			gf2d_sprite_draw(customCharacter, vector2d(700, 200), &scaleWayUp, NULL, NULL, NULL, NULL, 0);
+			gf2d_sprite_draw(customCharacter, vector2d(700, 200), &scaleWayUp, NULL, NULL, NULL, NULL, (Uint32)cc_sprite->extraData);
+		}
+		if (cc_instr_sprite)
+		{
+			gf2d_sprite_draw(cc_instr_sprite, vector2d(500, 400), &scaleUp6, NULL, NULL, NULL, NULL, (Uint32)cc_instr->extraData);
 		}
 
 		if (consoleTexture)

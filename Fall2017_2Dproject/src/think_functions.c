@@ -88,6 +88,14 @@ void * gui_press_create(GUIWindow * self/*GUIType type, void * extraData, Uint8 
 		gui_free(new_gui);
 		return 1;
 		break;
+	case GUIType_Button_CC_Sprite:
+		gui_free(new_gui);
+		(int)self->extraData += 1;
+		if ((int)self->extraData > 4)
+		{
+			self->extraData = 0;
+		}
+		break;
 	}
 }
 
