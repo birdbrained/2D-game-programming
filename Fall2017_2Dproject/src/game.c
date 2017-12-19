@@ -92,6 +92,7 @@ static Entity *playButton;
 static Sprite *guiMarchingStat;
 //Graph *fieldGraph;
 static int score;
+static int scoreToBeat;
 static char consoleText[MAX_TEXT_LENGTH] = "";
 static char consoleMarkedText[MAX_TEXT_LENGTH] = "";
 static SDL_Rect consoleRect, markedRect;
@@ -126,8 +127,11 @@ GUIWindow * cc_mm;
 int done = 0;
 static int currentSet = 0;
 static int maxSets = 0;
+static int levelDone = 0;
 static Event currEvent = 0;
 static float masterVolume = 1.0f;
+float timer = 0.0f;
+float scoreMultipler = 1.0f;
 
 //other random stuff
 int reload = 0;
@@ -508,6 +512,10 @@ void close_level(TileMap * tile_map, Graph * fieldGraph)
 	{
 		cc_instr_sprite = NULL;
 	}
+	if (levelDone > 0)
+	{
+		levelDone = 0;
+	}
 	if (gameHasGraph > 0)
 		graph_clear(&fieldGraph);
 	entityDeleteAll();
@@ -649,6 +657,12 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 			physBuffer += n;
 			slog("MAX SETS: (%i)", maxSets);
 		}
+		if (strcmp(buffer, "totalScore:") == 0)
+		{
+			sscanf(physBuffer, " %i\n%n", &scoreToBeat, &n);
+			physBuffer += n;
+			slog("SCORE TO BEAT: (%i)", scoreToBeat);
+		}
 		if (strcmp(buffer, "extraSprites:") == 0)
 		{
 			while (1)
@@ -681,6 +695,7 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
 	eventSprite = gf2d_sprite_load_all("images/gui/stahp.png", 32, 32, 1);
+	timer = 0.0f;
 	//soundAdjustVolumeAll(0);
 
 	//fclose(file);
@@ -1005,6 +1020,18 @@ int main(int argc, char * argv[])
         if (mf >= 16.0)mf = 0;        
 		guyFrame += 0.05;
 		if (guyFrame >= 2.0)guyFrame = 0;
+
+		timer += 0.017f;
+		if (timer >= 15)
+		{
+			scoreMultipler -= 0.1;
+			if (scoreMultipler < 0.5)
+			{
+				scoreMultipler = 0.5;
+			}
+			timer = 0.0f;
+		}
+		//slog("timer (%f)", timer);
         
         gf2d_graphics_clear_screen();// clears drawing buffers
         // all drawing should happen betweem clear_screen and next_frame
@@ -1224,30 +1251,34 @@ int main(int argc, char * argv[])
 			{
 			case SDLK_RETURN:
 				//slog("pressed enter");
-				event_execute(currEvent, fieldGraph);
-				graph_zero_all(&fieldGraph);
-				tilemap_clear_space(&tile_map);
-				entityUpdatePositionAll(tile_map);
-				entityUpdateGraphPositionAll(&fieldGraph);
-				soundAdjustVolumeAll(0);
-				score = formation_detect(&fieldGraph);
-				currEvent = event_decide();
-				event_assign_tiles(&fieldGraph, currEvent, tile_map->height);
-				snprintf(scoreText, 32, "%d", score);
-				scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
-				scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
-				SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreX, &scoreY);
-				scoreRect.w = scoreX;
-				scoreRect.h = scoreY;
+				if (!levelDone)
+				{
+					event_execute(currEvent, fieldGraph);
+					graph_zero_all(&fieldGraph);
+					tilemap_clear_space(&tile_map);
+					entityUpdatePositionAll(tile_map);
+					entityUpdateGraphPositionAll(&fieldGraph);
+					//event_execute(currEvent, fieldGraph);
+					soundAdjustVolumeAll(0);
+					score += (formation_detect(&fieldGraph) * scoreMultipler);
+					currEvent = event_decide();
+					event_assign_tiles(&fieldGraph, currEvent, tile_map->height);
+					snprintf(scoreText, 32, "%d", score);
+					scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
+					scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
+					SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreX, &scoreY);
+					scoreRect.w = scoreX;
+					scoreRect.h = scoreY;
 
-				//update current set
-				currentSet++;
-				strncpy(setText, format_set_text(setText, currentSet, maxSets), 32);
-				setSurface = TTF_RenderText_Solid(PencilFont, setText, colorBlack);
-				setTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), setSurface);
-				SDL_QueryTexture(setTexture, NULL, NULL, &setW, &setH);
-				setRect.w = setW;
-				setRect.h = setH;
+					//update current set
+					currentSet++;
+					strncpy(setText, format_set_text(setText, currentSet, maxSets), 32);
+					setSurface = TTF_RenderText_Solid(PencilFont, setText, colorBlack);
+					setTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), setSurface);
+					SDL_QueryTexture(setTexture, NULL, NULL, &setW, &setH);
+					setRect.w = setW;
+					setRect.h = setH;
+				}
 
 				//e.key.keysym.sym = SDLK_UNKNOWN;
 

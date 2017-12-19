@@ -3,6 +3,7 @@ tilemap:	def/level/field_2.tilemap
 band:		mnt/_myBand.band
 mouse:		images/pointer.png
 sets:		10
+totalScore:	3000
 extraSprites:
 END
 musicSheet
