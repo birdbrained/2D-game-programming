@@ -1,5 +1,7 @@
 #include "formation.h"
 
+static Formation currForm = Formation_None;
+
 int formation_rectangle(GraphNode * n)
 {
 	GraphNode * start = n;
@@ -93,6 +95,8 @@ int formation_detect(Graph ** graph)
 					{
 						baseScore += temp;
 						checkedRectangle++;
+						f = Formation_Rectangle;
+						currForm = Formation_Rectangle;
 						temp = 0;
 					}
 				}
@@ -174,4 +178,9 @@ char * formation_to_string(Formation f)
 	}
 
 	return buffer;
+}
+
+Formation formation_get_curr()
+{
+	return currForm;
 }

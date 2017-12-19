@@ -108,7 +108,7 @@ int event_draw_from_graph(Graph * graph, Sprite * sprite, int tileWidth, int til
 	}
 	if (!tileWidth || !tileHeight || !xPos || !yPos)
 	{
-		slog("Error: A value was null!");
+		//slog("Error: A value was null!");
 		return -1;
 	}
 

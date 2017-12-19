@@ -28,4 +28,10 @@ int formation_detect(Graph ** graph);
  */
 char * formation_to_string(Formation f);
 
+/**
+ * @brief Gets the current staticaly defined formation
+ * @returns The current formation
+ */
+Formation formation_get_curr();
+
 #endif // !__FORMATION__

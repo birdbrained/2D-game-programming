@@ -134,6 +134,9 @@ static Event currEvent = 0;
 static float masterVolume = 1.0f;
 float timer = 0.0f;
 float scoreMultipler = 1.0f;
+Formation form_goal;
+int form_amount;
+int curr_form_amount = 0;
 
 //other random stuff
 int reload = 0;
@@ -531,6 +534,10 @@ void close_level(TileMap * tile_map, Graph * fieldGraph)
 		graph_clear(&fieldGraph);
 		gameHasGraph = 0;
 	}
+	form_goal = Formation_None;
+	form_amount = 0;
+	curr_form_amount = 0;
+	currentSet = 0;
 	entityDeleteAll();
 	tilemap_clear(tile_map);
 	gf2d_sprite_clear_all();
@@ -676,6 +683,20 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 			physBuffer += n;
 			slog("SCORE TO BEAT: (%i)", scoreToBeat);
 		}
+		if (strcmp(buffer, "form:") == 0)
+		{
+			sscanf(physBuffer, " %s\n%n", buffer, &n);
+			physBuffer += n;
+			if (strncmp(buffer, "rectangle", MAX_TEXT_LENGTH) == 0)
+			{
+				form_goal = Formation_Rectangle;
+			}
+		}
+		if (strcmp(buffer, "formAmount:") == 0)
+		{
+			sscanf(physBuffer, " %i\n%n", &form_amount, &n);
+			physBuffer += n;
+		}
 		if (strcmp(buffer, "extraSprites:") == 0)
 		{
 			while (1)
@@ -733,6 +754,21 @@ void level_finish()
 		if (score >= scoreToBeat)
 		{
 			strncat(msg, " ...You win the level! Congrats!", MAX_TEXT_LENGTH);
+			if (curr_form_amount > form_amount)
+			{
+				strncat(msg, " Extra goal completed! ", MAX_TEXT_LENGTH);
+			}
+			else
+			{
+				strncat(msg, " Extra goal incomplete... ", MAX_TEXT_LENGTH);
+			}
+			strncpy(buffer, "", MAX_TEXT_LENGTH);
+			sprintf(buffer, "%d", curr_form_amount);
+			strncat(buffer, " / ", MAX_TEXT_LENGTH);
+			strncat(msg, buffer, MAX_TEXT_LENGTH);
+			strncpy(buffer, "", MAX_TEXT_LENGTH);
+			sprintf(buffer, "%d", form_amount);
+			strncat(msg, buffer, MAX_TEXT_LENGTH);
 		}
 		else
 		{
@@ -1330,6 +1366,10 @@ int main(int argc, char * argv[])
 					//event_execute(currEvent, fieldGraph);
 					soundAdjustVolumeAll(0);
 					score += (formation_detect(&fieldGraph) * scoreMultipler);
+					if (formation_get_curr() == form_goal)
+					{
+						curr_form_amount++;
+					}
 					currEvent = event_decide();
 					event_assign_tiles(&fieldGraph, currEvent, tile_map->height);
 					snprintf(scoreText, 32, "%d", score);

@@ -4,6 +4,8 @@ band:		mnt/_myBand.band
 mouse:		images/pointer.png
 sets:		20
 totalScore:	6000
+form:		rectangle
+formAmount:	5
 extraSprites:
 END
 musicSheet
