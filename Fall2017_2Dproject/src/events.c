@@ -106,6 +106,11 @@ int event_draw_from_graph(Graph * graph, Sprite * sprite, int tileWidth, int til
 		slog("Error: cannot draw where events are from a null graph");
 		return -1;
 	}
+	if (!tileWidth || !tileHeight || !xPos || !yPos)
+	{
+		slog("Error: A value was null!");
+		return -1;
+	}
 
 	hor_iter = graph->head;
 	ver_iter = graph->head;

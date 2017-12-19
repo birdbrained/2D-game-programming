@@ -83,6 +83,7 @@ static Sprite *musicSheet;
 static Sprite *controllerIcon;
 static Sprite *gui;
 static Sprite *eventSprite;
+static Sprite *closeButton;
 //TileMap *tile_map;
 static Entity *pickedUp = NULL;
 static Entity *collision = NULL;
@@ -122,6 +123,7 @@ GUIWindow * cc_save_button;
 int timeToSave = 0;
 int customBand = 0;
 GUIWindow * cc_mm;
+GUIWindow * finish_gui = NULL;
 
 //game state
 int done = 0;
@@ -492,6 +494,10 @@ void close_level(TileMap * tile_map, Graph * fieldGraph)
 	{
 		gui = NULL;
 	}
+	if (musicSheet)
+	{
+		musicSheet = NULL;
+	}
 	if (guiMarchingStat)
 	{
 		guiMarchingStat = NULL;
@@ -516,8 +522,15 @@ void close_level(TileMap * tile_map, Graph * fieldGraph)
 	{
 		levelDone = 0;
 	}
+	if (finish_gui)
+	{
+		finish_gui = NULL;
+	}
 	if (gameHasGraph > 0)
+	{
 		graph_clear(&fieldGraph);
+		gameHasGraph = 0;
+	}
 	entityDeleteAll();
 	tilemap_clear(tile_map);
 	gf2d_sprite_clear_all();
@@ -633,7 +646,7 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 				score = formation_detect(&fieldGraph);
 				currEvent = event_decide();
 				event_assign_tiles(&fieldGraph, currEvent, tile_map->height);
-				//graph_print(fieldGraph);
+				graph_print(fieldGraph);
 				slog("snares (%i) flutes (%i) trumpets (%i) alto saxes (%i) baritones (%i) others (%i)",
 					fieldGraph->numSnareDrums,
 					fieldGraph->numFlutes,
@@ -695,11 +708,51 @@ Graph * load_level(char * levelFilename, TileMap * tile_map, Graph * fieldGraph,
 
 	controllerIcon = gf2d_sprite_load_all("images/gui/controller64x.png", 64, 64, 1);
 	eventSprite = gf2d_sprite_load_all("images/gui/stahp.png", 32, 32, 1);
+	closeButton = gf2d_sprite_load_all("images/gui/close.png", 25, 25, 1);
 	timer = 0.0f;
 	//soundAdjustVolumeAll(0);
 
 	//fclose(file);
 	return fieldGraph;
+}
+
+void level_finish()
+{
+	char msg[512] = "Level Finished! You scored: ";
+	char buffer[512] = "";
+
+	if (levelDone == 1)
+	{
+		sprintf(buffer, "%d", score);
+		strncat(buffer, " / ", MAX_TEXT_LENGTH);
+		strncat(msg, buffer, MAX_TEXT_LENGTH);
+		strncpy(buffer, "", MAX_TEXT_LENGTH);
+		sprintf(buffer, "%d", scoreToBeat);
+		strncat(msg, buffer, MAX_TEXT_LENGTH);
+
+		if (score >= scoreToBeat)
+		{
+			strncat(msg, " ...You win the level! Congrats!", MAX_TEXT_LENGTH);
+		}
+		else
+		{
+			strncat(msg, " ...Sorry, try again...", MAX_TEXT_LENGTH);
+		}
+
+		finish_gui = gui_new();
+		if (!finish_gui)
+		{
+			return;
+		}
+		finish_gui->position = vector2d(300, 200);
+		finish_gui->font = PencilFont;
+		finish_gui->windowColor = COLOR_WHITE;
+		finish_gui->guiType = GUIType_Button_MM;
+		finish_gui->on_click = gui_press_create;
+		gui_change_text(finish_gui, msg, 700);
+
+		levelDone = 2;
+	}
 }
 
 void input_init()
@@ -731,7 +784,6 @@ int main(int argc, char * argv[])
 	//Sprite *wups;
 	Sprite *galSprite;
 	Sprite *mehSprite;
-	Sprite *closeButton;
 	int controllerConnected = 0;
 
 	FILE *tilemapFile;
@@ -1055,6 +1107,19 @@ int main(int argc, char * argv[])
 		entityUpdateAll();
 		entityIncrementCurrentFrameAll();
 		gui_update_all();
+
+		if (currentSet == maxSets)
+		{
+			if (maxSets > 0)
+				if (levelDone == 0)
+					levelDone = 1;
+		}
+		if (levelDone == 1)
+		{
+			//end the level
+			level_finish();
+			levelDone = 2;
+		}
 		//snprintf(scoreText, 32, "%d", score);
 		//scoreSurface = TTF_RenderText_Solid(PencilFont, scoreText, colorRed);
 		//scoreTexture = SDL_CreateTextureFromSurface(gf2d_graphics_get_renderer(), scoreSurface);
@@ -1201,6 +1266,10 @@ int main(int argc, char * argv[])
 						{
 							strncpy(reloadLevelFilepath, "mnt/level/mainMenu.txt", MAX_TEXT_LENGTH);
 							reload = 1;
+							if (finish_gui)
+							{
+								gui_free(finish_gui);
+							}
 						}
 					}
 					if (collisionGUI->guiType == GUIType_Button_CC_Sprite || 
@@ -1251,7 +1320,7 @@ int main(int argc, char * argv[])
 			{
 			case SDLK_RETURN:
 				//slog("pressed enter");
-				if (!levelDone)
+				if (levelDone == 0)
 				{
 					event_execute(currEvent, fieldGraph);
 					graph_zero_all(&fieldGraph);
@@ -1353,6 +1422,7 @@ int main(int argc, char * argv[])
 		{
 			if (point_in_rect(1000, 10, cd->boundingBox))
 			{
+				playButtonPressed = 0;
 				fieldGraph = load_level("mnt/level/myLevel.txt", tile_map, fieldGraph, 1);
 				strncpy(setText, format_set_text(setText, currentSet, maxSets), 32);
 				setSurface = TTF_RenderText_Solid(PencilFont, setText, colorBlack);
@@ -1434,7 +1504,7 @@ int main(int argc, char * argv[])
 			//slog("aaa");
 			gui_draw(guii);
 		}*/
-		if (fieldGraph != NULL && gameHasGraph > 0)
+		if (fieldGraph != NULL && gameHasGraph > 0 && levelDone == 0)
 			event_draw_from_graph(fieldGraph, eventSprite, tile_map->tileWidth, tile_map->tileHeight, tile_map->xPos, tile_map->yPos);
 
 		if (pickedUp == NULL)
@@ -1495,7 +1565,8 @@ int main(int argc, char * argv[])
     slog("---==== END ====---");
 	FMOD_Sound_Release(fsound);
 	FMOD_System_Release(system);
-	graph_clear(&fieldGraph);
+	if (gameHasGraph > 0)
+		graph_clear(&fieldGraph);
 	TTF_Quit();
 	SDL_DestroyTexture(message);
 	SDL_FreeSurface(surfaceMessage);

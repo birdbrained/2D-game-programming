@@ -1,7 +1,8 @@
 background:	images/backgrounds/field.png
 tilemap:	
-band:		
+band:		no
 mouse:		images/pointer.png
+sets:		0
 extraSprites:
 images/gui/cdcase.png
 END
